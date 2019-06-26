@@ -1,0 +1,31 @@
+ManifestFileVersion: 0
+CRC: 350338767
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: shader
+      Dependencies: {}
+    Info_1:
+      Name: sound
+      Dependencies: {}
+    Info_2:
+      Name: jsondata
+      Dependencies: {}
+    Info_3:
+      Name: image
+      Dependencies: {}
+    Info_4:
+      Name: uiprefabs
+      Dependencies:
+        Dependency_0: image
+    Info_5:
+      Name: attack
+      Dependencies:
+        Dependency_0: shader
+    Info_6:
+      Name: test
+      Dependencies:
+        Dependency_0: attack
+    Info_7:
+      Name: assetbundleconfig
+      Dependencies: {}

@@ -1,0 +1,81 @@
+ManifestFileVersion: 0
+CRC: 32140359
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 3ae6cd50aaf1338561b3553f407f0051
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 0bb7ed77af7645fdc22dcbdca5bcf3ee
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 96
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c31d2e22734c1d449ae1dec5e388ea1e, type: 3}
+- Class: 114
+  Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: 1573420865, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5524d0c414413b54cbf497ad8613c40a, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 656c0b960941d3f46ba88ad19e174934, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 33da7be6df032ed478b987d0732b01ce, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 2ca90b3752e88be45a53e1994da9a315, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9d4fdf1cbd6d4a34bba273dd79b85d05, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1d680dbe0ea22244ea90e8246a88b81f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5682a74f628170d4cbb10ea505a75a0c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ce66a5cf07a73224184cc7e73dce21fa, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+- Class: 225
+  Script: {instanceID: 0}
+Assets:
+- Assets/Ls_Mobile/Example/UIExample/Prefabs/Panel/ShopPanel.prefab
+- Assets/Ls_Mobile/Example/UIExample/Prefabs/Panel/TaskPanel.prefab
+- Assets/Ls_Mobile/Example/UIExample/Prefabs/Panel/SystemPanel.prefab
+- Assets/Ls_Mobile/Example/UIExample/Prefabs/Panel/LodingPanel.prefab
+- Assets/Ls_Mobile/Example/UIExample/Prefabs/Panel/MainMenuPanel.prefab
+- Assets/Ls_Mobile/Example/UIExample/Prefabs/Effect/Particle System.prefab
+- Assets/Ls_Mobile/Example/UIExample/Prefabs/Panel/ItemMessagePanel.prefab
+- Assets/Ls_Mobile/Example/UIExample/Prefabs/Panel/SkillPanel.prefab
+- Assets/Ls_Mobile/Example/UIExample/Prefabs/Panel/KnapsackPanel.prefab
+Dependencies:
+- F:/FrameWork/Ls_Mobile/Assets/StreamingAssets/image

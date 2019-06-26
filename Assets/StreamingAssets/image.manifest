@@ -1,0 +1,262 @@
+ManifestFileVersion: 0
+CRC: 2988114287
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 877e4452ce918f7e346a9ee7d5c476a6
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f0d84e1427ead56a50b6003f644ba352
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: 1573420865, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+Assets:
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/btn_\u9886\u53D6\u5956\u52B14.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/pic_\u8054\u7CFB\u6211\u4EEC.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u88C5\u5907/\u7537\u6027\u6212\u6307
+  (2).png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/pic_\u5956\u8D4F.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/006-map/star-\u7070\u8272.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/btn_\u5145\u503C2.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/\u6548\u679C\u56FE/1.3 \u5730\u56FE .psd"
+- Assets/Ls_Mobile/Example/UIExample/Images/005-number combo/8.png
+- Assets/Ls_Mobile/Example/UIExample/Images/005-number combo/9.png
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u6539\u540D3.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_\u7EA23.png"
+- Assets/Ls_Mobile/Example/UIExample/Images/005-number combo/7.png
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u6574\u74063.png"
+- Assets/Ls_Mobile/Example/UIExample/Images/005-number combo/combo.png
+- "Assets/Ls_Mobile/Example/UIExample/Images/Font/\u65B9\u6B63\u7C97\u5706\u7B80\u4F53.ttf"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/bg_\u8FDB\u5165\u6E38\u620F\u5E95\u677F.png"
+- Assets/Ls_Mobile/Example/UIExample/Images/test3.png
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u88C5\u5907/\u7537\u6027\u9879\u94FE
+  (2).png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/bg_\u5546\u5E97\u6761.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/pic_\u97F3\u6548\u5173\u95ED.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/pic_\u6DF1\u84DD.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/\u6548\u679C\u56FE/\u4E3B\u754C\u9762\u6548\u679C\u56FE.png"
+- Assets/Ls_Mobile/Example/UIExample/Images/004-skill icon/icon_up.png
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u5934\u50CF\u5E95\u677F\u7537\u6027.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/006-map/\u5730\u56FE-\u7BB1\u5B50.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u91D1\u5E01.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_\u5173\u95ED3.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/pic_\u4E3B\u7EBF.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u51FA\u552E2.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/bg_\u4EFB\u52A1.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_\u516C\u5171\u84DD4.png"
+- Assets/Ls_Mobile/Example/UIExample/Images/005-number combo/0.png
+- Assets/Ls_Mobile/Example/UIExample/Images/004-skill icon/icon_zhu.png
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/bg_\u89D2\u8272_\u751F\u547D.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_\u6D41\u75453.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/NPC\u5BF9\u8BDD\u534A\u8EAB\u50CF288x347.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/bg_\u7ECF\u9A8C\u6761\u77ED.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/\u6548\u679C\u56FE/QQ\u56FE\u724720141222101541.jpg"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u88C5\u5907/\u7537\u6027\u7FC5\u8180
+  (1).png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/pic_\u7ECF\u9A8C\u6761\u957F.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u88C5\u5907/\u5973\u6027\u624B\u956F
+  (2).png"
+- Assets/Ls_Mobile/Example/UIExample/Images/BG.png
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/bg_\u5F39\u6846.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_2\u8FD4\u56DE1.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u88C5\u5907/\u5973\u6027\u6212\u6307
+  (1).png"
+- Assets/Ls_Mobile/Example/UIExample/Images/005-number combo/2.png
+- Assets/Ls_Mobile/Example/UIExample/Images/UI Prefab/TaskButton.prefab
+- Assets/Ls_Mobile/Example/UIExample/Images/005-number combo/number_font_0.tga
+- Assets/Ls_Mobile/Example/UIExample/Images/test2.png
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/btn_\u8FD4\u56DE2.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/pic_\u7EBF.png"
+- Assets/Ls_Mobile/Example/UIExample/Images/004-skill icon/iocn_yi.png
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/pic_\u4F20\u8BF4.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/\u6548\u679C\u56FE/\u80CC\u5305\u7CFB\u7EDF2.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/pic_\u7ECF\u9A8C\u6761\u77ED.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/btn_\u9886\u53D6\u5956\u52B12.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/pic_\u4EF7\u683C.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/pic_\u811A\u4E0B\u4E912.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u88C5\u5907/\u5973\u6027\u6B66\u5668
+  (2).png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/\u516C\u7528\u56DB\u5B57\u6309\u94AE198x70_4.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/\u6280\u80FD\u7CFB\u7EDF\u80CC\u666F.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u5927\u4F53\u529B\u4E39.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/\u516C\u7528\u56DB\u5B57\u6309\u94AE198x70_2.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/pic_\u4E911.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_2\u8FD4\u56DE3.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u94BB\u77F3.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/\u534A\u900F\u660E\u80CC\u666F.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/btn_\u5145\u503C4.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/bg_\u4E2A\u4EBA\u4FE1\u606F--\u5F39\u6846.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_\u7EA24.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_\u516C\u5171\u84DD3.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/\u6548\u679C\u56FE/\u4EFB\u52A1\u7CFB\u7EDF.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/pic_\u9001.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u5B9D\u7BB1.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/\u6548\u679C\u56FE/1.2\u5546\u573A+\u4EFB\u52A1+\u6280\u80FD+\u7CFB\u7EDF
+  .psd"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u88C5\u5907/\u7537\u6027\u5934\u76D4
+  (2).png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/NPC\u5BF9\u8BDD\u5E95\u677F1526x280.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/\u516C\u7528\u56DB\u5B57\u6309\u94AE198x70_1.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u5546\u57CE.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/pic_\u5929\u4F7F.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u6574\u74061.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u88C5\u5907/\u5973\u6027\u76D4\u7532
+  (2).png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u5F39\u68462.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u52A0\u53F71-\u62F7\u8D1D.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/pic_\u661F\u661F.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_\u6D41\u75452.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/\u6280\u80FD3.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/bg_\u89D2\u8272.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_\u516C\u5171\u84DD2.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/bg_\u89D2\u8272_\u8BE6\u7EC6\u4FE1\u606F.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u88C5\u5907/\u5973\u6027\u5E3D\u5B50
+  (2).png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/pic_\u8FDB\u5EA6\u6761.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u88C5\u5907/\u7537\u6027\u76D4\u7532
+  (2).png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u5C0F\u4F53\u529B\u4E39.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_\u5173\u95ED4.png"
+- Assets/Ls_Mobile/Example/UIExample/Images/Test1.png
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u6574\u74064.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_\u706B\u72062.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/\u6280\u80FD\u56FE\u6807
+  1.png"
+- Assets/Ls_Mobile/Example/UIExample/Images/004-skill icon/icon_li.png
+- Assets/Ls_Mobile/Example/UIExample/Images/005-number combo/number_font.fnt
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u8BE6\u7EC6\u4FE1\u606F3.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_2\u8FD4\u56DE4.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_\u7EA21.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u80CC\u5305.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/pic_\u811A\u4E0B\u4E911.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/pic_\u8FDB\u5EA6\u4EBA\u7269.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u52A0\u53F71-\u62F7\u8D1D-2.png"
+- Assets/Ls_Mobile/Example/UIExample/Images/005-number combo/1.png
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u88C5\u5907/\u5973\u6027\u9879\u94FE
+  (1).png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u8BE6\u7EC6\u4FE1\u606F1.png"
+- Assets/Ls_Mobile/Example/UIExample/Images/005-number combo/3.png
+- "Assets/Ls_Mobile/Example/UIExample/Images/\u6548\u679C\u56FE/1.1\u4E3B\u754C\u9762.psd"
+- "Assets/Ls_Mobile/Example/UIExample/Images/006-map/\u5730\u56FE-\u666E\u901A.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/pic_\u6CE8\u518C\u8F93\u5165\u6846.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_\u6DF1\u84DD4.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u5F39\u68464.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_\u6DF1\u84DD1.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u51FA\u552E4.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u7CFB\u7EDF.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/pic_\u65E5\u5E38.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/pic_\u4E912.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u88C5\u5907/\u7537\u6027\u6B66\u5668
+  (2).png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u5F39\u68463.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/006-map/\u5730\u56FE-\u7CBE\u82F1.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/\u6DF1\u84DD3.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_2\u8FD4\u56DE2.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u5934\u50CF\u5E95\u677F\u5973\u6027.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/\u9000\u51FA\u6309\u94AE.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/pic_\u5DF2\u88C5\u5907.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u88C5\u5907/\u7537\u6027\u9774\u5B50
+  (2).png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u88C5\u59074.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/pic_\u4E2A\u4EBA\u4FE1\u606F.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u52A0\u53F71.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/pic_\u4F53\u529B.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u6539\u540D4.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u88C5\u5907/\u5973\u6027\u7FC5\u8180
+  (2).png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/pic_\u5386\u7EC3.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u88C5\u59072.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u88C5\u59073.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u88C5\u5907/\u5973\u6027
+  \u9774\u5B50 (2).png"
+- Assets/Ls_Mobile/Example/UIExample/Images/005-number combo/4.png
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u52A0\u53F72.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/\u6548\u679C\u56FE/QQ\u622A\u56FE20141222153741.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/btn_\u5145\u503C1.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/pic_\u4FE1\u606F\u5E95.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u4EFB\u52A1.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u8BE6\u7EC6\u4FE1\u606F4.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u6280\u80FD.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u52A0\u53F74.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u52A0\u53F73.png"
+- Assets/Ls_Mobile/Example/UIExample/Images/005-number combo/5.png
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/btn_\u9886\u53D6\u5956\u52B11.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u88C5\u59071.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_\u706B\u72063.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u51FA\u552E1.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u8BE6\u7EC6\u4FE1\u606F2.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/bg_\u9009\u670D\u5E95.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/\u6548\u679C\u56FE/qdp1.psd"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_\u706B\u72064.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/bg_\u91D1\u5E01.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/pic_\u4EBA\u7269.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/bg_\u88C5\u5907\u8BE6\u60C5.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/bg_\u5730\u56FE.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/pic_\u8FDB\u5EA6\u6761\u7279\u6548.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_\u516C\u5171\u84DD1.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/bg_\u552E\u51FA\u4EF7\u683C.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/btn_\u9886\u53D6\u5956\u52B13.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u6218\u6597.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/bg_\u516C\u544A\u5E95.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_\u6D41\u75454.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/bg_\u9053\u5177.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u5F39\u68461.png"
+- Assets/Ls_Mobile/Example/UIExample/Images/006-map/map_bg.png
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/bg_\u4EFB\u52A1\u6761.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/bg_\u80CC\u5305.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u6539\u540D2.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_\u6D41\u75451.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u52A0\u53F71-\u62F7\u8D1D-3.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u6539\u540D1.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/btn_\u8FD4\u56DE1.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/pic_\u97F3\u6548\u5F00\u542F.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/006-map/star-\u9EC4\u8272.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/bg_\u5546\u5E97.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_\u5173\u95ED1.png"
+- Assets/Ls_Mobile/Example/UIExample/Images/004-skill icon/iocn_ho.png
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/pic_\u8FDB\u5EA6\u6761\u5E95.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/\u88C5\u5907/\u7537\u6027
+  \u624B\u956F  (2).png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u6574\u74062.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/\u6280\u80FD2.png"
+- Assets/Ls_Mobile/Example/UIExample/Images/004-skill icon/iocn_fo.png
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_\u5173\u95ED2.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/bg_\u6CE8\u518C.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/\u6548\u679C\u56FE/ICON.psd"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/btn_\u51FA\u552E3.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_\u7EA22.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/\u6DF1\u84DD2.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/\u6548\u679C\u56FE/\u80CC\u5305\u7CFB\u7EDF1.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/btn_\u706B\u72061.png"
+- Assets/Ls_Mobile/Example/UIExample/Images/005-number combo/6.png
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/\u516C\u7528\u56DB\u5B57\u6309\u94AE198x70_3.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/002-mainmenu/bg_\u7ECF\u9A8C\u6761\u957F.png"
+- "Assets/Ls_Mobile/Example/UIExample/Images/003-taskother/btn_\u5145\u503C3.png"
+Dependencies: []

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BuffData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <AllBuffList Id="1" Name="全BUFF0" OutLook="Assets/GameData/...0" Time="7.74244452" BuffType="None">
+    <AllString>ceshi0</AllString>
+    <AllString>ceshiq0</AllString>
+  </AllBuffList>
+  <AllBuffList Id="2" Name="全BUFF1" OutLook="Assets/GameData/...1" Time="3.227627" BuffType="None">
+    <AllString>ceshi1</AllString>
+    <AllString>ceshiq1</AllString>
+  </AllBuffList>
+  <AllBuffList Id="3" Name="全BUFF2" OutLook="Assets/GameData/...2" Time="9.667612" BuffType="Du">
+    <AllString>ceshi2</AllString>
+    <AllString>ceshiq2</AllString>
+  </AllBuffList>
+  <AllBuffList Id="4" Name="全BUFF3" OutLook="Assets/GameData/...3" Time="6.337794" BuffType="Du">
+    <AllString>ceshi3</AllString>
+    <AllString>ceshiq3</AllString>
+    <AllBuffList Id="3" Name="name0" />
+    <AllBuffList Id="5" Name="name1" />
+    <AllBuffList Id="3" Name="name2" />
+  </AllBuffList>
+  <AllBuffList Id="5" Name="全BUFF4" OutLook="Assets/GameData/...4" Time="5.53864145" BuffType="Ranshao">
+    <AllString>ceshi4</AllString>
+    <AllString>ceshiq4</AllString>
+    <AllBuffList Id="1" Name="name0" />
+    <AllBuffList Id="3" Name="name1" />
+    <AllBuffList Id="5" Name="name2" />
+  </AllBuffList>
+  <AllBuffList Id="6" Name="全BUFF5" OutLook="Assets/GameData/...5" Time="5.050804" BuffType="None">
+    <AllString>ceshi5</AllString>
+    <AllString>ceshiq5</AllString>
+  </AllBuffList>
+  <AllBuffList Id="7" Name="全BUFF6" OutLook="Assets/GameData/...6" Time="7.27316332" BuffType="Du">
+    <AllString>ceshi6</AllString>
+    <AllString>ceshiq6</AllString>
+    <AllBuffList Id="0" Name="name0" />
+    <AllBuffList Id="5" Name="name1" />
+    <AllBuffList Id="6" Name="name2" />
+  </AllBuffList>
+  <AllBuffList Id="8" Name="全BUFF7" OutLook="Assets/GameData/...7" Time="6.53224945" BuffType="Ranshao">
+    <AllString>ceshi7</AllString>
+    <AllString>ceshiq7</AllString>
+    <AllBuffList Id="2" Name="name0" />
+    <AllBuffList Id="5" Name="name1" />
+    <AllBuffList Id="4" Name="name2" />
+  </AllBuffList>
+  <AllBuffList Id="9" Name="全BUFF8" OutLook="Assets/GameData/...8" Time="0.8877187" BuffType="Du">
+    <AllString>ceshi8</AllString>
+    <AllString>ceshiq8</AllString>
+    <AllBuffList Id="2" Name="name0" />
+  </AllBuffList>
+  <AllBuffList Id="10" Name="全BUFF9" OutLook="Assets/GameData/...9" Time="7.55891943" BuffType="Ranshao">
+    <AllString>ceshi9</AllString>
+    <AllString>ceshiq9</AllString>
+    <AllBuffList Id="1" Name="name0" />
+    <AllBuffList Id="4" Name="name1" />
+    <AllBuffList Id="3" Name="name2" />
+  </AllBuffList>
+  <MonsterBuffList Id="1" Name="全BUFF0" OutLook="Assets/GameData/...0" Time="5.114396" BuffType="None">
+    <AllString>ceshi0</AllString>
+    <AllBuffList Id="1" Name="name0" />
+    <AllBuffList Id="5" Name="name1" />
+  </MonsterBuffList>
+  <MonsterBuffList Id="2" Name="全BUFF1" OutLook="Assets/GameData/...1" Time="3.697587" BuffType="Ranshao">
+    <AllString>ceshi1</AllString>
+  </MonsterBuffList>
+  <MonsterBuffList Id="3" Name="全BUFF2" OutLook="Assets/GameData/...2" Time="8.410214" BuffType="None">
+    <AllString>ceshi2</AllString>
+    <AllBuffList Id="2" Name="name0" />
+  </MonsterBuffList>
+  <MonsterBuffList Id="4" Name="全BUFF3" OutLook="Assets/GameData/...3" Time="1.69071293" BuffType="None">
+    <AllString>ceshi3</AllString>
+  </MonsterBuffList>
+  <MonsterBuffList Id="5" Name="全BUFF4" OutLook="Assets/GameData/...4" Time="1.72311115" BuffType="Ranshao">
+    <AllString>ceshi4</AllString>
+    <AllBuffList Id="0" Name="name0" />
+    <AllBuffList Id="1" Name="name1" />
+  </MonsterBuffList>
+</BuffData>

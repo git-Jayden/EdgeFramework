@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Ls_Mobile/Example/UIExample/UGUIScene.unity
+  isLoaded: 1
+  isActive: 1
