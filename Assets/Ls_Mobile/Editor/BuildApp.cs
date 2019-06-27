@@ -118,5 +118,409 @@ namespace Ls_Mobile {
                 Debug.LogError(e);
             }
         }
+
+        #region 打包机调用打包pc版本
+        [MenuItem("Ls_Mobile/Tool/BuildPC()")]
+        public static void BuildPC()
+        {
+            //打Ab包
+            BundleEditor.Build();
+            BuildSetting buildSetting = GetPCBuildSetting();
+           string suffix=SetSetting(buildSetting);
+            //生成可执行程序
+            string abPath = Application.dataPath + "/../AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString() + "/";
+            //清空生成的文件夹
+            DeleteDir(windowsPath);
+            Copy(abPath, Application.streamingAssetsPath);
+            if (!Directory.Exists(windowsPath))
+                Directory.CreateDirectory(windowsPath);
+            string dir = appName  +"_PC" + suffix + string.Format("_{0:yyyy_MM_dd_HH_mm}", DateTime.Now);
+            string name= string.Format("/{0}.exe",appName);
+            string savePath = windowsPath +dir+ name;
+
+            BuildPipeline.BuildPlayer(FindEnableEditorScenes(), savePath, EditorUserBuildSettings.activeBuildTarget, BuildOptions.None);
+            DeleteDir(Application.streamingAssetsPath);
+            WriteBuildName(dir);
+        }
+        /// <summary>
+        /// 根据jenkins的参数读取到BuildSetting里
+        /// </summary>
+        /// <returns></returns>
+        static BuildSetting GetPCBuildSetting()
+        {
+            string[] parameters = Environment.GetCommandLineArgs();
+            BuildSetting buildSetting = new BuildSetting();
+            foreach (var str in parameters)
+            {
+                if (str.StartsWith("Version"))
+                {
+                    var tempParam = str.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+                    if (tempParam.Length == 2)
+                    {
+                        buildSetting.Version = tempParam[1].Trim();
+                    }
+                }
+                else if (str.StartsWith("Build"))
+                {
+                    var tempParam = str.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+                    if (tempParam.Length == 2)
+                    {
+                        buildSetting.Build = tempParam[1].Trim();
+                    }
+                }
+                else if (str.StartsWith("Name"))
+                {
+                    var tempParam = str.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+                    if (tempParam.Length == 2)
+                    {
+                        buildSetting.Name = tempParam[1].Trim();
+                    }
+                }
+                else if (str.StartsWith("Debug"))
+                {
+                    var tempParam = str.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+                    if (tempParam.Length == 2)
+                    {
+                        bool.TryParse(tempParam[1], out buildSetting.Debug);
+                    }
+                }
+            }
+
+            return buildSetting;
+        }
+        /// <summary>
+        /// 根据读取的数据在unity里面设置对应
+        /// </summary>
+        static string SetSetting(BuildSetting setting)
+        {
+            string suffix = "_";
+            if (!string.IsNullOrEmpty(setting.Version))
+            {
+                PlayerSettings.bundleVersion = setting.Version;
+                suffix += setting.Version;
+            }
+            if (!string.IsNullOrEmpty(setting.Build))
+            {
+                PlayerSettings.macOS.buildNumber = setting.Build;
+                suffix += setting.Build;
+            }
+            if (!string.IsNullOrEmpty(setting.Name))
+            {
+                PlayerSettings.productName = setting.Name;
+
+            }
+            if (setting.Debug)
+            {
+                EditorUserBuildSettings.development = true;
+                EditorUserBuildSettings.connectProfiler = true;
+                suffix += "_Debug";
+            }
+            else
+            {
+                EditorUserBuildSettings.development = false;
+            }
+            return suffix;
+        }
+        #endregion
+
+        #region 打包Android
+
+        public static void BuildAndroid()
+        {
+            //打ab包
+            BundleEditor.Build();
+            PlayerSettings.Android.keystorePass = "a2214529342";
+            PlayerSettings.Android.keyaliasPass = "a2214529342";
+            PlayerSettings.Android.keyaliasName = "android.keystore";
+            PlayerSettings.Android.keystoreName = Application.dataPath.Replace("/Assets", "") + "/Ls_Mobile.keystore";
+            BuildSetting buildSetting = GetAndoridBuildSetting();
+            string suffix = SetAndroidSetting(buildSetting);
+            //生成可执行程序
+            string abPath = Application.dataPath + "/../AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString() + "/";
+            //清空生成的文件夹
+            DeleteDir(androidPath);
+            Copy(abPath, Application.streamingAssetsPath);
+            string savePath = androidPath + appName + "_Andorid" + suffix + string.Format("_{0:yyyy_MM_dd_HH_mm}.apk", DateTime.Now);
+            BuildPipeline.BuildPlayer(FindEnableEditorScenes(), savePath, EditorUserBuildSettings.activeBuildTarget, BuildOptions.None);
+            DeleteDir(Application.streamingAssetsPath);
+
+        }
+        static BuildSetting GetAndoridBuildSetting()
+        {
+            string[] parameters = Environment.GetCommandLineArgs();
+            BuildSetting buildSetting = new BuildSetting();
+            foreach (string str in parameters)
+            {
+                if (str.StartsWith("Place"))
+                {
+                    var tempParam = str.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+                    if (tempParam.Length == 2)
+                    {
+                        buildSetting.Place = (Place)Enum.Parse(typeof(Place), tempParam[1], true);
+                    }
+                }
+                else if (str.StartsWith("Version"))
+                {
+                    var tempParam = str.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+                    if (tempParam.Length == 2)
+                    {
+                        buildSetting.Version = tempParam[1].Trim();
+                    }
+                }
+                else if (str.StartsWith("Build"))
+                {
+                    var tempParam = str.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+                    if (tempParam.Length == 2)
+                    {
+                        buildSetting.Build = tempParam[1].Trim();
+                    }
+                }
+                else if (str.StartsWith("Name"))
+                {
+                    var tempParam = str.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+                    if (tempParam.Length == 2)
+                    {
+                        buildSetting.Name = tempParam[1].Trim();
+                    }
+                }
+                else if (str.StartsWith("Debug"))
+                {
+                    var tempParam = str.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+                    if (tempParam.Length == 2)
+                    {
+                        bool.TryParse(tempParam[1], out buildSetting.Debug);
+                    }
+                }
+                else if (str.StartsWith("MulRendering"))
+                {
+                    var tempParam = str.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+                    if (tempParam.Length == 2)
+                    {
+                        bool.TryParse(tempParam[1], out buildSetting.MulRendering);
+                    }
+                }
+                else if (str.StartsWith("IL2CPP"))
+                {
+                    var tempParam = str.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+                    if (tempParam.Length == 2)
+                    {
+                        bool.TryParse(tempParam[1], out buildSetting.IL2CPP);
+                    }
+                }
+            }
+            return buildSetting;
+        }
+        static string SetAndroidSetting(BuildSetting setting)
+        {
+            string suffix = "_";
+            if (setting.Place != Place.None)
+            {
+                //代表了渠道包
+                string symbol = PlayerSettings.GetScriptingDefineSymbolsForGroup(BuildTargetGroup.Android);
+                PlayerSettings.SetScriptingDefineSymbolsForGroup(BuildTargetGroup.Android, symbol + ";" + setting.Place.ToString());
+                suffix += setting.Place.ToString();
+            }
+
+            if (!string.IsNullOrEmpty(setting.Version))
+            {
+                PlayerSettings.bundleVersion = setting.Version;
+                suffix += setting.Version;
+            }
+            if (!string.IsNullOrEmpty(setting.Build))
+            {
+                PlayerSettings.Android.bundleVersionCode = int.Parse(setting.Build);
+                suffix += "_" + setting.Build;
+            }
+            if (!string.IsNullOrEmpty(setting.Name))
+            {
+                PlayerSettings.productName = setting.Name;
+                //PlayerSettings.applicationIdentifier = "com.TTT." + setting.Name;
+            }
+
+            if (setting.MulRendering)
+            {
+                PlayerSettings.MTRendering = true;
+                suffix += "_MTR";
+            }
+            else
+            {
+                PlayerSettings.MTRendering = false;
+            }
+
+            if (setting.IL2CPP)
+            {
+                PlayerSettings.SetScriptingBackend(BuildTargetGroup.Android, ScriptingImplementation.IL2CPP);
+                suffix += "_IL2CPP";
+            }
+            else
+            {
+                PlayerSettings.SetScriptingBackend(BuildTargetGroup.Android, ScriptingImplementation.Mono2x);
+            }
+
+            if (setting.Debug)
+            {
+                EditorUserBuildSettings.development = true;
+                EditorUserBuildSettings.connectProfiler = true;
+                suffix += "_Debug";
+            }
+            else
+            {
+                EditorUserBuildSettings.development = false;
+            }
+            return suffix;
+        }
+        #endregion
+
+        #region 打包IOS
+        public static void BuildIOS()
+        {
+            //打ab包
+            BundleEditor.Build();
+            BuildSetting buildSetting = GetIOSBuildSetting();
+            string suffix = SetIOSSetting(buildSetting);
+
+            //生成可执行程序
+            string abPath = Application.dataPath + "/../AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString() + "/";
+            //清空生成的文件夹
+            DeleteDir(iOSPath);
+            Copy(abPath, Application.streamingAssetsPath);
+            string name = appName + "_IOS" + suffix + string.Format("_{0:yyyy_MM_dd_HH_mm}", DateTime.Now);
+            string savePath = iOSPath + name;
+            BuildPipeline.BuildPlayer(FindEnableEditorScenes(), savePath, EditorUserBuildSettings.activeBuildTarget, BuildOptions.None);
+            DeleteDir(Application.streamingAssetsPath);
+            WriteBuildName(name);
+        }
+
+        static BuildSetting GetIOSBuildSetting()
+        {
+            string[] parameters = Environment.GetCommandLineArgs();
+            BuildSetting buildSetting = new BuildSetting();
+            foreach (string str in parameters)
+            {
+                if (str.StartsWith("Version"))
+                {
+                    var tempParam = str.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+                    if (tempParam.Length == 2)
+                    {
+                        buildSetting.Version = tempParam[1].Trim();
+                    }
+                }
+                else if (str.StartsWith("Build"))
+                {
+                    var tempParam = str.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+                    if (tempParam.Length == 2)
+                    {
+                        buildSetting.Build = tempParam[1].Trim();
+                    }
+                }
+                else if (str.StartsWith("Name"))
+                {
+                    var tempParam = str.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+                    if (tempParam.Length == 2)
+                    {
+                        buildSetting.Name = tempParam[1].Trim();
+                    }
+                }
+                else if (str.StartsWith("MulRendering"))
+                {
+                    var tempParam = str.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+                    if (tempParam.Length == 2)
+                    {
+                        bool.TryParse(tempParam[1], out buildSetting.MulRendering);
+                    }
+                }
+                else if (str.StartsWith("DynamicBatching"))
+                {
+                    var tempParam = str.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+                    if (tempParam.Length == 2)
+                    {
+                        bool.TryParse(tempParam[1], out buildSetting.DynamicBatching);
+                    }
+                }
+            }
+            return buildSetting;
+        }
+
+        static string SetIOSSetting(BuildSetting setting)
+        {
+            string suffix = "_";
+
+            if (!string.IsNullOrEmpty(setting.Version))
+            {
+                PlayerSettings.bundleVersion = setting.Version;
+                suffix += setting.Version;
+            }
+            if (!string.IsNullOrEmpty(setting.Build))
+            {
+                PlayerSettings.iOS.buildNumber = setting.Build;
+                suffix += "_" + setting.Build;
+            }
+            if (!string.IsNullOrEmpty(setting.Name))
+            {
+                PlayerSettings.productName = setting.Name;
+                //PlayerSettings.applicationIdentifier = "com.TTT." + setting.Name;
+            }
+
+            if (setting.MulRendering)
+            {
+                PlayerSettings.MTRendering = true;
+                suffix += "_MTR";
+            }
+            else
+            {
+                PlayerSettings.MTRendering = false;
+            }
+
+            if (setting.DynamicBatching)
+            {
+                suffix += "_Dynamic";
+            }
+            else
+            {
+
+            }
+
+            return suffix;
+        }
+        #endregion
+
+        public static void WriteBuildName(string name)
+        {
+            string path = Application.dataPath + "/../buildname.txt";
+            FileInfo fileInfo = new FileInfo(path);
+            StreamWriter sw = fileInfo.CreateText();
+            sw.WriteLine(name);
+            sw.Close();
+            sw.Dispose();
+        }
     }
+    public class BuildSetting
+    {
+        //版本号
+        public string Version = "";
+        //build次数
+        public string Build = "";
+        //程序名称
+        public string Name = "";
+        //是否debug
+        public bool Debug = true;
+        //渠道
+        public Place Place = Place.None;
+        //多线程渲染
+        public bool MulRendering = true;
+        //是否IL2CPP
+        public bool IL2CPP = false;
+        //是否开启动态合批
+        public bool DynamicBatching = false;
+    }
+    public enum Place
+    {
+        None = 0,
+        Xiaomi,
+        Bilibili,
+        Huawei,
+        Meizu,
+        Weixin,
+    }
+
 }
