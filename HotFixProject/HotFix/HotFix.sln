@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotFix", "HotFix\HotFix.csproj", "{454CBF26-AC32-4DC1-A9CE-EA3554AE202E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{454CBF26-AC32-4DC1-A9CE-EA3554AE202E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{454CBF26-AC32-4DC1-A9CE-EA3554AE202E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{454CBF26-AC32-4DC1-A9CE-EA3554AE202E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{454CBF26-AC32-4DC1-A9CE-EA3554AE202E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AF9CC75A-C2DA-48D4-B6BB-D829AC2D7450}
+	EndGlobalSection
+EndGlobal
