@@ -15,7 +15,7 @@ namespace Ls_Mobile{
         //UI节点
         public RectTransform uiRoot;
         //窗口节点
-        private RectTransform windRoot;
+        public  RectTransform windRoot;
         //UI摄像机
         private Camera uiCamera;
         //EventSystem节点
@@ -48,7 +48,7 @@ namespace Ls_Mobile{
             this.uiCamera = uiCamera;
             this.eventSystem = eventSystem;
             this.canvasRate = Screen.height / (uiCamera.orthographicSize * 2);
-            ParseUIPanelTypeJson();
+            //ParseUIPanelTypeJson();
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace Ls_Mobile{
         /// 把某个页面入栈，  把某个页面显示在界面上
         /// </summary>
         /// <param name="panelType"></param>
-        public void PushPanel(UIPanelType panelType, bool bTop = true, params object[] paralist)
+        public void PushPanel(UIPanelType panelType, bool bTop = true, bool resource=false,params object[] paralist)
         {
             //判断一下栈里面是否有页面
             if (panelStack.Count > 0)
@@ -104,7 +104,7 @@ namespace Ls_Mobile{
                 BasePanel topPanel = panelStack.Peek();
                 topPanel.OnPause();
             }
-            BasePanel panel = GetPanel(panelType);
+            BasePanel panel = GetPanel(panelType, resource);
       
             if (bTop)
             {
@@ -117,7 +117,7 @@ namespace Ls_Mobile{
         /// 根据面板类型 得到实例化的面板
         /// </summary>
         /// <returns></returns>
-        private BasePanel GetPanel(UIPanelType panelType)
+        private BasePanel GetPanel(UIPanelType panelType, bool resource = false)
         {
             BasePanel panel = panelDict.TryGet(panelType);
 
@@ -125,7 +125,19 @@ namespace Ls_Mobile{
             {
                 string path = panelPathDict.TryGet(panelType);
 
-                GameObject instPanel = ObjectManager.Instance.InstantiateObject(path,false,false);//GameObject.Instantiate(Resources.Load(path)) as GameObject;
+                GameObject instPanel = null;
+                if (resource)
+                {
+                    string panelName;
+                    panelName = Enum.GetName(typeof(UIPanelType), panelType);
+                   // Enum.TryParse<UIPanelType>(panelType, out panelName);
+                    instPanel =  GameObject.Instantiate(Resources.Load(panelName)) as GameObject;
+                }
+                else
+                {
+                    instPanel = ObjectManager.Instance.InstantiateObject(path, false, false);//GameObject.Instantiate(Resources.Load(path)) as GameObject;
+                }
+                  
                 if (instPanel == null)
                 {
                     Debug.Log("创建窗口Prefab失败:" + instPanel);
@@ -135,6 +147,7 @@ namespace Ls_Mobile{
                 panelDict.Add(panelType, instPanel.GetComponent<BasePanel>());
 
                 panel = instPanel.GetComponent<BasePanel>();
+                panel.Resource = resource;
                 panel.GameObject = instPanel;
                 panel.Transform = instPanel.transform;
                 panel.PanelType = panelType;
@@ -150,7 +163,7 @@ namespace Ls_Mobile{
         /// <summary>
         /// 出栈 ，把页面从界面上移除
         /// </summary>
-        public void PopPanel(bool destroy = false, params object[] paralist)
+        public void PopPanel(bool destroy = false,params object[] paralist)
         {
                 if (panelStack == null)
                 panelStack = new Stack<BasePanel>();
@@ -162,14 +175,22 @@ namespace Ls_Mobile{
             topPanel.OnExit();
             topPanel.OnClose();
             panelDict.Remove(topPanel.PanelType);
-            if (destroy)
+            if (!topPanel.Resource)
             {
-                ObjectManager.Instance.ReleaseObject(topPanel.GameObject, 0, true);
+                if (destroy)
+                {
+                    ObjectManager.Instance.ReleaseObject(topPanel.GameObject, 0, true);
+                }
+                else
+                {
+                    ObjectManager.Instance.ReleaseObject(topPanel.GameObject, recycleParent: false);
+                }
             }
             else
             {
-                ObjectManager.Instance.ReleaseObject(topPanel.GameObject, recycleParent: false);
+                GameObject.Destroy(topPanel.gameObject);
             }
+           
             if (panelStack.Count <= 0) return;
             BasePanel topPanel2 = panelStack.Peek();
             topPanel2.OnResume(paralist);
@@ -201,10 +222,10 @@ namespace Ls_Mobile{
         /// <param name="name"></param>
         /// <param name="bTop"></param>
         /// <param name="paralist"></param>
-        public void SwitchStateByName(UIPanelType panelType, bool bTop = true, params object[] paralist)
+        public void SwitchStateByName(UIPanelType panelType, bool bTop = true, bool resource=false,params object[] paralist)
         {
             CloseAllPanel();
-            PushPanel(panelType, bTop, paralist);
+            PushPanel(panelType, bTop, resource, paralist);
         }
 
         [Serializable]
@@ -212,7 +233,7 @@ namespace Ls_Mobile{
         {
             public List<UIPanelInfo> infoList;
         }
-        private void ParseUIPanelTypeJson()
+        public  void ParseUIPanelTypeJson()
         {
             panelPathDict = new Dictionary<UIPanelType, string>();
 

@@ -12,6 +12,8 @@ namespace Ls_Mobile
         Skill,
         System,
         Task,
-        Loading
+        Loading,
+        HotFixPanel,
+        CommonConfirm
     }
 }

@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Ls_Mobile
 {
@@ -17,13 +19,13 @@ namespace Ls_Mobile
         }
         protected virtual void Awake()
         {
-            DontDestroyOnLoad(gameObject);
-            //加载AssetBundle配置表
-            AssetBundleManager.Instance.LoadAssetBundleConfig();
-            //资源管理器初始化
-            ResouceManager.Instance.Init(this);
-            //对象管理器初始化
-            ObjectManager.Instance.Init(transform.Find("RecyclePoolTrs"), transform.Find("SceneTrs"));
+            //DontDestroyOnLoad(gameObject);
+            ////加载AssetBundle配置表
+            //AssetBundleManager.Instance.LoadAssetBundleConfig();
+            ////资源管理器初始化
+            //ResouceManager.Instance.Init(this);
+            ////对象管理器初始化
+            //ObjectManager.Instance.Init(transform.Find("RecyclePoolTrs"), transform.Find("SceneTrs"));
         }
         protected virtual void Start()
         {

@@ -1,6 +1,5 @@
 {
-"infoList":
-  [
+  "infoList": [
     {
       "panelTypeString": "ItemMessage",
       "path": "Assets/Ls_Mobile/Example/UIExample/Prefabs/Panel/ItemMessagePanel.prefab"
@@ -38,6 +37,14 @@
     {
       "panelTypeString": "Loading",
       "path": "Assets/Ls_Mobile/Example/UIExample/Prefabs/Panel/LodingPanel.prefab"
+    },
+    {
+      "panelTypeString": "HotFixPanel",
+      "path": "Assets/Ls_Mobile/Example/UIExample/Prefabs/Panel/HotFixPanel.prefab"
+    },
+    {
+      "panelTypeString": "CommonConfirm",
+      "path": "Assets/Ls_Mobile/Example/UIExample/Prefabs/Panel/CommonConfirm.prefab"
     }
   ]
 }

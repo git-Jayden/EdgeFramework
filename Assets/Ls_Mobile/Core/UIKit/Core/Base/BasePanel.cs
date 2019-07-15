@@ -10,6 +10,8 @@ namespace Ls_Mobile
         public GameObject GameObject { get; set; }
         public Transform Transform { get; set; }
         public UIPanelType PanelType { get; set; }
+        public bool Resource = false;
+
         public List<Button> allButton = new List<Button>();
         public List<Toggle> allToggle = new List<Toggle>();
 

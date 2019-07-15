@@ -17,8 +17,9 @@ namespace Ls_Mobile {
         public static void Build()
         {
             //打Ab包
-            BundleEditor.Build();
-             //生成可执行程序
+            BundleEditor.NormalBuild();
+            SaveVersion(PlayerSettings.bundleVersion, PlayerSettings.applicationIdentifier);
+            //生成可执行程序
             string abPath = Application.dataPath + "/../AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString() + "/";
             Copy(abPath, Application.streamingAssetsPath);
             string savePath = "";
@@ -45,6 +46,38 @@ namespace Ls_Mobile {
             BuildPipeline.BuildPlayer(FindEnableEditorScenes(), savePath, EditorUserBuildSettings.activeBuildTarget, BuildOptions.None);
            DeleteDir(Application.streamingAssetsPath);
         }
+
+        static void SaveVersion(string version, string package)
+        {
+            string content = "Version|" + version + ";PackageName|" + package + ";";
+            string savePath = Application.dataPath + "/Resources/Version.txt";
+            string oneLine = "";
+            string all = "";
+            using (FileStream fs = new FileStream(savePath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite))
+            {
+                using (StreamReader sr = new StreamReader(fs, System.Text.Encoding.UTF8))
+                {
+                    all = sr.ReadToEnd();
+                    oneLine = all.Split('\r')[0];
+                }
+            }
+            using (FileStream fs = new FileStream(savePath, FileMode.OpenOrCreate))
+            {
+                using (StreamWriter sw = new StreamWriter(fs, System.Text.Encoding.UTF8))
+                {
+                    if (string.IsNullOrEmpty(all))
+                    {
+                        all = content;
+                    }
+                    else
+                    {
+                        all = all.Replace(oneLine, content);
+                    }
+                    sw.Write(all);
+                }
+            }
+        }
+
         private static string[] FindEnableEditorScenes()
         {
             List<string> editorScenes = new List<string>();
@@ -120,11 +153,11 @@ namespace Ls_Mobile {
         }
 
         #region 打包机调用打包pc版本
-        [MenuItem("Ls_Mobile/Tool/BuildPC()")]
+        //[MenuItem("Ls_Mobile/Tool/BuildPC()")]
         public static void BuildPC()
         {
             //打Ab包
-            BundleEditor.Build();
+            BundleEditor.NormalBuild();
             BuildSetting buildSetting = GetPCBuildSetting();
            string suffix=SetSetting(buildSetting);
             //生成可执行程序
@@ -228,7 +261,7 @@ namespace Ls_Mobile {
         public static void BuildAndroid()
         {
             //打ab包
-            BundleEditor.Build();
+            BundleEditor.NormalBuild();
             PlayerSettings.Android.keystorePass = "a2214529342";
             PlayerSettings.Android.keyaliasPass = "a2214529342";
             PlayerSettings.Android.keyaliasName = "android.keystore";
@@ -375,7 +408,7 @@ namespace Ls_Mobile {
         public static void BuildIOS()
         {
             //打ab包
-            BundleEditor.Build();
+            BundleEditor.NormalBuild();
             BuildSetting buildSetting = GetIOSBuildSetting();
             string suffix = SetIOSSetting(buildSetting);
 

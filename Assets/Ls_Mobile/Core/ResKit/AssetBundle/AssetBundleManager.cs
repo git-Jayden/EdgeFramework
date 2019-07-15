@@ -21,7 +21,11 @@ namespace Ls_Mobile
         {
             get
             {
-                return Application.streamingAssetsPath + "/";
+#if UNITY_ANDROID
+                return Application.persistentDataPath + "/Origin/";
+#else
+            return Application.streamingAssetsPath + "/";
+#endif
             }
         }
         /// <summary>
@@ -36,8 +40,10 @@ namespace Ls_Mobile
 #endif
             resouceItemDic.Clear();
             string configPath = ABLoadPath + abConfigABName;
-   
-            AssetBundle configAB = AssetBundle.LoadFromFile(configPath);
+            string hotAbPath = HotPatchManager.Instance.ComputeABPath(abConfigABName);
+            configPath = string.IsNullOrEmpty(hotAbPath) ? configPath : hotAbPath;
+            byte[] bytes = AES.AESFileByteDecrypt(configPath, "liangsheng");
+            AssetBundle configAB = AssetBundle.LoadFromMemory(bytes);
             TextAsset textAsset = configAB.LoadAsset<TextAsset>(abConfigABName);
             if (textAsset == null)
             {
@@ -77,13 +83,14 @@ namespace Ls_Mobile
             ResouceItem item = null;
             if (!resouceItemDic.TryGetValue(crc,out item) || item == null)
             {
-                Debug.LogError(string.Format("LoadResourceAssetBundle Erro:can not find crc {0} in AssetBundleConfig", crc));
+                Debug.LogError(string.Format("LoadResourceAssetBundle Erro:can not find crc {0} in AssetBundleConfig", crc.ToString()));
                 return item;
             }
-            if (item.assetBundle != null)
-            {
-                return item;
-            }
+            //if (item.assetBundle != null)
+            //{
+            //    item.RefCount++;
+            //    return item;
+            //}
             item.assetBundle = LoadAssetBundle(item.abName);
             if (item.dependAssetBundle != null)
             {
@@ -106,14 +113,17 @@ namespace Ls_Mobile
             if (!assetBundleItemDic.TryGetValue(crc, out item))
             {
                 AssetBundle assetBundel = null;
-                string fullpath = ABLoadPath + name;
-                assetBundel = AssetBundle.LoadFromFile(fullpath);
+
+                string hotAbPath = HotPatchManager.Instance.ComputeABPath(name);
+                string fullpath = string.IsNullOrEmpty(hotAbPath) ? ABLoadPath + name: hotAbPath;
+                byte[] bytes = AES.AESFileByteDecrypt(fullpath, "liangsheng");
+                assetBundel = AssetBundle.LoadFromMemory(bytes);
 
                 if (assetBundel == null)
                 {
                     Debug.LogError("Load AssetBundle Error:" + fullpath);
                 }
-
+                
                 item = assetBundleItemPool.Allocate();
                 item.assetBundle = assetBundel;
                 item.reCount++;

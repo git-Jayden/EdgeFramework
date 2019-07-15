@@ -22,7 +22,7 @@ namespace Ls_Mobile
             //m_Audio.Play();
 
             //预加载 音效等
-            ResouceManager.Instance.PreloadRes("Assets/GameData/Sounds/senlin.mp3");
+           // ResouceManager.Instance.PreloadRes("Assets/Ls_Mobile/Example/ResKitExample/GameData/Sounds/senlin.mp3");
         }
 
         // Update is called once per frame
@@ -32,7 +32,7 @@ namespace Ls_Mobile
             if (Input.GetKeyDown(KeyCode.A))
             {
                 long Time = System.DateTime.Now.Ticks;
-                clip = ResouceManager.Instance.LoadResouce<AudioClip>("Assets/GameData/Sounds/senlin.mp3");
+                clip = ResouceManager.Instance.LoadResouce<AudioClip>("Assets/Ls_Mobile/Example/ResKitExample/GameData/Sounds/senlin.mp3");
                 Debug.Log("预加载时间:" + (System.DateTime.Now.Ticks - Time));
                 m_Audio.clip = clip;
                 m_Audio.Play();

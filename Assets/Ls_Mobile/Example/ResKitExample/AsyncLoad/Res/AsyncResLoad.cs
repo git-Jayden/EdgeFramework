@@ -30,7 +30,7 @@ namespace Ls_Mobile
             if (Input.GetKeyDown(KeyCode.A))
             {
                 long Time = System.DateTime.Now.Ticks;
-                ResouceManager.Instance.AsyncLoadResouce("Assets/GameData/Sounds/menusound.mp3", LoadFinish, LoadResPriority.RES_SLOW);
+                ResouceManager.Instance.AsyncLoadResouce("Assets/Ls_Mobile/Example/ResKitExample/GameData/Sounds/menusound.mp3", LoadFinish, LoadResPriority.RES_SLOW);
                 Debug.Log("预加载时间:" + (System.DateTime.Now.Ticks - Time));
                 m_Audio.clip = clip;
                 m_Audio.Play();

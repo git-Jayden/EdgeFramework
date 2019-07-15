@@ -25,3 +25,5 @@ MonoBehaviour:
     path: Assets/Ls_Mobile/Example/UIExample/Images
   - abName: uiprefabs
     path: Assets/Ls_Mobile/Example/UIExample/Prefabs
+  - abName: hitfix
+    path: Assets/Ls_Mobile/Example/Data/Hotfix

@@ -1,6 +1,6 @@
 iOS
 PlayerPath?
-F:/FrameWork/Ls_Mobile/Assets/../BuildTarget/IOS/Ls_Mobile_IOS_0.1_0_MTR_2019_06_27_16_46
+F:/FrameWork/Ls_Mobile/Assets/../BuildTarget/IOS/Ls_Mobile_iOS_2019_06_28_10_57
 SceneListBegin?
 Assets/Ls_Mobile/Example/UIExample/UGUIScene.unity
 Assets/Ls_Mobile/Example/UIExample/Empty.unity

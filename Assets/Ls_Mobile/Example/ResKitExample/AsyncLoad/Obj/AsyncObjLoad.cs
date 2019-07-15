@@ -37,7 +37,7 @@ namespace Ls_Mobile
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
-                ObjectManager.Instance.InstantiateObjectAsync("Assets/Prefabs/Attack.prefab", LoadAsyncFinish, LoadResPriority.RES_HIGHT, true);
+                ObjectManager.Instance.InstantiateObjectAsync("Assets/Ls_Mobile/Example/ResKitExample/Prefabs/Attack.prefab", LoadAsyncFinish, LoadResPriority.RES_HIGHT, true);
             }
             else if (Input.GetKeyDown(KeyCode.S))
             {

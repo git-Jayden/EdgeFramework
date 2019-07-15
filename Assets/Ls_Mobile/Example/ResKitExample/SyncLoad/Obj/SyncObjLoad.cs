@@ -14,6 +14,7 @@ namespace Ls_Mobile
             GameObject.DontDestroyOnLoad(gameObject);
             AssetBundleManager.Instance.LoadAssetBundleConfig();
             ObjectManager.Instance.Init(transform.Find("RecyclePoolTrs"), transform.Find("SceneTrs"));
+            HotPatchManager.Instance.Init(this);
         }
         void Start()
         {
@@ -35,7 +36,7 @@ namespace Ls_Mobile
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
-                obj = ObjectManager.Instance.InstantiateObject("Assets/Ls_Mobile/ResKit/Example/Prefabs/Attack.prefab", true);
+                obj = ObjectManager.Instance.InstantiateObject("Assets/Ls_Mobile/Example/ResKitExample/Prefabs/Attack.prefab", true);
             }
             else if (Input.GetKeyDown(KeyCode.S))
             {

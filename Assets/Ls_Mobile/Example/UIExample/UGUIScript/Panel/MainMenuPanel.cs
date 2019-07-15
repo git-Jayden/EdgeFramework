@@ -29,7 +29,7 @@ public class MainMenuPanel : BasePanel {
         AddButtonClickListener(SkillButton, OnPushPanel, UIPanelType.Skill);
         AddButtonClickListener(ShopButton, OnPushPanel, UIPanelType.Shop);
         AddButtonClickListener(SystemButton, OnPushPanel, UIPanelType.System);
-
+        ObjectManager.Instance.InstantiateObject("Assets/Ls_Mobile/Example/ResKitExample/Prefabs/Attack.prefab", true);
     }
 
     public override void OnPause()

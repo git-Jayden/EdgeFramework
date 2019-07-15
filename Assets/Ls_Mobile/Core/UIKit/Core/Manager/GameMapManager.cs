@@ -48,7 +48,7 @@ namespace Ls_Mobile
         {
             LoadingProgress = 0;
             mono.StartCoroutine(LoadSceneAsync(name));
-            UIManager.Instance.PushPanel(Loading, true,name);
+            UIManager.Instance.PushPanel(Loading, true,false,name);
         }
         IEnumerator LoadSceneAsync(string name)
         {

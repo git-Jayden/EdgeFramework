@@ -16,11 +16,9 @@ F:\FrameWork\Ls_Mobile\Temp\bin\Debug\System.Xml.dll
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\System.Xml.Linq.dll
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\Unity.Locator.dll
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\UnityEditor.Advertisements.dll
-F:\FrameWork\Ls_Mobile\Temp\bin\Debug\UnityEditor.Android.Extensions.dll
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\UnityEditor.dll
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\UnityEditor.GoogleAudioSpatializer.dll
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\UnityEditor.Graphs.dll
-F:\FrameWork\Ls_Mobile\Temp\bin\Debug\UnityEditor.iOS.Extensions.dll
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\UnityEditor.Networking.dll
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\UnityEditor.Purchasing.dll
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\UnityEditor.SpatialTracking.dll
@@ -106,7 +104,6 @@ F:\FrameWork\Ls_Mobile\Temp\bin\Debug\Unity.UNetWeaver.dll
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\Unity.IvyParser.dll
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\UnityEditor.iOS.Extensions.Xcode.dll
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\nunit.framework.dll
-F:\FrameWork\Ls_Mobile\Temp\bin\Debug\UnityEditor.iOS.Extensions.Common.dll
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\SyntaxTree.VisualStudio.Unity.Messaging.dll
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\Boo.Lang.PatternMatching.dll
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\Boo.Lang.Useful.dll
@@ -626,7 +623,6 @@ F:\FrameWork\Ls_Mobile\Temp\bin\Debug\UnityEngine.TestRunner.dll
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\UnityEngine.TextCoreModule.dll
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\UnityEngine.UnityTestProtocolModule.dll
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\UnityEngine.VFXModule.dll
-F:\FrameWork\Ls_Mobile\Temp\bin\Debug\Mono.Posix.dll
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\UnityEngine.TextCoreModule.xml
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\UnityEngine.UnityTestProtocolModule.xml
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\UnityEngine.VFXModule.xml
@@ -636,3 +632,9 @@ F:\FrameWork\Ls_Mobile\Temp\bin\Debug\nunit.framework.xml
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\Ls_Mobile.Log.pdb
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\Ls_Mobile.Log.xml
 F:\FrameWork\Ls_Mobile\Temp\bin\Debug\EPPlus.dll
+F:\FrameWork\Ls_Mobile\Temp\bin\Debug\ILRuntim.Mono.Cecil.dll
+F:\FrameWork\Ls_Mobile\Temp\bin\Debug\ILRuntime.Mono.Cecil.Mdb.dll
+F:\FrameWork\Ls_Mobile\Temp\bin\Debug\ILRuntime.Mono.Cecil.Pdb.dll
+F:\FrameWork\Ls_Mobile\Temp\bin\Debug\ILRuntime.Mono.Cecil.Mdb.pdb
+F:\FrameWork\Ls_Mobile\Temp\bin\Debug\ILRuntim.Mono.Cecil.pdb
+F:\FrameWork\Ls_Mobile\Temp\bin\Debug\ILRuntime.Mono.Cecil.Pdb.pdb

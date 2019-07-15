@@ -213,10 +213,6 @@
   <ABList Path="Assets/Ls_Mobile/Example/ResKitExample/GameData/Shaders/Xray.shader" Crc="2248639200" ABName="shader" AssetName="Xray.shader" />
   <ABList Path="Assets/Ls_Mobile/Example/ResKitExample/GameData/Sounds/menusound.mp3" Crc="780922366" ABName="sound" AssetName="menusound.mp3" />
   <ABList Path="Assets/Ls_Mobile/Example/ResKitExample/GameData/Sounds/senlin.mp3" Crc="2024374243" ABName="sound" AssetName="senlin.mp3" />
-  <ABList Path="Assets/Ls_Mobile/Example/ResKitExample/Prefabs/Test.prefab" Crc="3289658811" ABName="test" AssetName="Test.prefab">
-    <ABDependce>attack</ABDependce>
-    <ABDependce>shader</ABDependce>
-  </ABList>
   <ABList Path="Assets/Ls_Mobile/Example/UIExample/Prefabs/Effect/Particle System.prefab" Crc="1118948639" ABName="uiprefabs" AssetName="Particle System.prefab" />
   <ABList Path="Assets/Ls_Mobile/Example/UIExample/Prefabs/Panel/ItemMessagePanel.prefab" Crc="1572341356" ABName="uiprefabs" AssetName="ItemMessagePanel.prefab">
     <ABDependce>image</ABDependce>

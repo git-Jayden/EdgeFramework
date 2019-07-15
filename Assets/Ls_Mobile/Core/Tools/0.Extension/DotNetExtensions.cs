@@ -531,6 +531,22 @@ namespace Ls_Mobile
             return Path.Combine(selfPath, toCombinePath);
         }
 
+        /// <summary>
+        /// 创建文件并写入bytes
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="bytes"></param>
+        public static void CreateFile(string filePath,byte[]bytes)
+        {
+            if (File.Exists(filePath))
+                File.Delete(filePath);
+            FileInfo file = new FileInfo(filePath);
+            Stream stream = file.Create();
+            stream.Write(bytes,0,bytes.Length);
+            stream.Close();
+            stream.Dispose();
+        }
+
         #region 未经过测试
 
         /// <summary>
