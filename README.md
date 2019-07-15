@@ -153,3 +153,4 @@ protected override void LaunchInDevelopingMode(){}//开发模式
 protected override void LaunchInTestMode(){}//测试模式
 protected override void LaunchInProductionMode(){}//发布完成模式
 ```
+test
