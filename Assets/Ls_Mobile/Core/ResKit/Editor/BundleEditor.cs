@@ -49,7 +49,7 @@ namespace Ls_Mobile
             allFileDir.Clear();
             allPrefabDir.Clear();
             configFil.Clear();
-            ABConfig abConfig = AssetDatabase.LoadAssetAtPath<ABConfig>(ConStr.AbConfig);
+            ABConfig abConfig = AssetDatabase.LoadAssetAtPath<ABConfig>(Constants.AbConfigPath);
             if (abConfig.allFileDirAb.Count <= 0 && abConfig.allPrefabPath.Count <= 0)
             {
                 Debug.LogError("请在菜单栏Ls_Mobile->Setting->AbConfig中配置需要打包AssetBundle的文件");

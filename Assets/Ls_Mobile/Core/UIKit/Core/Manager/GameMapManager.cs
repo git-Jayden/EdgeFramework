@@ -55,7 +55,7 @@ namespace Ls_Mobile
             LoadSceneEnterCallBack?.Invoke();
             ClearCache();
             AlreadyLoadScene = false;
-            AsyncOperation unLoadScene = SceneManager.LoadSceneAsync(ConStr.EmptyScene, LoadSceneMode.Single);
+            AsyncOperation unLoadScene = SceneManager.LoadSceneAsync(Constants.EmptyScene, LoadSceneMode.Single);
             while (unLoadScene != null && !unLoadScene.isDone)
             {
                 yield return new WaitForEndOfFrame();

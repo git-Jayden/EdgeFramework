@@ -35,7 +35,7 @@ public class LoadingPanel : BasePanel
     public void LoadOtherScene()
     {
         //根据场景名字打开对应第一个界面
-        if (sceneName == ConStr.MenuScene)
+        if (sceneName == Constants.MenuScene)
         {
             UIManager.Instance.PopPanel();
             UIManager.Instance.PushPanel(UIPanelType.MainMenu);

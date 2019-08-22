@@ -168,7 +168,7 @@ namespace Ls_Mobile {
             HotPatchManager.Instance.ServerInfoError -= ServerInfoError;
             HotPatchManager.Instance.ItemError -= ItemError;
             //加载场景
-            GameMapManager.Instance.LoadScene(ConStr.MenuScene, UIPanelType.Loading);
+            GameMapManager.Instance.LoadScene(Constants.MenuScene, UIPanelType.Loading);
         }
     }
 
