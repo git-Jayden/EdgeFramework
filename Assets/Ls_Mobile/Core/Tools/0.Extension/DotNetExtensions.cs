@@ -163,7 +163,7 @@ namespace Ls_Mobile
             IEnumerable<int> testIenumerable = new List<int> { 1, 2, 3 };
             testIenumerable.ForEach(number => Debug.Log(number));
             new Dictionary<string, string>()
-                .ForEach(keyValue => Log.I("key:{0},value:{1}", keyValue.Key, keyValue.Value));
+                .ForEach(keyValue => Debug.LogError("key:{0},value:{1}"+keyValue.Key+ keyValue.Value));
 
             // testList
             var testList = new List<int> { 1, 2, 3 };
@@ -299,7 +299,7 @@ namespace Ls_Mobile
                 currentSum = nextSum;
             }
 
-            Log.E("权值范围计算错误！");
+            Debug.LogError("权值范围计算错误！");
             return -1;
         }
 
@@ -1117,7 +1117,7 @@ namespace Ls_Mobile
                 }
             }
 
-            Log.E(">>>>>>>Error: Can\'t find Assembly-CSharp.dll");
+            Debug.LogError(">>>>>>>Error: Can\'t find Assembly-CSharp.dll");
             return null;
         }
 
@@ -1132,7 +1132,7 @@ namespace Ls_Mobile
                 }
             }
 
-            Log.E(">>>>>>>Error: Can\'t find Assembly-CSharp-Editor.dll");
+            Debug.LogError(">>>>>>>Error: Can\'t find Assembly-CSharp-Editor.dll");
             return null;
         }
 
@@ -1659,13 +1659,13 @@ namespace Ls_Mobile
                     return ParseFromStringableObject(value, type);
                 }
 
-                Log.W("字符转换", "没有适合的转换类型，返回默认值");
+                Debug.LogWarning("字符转换:"+"没有适合的转换类型，返回默认值");
                 return defultValue != type.DefaultForType() ? defultValue : type.DefaultForType();
             }
             catch (Exception e)
             {
-                Log.E(e);
-                Log.W("字符转换", "解析失败，返回默认值");
+                Debug.LogError(e);
+                Debug.LogWarning("字符转换:"+ "解析失败，返回默认值");
                 return type.DefaultForType();
             }
         }
@@ -1791,7 +1791,7 @@ namespace Ls_Mobile
             }
             catch (Exception e)
             {
-                Log.E(e);
+                Debug.LogError(e);
                 return false;
             }
         }
@@ -1839,7 +1839,7 @@ namespace Ls_Mobile
             }
             catch (Exception e)
             {
-                Log.E(e);
+                Debug.LogError(e);
                 return false;
             }
         }
@@ -1871,7 +1871,7 @@ namespace Ls_Mobile
             }
             catch (Exception e)
             {
-                Log.E(e);
+                Debug.LogError(e);
                 return false;
             }
         }

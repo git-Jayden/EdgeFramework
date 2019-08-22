@@ -27,11 +27,7 @@ public class UIFrameExample : MonoBehaviour, ISingleton
     // Start is called before the first frame update
     protected void Start()
     {
-        UIManager.Instance.Init(
-      transform.Find("UIRoot") as RectTransform,
-      transform.Find("UIRoot/WindRoot") as RectTransform,
-      transform.Find("UIRoot/UICamera").GetComponent<Camera>(),
-      transform.Find("UIRoot/EventSystem").GetComponent<EventSystem>());
+        UIManager.Instance.Init(transform);
         UIManager.Instance.PushPanel(UIPanelType.HotFixPanel, resource: true);
 
         //跳转场景

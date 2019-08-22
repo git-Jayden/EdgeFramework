@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
+using com.ls_mobile.tool;
 using Newtonsoft.Json;
 
 namespace Ls_Mobile

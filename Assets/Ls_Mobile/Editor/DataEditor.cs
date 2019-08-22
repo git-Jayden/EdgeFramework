@@ -13,9 +13,9 @@ namespace Ls_Mobile
 {
     public class DataEditor 
     {
-        public static string XmlPath = RealConfig.GetRealFram().xmlPath;
-        public static string BinaryPath = RealConfig.GetRealFram().binaryPath;
-        public static string ScriptsPath =  RealConfig.GetRealFram().scriptsPath;
+        public static string XmlPath = RealFramConfig.LoadRealFramConfig().xmlPath;   
+        public static string BinaryPath = RealFramConfig.LoadRealFramConfig().binaryPath;
+        public static string ScriptsPath = RealFramConfig.LoadRealFramConfig().scriptsPath;
         public static string ExcelPath = Application.dataPath + "/../Data/Excel/";
         public static string RegPath = Application.dataPath + "/../Data/Reg/";
 

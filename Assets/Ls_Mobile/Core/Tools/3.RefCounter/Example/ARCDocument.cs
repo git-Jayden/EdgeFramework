@@ -1,4 +1,5 @@
 ﻿
+using com.ls_mobile.tool;
 using UnityEngine;
 
 namespace Ls_Mobile.Example

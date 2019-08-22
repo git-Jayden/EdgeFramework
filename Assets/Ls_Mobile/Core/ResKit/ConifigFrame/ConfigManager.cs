@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Ls_Mobile{
     public class ConfigManager : Singleton<ConfigManager>
     {
+        ConfigManager() { }
         /// <summary>
         /// 储存所有已经加载的配置表
         /// </summary>

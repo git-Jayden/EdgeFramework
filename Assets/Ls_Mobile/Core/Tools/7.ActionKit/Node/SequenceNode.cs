@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
+
 namespace Ls_Mobile
 {
     public class SequenceNode : NodeAction, INode
@@ -25,7 +27,7 @@ namespace Ls_Mobile
             {
                 var currentNode = mExcutingNodes[0];
                 var node = currentNode as INode;
-                Log.E(node);
+                Debug.LogError(node);
                 return node == null ? currentNode : node.CurrentExecutingNode;
             }
         }

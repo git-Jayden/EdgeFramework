@@ -1,0 +1,11 @@
+﻿<-公共->
+BGM_Lobby,BGM,Loop,01town0.wav
+BGM_GameBack,BGM,Loop,07island1v1.wav
+SFX_Win,SFX,Single,14short4NL.wav
+SFX_GameOver,SFX,Single,game_over_12.wav
+SFX_hitwall,SFX,Single,Sounds/hitwall.ogg
+SFX_Button,SFX,Single,Sounds/Menu MoveV2.ogg
+SFX_MenuWrong,SFX,Single,Sounds/MenuWrong.ogg
+SFX_Menulaunch,SFX,Single,Sounds/Menulaunch.ogg
+SFX_Boom,SFX,Single,Sounds/MenuWrong.ogg
+SFX_Jump,SFX,Single,Sounds/jump_28.wav

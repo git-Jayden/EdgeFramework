@@ -8,11 +8,12 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace Ls_Mobile
 {
     public  class BundleEditor
-    {
-        static string bundleTargetPath = Application.dataPath + "/../AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString();//Application.streamingAssetsPath;
+    {   //打包的AssetBundle路径
+        public static string bundleTargetPath = Application.dataPath + "/../AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString();//Application.streamingAssetsPath;
+       //打包的AssetBundle版本路径
         private static string versionMd5Path = Application.dataPath + "/../Version/" + EditorUserBuildSettings.activeBuildTarget.ToString();
         private static string hotPath = Application.dataPath + "/../Hot/" + EditorUserBuildSettings.activeBuildTarget.ToString();
-        static string abBytePath = RealConfig.GetRealFram().aBBytePath;
+        static string abBytePath = RealFramConfig.LoadRealFramConfig().aBBytePath;
 
         //key是ab包，value是路径,所有文件夹ab包的dic
         static Dictionary<string, string> allFileDir = new Dictionary<string, string>();
@@ -36,88 +37,77 @@ namespace Ls_Mobile
         //{
         //    AES.AESFileDecrypt(Application.dataPath + "/GameData/Data/Xml/TestData.xml", "Ocean");
         //}
-        [MenuItem("Ls_Mobile/Tool/加密AB包")]
-        public static void EncryptAB()
-        {
-            DirectoryInfo directory = new DirectoryInfo(bundleTargetPath);
-            FileInfo[] files = directory.GetFiles("*", SearchOption.AllDirectories);
-            for (int i = 0; i < files.Length; i++)
-            {
-                if (!files[i].Name.EndsWith("meta") && !files[i].Name.EndsWith(".manifest"))
-                {
-                    AES.AESFileEncrypt(files[i].FullName, "liangsheng");
-                }
-            }
-            Debug.Log("加密完成！");
-        }
-
-        [MenuItem("Ls_Mobile/Tool/解密AB包")]
-        public static void DecrptyAB()
-        {
-            DirectoryInfo directory = new DirectoryInfo(bundleTargetPath);
-            FileInfo[] files = directory.GetFiles("*", SearchOption.AllDirectories);
-            for (int i = 0; i < files.Length; i++)
-            {
-                if (!files[i].Name.EndsWith("meta") && !files[i].Name.EndsWith(".manifest"))
-                {
-                    AES.AESFileDecrypt(files[i].FullName, "liangsheng");
-                }
-            }
-            Debug.Log("解密完成！");
-        }
-
-        [MenuItem("Ls_Mobile/Tool/BuildBundle")]
-        public static void NormalBuild()
-        {
-            Build();
-        }
-
         public static void Build(bool hotfix = false, string abmd5Path = "", string hotCount = "1")
         {
-            DataEditor.AllXmlToBinary();
+            if (string.IsNullOrEmpty(abBytePath))
+            {
+                Debug.LogError("RealFramConfig中未配置abBytePath路径！！！");
+                return;
+            }
+           // DataEditor.AllXmlToBinary();
             allFileAB.Clear();
             allFileDir.Clear();
             allPrefabDir.Clear();
             configFil.Clear();
             ABConfig abConfig = AssetDatabase.LoadAssetAtPath<ABConfig>(ConStr.AbConfig);
-            foreach (ABConfig.FileDirABName fileDir in abConfig.allFileDirAb)
+            if (abConfig.allFileDirAb.Count <= 0 && abConfig.allPrefabPath.Count <= 0)
             {
-                //Debug.Log(fileDir.Path);
-                if (allFileDir.ContainsKey(fileDir.abName))
-                {
-                    Debug.LogError("Ab包配置名字重复,请检查!");
-                }
-                else
-                {
-                    allFileDir.Add(fileDir.abName, fileDir.path);
-                    allFileAB.Add(fileDir.path);
-                    configFil.Add(fileDir.path);
-                }
+                Debug.LogError("请在菜单栏Ls_Mobile->Setting->AbConfig中配置需要打包AssetBundle的文件");
+                return;
             }
-            string[] allStr = AssetDatabase.FindAssets("t:Prefab", abConfig.allPrefabPath.ToArray());
-            for (int i = 0; i < allStr.Length; i++)
+            if (abConfig.allFileDirAb.Count > 0)
             {
-                string path = AssetDatabase.GUIDToAssetPath(allStr[i]);
-                EditorUtility.DisplayProgressBar("查找Prefab", "Prefab:" + path, i * 1.0f / allStr.Length);
-                configFil.Add(path);
-                if (!ContainAllFileAB(path))
+                foreach (ABConfig.FileDirABName fileDir in abConfig.allFileDirAb)
                 {
-                    GameObject obj = AssetDatabase.LoadAssetAtPath<GameObject>(path);
-                    string[] allDepentd = AssetDatabase.GetDependencies(path);
-                    List<string> allDependPath = new List<string>();
-                    for (int j = 0; j < allDepentd.Length; j++)
+                    //Debug.Log(fileDir.Path);
+                    if (allFileDir.ContainsKey(fileDir.abName))
                     {
-                        // Debug.Log(allDepentd[j]);
-                        if (!ContainAllFileAB(allDepentd[j]) && !allDepentd[j].EndsWith(".cs"))
+                        Debug.LogError("Ab包配置名字重复,请检查!");
+                    }
+                    else
+                    {
+                        string datapath = Application.dataPath;
+                        datapath = datapath.Replace("Assets", "");
+                        if (!Directory.Exists(datapath + fileDir.path))
                         {
-                            allFileAB.Add(allDepentd[j]);
-                            allDependPath.Add(allDepentd[j]);
+                            Debug.LogError("All File Dir Ab中不存在" + fileDir.abName + "路径," + fileDir.path);
+                        }
+                        else
+                        {
+                            allFileDir.Add(fileDir.abName, fileDir.path);
+                            allFileAB.Add(fileDir.path);
+                            configFil.Add(fileDir.path);
                         }
                     }
-                    if (allPrefabDir.ContainsKey(obj.name))
-                        Debug.LogError("存在相同名字的Prefab!名字:" + obj.name);
-                    else
-                        allPrefabDir.Add(obj.name, allDependPath);
+                }
+            }
+            if (abConfig.allPrefabPath.Count > 0)
+            {
+                string[] allStr = AssetDatabase.FindAssets("t:Prefab", abConfig.allPrefabPath.ToArray());
+                for (int i = 0; i < allStr.Length; i++)
+                {
+                    string path = AssetDatabase.GUIDToAssetPath(allStr[i]);
+                    EditorUtility.DisplayProgressBar("查找Prefab", "Prefab:" + path, i * 1.0f / allStr.Length);
+                    configFil.Add(path);
+                    if (!ContainAllFileAB(path))
+                    {
+                        GameObject obj = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+                        string[] allDepentd = AssetDatabase.GetDependencies(path);
+                        List<string> allDependPath = new List<string>();
+                        for (int j = 0; j < allDepentd.Length; j++)
+                        {
+                            // Debug.Log(allDepentd[j]);
+                            if (!ContainAllFileAB(allDepentd[j]) && !allDepentd[j].EndsWith(".cs"))
+                            {
+                                allFileAB.Add(allDepentd[j]);
+                                allDependPath.Add(allDepentd[j]);
+                            }
+                        }
+                        if (allPrefabDir.ContainsKey(obj.name))
+                            Debug.LogError("存在相同名字的Prefab!名字:" + obj.name);
+                        else
+                            allPrefabDir.Add(obj.name, allDependPath);
+                    }
                 }
             }
             foreach (string name in allFileDir.Keys)
@@ -315,7 +305,7 @@ namespace Ls_Mobile
             }
              DeleteMainfest();
             //加密AB包
-            EncryptAB();
+            LM_Menumanager.EncryptAB();
         }
         static void DeleteMainfest()
         {

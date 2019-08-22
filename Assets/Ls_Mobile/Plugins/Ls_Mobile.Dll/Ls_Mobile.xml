@@ -1,74 +1,89 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Ls_Mobile.Log</name>
+        <name>Ls_Mobile</name>
     </assembly>
     <members>
-        <member name="T:Ls_Mobile.Debuger">
+        <member name="M:com.ls_mobile.tool.AudioPlayerPrefs.ToBool(System.Int32)">
+            <summary>
+            将整数值转换为布尔表示值
+            </summary>
+        </member>
+        <member name="M:com.ls_mobile.tool.AudioPlayerPrefs.ToInt(System.Boolean)">
+            <summary>
+            将布尔值转换为整数值
+            </summary>
+        </member>
+        <member name="M:com.ls_mobile.tool.AudioPlayerPrefs.ClearAllPreferences">
+            <summary>
+            从磁盘中删除与声音选项相关的所有键和值
+            </summary>
+        </member>
+        <member name="T:com.ls_mobile.tool.Debuger">
             <summary>
             Unity 的 Debug 的封装类
             </summary>
         </member>
-        <member name="F:Ls_Mobile.Debuger.EnableLog">
+        <member name="F:com.ls_mobile.tool.Debuger.EnableLog">
             <summary>
             是否输出打印
             </summary>
         </member>
-        <member name="F:Ls_Mobile.Debuger.EnableTime">
+        <member name="F:com.ls_mobile.tool.Debuger.EnableTime">
             <summary>
             是否显示打印时间
             </summary>
         </member>
-        <member name="F:Ls_Mobile.Debuger.EnableSave">
+        <member name="F:com.ls_mobile.tool.Debuger.EnableSave">
             <summary>
             是否储存打印到文本
             </summary>
         </member>
-        <member name="F:Ls_Mobile.Debuger.EnableStack">
+        <member name="F:com.ls_mobile.tool.Debuger.EnableStack">
             <summary>
             是否显示堆栈打印信息
             </summary>
         </member>
-        <member name="F:Ls_Mobile.Debuger.LogFileDir">
+        <member name="F:com.ls_mobile.tool.Debuger.LogFileDir">
             <summary>
             打印文本保存文件夹路径
             </summary>
         </member>
-        <member name="F:Ls_Mobile.Debuger.LogFileName">
+        <member name="F:com.ls_mobile.tool.Debuger.LogFileName">
             <summary>
             打印文本名称
             </summary>
         </member>
-        <member name="F:Ls_Mobile.Debuger.Prefix">
+        <member name="F:com.ls_mobile.tool.Debuger.Prefix">
             <summary>
             打印前缀
             </summary>
         </member>
-        <member name="F:Ls_Mobile.Debuger.LogFileWriter">
+        <member name="F:com.ls_mobile.tool.Debuger.LogFileWriter">
             <summary>
             打印文本流
             </summary>
         </member>
-        <member name="F:Ls_Mobile.Debuger.UseUnityEngine">
+        <member name="F:com.ls_mobile.tool.Debuger.UseUnityEngine">
             <summary>
             是否使用Unity打印
             </summary>
         </member>
-        <member name="M:Ls_Mobile.Debuger.Log(System.String,System.String)">
+        <member name="M:com.ls_mobile.tool.Debuger.Log(System.String,System.String)">
             <summary>
             Debug.Log 对应封装函数
             </summary>
             <param name="tag">触发函数对应的类</param>
             <param name="message">打印信息</param>
         </member>
-        <member name="M:Ls_Mobile.Debuger.Log(System.String,System.Object[])">
+        <member name="M:com.ls_mobile.tool.Debuger.Log(System.String,System.Object[])">
             <summary>
             Debug.Log 对应封装函数
             </summary>
             <param name="format"></param>
             <param name="args"></param>
         </member>
-        <member name="M:Ls_Mobile.Debuger.Log(System.String,System.String,System.Object[])">
+        <member name="M:com.ls_mobile.tool.Debuger.Log(System.String,System.String,System.Object[])">
             <summary>
             Debug.Log 对应封装函数
             </summary>
@@ -76,28 +91,28 @@
             <param name="format"></param>
             <param name="args"></param>
         </member>
-        <member name="M:Ls_Mobile.Debuger.LogWarning(System.Object,System.Object)">
+        <member name="M:com.ls_mobile.tool.Debuger.LogWarning(System.Object,System.Object)">
             <summary>
             Debug.LogWarning 对应封装函数
             </summary>
             <param name="message"></param>
             <param name="context"></param>
         </member>
-        <member name="M:Ls_Mobile.Debuger.LogWarning(System.String,System.String)">
+        <member name="M:com.ls_mobile.tool.Debuger.LogWarning(System.String,System.String)">
             <summary>
             Debug.LogWarning 对应封装函数
             </summary>
             <param name="tag">触发函数对应的类</param>
             <param name="message">打印信息</param>
         </member>
-        <member name="M:Ls_Mobile.Debuger.LogWarning(System.String,System.Object[])">
+        <member name="M:com.ls_mobile.tool.Debuger.LogWarning(System.String,System.Object[])">
             <summary>
             Debug.LogWarning 对应封装函数
             </summary>
             <param name="format"></param>
             <param name="args"></param>
         </member>
-        <member name="M:Ls_Mobile.Debuger.LogWarning(System.String,System.String,System.Object[])">
+        <member name="M:com.ls_mobile.tool.Debuger.LogWarning(System.String,System.String,System.Object[])">
             <summary>
             Debug.LogWarning 对应封装函数
             </summary>
@@ -105,28 +120,28 @@
             <param name="format"></param>
             <param name="args"></param>
         </member>
-        <member name="M:Ls_Mobile.Debuger.LogError(System.Object,System.Object)">
+        <member name="M:com.ls_mobile.tool.Debuger.LogError(System.Object,System.Object)">
             <summary>
             Debug.LogError 对应封装函数
             </summary>
             <param name="message">打印信息</param>
             <param name="context"></param>
         </member>
-        <member name="M:Ls_Mobile.Debuger.LogError(System.String,System.String)">
+        <member name="M:com.ls_mobile.tool.Debuger.LogError(System.String,System.String)">
             <summary>
             Debug.LogError 对应封装函数
             </summary>
             <param name="tag">触发函数对应的类</param>
             <param name="message">打印信息</param>
         </member>
-        <member name="M:Ls_Mobile.Debuger.LogError(System.String,System.Object[])">
+        <member name="M:com.ls_mobile.tool.Debuger.LogError(System.String,System.Object[])">
             <summary>
             Debug.LogError 对应封装函数
             </summary>
             <param name="format"></param>
             <param name="args"></param>
         </member>
-        <member name="M:Ls_Mobile.Debuger.LogError(System.String,System.String,System.Object[])">
+        <member name="M:com.ls_mobile.tool.Debuger.LogError(System.String,System.String,System.Object[])">
             <summary>
             Debug.LogError 对应封装函数
             </summary>
@@ -134,7 +149,7 @@
             <param name="format"></param>
             <param name="args"></param>
         </member>
-        <member name="M:Ls_Mobile.Debuger.GetLogTime(System.String,System.String)">
+        <member name="M:com.ls_mobile.tool.Debuger.GetLogTime(System.String,System.String)">
             <summary>
             获取打印时间
             </summary>
@@ -142,98 +157,98 @@
             <param name="message"></param>
             <returns></returns>
         </member>
-        <member name="M:Ls_Mobile.Debuger.GetLogTime(System.String)">
+        <member name="M:com.ls_mobile.tool.Debuger.GetLogTime(System.String)">
             <summary>
             获取打印时间
             </summary>
             <param name="message"></param>
             <returns></returns>
         </member>
-        <member name="M:Ls_Mobile.Debuger.GetLogTime">
+        <member name="M:com.ls_mobile.tool.Debuger.GetLogTime">
             <summary>
             获取打印时间
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Ls_Mobile.Debuger.LogToFile(System.String,System.Boolean)">
+        <member name="M:com.ls_mobile.tool.Debuger.LogToFile(System.String,System.Boolean)">
             <summary>
             序列化打印信息
             </summary>
             <param name="message">打印信息</param>
             <param name="EnableStack">是否开启堆栈打印</param>
         </member>
-        <member name="F:Ls_Mobile.DebugerGUI.toggleKey">
+        <member name="F:com.ls_mobile.tool.DebugerGUI.toggleKey">
             <summary>
             显示和隐藏控制台窗口的热键。
             </summary>
         </member>
-        <member name="F:Ls_Mobile.DebugerGUI.StackLog">
+        <member name="F:com.ls_mobile.tool.DebugerGUI.StackLog">
             <summary>  
             在打印的时候是否开启堆栈打印
             </summary>  
         </member>
-        <member name="F:Ls_Mobile.DebugerGUI.restrictLogCount">
+        <member name="F:com.ls_mobile.tool.DebugerGUI.restrictLogCount">
              <summary>  
             是否保留一定数量的日志
              </summary>  
         </member>
-        <member name="F:Ls_Mobile.DebugerGUI.shakeToOpen">
+        <member name="F:com.ls_mobile.tool.DebugerGUI.shakeToOpen">
             <summary>  
             是否通过摇动设备(仅移动设备)来打开窗户
             </summary>  
         </member>
-        <member name="F:Ls_Mobile.DebugerGUI.FontSize">
+        <member name="F:com.ls_mobile.tool.DebugerGUI.FontSize">
             <summary>  
             显示字体大小
             </summary>  
         </member>
-        <member name="F:Ls_Mobile.DebugerGUI.ScrollbarSize">
+        <member name="F:com.ls_mobile.tool.DebugerGUI.ScrollbarSize">
             <summary>  
             显示拖动条宽度
             </summary>  
         </member>
-        <member name="F:Ls_Mobile.DebugerGUI.shakeAcceleration">
+        <member name="F:com.ls_mobile.tool.DebugerGUI.shakeAcceleration">
             <summary>  
             (平方)在上面的加速度，窗口应该打开
             </summary>  
         </member>
-        <member name="F:Ls_Mobile.DebugerGUI.maxLogs">
+        <member name="F:com.ls_mobile.tool.DebugerGUI.maxLogs">
             <summary>  
             在删除旧的日志之前保持日志的数量。 
             </summary>  
         </member>
-        <member name="F:Ls_Mobile.DebugerGUI.scrollPosition">
+        <member name="F:com.ls_mobile.tool.DebugerGUI.scrollPosition">
             <summary>
             对应横向、纵向滑动条对应的X,Y数值
             </summary>
         </member>
-        <member name="F:Ls_Mobile.DebugerGUI.visible">
+        <member name="F:com.ls_mobile.tool.DebugerGUI.visible">
             <summary>
             可见
             </summary>
         </member>
-        <member name="F:Ls_Mobile.DebugerGUI.collapse">
+        <member name="F:com.ls_mobile.tool.DebugerGUI.collapse">
             <summary>
             折叠
             </summary>
         </member>
-        <member name="M:Ls_Mobile.DebugerGUI.DrawConsoleWindow(System.Int32)">
+        <member name="M:com.ls_mobile.tool.DebugerGUI.DrawConsoleWindow(System.Int32)">
             <summary>  
             显示一个列出已记录日志的窗口。
             </summary>  
             <param name="windowID">Window ID.</param>  
         </member>
-        <member name="M:Ls_Mobile.DebugerGUI.DrawLogsList">
+        <member name="M:com.ls_mobile.tool.DebugerGUI.DrawLogsList">
             <summary>  
             绘制log列表
             </summary>  
         </member>
-        <member name="M:Ls_Mobile.DebugerGUI.DrawToolbar">
+        <member name="M:com.ls_mobile.tool.DebugerGUI.DrawToolbar">
             <summary>  
             Log日志工具栏
             </summary>  
         </member>
-        <member name="M:Ls_Mobile.DebugerGUI.HandleLog(System.String,System.String,UnityEngine.LogType)">
+        <member name="M:com.ls_mobile.tool.DebugerGUI.HandleLog(System.String,System.String,UnityEngine.LogType)">
             <summary>  
             Debug 对应的回调处理
             </summary>  
@@ -241,24 +256,24 @@
             <param name="stackTrace">信息的来源</param>  
             <param name="type">信息类型 (error, exception, warning, assert).</param>  
         </member>
-        <member name="M:Ls_Mobile.DebugerGUI.TrimExcessLogs">
+        <member name="M:com.ls_mobile.tool.DebugerGUI.TrimExcessLogs">
             <summary>  
             删除超过允许的最大数量的旧日志。
             </summary>  
         </member>
-        <member name="P:Ls_Mobile.Log.Visible">
+        <member name="P:com.ls_mobile.tool.Log.Visible">
             <summary>
             是否可见
             </summary>
         </member>
-        <member name="M:Ls_Mobile.Log.E(System.Object,System.Object[])">
+        <member name="M:com.ls_mobile.tool.Log.E(System.Object,System.Object[])">
             <summary>
             打印错误信息 不需打印tag值 需在Unity编辑器添加宏命令EnableLog
             </summary>
             <param name="msg">需要打印的信息</param>
             <param name="args">Format参数</param>
         </member>
-        <member name="M:Ls_Mobile.Log.E(System.Object,System.Object,System.Object[])">
+        <member name="M:com.ls_mobile.tool.Log.E(System.Object,System.Object,System.Object[])">
             <summary>
             打印错误信息+tag值 需在Unity编辑器添加宏命令EnableLog
             </summary>
@@ -266,14 +281,14 @@
             <param name="msg">this 打印脚本tag值</param>
             <param name="args">Format参数</param>
         </member>
-        <member name="M:Ls_Mobile.Log.I(System.Object,System.Object[])">
+        <member name="M:com.ls_mobile.tool.Log.I(System.Object,System.Object[])">
             <summary>
             打印信息 不需打印tag值 需在Unity编辑器添加宏命令EnableLog
             </summary>
             <param name="msg">需要打印的信息</param>
             <param name="args">Format参数</param>
         </member>
-        <member name="M:Ls_Mobile.Log.I(System.Object,System.Object,System.Object[])">
+        <member name="M:com.ls_mobile.tool.Log.I(System.Object,System.Object,System.Object[])">
             <summary>
             打印信息+tag值 需在Unity编辑器添加宏命令EnableLog
             </summary>
@@ -281,14 +296,14 @@
             <param name="msg"></param>
             <param name="args"></param>
         </member>
-        <member name="M:Ls_Mobile.Log.W(System.Object,System.Object[])">
+        <member name="M:com.ls_mobile.tool.Log.W(System.Object,System.Object[])">
             <summary>
              打印警告 不需打印tag值 需在Unity编辑器添加宏命令EnableLog
             </summary>
             <param name="msg"></param>
             <param name="args"></param>
         </member>
-        <member name="M:Ls_Mobile.Log.W(System.Object,System.Object,System.Object[])">
+        <member name="M:com.ls_mobile.tool.Log.W(System.Object,System.Object,System.Object[])">
             <summary>
             打印警告+tag值 需在Unity编辑器添加宏命令EnableLog
             </summary>
@@ -296,7 +311,7 @@
             <param name="msg"></param>
             <param name="args"></param>
         </member>
-        <member name="M:Ls_Mobile.Log.GetLogTag(System.Object)">
+        <member name="M:com.ls_mobile.tool.Log.GetLogTag(System.Object)">
             <summary>
             获取调用打印的类名称或者标记有NAME的字段 
             有NAME字段的，触发类名称用NAME字段对应的赋值

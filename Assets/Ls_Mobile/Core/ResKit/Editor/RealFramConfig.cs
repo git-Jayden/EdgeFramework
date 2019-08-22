@@ -7,6 +7,32 @@ namespace Ls_Mobile
     //[CreateAssetMenu(fileName ="RealFramConfig",menuName ="CreateRealFramConfig",order =0)]
     public class RealFramConfig : ScriptableObject
     {
+        private static RealFramConfig sInstance;
+        public static RealFramConfig Instance
+        {
+            get
+            {
+                if (sInstance == null)
+                {
+                    sInstance = LoadRealFramConfig();
+
+                    if (sInstance == null)
+                    {
+#if !UNITY_EDITOR
+                        Debug.LogError("Ls_Mobile RealFramConfig not found! " +
+                            "Please go to menu Ls_Mobile > Settings to setup the plugin.");
+#endif
+                        sInstance = CreateInstance<RealFramConfig>();   // Create a dummy scriptable object for temporary use.
+                    }
+                }
+
+                return sInstance;
+            }
+        }
+        public static RealFramConfig LoadRealFramConfig()
+        {
+            return Resources.Load("RealFramConfig") as RealFramConfig;
+        }
         //打包时生成AB包配置表的二进制路径
         public string aBBytePath;
         //xml文件夹路径
@@ -46,12 +72,5 @@ namespace Ls_Mobile
             serializedObject.ApplyModifiedProperties();
         }
     }
-    public class RealConfig
-    {
-        public static RealFramConfig GetRealFram()
-        {
-            RealFramConfig realConfig = AssetDatabase.LoadAssetAtPath<RealFramConfig>(ConStr.RealFramPath);
-            return realConfig;
-        }
-    }
+   
 }

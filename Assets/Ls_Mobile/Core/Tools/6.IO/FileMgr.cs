@@ -258,7 +258,7 @@ namespace Ls_Mobile
             }
             else
             {
-                Log.E(string.Format("Can't Find File {0}", absPath));
+               Debug.LogError(string.Format("Can't Find File {0}", absPath));
             }
 
             return null;
@@ -292,7 +292,7 @@ namespace Ls_Mobile
             //Log.I("Read From In App...");
             if (mZipFile == null)
             {
-                Log.E("can't open apk");
+               Debug.LogError("can't open apk");
                 return null;
             }
 
@@ -310,7 +310,7 @@ namespace Ls_Mobile
             }
             else
             {
-                Log.E(string.Format("Can't Find File {0}", fileRelativePath));
+               Debug.LogError(string.Format("Can't Find File {0}", fileRelativePath));
             }
 
             return byteData;

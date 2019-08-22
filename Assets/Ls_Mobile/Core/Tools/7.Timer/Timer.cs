@@ -73,7 +73,7 @@ namespace Ls_Mobile
             float passTick = (toTime.Ticks - DateTime.Now.Ticks) / 10000000;
             if (passTick < 0)
             {
-                Log.W("Timer Set Pass Time...");
+                Debug.LogWarning("Timer Set Pass Time...");
                 passTick = 0;
             }
             return Post2Really(callback, passTick);

@@ -40,13 +40,13 @@ namespace Ls_Mobile{
         /// <param name="wndRoot">窗口父节点</param>
         /// <param name="uiCamera">ui摄像机</param>
         /// <param name="eventSystem">事件系统</param>
-        public void Init( RectTransform uiRoot, RectTransform wndRoot, Camera uiCamera, EventSystem eventSystem)
+        public void Init(Transform trans)
         {
-    
-            this.uiRoot = uiRoot;
-            this.windRoot = wndRoot;
-            this.uiCamera = uiCamera;
-            this.eventSystem = eventSystem;
+
+            this.uiRoot = trans.Find("UIRoot") as RectTransform;
+            this.windRoot = trans.Find("UIRoot/WindRoot") as RectTransform;
+            this.uiCamera = trans.Find("UIRoot/UICamera").GetComponent<Camera>();
+            this.eventSystem = trans.Find("UIRoot/EventSystem").GetComponent<EventSystem>();
             this.canvasRate = Screen.height / (uiCamera.orthographicSize * 2);
             //ParseUIPanelTypeJson();
         }
@@ -238,7 +238,7 @@ namespace Ls_Mobile{
             panelPathDict = new Dictionary<UIPanelType, string>();
 
             //TextAsset ta = Resources.Load<TextAsset>("UIPanelType");
-            TextAsset ta = ResouceManager.Instance.LoadResouce<TextAsset>(ConStr.UIjsonPath);
+            TextAsset ta = ResouceManager.Instance.LoadResouce<TextAsset>(Constants.UIJsonPath);
 
             UIPanelTypeJson jsonObject = JsonUtility.FromJson<UIPanelTypeJson>(ta.text);
 

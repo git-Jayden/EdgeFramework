@@ -17,7 +17,7 @@ namespace Ls_Mobile {
         public static void Build()
         {
             //打Ab包
-            BundleEditor.NormalBuild();
+            LM_Menumanager.NormalBuild();
             SaveVersion(PlayerSettings.bundleVersion, PlayerSettings.applicationIdentifier);
             //生成可执行程序
             string abPath = Application.dataPath + "/../AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString() + "/";
@@ -157,7 +157,7 @@ namespace Ls_Mobile {
         public static void BuildPC()
         {
             //打Ab包
-            BundleEditor.NormalBuild();
+            LM_Menumanager.NormalBuild();
             BuildSetting buildSetting = GetPCBuildSetting();
            string suffix=SetSetting(buildSetting);
             //生成可执行程序
@@ -261,7 +261,7 @@ namespace Ls_Mobile {
         public static void BuildAndroid()
         {
             //打ab包
-            BundleEditor.NormalBuild();
+            LM_Menumanager.NormalBuild();
             PlayerSettings.Android.keystorePass = "a2214529342";
             PlayerSettings.Android.keyaliasPass = "a2214529342";
             PlayerSettings.Android.keyaliasName = "android.keystore";
@@ -408,7 +408,7 @@ namespace Ls_Mobile {
         public static void BuildIOS()
         {
             //打ab包
-            BundleEditor.NormalBuild();
+            LM_Menumanager.NormalBuild();
             BuildSetting buildSetting = GetIOSBuildSetting();
             string suffix = SetIOSSetting(buildSetting);
 

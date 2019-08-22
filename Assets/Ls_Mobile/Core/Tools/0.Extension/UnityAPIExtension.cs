@@ -236,6 +236,9 @@ namespace Ls_Mobile
         }
 
         #endregion
+
+
+       
     }
 
     public static class GraphicExtension
@@ -939,7 +942,7 @@ namespace Ls_Mobile
             return null;
         }
         /// <summary>
-        /// show tranformPath gameobject
+        /// 显示子物体下的指定path的gameobject
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="selfComponent"></param>
