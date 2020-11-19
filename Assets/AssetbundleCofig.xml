@@ -3,6 +3,8 @@
   <ABList Path="Assets/Ls_Mobile/Example/ResKitExample/Prefabs/Attack.prefab" Crc="2674598703" ABName="attack" AssetName="Attack.prefab">
     <ABDependce>shader</ABDependce>
   </ABList>
+  <ABList Path="Assets/Ls_Mobile/Example/Data/Hotfix/HotFix.dll.txt" Crc="4181708833" ABName="hitfix" AssetName="HotFix.dll.txt" />
+  <ABList Path="Assets/Ls_Mobile/Example/Data/Hotfix/HotFix.pdb.txt" Crc="915996146" ABName="hitfix" AssetName="HotFix.pdb.txt" />
   <ABList Path="Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/bg_公告底.png" Crc="3884314099" ABName="image" AssetName="bg_公告底.png" />
   <ABList Path="Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/bg_注册.png" Crc="3401756372" ABName="image" AssetName="bg_注册.png" />
   <ABList Path="Assets/Ls_Mobile/Example/UIExample/Images/001-startmenu/bg_进入游戏底板.png" Crc="2391827605" ABName="image" AssetName="bg_进入游戏底板.png" />
@@ -206,7 +208,6 @@
   <ABList Path="Assets/Ls_Mobile/Example/UIExample/Images/效果图/任务系统.png" Crc="4136183577" ABName="image" AssetName="任务系统.png" />
   <ABList Path="Assets/Ls_Mobile/Example/UIExample/Images/效果图/背包系统1.png" Crc="1341976417" ABName="image" AssetName="背包系统1.png" />
   <ABList Path="Assets/Ls_Mobile/Example/UIExample/Images/效果图/背包系统2.png" Crc="2998029767" ABName="image" AssetName="背包系统2.png" />
-  <ABList Path="Assets/Ls_Mobile/Example/UIExample/JsonData/UIPanelType.json" Crc="1238257346" ABName="jsondata" AssetName="UIPanelType.json" />
   <ABList Path="Assets/Ls_Mobile/Example/ResKitExample/GameData/Shaders/benghuai.shader" Crc="1050447208" ABName="shader" AssetName="benghuai.shader" />
   <ABList Path="Assets/Ls_Mobile/Example/ResKitExample/GameData/Shaders/Skybox.shader" Crc="2721029318" ABName="shader" AssetName="Skybox.shader" />
   <ABList Path="Assets/Ls_Mobile/Example/ResKitExample/GameData/Shaders/Water.shader" Crc="2408713094" ABName="shader" AssetName="Water.shader" />

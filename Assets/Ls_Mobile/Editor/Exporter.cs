@@ -13,12 +13,18 @@ namespace Ls_Mobile
            [MenuItem("Ls_Mobile/ExportUnityPackage %e")]
         static void ExportClicked()
         {
-            //EditorApplication.ExecuteMenuItem("Ls_SytleFrame/ExportUnityPackage");--MenuItem的复用操作
-            var assetPathName = "Assets/Ls_StyleFrame";
-            var fileName = Application.dataPath + "/Ls_StyleFrame" + DateTime.Now.ToString("yyyMMdd_HH") + ".unitypackage";
+            
+            var assetPathName = "Assets/Ls_Mobile";
+            var filePath = Application.dataPath+ "/../UnityPackage";
+            if (!Directory.Exists(filePath))
+            {
+                Directory.CreateDirectory(filePath);
+            }
+            var fileName = filePath + "/Ls_Mobile" + DateTime.Now.ToString("yyyMMdd_HH") + ".unitypackage";
             AssetDatabase.ExportPackage(assetPathName, fileName, ExportPackageOptions.Recurse);
-            //GUIUtility.systemCopyBuffer = "Ls_SytleFrame_" + DateTime.Now.ToString("yyyMMdd_HH");
-            Application.OpenURL("file://"+Path.Combine(Application.dataPath, "../Assets/"));
+            //GUIUtility.systemCopyBuffer = "Ls_SytleFrame_" + DateTime.Now.ToString("yyyMMdd_HH");//将字符串拷贝到剪切板
+            //EditorApplication.ExecuteMenuItem("Ls_SytleFrame/ExportUnityPackage");--MenuItem的复用操作 表示可以执行按钮ExportUnityPackage的操作
+            Application.OpenURL("file://"+ filePath);
         }
 #endif
     }

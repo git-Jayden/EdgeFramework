@@ -45,9 +45,9 @@ public class UIFrameExample : MonoBehaviour, ISingleton
         image.fillAmount = 0.1f;
         yield return null;
         text.text = "加载dll... ...";
-        ILRuntimeManager.Instance.Init();
-        image.fillAmount = 0.2f;
-        yield return null;
+        //ILRuntimeManager.Instance.Init();
+        //image.fillAmount = 0.2f;
+        //yield return null;
         text.text = "加载数据表... ...";
         LoadConfiger();
         image.fillAmount = 0.7f;

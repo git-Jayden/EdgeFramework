@@ -21,9 +21,9 @@ namespace Ls_Mobile
          static List<string> allFileAB = new List<string>();
         //单个prefab的ab包
          static Dictionary<string, List<string>> allPrefabDir = new Dictionary<string, List<string>>();
-
         //储存所有有效路径
          static List<string> configFil = new List<string>();
+
         //储存读出来MD5信息
         private static Dictionary<string, ABMD5Base> packedMd5 = new Dictionary<string, ABMD5Base>();
         //[MenuItem("测试/测试加密")]
