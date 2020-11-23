@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Ls_Mobile.Example
+namespace EdgeFramework.Example
 {
     public class BindingsRxExample : MonoBehaviour
     {

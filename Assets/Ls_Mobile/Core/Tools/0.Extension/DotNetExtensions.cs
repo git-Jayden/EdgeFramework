@@ -8,7 +8,7 @@ using System.Text;
 using System.Reflection;
 using System.Collections;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
   public static class ClassExtention
         {

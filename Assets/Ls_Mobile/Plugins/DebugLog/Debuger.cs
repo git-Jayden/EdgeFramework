@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using UnityEngine;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     /// <summary>
     /// Unity 的 Debug 的封装类

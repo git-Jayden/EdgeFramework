@@ -4,7 +4,7 @@
     <AllString>ceshi0</AllString>
     <AllString>ceshiq0</AllString>
   </AllBuffList>
-  <AllBuffList Id="2" Name="全BUFF1" OutLook="Assets/GameData/...1" Time="5.90006828" BuffType="None">
+  <AllBuffList Id="2" Name="全BUFF1" OutLook="Assets/GameData/...1" Time="5.900068" BuffType="None">
     <AllString>ceshi1</AllString>
     <AllString>ceshiq1</AllString>
     <AllBuffList Id="4" Name="name0" />
@@ -22,14 +22,14 @@
     <AllBuffList Id="5" Name="name1" />
     <AllBuffList Id="4" Name="name2" />
   </AllBuffList>
-  <AllBuffList Id="5" Name="全BUFF4" OutLook="Assets/GameData/...4" Time="5.04662275" BuffType="Du">
+  <AllBuffList Id="5" Name="全BUFF4" OutLook="Assets/GameData/...4" Time="5.046623" BuffType="Du">
     <AllString>ceshi4</AllString>
     <AllString>ceshiq4</AllString>
     <AllBuffList Id="1" Name="name0" />
     <AllBuffList Id="1" Name="name1" />
     <AllBuffList Id="2" Name="name2" />
   </AllBuffList>
-  <AllBuffList Id="6" Name="全BUFF5" OutLook="Assets/GameData/...5" Time="1.3674984" BuffType="Bingdong">
+  <AllBuffList Id="6" Name="全BUFF5" OutLook="Assets/GameData/...5" Time="1.367498" BuffType="Bingdong">
     <AllString>ceshi5</AllString>
     <AllString>ceshiq5</AllString>
   </AllBuffList>
@@ -40,14 +40,14 @@
     <AllBuffList Id="3" Name="name1" />
     <AllBuffList Id="6" Name="name2" />
   </AllBuffList>
-  <AllBuffList Id="8" Name="全BUFF7" OutLook="Assets/GameData/...7" Time="1.35221219" BuffType="Du">
+  <AllBuffList Id="8" Name="全BUFF7" OutLook="Assets/GameData/...7" Time="1.352212" BuffType="Du">
     <AllString>ceshi7</AllString>
     <AllString>ceshiq7</AllString>
     <AllBuffList Id="4" Name="name0" />
     <AllBuffList Id="3" Name="name1" />
     <AllBuffList Id="5" Name="name2" />
   </AllBuffList>
-  <AllBuffList Id="9" Name="全BUFF8" OutLook="Assets/GameData/...8" Time="6.59331131" BuffType="Du">
+  <AllBuffList Id="9" Name="全BUFF8" OutLook="Assets/GameData/...8" Time="6.593311" BuffType="Du">
     <AllString>ceshi8</AllString>
     <AllString>ceshiq8</AllString>
     <AllBuffList Id="2" Name="name0" />
@@ -56,23 +56,23 @@
     <AllString>ceshi9</AllString>
     <AllString>ceshiq9</AllString>
   </AllBuffList>
-  <MonsterBuffList Id="1" Name="全BUFF0" OutLook="Assets/GameData/...0" Time="1.56543255" BuffType="Ranshao">
+  <MonsterBuffList Id="1" Name="全BUFF0" OutLook="Assets/GameData/...0" Time="1.565433" BuffType="Ranshao">
     <AllString>ceshi0</AllString>
     <AllBuffList Id="0" Name="name0" />
     <AllBuffList Id="1" Name="name1" />
     <AllBuffList Id="3" Name="name2" />
   </MonsterBuffList>
-  <MonsterBuffList Id="2" Name="全BUFF1" OutLook="Assets/GameData/...1" Time="5.99156666" BuffType="None">
+  <MonsterBuffList Id="2" Name="全BUFF1" OutLook="Assets/GameData/...1" Time="5.991567" BuffType="None">
     <AllString>ceshi1</AllString>
     <AllBuffList Id="2" Name="name0" />
   </MonsterBuffList>
-  <MonsterBuffList Id="3" Name="全BUFF2" OutLook="Assets/GameData/...2" Time="3.74722481" BuffType="Ranshao">
+  <MonsterBuffList Id="3" Name="全BUFF2" OutLook="Assets/GameData/...2" Time="3.747225" BuffType="Ranshao">
     <AllString>ceshi2</AllString>
   </MonsterBuffList>
-  <MonsterBuffList Id="4" Name="全BUFF3" OutLook="Assets/GameData/...3" Time="6.29975748" BuffType="Bingdong">
+  <MonsterBuffList Id="4" Name="全BUFF3" OutLook="Assets/GameData/...3" Time="6.299757" BuffType="Bingdong">
     <AllString>ceshi3</AllString>
   </MonsterBuffList>
-  <MonsterBuffList Id="5" Name="全BUFF4" OutLook="Assets/GameData/...4" Time="3.3307333" BuffType="Bingdong">
+  <MonsterBuffList Id="5" Name="全BUFF4" OutLook="Assets/GameData/...4" Time="3.330733" BuffType="Bingdong">
     <AllString>ceshi4</AllString>
   </MonsterBuffList>
 </BuffData>

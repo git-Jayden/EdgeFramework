@@ -5,7 +5,7 @@ using System.IO;
 using System.Xml.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public  class BundleEditor
     {   //打包的AssetBundle路径
@@ -74,6 +74,7 @@ namespace Ls_Mobile
                         }
                         else
                         {
+                      
                             allFileDir.Add(fileDir.abName, fileDir.path);
                             allFileAB.Add(fileDir.path);
                             configFil.Add(fileDir.path);

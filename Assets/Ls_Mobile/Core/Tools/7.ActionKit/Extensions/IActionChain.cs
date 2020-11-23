@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System;
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     /// <summary>
     /// 执行链表,

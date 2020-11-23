@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using DG.Tweening;
-using Ls_Mobile;
+using EdgeFramework;
 using UnityEngine.UI;
 
 public class TaskPanel : BasePanel {

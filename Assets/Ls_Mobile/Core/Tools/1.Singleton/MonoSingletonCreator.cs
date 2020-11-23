@@ -2,7 +2,7 @@
 using System.Reflection;
 using UnityEngine;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     class MonoSingletonCreator
     {

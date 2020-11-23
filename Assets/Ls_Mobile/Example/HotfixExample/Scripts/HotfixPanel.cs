@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Ls_Mobile {
+namespace EdgeFramework {
     public class HotfixPanel :BasePanel
     {
         public Image image;
@@ -171,6 +171,4 @@ namespace Ls_Mobile {
             GameMapManager.Instance.LoadScene(Constants.MenuScene, UIPanelType.Loading);
         }
     }
-
-
 }

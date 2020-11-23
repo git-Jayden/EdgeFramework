@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public class MonoSimplify<T> : MonoBehaviour, ISingleton where T : MonoSimplify<T>
     {

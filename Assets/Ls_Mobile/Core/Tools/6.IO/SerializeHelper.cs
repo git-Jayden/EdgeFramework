@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 using com.ls_mobile.tool;
 using Newtonsoft.Json;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 
 {
     public static class SerializeHelper

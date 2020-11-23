@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public class LM_Menumanager
     {

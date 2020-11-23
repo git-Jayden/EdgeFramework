@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
     public class OpenFileName

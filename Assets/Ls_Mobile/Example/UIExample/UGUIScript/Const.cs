@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public class Const
     {

@@ -9,7 +9,7 @@ using System.Xml;
 using UnityEditor;
 using UnityEngine;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public class DataEditor 
     {
@@ -77,7 +77,7 @@ namespace Ls_Mobile
         [MenuItem("Ls_Mobile/Xml/Excel转Xml")]
         public static void AllExcelToXml()
         {
-            string[] filePaths = Directory.GetFiles(RegPath, "*", SearchOption.AllDirectories);
+            string[] filePaths = Directory.GetFiles(XmlPath, "*", SearchOption.AllDirectories);
             for (int i = 0; i < filePaths.Length; i++)
             {
                 if (!filePaths[i].EndsWith(".xml"))

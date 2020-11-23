@@ -1,4 +1,4 @@
-﻿namespace Ls_Mobile
+﻿namespace EdgeFramework
 {
     /// <summary>
     /// 重复执行节点链

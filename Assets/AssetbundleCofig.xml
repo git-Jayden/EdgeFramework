@@ -208,6 +208,7 @@
   <ABList Path="Assets/Ls_Mobile/Example/UIExample/Images/效果图/任务系统.png" Crc="4136183577" ABName="image" AssetName="任务系统.png" />
   <ABList Path="Assets/Ls_Mobile/Example/UIExample/Images/效果图/背包系统1.png" Crc="1341976417" ABName="image" AssetName="背包系统1.png" />
   <ABList Path="Assets/Ls_Mobile/Example/UIExample/Images/效果图/背包系统2.png" Crc="2998029767" ABName="image" AssetName="背包系统2.png" />
+  <ABList Path="Assets/Ls_Mobile/Example/UIExample/JsonData/UIPanelType.json" Crc="1238257346" ABName="jsondata" AssetName="UIPanelType.json" />
   <ABList Path="Assets/Ls_Mobile/Example/ResKitExample/GameData/Shaders/benghuai.shader" Crc="1050447208" ABName="shader" AssetName="benghuai.shader" />
   <ABList Path="Assets/Ls_Mobile/Example/ResKitExample/GameData/Shaders/Skybox.shader" Crc="2721029318" ABName="shader" AssetName="Skybox.shader" />
   <ABList Path="Assets/Ls_Mobile/Example/ResKitExample/GameData/Shaders/Water.shader" Crc="2408713094" ABName="shader" AssetName="Water.shader" />

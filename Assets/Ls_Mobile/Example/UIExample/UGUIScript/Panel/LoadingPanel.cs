@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Ls_Mobile;
+using EdgeFramework;
 
 public class LoadingPanel : BasePanel
 {

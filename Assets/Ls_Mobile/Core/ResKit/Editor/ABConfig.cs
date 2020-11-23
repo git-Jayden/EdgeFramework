@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     [CreateAssetMenu(fileName = "AbConfig", menuName = "CreateABConfig", order = 0)]
     public class ABConfig : ScriptableObject

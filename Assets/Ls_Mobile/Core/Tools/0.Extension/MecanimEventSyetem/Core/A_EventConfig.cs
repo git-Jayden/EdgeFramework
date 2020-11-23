@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     /// <summary>Mecanim事件系统事件配置类_for start+completed callback </summary>
     public class A_EventConfig_A : BaseEventConfig

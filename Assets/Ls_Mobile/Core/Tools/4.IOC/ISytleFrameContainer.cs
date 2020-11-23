@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public interface ISytleFrameContainer
     {

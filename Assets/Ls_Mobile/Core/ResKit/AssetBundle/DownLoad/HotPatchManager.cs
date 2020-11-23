@@ -7,7 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public class HotPatchManager :Singleton<HotPatchManager>
     {

@@ -2,7 +2,7 @@
 using System.Reflection;
 
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public class NonPublicObjectFactory<T> : IObjectFactory<T> where T : class
     {

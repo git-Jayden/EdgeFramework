@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Ls_Mobile.Example
+namespace EdgeFramework.Example
 
 {
     public class JsonPathProtobuf : MonoBehaviour

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Ls_Mobile;
+using EdgeFramework;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 

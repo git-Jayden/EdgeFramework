@@ -4,7 +4,7 @@ using System;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public class Exporter
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Ls_Mobile{
+namespace EdgeFramework{
     public enum UIMsgID
     {
         None = 0,

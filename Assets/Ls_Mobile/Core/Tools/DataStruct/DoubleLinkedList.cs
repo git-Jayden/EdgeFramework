@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     //双向链表结构节点
     public class DoubleLinkedListNode<T> where T : class, new()

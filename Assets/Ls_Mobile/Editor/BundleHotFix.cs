@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Runtime.InteropServices;
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public class BundleHotFix : EditorWindow
     {

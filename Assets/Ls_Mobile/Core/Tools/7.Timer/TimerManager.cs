@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Ls_Mobile.TimeExtend
+namespace EdgeFramework.TimeExtend
 {
     public class Timer
     {

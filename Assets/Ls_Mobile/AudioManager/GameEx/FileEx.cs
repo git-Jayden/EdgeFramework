@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UnityEngine;
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public class FileEx
     {

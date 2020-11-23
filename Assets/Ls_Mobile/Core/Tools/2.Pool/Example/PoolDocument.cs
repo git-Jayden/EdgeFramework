@@ -1,7 +1,7 @@
 ﻿
 using com.ls_mobile.tool;
 
-namespace Ls_Mobile.Example
+namespace EdgeFramework.Example
 {
     public class PoolDocument
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Ls_Mobile.AudioManager
+namespace EdgeFramework.AudioManager
 {
     /// <summary>
     /// 音效的结构和特性

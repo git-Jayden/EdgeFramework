@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Xml.Serialization;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     [System.Serializable]
     public class AssetBundleConfig

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     #region 事件接口
 

@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public static  class IActionExtension 
     {

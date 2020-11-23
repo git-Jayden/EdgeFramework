@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     /// <inheritdoc />
     /// <summary>

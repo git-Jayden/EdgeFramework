@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reflection;
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public static class SingletonCreator
     {

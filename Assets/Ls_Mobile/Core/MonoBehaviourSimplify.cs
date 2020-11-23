@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Ls_Mobile.Util;
+using EdgeFramework.Util;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
 
     public partial class MonoBehaviourSimplify:MonoBehaviour

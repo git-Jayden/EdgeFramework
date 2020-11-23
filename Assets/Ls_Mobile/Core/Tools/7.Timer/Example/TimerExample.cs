@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Ls_Mobile.TimeExtend
+namespace EdgeFramework.TimeExtend
 {
     public class TimerExample : MonoBehaviour
     {

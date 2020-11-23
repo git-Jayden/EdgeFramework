@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     //[CreateAssetMenu(fileName ="RealFramConfig",menuName ="CreateRealFramConfig",order =0)]
     public class RealFramConfig : ScriptableObject

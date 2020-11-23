@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Ls_Mobile.Util
+namespace EdgeFramework.Util
 {
     public class MathUtil
     {

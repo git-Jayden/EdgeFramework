@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     [System.Serializable]
     public class ExcelBase

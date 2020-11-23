@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     [LMonoSingletonPath("[Tools]/Timer")]
     public class Timer : MonoSingleton<Timer> {

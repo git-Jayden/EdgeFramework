@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public class BasePanel : MonoBehaviour
     {

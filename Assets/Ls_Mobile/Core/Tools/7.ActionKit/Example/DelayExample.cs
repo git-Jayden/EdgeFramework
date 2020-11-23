@@ -4,7 +4,7 @@ using UniRx;
 using UnityEngine;
 
 
-namespace Ls_Mobile.Example
+namespace EdgeFramework.Example
 {
     public class DelayExample : MonoBehaviour
     {

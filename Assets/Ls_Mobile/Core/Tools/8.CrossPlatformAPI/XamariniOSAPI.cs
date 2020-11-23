@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public class XamariniOSAPI : IAPI
     {

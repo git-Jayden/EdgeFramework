@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UniRx;
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public static partial class IActionChainExtention
     {

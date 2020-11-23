@@ -1,5 +1,5 @@
 ﻿
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public class DefaultObjectFactory<T> : IObjectFactory<T> where T : new()
     {

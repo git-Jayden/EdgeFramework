@@ -1,8 +1,9 @@
 ﻿
 using UnityEngine;
 using UnityEditor;
+using EdgeFramework;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public class OfflineDataEditor
     {
@@ -19,8 +20,6 @@ namespace Ls_Mobile
             }
             EditorUtility.ClearProgressBar();
         }
-
-
         public static void CreateOfflineData(string path)
         {
             GameObject obj = PrefabUtility.LoadPrefabContents(path);
@@ -38,6 +37,8 @@ namespace Ls_Mobile
             Resources.UnloadUnusedAssets();
             AssetDatabase.Refresh();
         }
+
+
         [MenuItem("Assets/生成UI Prefab数据")]
         public static void AssetCreateUIData()
         {

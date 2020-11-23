@@ -9,7 +9,7 @@ using ILRuntime.Runtime.Intepreter;
 using ILRuntime.Runtime.Stack;
 using System;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public class ILRuntimeManager : Singleton<ILRuntimeManager>
     {

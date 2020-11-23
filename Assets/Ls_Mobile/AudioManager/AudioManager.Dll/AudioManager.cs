@@ -9,7 +9,7 @@ using UnityEngine.Audio;
 using UnityEngine.Networking;
 
 
-namespace Ls_Mobile.AudioManager
+namespace EdgeFramework.AudioManager
 {
     
     [RequireComponent(typeof(AudioSource))]

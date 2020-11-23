@@ -1,6 +1,6 @@
 ﻿using System; 
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     /// <summary>
     /// Object pool 4 class who no public constructor

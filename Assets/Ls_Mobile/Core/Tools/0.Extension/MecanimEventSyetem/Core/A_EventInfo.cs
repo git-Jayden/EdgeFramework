@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 事件订阅信息信息存储类
 /// </summary>
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public class A_EventInfo
     { 

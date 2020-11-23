@@ -5,7 +5,7 @@ using UnityEditor;
 using System;
 using System.IO;
 
-namespace Ls_Mobile {
+namespace EdgeFramework {
     public class BuildApp
     {
         private static string appName = PlayerSettings.productName;

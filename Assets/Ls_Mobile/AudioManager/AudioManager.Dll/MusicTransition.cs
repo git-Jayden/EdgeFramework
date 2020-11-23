@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ls_Mobile.AudioManager
+namespace EdgeFramework.AudioManager
 {
     /// <summary>
     /// 音乐过渡效果的类型

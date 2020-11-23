@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Networking;
-namespace Ls_Mobile
+namespace EdgeFramework
 {
 
     public class UnityAPI : IAPI

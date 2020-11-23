@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     [MonoSingletonPath("[ActionKit]/ActionQueue")]
     public class ActionQueue : MonoBehaviour, ISingleton

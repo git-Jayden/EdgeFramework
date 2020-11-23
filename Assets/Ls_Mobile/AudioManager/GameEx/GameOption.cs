@@ -1,4 +1,4 @@
-﻿using Ls_Mobile;
+﻿using EdgeFramework;
 
 public class LanguageStr
 {

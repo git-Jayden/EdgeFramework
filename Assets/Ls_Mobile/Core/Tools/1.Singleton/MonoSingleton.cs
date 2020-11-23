@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public class MonoSingleton<T> : MonoBehaviour,ISingleton where T : MonoSingleton<T>
     {

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     /// <summary>
     /// 参数配置类

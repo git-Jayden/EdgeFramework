@@ -1,4 +1,4 @@
-﻿namespace Ls_Mobile
+﻿namespace EdgeFramework
 {
     public static class SingletonProperty<T> where T : class, ISingleton
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 
 {
     /// <summary>

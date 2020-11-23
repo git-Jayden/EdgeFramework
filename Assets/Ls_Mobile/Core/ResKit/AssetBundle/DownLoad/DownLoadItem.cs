@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public abstract class DownLoadItem
     {

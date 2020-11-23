@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     /// <summary>
     /// 执行节点的基类

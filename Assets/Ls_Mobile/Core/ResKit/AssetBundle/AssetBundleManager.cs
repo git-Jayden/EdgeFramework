@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public class AssetBundleManager : Singleton<AssetBundleManager>
     {

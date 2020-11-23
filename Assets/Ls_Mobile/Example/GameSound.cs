@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Ls_Mobile;
+using EdgeFramework;
 using com.ls_mobile.tool;
 using System.IO;
 using System;

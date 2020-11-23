@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ICSharpCode.SharpZipLib.Zip;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public class FileMgr : Singleton<FileMgr>
     {

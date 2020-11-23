@@ -4,7 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public static class BehaviourExtension
     {

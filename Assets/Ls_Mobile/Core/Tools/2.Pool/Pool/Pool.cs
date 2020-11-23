@@ -1,6 +1,6 @@
 ﻿
 using System.Collections.Generic;
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public abstract class Pool<T> : IPool<T>, ICountObserveAble
     {

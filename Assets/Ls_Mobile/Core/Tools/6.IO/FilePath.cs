@@ -2,7 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public class FilePath
     {

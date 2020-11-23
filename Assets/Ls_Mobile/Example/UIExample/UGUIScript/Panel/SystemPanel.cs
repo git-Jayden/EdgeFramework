@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Ls_Mobile;
+using EdgeFramework;
 using UnityEngine.UI;
 
 public class SystemPanel : BasePanel {

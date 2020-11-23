@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public static class JsonExtension
     {

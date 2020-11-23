@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace Ls_Mobile.Json 
+namespace EdgeFramework.Json 
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class JsonProperty : Attribute

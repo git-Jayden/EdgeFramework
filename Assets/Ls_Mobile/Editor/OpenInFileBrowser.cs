@@ -9,7 +9,7 @@
 * 作者:    
 * 说明:  
 ******************************************************************/
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public static class OpenInFileBrowser
     {

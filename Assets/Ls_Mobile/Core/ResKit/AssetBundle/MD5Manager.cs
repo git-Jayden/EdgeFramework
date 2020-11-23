@@ -5,7 +5,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using UnityEngine;
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     [Serializable]
     public class MD5Manager : Singleton<MD5Manager>
@@ -15,12 +15,12 @@ namespace Ls_Mobile
         public void SaveMd5(string filePath, string md5SavePath)
         {
             string md5 = BuildFileMd5(filePath);
-            string name = filePath + "_md5.dat";
-            if (File.Exists(name))
+
+            if (File.Exists(md5SavePath))
             {
-                File.Delete(name);
+                File.Delete(md5SavePath);
             }
-            StreamWriter sw = new StreamWriter(name, false, Encoding.UTF8);
+            StreamWriter sw = new StreamWriter(md5SavePath, false, Encoding.UTF8);
             if (sw != null)
             {
                 sw.Write(md5);

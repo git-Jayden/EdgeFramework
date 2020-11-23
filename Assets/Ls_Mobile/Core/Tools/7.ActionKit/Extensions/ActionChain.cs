@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System;
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public abstract class ActionChain : NodeAction, IActionChain, IDisposeWhen
     {

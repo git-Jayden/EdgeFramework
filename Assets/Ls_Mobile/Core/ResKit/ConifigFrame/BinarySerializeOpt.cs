@@ -3,7 +3,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
 using UnityEngine;
 
-namespace Ls_Mobile
+namespace EdgeFramework
 {
     public class BinarySerializeOpt
     {
