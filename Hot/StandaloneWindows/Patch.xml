@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Pathces xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1">
-  <Files Name="attack" Url="http://127.0.0.1/AssetBundle/0.1/1/attack" Platform="StandaloneWindows" Md5="810e1f78e889aed206760ece1eae2f6b" Size="725.791" />
-  <Files Name="StandaloneWindows" Url="http://127.0.0.1/AssetBundle/0.1/1/StandaloneWindows" Platform="StandaloneWindows" Md5="ed83bea475b924563f3e2a230041d22c" Size="1.69726563" />
-</Pathces>
