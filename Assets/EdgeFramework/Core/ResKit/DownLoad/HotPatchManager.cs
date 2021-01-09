@@ -125,7 +125,7 @@ namespace EdgeFramework
             unPackedList.Clear();
             if (packedMd5.Count <= 0)
                 return false;
-            string streamingRootPath = Application.streamingAssetsPath + "/AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString();
+            string streamingRootPath = Application.streamingAssetsPath + "/AssetBundle";
             if (!Directory.Exists(streamingRootPath))
                 return false;
             foreach (string fileName in packedMd5.Keys)
@@ -184,7 +184,7 @@ namespace EdgeFramework
         {
             foreach (string fileName in unPackedList)
             {
-                string streamingRootPath = Application.streamingAssetsPath + "/AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString();
+                string streamingRootPath = Application.streamingAssetsPath + "/AssetBundle";
                 if (!Directory.Exists(streamingRootPath))
                     Directory.CreateDirectory(streamingRootPath);
                 UnityWebRequest unityWebRequest = UnityWebRequest.Get(streamingRootPath + "/" + fileName);

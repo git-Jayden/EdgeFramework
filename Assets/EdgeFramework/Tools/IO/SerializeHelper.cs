@@ -178,37 +178,7 @@ namespace EdgeFramework
             Debug.LogWarning("DeserializeBinary Failed:" + path);
             return null;
         }
-        /// <summary>
-        /// 运行时读取xml
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        public static T XmlDeSerializeRun<T>(string path) where T : class
-        {
-            T t = default(T);
-            //TextAsset textAsset = ResourcesManager.Instance.LoadResouce<TextAsset>(path);
-            //if (textAsset == null)
-            //{
-            //    UnityEngine.Debug.LogError("cant load TextAsset:" + path);
-            //    return null;
-            //}
-            //try
-            //{
-            //    using (MemoryStream stream = new MemoryStream(textAsset.bytes))
-            //    {
-            //        XmlSerializer xs = new XmlSerializer(typeof(T));
-            //        t = (T)xs.Deserialize(stream);
-            //    }
-            //    ResouceManager.Instance.ReleaseResouce(path, true);
-            //}
-            //catch (System.Exception e)
-            //{
-            //    Debug.LogError("load TextAsset exception:" + path + "," + e);
 
-            //}
-            return t;
-        }
         public static string ToJson<T>(this T obj) where T : class
         {
             return JsonConvert.SerializeObject(obj, Formatting.Indented);
@@ -231,33 +201,32 @@ namespace EdgeFramework
             return File.ReadAllText(path).FromJson<T>();
         }
 
-        //public static byte[] ToProtoBuff<T>(this T obj) where T : class
-        //{
-        //    using (MemoryStream ms = new MemoryStream())
-        //    {
-        //        ProtoBuf.Serializer.Serialize<T>(ms, obj);
-        //        return ms.ToArray();
-        //    }
-        //}
+        public static byte[] ToProtoBuff<T>(this T obj) where T : class
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                ProtoBuf.Serializer.Serialize<T>(ms, obj);
+                return ms.ToArray();
+            }
+        }
+        public static T FromProtoBuff<T>(this byte[] bytes) where T : class
+        {
+            if (bytes == null || bytes.Length == 0)
+            {
+                throw new System.ArgumentNullException("bytes");
+            }
+            T t = ProtoBuf.Serializer.Deserialize<T>(new MemoryStream(bytes));
+            return t;
+        }
 
-        //public static T FromProtoBuff<T>(this byte[] bytes) where T : class
-        //{
-        //    if (bytes == null || bytes.Length == 0)
-        //    {
-        //        throw new System.ArgumentNullException("bytes");
-        //    }
-        //    T t = ProtoBuf.Serializer.Deserialize<T>(new MemoryStream(bytes));
-        //    return t;
-        //}
+        public static void SaveProtoBuff<T>(this T obj, string path) where T : class
+        {
+            File.WriteAllBytes(path, obj.ToProtoBuff<T>());
+        }
 
-        //public static void SaveProtoBuff<T>(this T obj, string path) where T : class
-        //{
-        //    File.WriteAllBytes(path, obj.ToProtoBuff<T>());
-        //}
-
-        //public static T LoadProtoBuff<T>(string path) where T : class
-        //{
-        //    return File.ReadAllBytes(path).FromProtoBuff<T>();
-        //}
+        public static T LoadProtoBuff<T>(string path) where T : class
+        {
+            return File.ReadAllBytes(path).FromProtoBuff<T>();
+        }
     }
 }

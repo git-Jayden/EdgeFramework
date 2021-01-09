@@ -12,7 +12,7 @@ namespace EdgeFrameworkEditor
     class MenumanagerEditor
     {
         #region OpenTool
-        [MenuItem(Constants.ProductName + "/" + Constants.OpenTool + "/AbConfig", false)]
+        [MenuItem(Constants.ProductName + "/" + Constants.OpenTool + "/AbConfig _F1", false)]
         public static void MenuOpenAbConfig()
         {
             ABConfig instance = ABConfig.LoadAbConfig();
@@ -31,69 +31,28 @@ namespace EdgeFrameworkEditor
             Selection.activeObject = instance;
         }
 
-        [MenuItem(Constants.ProductName + "/" + Constants.OpenTool + "/RealFramConfig", false)]
-        public static void MenuOpenRealFramConfig()
-        {
-            RealFramConfig instance = RealFramConfig.LoadRealFramConfig();
-            if (instance == null)
-            {
-
-                // Create Resources folder if it doesn't exist.
-                Constants.ResourcesFolder.CreateDirIfNotExists();
-                // Now create the asset inside the Resources folder.
-                instance = RealFramConfig.Instance; // this will create a new instance of the EMSettings scriptable.
-                AssetDatabase.CreateAsset(instance, Constants.RealFramConfigPath);
-                AssetDatabase.SaveAssets();
-                AssetDatabase.Refresh();
-                Debug.Log("RealFramConfig.asset was created at " + Constants.RealFramConfigPath);
-            }
-            Selection.activeObject = instance;
-        }
-        [MenuItem(Constants.ProductName + "/" + Constants.OpenTool + "/OpenPanelExcel", false)]
+        [MenuItem(Constants.ProductName + "/" + Constants.OpenTool + "/OpenPanelExcel _F2", false)]
         public static void MenuOpenPanelJson()
         {
-            string datapath = Application.dataPath.Replace("Assets", "");
-            string panelpath = datapath + Constants.UIPanelExcel;
+
+            string panelpath = Application.dataPath + "/../Excels/xlsx/UIPanel.xlsx";
 
             System.Diagnostics.Process p = new System.Diagnostics.Process();
             p.StartInfo.FileName = panelpath;
             p.Start();
             p.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
         }
-        //[MenuItem(Constants.ProductName + "/" + Constants.OpenTool + "/OpenPanelJson", false)]
-        //public static void MenuOpenPanelJson()
-        //{
-        //    string datapath = Application.dataPath.Replace("Assets", "");
-        //    string panelpath = datapath + Constants.UIJsonPath;
-
-        //    System.Diagnostics.Process p = new System.Diagnostics.Process();
-        //    p.StartInfo.FileName = panelpath;
-        //    p.Start();
-        //    p.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
-        //}
-        //[MenuItem(Constants.ProductName + "/" + Constants.OpenTool + "/OpenAudioConfig", false)]
-        //public static void MenuOpenAudioConfig()
-        //{
-        //    string datapath = Application.dataPath.Replace("Assets", "");
-        //    string panelpath = datapath + Constants.AudioConfig;
-
-        //    System.Diagnostics.Process p = new System.Diagnostics.Process();
-        //    p.StartInfo.FileName = panelpath;
-        //    p.Start();
-        //    p.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
-        //}
-
 
         #endregion
 
         #region AssetBundle
-        [MenuItem(Constants.ProductName + "/" + Constants.AssetsBundle + "/BuildApp")]
+        [MenuItem(Constants.ProductName + "/" + Constants.AssetsBundle + "/BuildApp _F4")]
         public static void Build()
         {
             BundleEditor.Build();
             BuildApp.Build();
         }
-        [MenuItem(Constants.ProductName + "/" + Constants.AssetsBundle + "/BuildBundle")]
+        [MenuItem(Constants.ProductName + "/" + Constants.AssetsBundle + "/BuildBundle _F3")]
         public static void NormalBuild()
         {
             BundleEditor.Build();
@@ -148,6 +107,11 @@ namespace EdgeFrameworkEditor
         private static void ExportBytes()
         {
             SheetEditor.ExportBytes();
+        }
+        [MenuItem(Constants.ProductName + "/" + Constants.Sheet + "/ExportLua")]
+        private static void ExportLua()
+        {
+            SheetEditor.ExportLua();
         }
         #endregion
 

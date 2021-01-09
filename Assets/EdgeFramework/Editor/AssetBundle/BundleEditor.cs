@@ -16,7 +16,7 @@ namespace EdgeFrameworkEditor
         public static string bundleTargetPath = Application.dataPath + "/../AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString();//Application.streamingAssetsPath;                                                                                                                               //打包的AssetBundle版本路径
         private static string versionMd5Path = Application.dataPath + "/../Version/" + EditorUserBuildSettings.activeBuildTarget.ToString();
         private static string hotPath = Application.dataPath + "/../Hot/" + EditorUserBuildSettings.activeBuildTarget.ToString();
-        static string abBytePath = RealFramConfig.LoadRealFramConfig().aBBytePath;
+ 
 
 
         //key是ab包，value是路径,所有文件夹ab包的dic
@@ -31,7 +31,7 @@ namespace EdgeFrameworkEditor
         private static Dictionary<string, ABMD5Base> packedMd5 = new Dictionary<string, ABMD5Base>();
         public static void Build(bool hotfix = false, string abmd5Path = "", string hotCount = "1", string des = "")
         {
-            if (string.IsNullOrEmpty(abBytePath))
+            if (string.IsNullOrEmpty(Constants.ABBYTEPATH))
             {
                 Debug.LogError("RealFramConfig中未配置abBytePath路径！！！");
                 return;
@@ -355,15 +355,24 @@ namespace EdgeFrameworkEditor
             {
                 ab.path = "";
             }
+            //EdgeFramework.Utils.FileUtil
+            string DirPath="";
+            if (Constants.ABBYTEPATH.Contains("."))
+                DirPath= Constants.ABBYTEPATH.Substring(0, Constants.ABBYTEPATH.LastIndexOf('.'));
+            DirPath =  DirPath.Substring(0, DirPath.LastIndexOf('/'));
+            if (!Directory.Exists(DirPath))
+            {
+                Directory.CreateDirectory(DirPath);
+            }
             //写二进制
-            FileStream fs = new FileStream(abBytePath, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite);
+            FileStream fs = new FileStream(Constants.ABBYTEPATH, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite);
             fs.Seek(0, SeekOrigin.Begin);
             fs.SetLength(0);
             BinaryFormatter bf = new BinaryFormatter();
             bf.Serialize(fs, config);
             fs.Close();
             AssetDatabase.Refresh();
-            SetABName("assetbundleconfig", abBytePath);
+            SetABName("assetbundleconfig", Constants.ABBYTEPATH);
 
         }
         static void DeleteMainfest()

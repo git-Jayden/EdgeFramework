@@ -1,7 +1,6 @@
 ﻿using System.Text;
 using EdgeFramework.Utils;
-namespace EdgeFrameworkEditor
-{
+
     public enum EExportDataType
     {
         NONE = 0,        // 什么数据都不导出
@@ -107,4 +106,4 @@ namespace EdgeFrameworkEditor
             return sb.ToString();
         }
     }
-}
+

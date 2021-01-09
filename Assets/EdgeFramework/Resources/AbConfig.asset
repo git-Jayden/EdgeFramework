@@ -13,14 +13,11 @@ MonoBehaviour:
   m_Name: AbConfig
   m_EditorClassIdentifier: 
   allPrefabPath:
-  - Assets/ABResources/Prefabs/Company
   - Assets/ABResources/Prefabs/UI
   allFileDirAb:
   - abName: audio
     path: Assets/ABResources/Audio
-  - abName: img
-    path: Assets/ABResources/Img
-  - abName: config
-    path: Assets/ABResources/Config
   - abName: texture
     path: Assets/ABResources/Texture
+  - abName: data
+    path: Assets/ABResources/Data
