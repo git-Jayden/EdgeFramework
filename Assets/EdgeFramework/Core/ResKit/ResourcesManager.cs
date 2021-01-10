@@ -382,6 +382,7 @@ namespace EdgeFramework
             if (item != null)
             {
                 return item.obj as T;
+               
             }
             T obj = null;
 #if UNITY_EDITOR

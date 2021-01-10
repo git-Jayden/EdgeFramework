@@ -93,6 +93,8 @@ namespace EdgeFramework.Sheet
 		public int Id;
 		[ProtoMember(2)]
 		public UIPanelTypeEnum PanelType;
+		[ProtoMember(3)]
+		public string Path;
 	}
 
 	[ProtoContract]
