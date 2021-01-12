@@ -1,6 +1,12 @@
-﻿/**
- * 转表编辑器
- */
+﻿/****************************************************
+	文件：SheetEditor.cs
+	Author：JaydenWood
+	E-Mail: w_style047@163.com
+	GitHub: https://github.com/git-Jayden/EdgeFramework.git
+	Blog: https://www.jianshu.com/u/9131c2f30f1b
+	Date：2021/01/12 11:53   	
+	Features：转表编辑器
+*****************************************************/
 
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,10 +16,11 @@ using Excel;
 using System.Data;
 using System;
 using System.Text;
-using  EdgeFramework.Utils;
+using  EdgeFramework;
 using System.Text.RegularExpressions;
 using Microsoft.CSharp;
 using System.CodeDom.Compiler;
+using EdgeFramework;
 
 public class SheetEditor
 {
@@ -130,7 +137,7 @@ public class SheetEditor
         }
         sheetCSSB.Append(LineText("}"));
 
-        EdgeFramework.Utils.FileUtil.WriteAllText(OUTSHEETCSPATH, sheetCSSB.ToString());
+        Utility.FileHelp.WriteAllText(OUTSHEETCSPATH, sheetCSSB.ToString());
         Debug.Log("Generate Protobuf CS Done!");
 
         //------------------------------生成SheetManager------------------------------
@@ -160,7 +167,7 @@ public class SheetEditor
 
         sheetManagerSB.Append("}");
 
-        EdgeFramework.Utils.FileUtil.WriteAllText(OUTSHEETMANAGERPATH, sheetManagerSB.ToString());
+        Utility.FileHelp.WriteAllText(OUTSHEETMANAGERPATH, sheetManagerSB.ToString());
         Debug.Log("Generate SheetManager Done!");
 
         //------------------------------生成bytes-------------------------------------
@@ -244,7 +251,7 @@ public class SheetEditor
                 }
                 var exportMethod = listObj.GetType().GetMethod("Export");
                 var outFile = string.Format(OUTSHEETBYTES, name);
-                if (EdgeFramework.Utils.FileUtil.CheckFileAndCreateDirWhenNeeded(outFile))
+                if (Utility.FileHelp.CheckFileAndCreateDirWhenNeeded(outFile))
                 {
                     exportMethod.Invoke(listObj, new object[] { outFile });
                 }
@@ -317,10 +324,10 @@ public class SheetEditor
         string ret = "";
         for (int i = 1; i <= tabCount; i++)
         {
-            ret = StringUtil.Concat("\t", ret);
+            ret = Utility.TextHelp.Concat("\t", ret);
         }
-        ret = StringUtil.Concat(ret, text);
-        ret =StringUtil.Concat(ret, "\n");
+        ret = Utility.TextHelp.Concat(ret, text);
+        ret = Utility.TextHelp.Concat(ret, "\n");
         return ret;
     }
 
@@ -425,10 +432,10 @@ public class SheetEditor
             var tag = table.Rows[0][0].ToString();
             if (tag.Equals("client", StringComparison.OrdinalIgnoreCase)) continue;
             var luaSB = new StringBuilder();
-            luaSB.Append(LineText(StringUtil.Concat("local ", name, " = {")));
+            luaSB.Append(LineText(Utility.TextHelp.Concat("local ", name, " = {")));
             for (var j = 4; j < rows; j++)
             {
-                luaSB.Append(StringUtil.Concat("    [", table.Rows[j][0].ToString(), "]={"));
+                luaSB.Append(Utility.TextHelp.Concat("    [", table.Rows[j][0].ToString(), "]={"));
                 var rowStr = "";
                 for (var k = 0; k < cols; k++)
                 {
@@ -474,7 +481,7 @@ public class SheetEditor
             }
             luaSB.Append(LineText("}"));
             luaSB.Append(string.Format("return {0}", name));
-            EdgeFramework.Utils.FileUtil.WriteAllText(string.Format(OUTSHEETLUA, name), luaSB.ToString());
+            Utility.FileHelp.WriteAllText(string.Format(OUTSHEETLUA, name), luaSB.ToString());
         }
         Debug.Log("Generate Lua Done!");
         EditorUtility.ClearProgressBar();

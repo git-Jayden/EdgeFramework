@@ -33,7 +33,7 @@ namespace EdgeFramework.Res
             get
             {
 #if UNITY_ANDROID||UNITY_IPHONE
-                return FilePath.PersistentDataPath + "Origin/";
+                return Application.persistentDataPath + "/Origin/";
 #else
             return    FilePath.StreamingAssetsPath;
 #endif

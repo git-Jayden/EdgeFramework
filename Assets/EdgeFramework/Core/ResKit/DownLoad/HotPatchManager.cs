@@ -22,7 +22,7 @@ namespace EdgeFramework.Res
         MonoBehaviour mono;
         private string unPackPath = Application.persistentDataPath + "/Origin";
         //下载下来AssetBundle路径
-        private string downLoadPath = FilePath.PersistentDataPath + "DownLoad";
+        private string downLoadPath = Application.persistentDataPath + "/DownLoad";
         string curVersion;
         public string CurVersion
         {
@@ -295,7 +295,7 @@ namespace EdgeFramework.Res
             if (!File.Exists(localXmlPath))
                 return true;
 
-            localInfo = SerializeHelper.DeserializeXML(localXmlPath, typeof(ServerInfo)) as ServerInfo;
+            localInfo =Utility.SerializeHelper.DeserializeXML(localXmlPath, typeof(ServerInfo)) as ServerInfo;
 
             VersionInfo localGameVesion = null;
             if (localInfo != null)
@@ -353,7 +353,7 @@ namespace EdgeFramework.Res
                 if (File.Exists(serverXmlPath))
                 {
 
-                    serverInfo = SerializeHelper.DeserializeXML(serverXmlPath, typeof(ServerInfo)) as ServerInfo;
+                    serverInfo = Utility.SerializeHelper.DeserializeXML(serverXmlPath, typeof(ServerInfo)) as ServerInfo;
 
                 }
                 else

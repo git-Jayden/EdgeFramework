@@ -1,5 +1,15 @@
-﻿using System.Text;
-using EdgeFramework.Utils;
+﻿/****************************************************
+	文件：SheetExportBase.cs
+	Author：JaydenWood
+	E-Mail: w_style047@163.com
+	GitHub: https://github.com/git-Jayden/EdgeFramework.git
+	Blog: https://www.jianshu.com/u/9131c2f30f1b
+	Date：2021/01/12 11:53   	
+	Features：
+*****************************************************/
+using EdgeFramework;
+using System.Text;
+
 
     public enum EExportDataType
     {
@@ -50,9 +60,9 @@ using EdgeFramework.Utils;
         {
             var sb = new StringBuilder();
             sb.Append(SheetEditor.LineText(string.Format("//{0}", mSheetName), 1));
-            string initFuncName = StringUtil.Concat("Init", mSheetName);
-            string ListParamName = StringUtil.Concat(mSheetName, "List");
-            string dictParamName = StringUtil.Concat("m" + mSheetName, "Dict");
+            string initFuncName = Utility.TextHelp.Concat("Init", mSheetName);
+            string ListParamName = Utility.TextHelp.Concat(mSheetName, "List");
+            string dictParamName = Utility.TextHelp.Concat("m" + mSheetName, "Dict");
             bool exportList = (mExportDataType == EExportDataType.ONLY_ARRAY || mExportDataType == EExportDataType.BOTH);
             bool exportDict = (mExportDataType == EExportDataType.ONLY_DICT || mExportDataType == EExportDataType.BOTH);
 

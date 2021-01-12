@@ -163,7 +163,7 @@ namespace EdgeFrameworkEditor
                 }
             }
             string ABMD5Path = Application.dataPath + "/Resources/ABMD5.bytes";
-            SerializeHelper.SerializeBinary(ABMD5Path, abmd5);
+            Utility.SerializeHelper.SerializeBinary(ABMD5Path, abmd5);
     
             //将打版的版本拷贝到外部进行储存
             if (!Directory.Exists(versionMd5Path))
@@ -259,7 +259,7 @@ namespace EdgeFrameworkEditor
                 patch.Url = AppConfig.HTTPServerIP+"/AssetBundle/" + PlayerSettings.bundleVersion + "/" + hotCount + "/" + files[i].Name;
                 pathces.Files.Add(patch);
             }
-            SerializeHelper.SerializeXML(hotPath + "/Patch.xml", pathces);
+            Utility.SerializeHelper.SerializeXML(hotPath + "/Patch.xml", pathces);
         }
 
         static void SetABName(string name, List<string> path)

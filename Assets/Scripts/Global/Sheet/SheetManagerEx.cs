@@ -9,7 +9,7 @@
 *****************************************************/
 using UnityEngine;
 
-using EdgeFramework.Utils;
+
 using System.Collections.Generic;
 using EdgeFramework;
 using EdgeFramework.Sheet;
@@ -24,8 +24,8 @@ public partial class SheetManager : Singleton<SheetManager>
     /// </summary>
     private T GetSheetInfo<T>(string fileName)
     {
-        var text = ResourcesManager.Instance.LoadResouce<TextAsset>(StringUtil.Concat(PREFIX, fileName, POSTFIX));
-        return ProtobufUtil.NDeserialize<T>(text.bytes);
+        var text = ResourcesManager.Instance.LoadResouce<TextAsset>(Utility.TextHelp.Concat(PREFIX, fileName, POSTFIX));
+        return Utility.ProtobufHelp.NDeserialize<T>(text.bytes);
     }
 
     //================================================================================
