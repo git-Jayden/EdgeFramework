@@ -1,14 +1,13 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿
 
 public interface IState
 {
-    void onEnter();
-    void onUpdate(float step);
-    void onExit();
+    void OnEnter();
+    void OnUpdate(float step);
+    void OnExit();
 
 
 
-    string getName();
+    string GetName();
 
 }

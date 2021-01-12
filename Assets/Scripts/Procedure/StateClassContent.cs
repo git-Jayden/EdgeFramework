@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateClassContent : StateBase
+public class StateClassContent : ProcedureBase
 {
 
 
@@ -12,7 +12,7 @@ public class StateClassContent : StateBase
 
     }
 
-    public override void onEnter()
+    public override void OnEnter()
     {
       
     }
@@ -23,7 +23,7 @@ public class StateClassContent : StateBase
     }
 
 
-    public override void onUpdate(float step)
+    public override void OnUpdate(float step)
     {
      
     }
@@ -31,11 +31,11 @@ public class StateClassContent : StateBase
     //结束后改变状态
     private void ChangeState()
     {
-        getFSM().changeState(StateDefine.STATE_GAME_PLAY);
+        GetFSM().ChangeState(StateDefine.STATE_GAME_PLAY);
     }
 
 
-    public override void onExit()
+    public override void OnExit()
     {
 
     }

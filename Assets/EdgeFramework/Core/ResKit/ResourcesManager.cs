@@ -55,7 +55,7 @@ namespace EdgeFramework.Res
             resItem = null;
             already = false;
             setSceneParent = false;
-            OnAsyncObjFinish m_DealFinish = null;
+            dealFinish = null;
             param1 = null;
             param2 = null;
             param3 = null;

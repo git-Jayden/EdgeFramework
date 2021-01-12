@@ -1,51 +1,45 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿
 using System.Collections.Generic;
 
 public class FSM
 {
-    private List<IState> m_list;
-    private IState m_currentState;
+    private List<IState> mList;
+    public IState CurState { get; private set; }
 
-
-	public FSM()
+    public FSM()
     {
-        m_list = new List<IState>();
+        mList = new List<IState>();
     }
     //添加状态
-    public bool addState(IState _state) 
-	{
-        IState _tmpState = getState(_state.getName());
+    public bool AddState(IState _state)
+    {
+        IState _tmpState = GetState(_state.GetName());
         if (_tmpState == null)
         {
-            m_list.Add(_state);
+            mList.Add(_state);
             return true;
         }
         return false;
     }
     //删除状态
-    public bool removeState(IState _state) 
-	{       
-        IState _tmpState = getState(_state.getName());
-        if(_tmpState != null)
-        { 
-            m_list.Remove(_tmpState);
+    public bool RemoveState(IState _state)
+    {
+        IState _tmpState = GetState(_state.GetName());
+        if (_tmpState != null)
+        {
+            mList.Remove(_tmpState);
             return true;
         }
         return false;
     }
-     //获取当前状态
-    public IState getCurrentState()
-    {
-        return m_currentState;
-    }
+
     //获取相应状态
-    public IState getState(string _name)
-	{
+    public IState GetState(string _name)
+    {
         //遍历List里面所有状态取出相应的
-        foreach( IState _state in m_list)
+        foreach (IState _state in mList)
         {
-            if( _state.getName() == _name )
+            if (_state.GetName() == _name)
             {
                 return _state;
             }
@@ -53,42 +47,42 @@ public class FSM
         return null;
     }
     //改变状态
-    public bool changeState(string _name) 
-	{
+    public bool ChangeState(string _name)
+    {
         //要改变的状态
-        IState _tmpState = getState(_name);
+        IState _tmpState = GetState(_name);
         if (_tmpState == null)
         {
-           return false;
+            return false;
         }
         //当前状态不为空
-        if (m_currentState != null)
-        {	
-            m_currentState.onExit();
+        if (CurState != null)
+        {
+            CurState.OnExit();
         }
         //把要改变的状态赋值给当前状态
-        m_currentState = _tmpState;
-        m_currentState.onEnter();//启动当前状态的OnEnter
+        CurState = _tmpState;
+        CurState.OnEnter();//启动当前状态的OnEnter
         return true;
     }
     //更新
-    public void update(float step)
+    public void OnUpdate(float step)
     {
-            if (m_currentState != null)
-            {
-                m_currentState.onUpdate(step);
-            }
+        if (CurState != null)
+        {
+            CurState.OnUpdate(step);
+        }
     }
     //移除所有状态
     public void removeAllState()
     {
-        if (m_currentState != null)
+        if (CurState != null)
         {
-            m_currentState.onExit();
-            m_currentState = null;
+            CurState.OnExit();
+            CurState = null;
         }
-        m_list.Clear();
-    
+        mList.Clear();
+
     }
 
 }

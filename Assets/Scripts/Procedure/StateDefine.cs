@@ -2,6 +2,9 @@
 public class StateDefine
 {
     public const string NONE = "none";
+    public const string PROCEDURE_LAUNCH = "procedure_lanuch";//程序启动
+    public const string PROCEDURE_SPLASH = "procedure_splash";//开机动画
+
     public const string STATE_SPLASH = "state_splash";//开机动画状态
     public const string STATE_CHOOSE_ACTOR = "state_choose_actor";//选择角色状态
     public const string STATE_CHOOSE_CLASS = "state_choose_class";//选择课程状态

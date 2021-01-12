@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 //主界面 选择课程状态
-public class StateChooseClass : StateBase
+public class StateChooseClass : ProcedureBase
 {
   
     public StateChooseClass(FSM _fsm)
@@ -13,22 +13,22 @@ public class StateChooseClass : StateBase
 
     }
 
-    public override void onEnter()
+    public override void OnEnter()
     {
 
         Debug.Log("进入流程");
     }
     private void ChangeState()
     {
-        getFSM().changeState(StateDefine.STATE_CLASS_CONTENT);
+        GetFSM().ChangeState(StateDefine.STATE_CLASS_CONTENT);
     }
 
 
-    public override void onUpdate(float step)
+    public override void OnUpdate(float step)
     {
 
     }
-    public override void onExit()
+    public override void OnExit()
     {
 
     }

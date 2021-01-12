@@ -128,7 +128,7 @@ namespace EdgeFrameworkEditor
             }
             catch (Exception e)
             {
-                Debug.LogError("无法复制:" + scrPath + "  到" + targetPath);
+                Debug.LogError("无法复制:" + scrPath + "  到" + targetPath+ "---"+e);
             }
         }
         /// <summary>

@@ -14,30 +14,30 @@ namespace EdgeFramework
 {
     public class OfflineData : MonoBehaviour
     {
-        public Rigidbody rigibody;
-        public Collider collider;
-        public Transform[] allPoint;
-        public int[] allPointChildCount;
-        public bool[] allPointActive;
-        public Vector3[] pos;
-        public Vector3[] scale;
-        public Quaternion[] rot;
+        public Rigidbody Rig;
+        public  Collider Collid;
+        public Transform[] AllPoint;
+        public int[] AllPointChildCount;
+        public bool[] AllPointActive;
+        public Vector3[] Pos;
+        public Vector3[] Scale;
+        public Quaternion[] Rot;
         /// <summary>
         /// 还原属性
         /// </summary>
         public virtual void ResetProp()
         {
-            int allPointCount = allPoint.Length;
+            int allPointCount = AllPoint.Length;
             for (int i = 0; i < allPointCount; i++)
             {
-                Transform tempTrs = allPoint[i];
+                Transform tempTrs = AllPoint[i];
                 if (tempTrs != null)
                 {
-                    tempTrs.localPosition = pos[i];
-                    tempTrs.localScale = scale[i];
-                    tempTrs.localRotation = rot[i];
+                    tempTrs.localPosition = Pos[i];
+                    tempTrs.localScale = Scale[i];
+                    tempTrs.localRotation = Rot[i];
 
-                    if (allPointActive[i])
+                    if (AllPointActive[i])
                     {
                         if (!tempTrs.gameObject.activeSelf)
                         {
@@ -51,10 +51,10 @@ namespace EdgeFramework
                             tempTrs.gameObject.SetActive(false);
                         }
                     }
-                    if (tempTrs.childCount > allPointChildCount[i])
+                    if (tempTrs.childCount > AllPointChildCount[i])
                     {
                         int childCount = tempTrs.childCount;
-                        for (int j = allPointChildCount[i]; j < childCount; j++)
+                        for (int j = AllPointChildCount[i]; j < childCount; j++)
                         {
                             GameObject tempObj = tempTrs.GetChild(j).gameObject;
                             if (!ObjectManager.Instance.IsObjectManagerCreat(tempObj))
@@ -71,23 +71,23 @@ namespace EdgeFramework
         /// </summary>
         public virtual void BindData()
         {
-            rigibody = GetComponentInChildren<Rigidbody>(true);
-            collider = GetComponentInChildren<Collider>(true);
-            allPoint = GetComponentsInChildren<Transform>(true);
-            int allPointCount = allPoint.Length;
-            allPointChildCount = new int[allPointCount];
-            allPointActive = new bool[allPointCount];
-            pos = new Vector3[allPointCount];
-            scale = new Vector3[allPointCount];
-            rot = new Quaternion[allPointCount];
+            Rig = GetComponentInChildren<Rigidbody>(true);
+            Collid = GetComponentInChildren<Collider>(true);
+            AllPoint = GetComponentsInChildren<Transform>(true);
+            int allPointCount = AllPoint.Length;
+            AllPointChildCount = new int[allPointCount];
+            AllPointActive = new bool[allPointCount];
+            Pos = new Vector3[allPointCount];
+            Scale = new Vector3[allPointCount];
+            Rot = new Quaternion[allPointCount];
             for (int i = 0; i < allPointCount; i++)
             {
-                Transform temp = allPoint[i] as Transform;
-                allPointChildCount[i] = temp.childCount;
-                allPointActive[i] = temp.gameObject.activeSelf;
-                pos[i] = temp.localPosition;
-                scale[i] = temp.localScale;
-                rot[i] = temp.localRotation;
+                Transform temp = AllPoint[i] as Transform;
+                AllPointChildCount[i] = temp.childCount;
+                AllPointActive[i] = temp.gameObject.activeSelf;
+                Pos[i] = temp.localPosition;
+                Scale[i] = temp.localScale;
+                Rot[i] = temp.localRotation;
             }
 
 

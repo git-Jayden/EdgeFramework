@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateGamePlay : StateBase
+public class StateGamePlay : ProcedureBase
 {
 	private FSM m_fsm;
 	public StateGamePlay(FSM _fsm)
@@ -10,12 +10,12 @@ public class StateGamePlay : StateBase
 	{
 	}
 
-	public override void onEnter()
+	public override void OnEnter()
 	{
 	
 	}
 
-    public override void onUpdate(float step)
+    public override void OnUpdate(float step)
 	{
 	
 	}
@@ -23,10 +23,10 @@ public class StateGamePlay : StateBase
     //改变状态到结束Game
 	private void onGameFinish()
 	{
-		getFSM ().changeState (StateDefine.STATE_END_GAME);
+		GetFSM ().ChangeState (StateDefine.STATE_END_GAME);
 	}
 
-	public override void onExit()
+	public override void OnExit()
 	{
 		
 

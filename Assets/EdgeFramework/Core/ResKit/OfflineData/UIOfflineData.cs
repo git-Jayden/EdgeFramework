@@ -25,15 +25,15 @@ namespace EdgeFramework
 
         public override void ResetProp()
         {
-            int allPointCount = allPoint.Length;
+            int allPointCount = AllPoint.Length;
             for (int i = 0; i < allPointCount; i++)
             {
-                RectTransform tempTrs = allPoint[i] as RectTransform;
+                RectTransform tempTrs = AllPoint[i] as RectTransform;
                 if (tempTrs != null)
                 {
-                    tempTrs.localPosition = pos[i];
-                    tempTrs.localRotation = rot[i];
-                    tempTrs.localScale = scale[i];
+                    tempTrs.localPosition = Pos[i];
+                    tempTrs.localRotation = Rot[i];
+                    tempTrs.localScale = Scale[i];
                     tempTrs.anchorMax = anchorMax[i];
                     tempTrs.anchorMin = anchorMin[i];
                     tempTrs.pivot = pivot[i];
@@ -41,7 +41,7 @@ namespace EdgeFramework
                     tempTrs.anchoredPosition3D = anchorePos[i];
                 }
 
-                if (allPointActive[i])
+                if (AllPointActive[i])
                 {
                     if (!tempTrs.gameObject.activeSelf)
                     {
@@ -55,10 +55,10 @@ namespace EdgeFramework
                         tempTrs.gameObject.SetActive(false);
                     }
                 }
-                if (tempTrs.childCount > allPointChildCount[i])
+                if (tempTrs.childCount > AllPointChildCount[i])
                 {
                     int childCount = tempTrs.childCount;
-                    for (int j = allPointChildCount[i]; j < childCount; j++)
+                    for (int j = AllPointChildCount[i]; j < childCount; j++)
                     {
                         GameObject tempObj = tempTrs.GetChild(j).gameObject;
                         if (!ObjectManager.Instance.IsObjectManagerCreat(tempObj))
@@ -89,14 +89,14 @@ namespace EdgeFramework
                     allTrs[i].gameObject.AddComponent<RectTransform>();
                 }
             }
-            allPoint = gameObject.GetComponentsInChildren<RectTransform>(true);
+            AllPoint = gameObject.GetComponentsInChildren<RectTransform>(true);
             particle = gameObject.GetComponentsInChildren<ParticleSystem>(true);
-            int allPointCount = allPoint.Length;
-            allPointChildCount = new int[allPointCount];
-            allPointActive = new bool[allPointCount];
-            pos = new Vector3[allPointCount];
-            rot = new Quaternion[allPointCount];
-            scale = new Vector3[allPointCount];
+            int allPointCount = AllPoint.Length;
+            AllPointChildCount = new int[allPointCount];
+            AllPointActive = new bool[allPointCount];
+            Pos = new Vector3[allPointCount];
+            Rot = new Quaternion[allPointCount];
+            Scale = new Vector3[allPointCount];
             pivot = new Vector2[allPointCount];
             anchorMax = new Vector2[allPointCount];
             anchorMin = new Vector2[allPointCount];
@@ -105,12 +105,12 @@ namespace EdgeFramework
 
             for (int i = 0; i < allPointCount; i++)
             {
-                RectTransform temp = allPoint[i] as RectTransform;
-                allPointChildCount[i] = temp.childCount;
-                allPointActive[i] = temp.gameObject.activeSelf;
-                pos[i] = temp.localPosition;
-                rot[i] = temp.localRotation;
-                scale[i] = temp.localScale;
+                RectTransform temp = AllPoint[i] as RectTransform;
+                AllPointChildCount[i] = temp.childCount;
+                AllPointActive[i] = temp.gameObject.activeSelf;
+                Pos[i] = temp.localPosition;
+                Rot[i] = temp.localRotation;
+                Scale[i] = temp.localScale;
                 pivot[i] = temp.pivot;
                 anchorMax[i] = temp.anchorMax;
                 anchorMin[i] = temp.anchorMin;
