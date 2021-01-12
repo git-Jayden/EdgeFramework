@@ -1,13 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿
+/****************************************************
+	文件：Constants.cs
+	Author：JaydenWood
+	E-Mail: w_style047@163.com
+	GitHub: https://github.com/git-Jayden/EdgeFramework.git
+	Blog: https://www.jianshu.com/u/9131c2f30f1b
+	Date：2021/01/11 16:55   	
+	Features：
+*****************************************************/
 
 namespace EdgeFramework
 {
-    public static class Constants
+    public static class EdgeFrameworkConst
     {
-
-
         //  Frame Product name
         public const string ProductName = "EdgeFramework";
         // Editor Menum Name
@@ -27,8 +32,5 @@ namespace EdgeFramework
         public const string AbConfigPath = ResourcesFolder + "/AbConfig.asset";
 
 
-        //ABResource Data Path 
-        public const string ABResources = "Assets/ABResources/";
-        public const string ABBYTEPATH = ABResources +"/Data/Config/ABData/AssetbundleConfig.bytes";
     }
 }

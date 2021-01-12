@@ -1,9 +1,10 @@
-﻿using EdgeFramework.Sheet;
+﻿using EdgeFramework.Res;
+using EdgeFramework.Sheet;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EdgeFramework
+namespace EdgeFramework.UI
 {
     public abstract class BaseUI
     {

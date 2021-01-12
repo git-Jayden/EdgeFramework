@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace EdgeFramework.Utils
 {
-    public class FileUtil 
+    public class FileUtil
     {
         /// <summary>
         /// 获取文件的MD5值
@@ -58,7 +58,7 @@ namespace EdgeFramework.Utils
             }
             catch (System.Exception e)
             {
-               Debug.LogError(("WriteAllText failed! path = {0} with err = {1}",outFile)+ e.Message);
+                Debug.LogError(("WriteAllText failed! path = {0} with err = {1}", outFile) + e.Message);
                 return false;
             }
         }
@@ -78,7 +78,7 @@ namespace EdgeFramework.Utils
             catch (System.Exception e)
             {
                 Debug.LogError(("WriteAllBytes failed! path = {0} with err = {1}", outFile) + e.Message);
-             
+
                 return false;
             }
         }

@@ -33,7 +33,9 @@ public class SheetEditor
     {
         { "Example", new SheetExportBase("Example").SetKey("exampleInt") },
         { "Preload", new SheetExportBase("Preload").SetExportDataType(EExportDataType.ONLY_ARRAY) },
-         { "UIPanel", new SheetExportBase("UIPanel").SetKeyType("UIPanelTypeEnum").SetKey("PanelType").SetExportDataType (EExportDataType.ONLY_DICT)}
+         { "UIPanel", new SheetExportBase("UIPanel").SetKeyType("UIPanelTypeEnum").SetKey("PanelType").SetExportDataType (EExportDataType.ONLY_DICT)},
+         { "Music", new SheetExportBase("Music").SetKeyType("MusicEnum").SetKey("MusicType").SetExportDataType (EExportDataType.ONLY_DICT)},
+        { "Sound", new SheetExportBase("Sound").SetKeyType("SoundEnum").SetKey("SoundType").SetExportDataType (EExportDataType.ONLY_DICT)}
     };
 
     /// <summary>
@@ -127,6 +129,7 @@ public class SheetEditor
             sheetCSSB.Append(LineText("}\n", 1));
         }
         sheetCSSB.Append(LineText("}"));
+
         EdgeFramework.Utils.FileUtil.WriteAllText(OUTSHEETCSPATH, sheetCSSB.ToString());
         Debug.Log("Generate Protobuf CS Done!");
 
@@ -156,6 +159,7 @@ public class SheetEditor
         }
 
         sheetManagerSB.Append("}");
+
         EdgeFramework.Utils.FileUtil.WriteAllText(OUTSHEETMANAGERPATH, sheetManagerSB.ToString());
         Debug.Log("Generate SheetManager Done!");
 

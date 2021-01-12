@@ -25,6 +25,23 @@ public partial class SheetManager : Singleton<SheetManager>
 		items.ForEach(item => mExampleDict[item.exampleInt] = item);
 	}
 	
+	//Music
+	private Dictionary<MusicEnum,Music> mMusicDict;
+	public Music GetMusic(MusicEnum key)
+	{
+		if (mMusicDict == null)
+		{
+			InitMusic();
+		}
+		return mMusicDict[key];
+	}
+	private void InitMusic()
+	{
+		var items = GetSheetInfo<MusicList>("Music").Items;
+		mMusicDict = new Dictionary<MusicEnum, Music>();
+		items.ForEach(item => mMusicDict[item.MusicType] = item);
+	}
+	
 	//Preload
 	private List<Preload> mPreloadList;
 	public List<Preload> GetPreloadList()
@@ -56,6 +73,23 @@ public partial class SheetManager : Singleton<SheetManager>
 		var items = GetSheetInfo<SceneList>("Scene").Items;
 		mSceneDict = new Dictionary<int, Scene>();
 		items.ForEach(item => mSceneDict[item.Id] = item);
+	}
+	
+	//Sound
+	private Dictionary<SoundEnum,Sound> mSoundDict;
+	public Sound GetSound(SoundEnum key)
+	{
+		if (mSoundDict == null)
+		{
+			InitSound();
+		}
+		return mSoundDict[key];
+	}
+	private void InitSound()
+	{
+		var items = GetSheetInfo<SoundList>("Sound").Items;
+		mSoundDict = new Dictionary<SoundEnum, Sound>();
+		items.ForEach(item => mSoundDict[item.SoundType] = item);
 	}
 	
 	//UIPanel

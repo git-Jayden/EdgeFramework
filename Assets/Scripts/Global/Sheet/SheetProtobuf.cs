@@ -55,6 +55,30 @@ namespace EdgeFramework.Sheet
 	}
 
 	[ProtoContract]
+	public class Music
+	{
+		[ProtoMember(1)]
+		public int Id;
+		[ProtoMember(2)]
+		public MusicEnum MusicType;
+		[ProtoMember(3)]
+		public int MusTransition;
+		[ProtoMember(4)]
+		public int Volume;
+		[ProtoMember(5)]
+		public float Duration;
+		[ProtoMember(6)]
+		public string Path;
+	}
+
+	[ProtoContract]
+	public class MusicList : BaseList
+	{
+		[ProtoMember(1)]
+		public List<Music> Items = new List<Music>();
+	}
+
+	[ProtoContract]
 	public class Preload
 	{
 		[ProtoMember(1)]
@@ -87,6 +111,28 @@ namespace EdgeFramework.Sheet
 	}
 
 	[ProtoContract]
+	public class Sound
+	{
+		[ProtoMember(1)]
+		public int Id;
+		[ProtoMember(2)]
+		public SoundEnum SoundType;
+		[ProtoMember(3)]
+		public int Repeat;
+		[ProtoMember(4)]
+		public bool Single;
+		[ProtoMember(5)]
+		public string Path;
+	}
+
+	[ProtoContract]
+	public class SoundList : BaseList
+	{
+		[ProtoMember(1)]
+		public List<Sound> Items = new List<Sound>();
+	}
+
+	[ProtoContract]
 	public class UIPanel
 	{
 		[ProtoMember(1)]
@@ -108,6 +154,20 @@ namespace EdgeFramework.Sheet
 	{
 		Type1,
 		Type2,
+		Max
+	}
+
+	public enum MusicEnum
+	{
+		Lobby,
+		Game,
+		Max
+	}
+
+	public enum SoundEnum
+	{
+		CloseClick,
+		EnterClick,
 		Max
 	}
 

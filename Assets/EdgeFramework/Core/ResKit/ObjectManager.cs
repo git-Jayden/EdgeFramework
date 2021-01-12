@@ -1,7 +1,15 @@
-﻿using System.Collections;
+﻿/****************************************************
+	文件：ObjectManager.cs
+	Author：JaydenWood
+	E-Mail: w_style047@163.com
+	GitHub: https://github.com/git-Jayden/EdgeFramework.git
+	Blog: https://www.jianshu.com/u/9131c2f30f1b
+	Date：2021/01/11 17:00   	
+	Features：
+*****************************************************/
 using System.Collections.Generic;
 using UnityEngine;
-namespace EdgeFramework
+namespace EdgeFramework.Res
 {
     public class ObjectManager : Singleton<ObjectManager>
     {
@@ -187,7 +195,7 @@ namespace EdgeFramework
             List<GameObject> tempGameObjectList = new List<GameObject>();
             for (int i = 0; i < count; i++)
             {
-                GameObject obj = InstantiateObject(path, false, bClear: clear);
+                GameObject obj = InstantiateObject(path, false,clear);
                 tempGameObjectList.Add(obj);
             }
 
@@ -203,10 +211,11 @@ namespace EdgeFramework
         /// <summary>
         /// 同步加载
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="bClear"></param>
+        /// <param name="path">路径</param>
+        /// <param name="setSceneObj">是否设置Parent为SceneTrs</param>
+        /// <param name="bClear">跳场景是否清除</param>
         /// <returns></returns>
-        public GameObject InstantiateObject(string path, bool setSceneObj = false, bool bClear = true)
+        public GameObject InstantiateObject(string path, bool setSceneParent = false, bool bClear = true)
         {
             uint crc = CRC32.GetCRC32(path);
             ResouceObj resouceObj = GetObjectFromPool(crc);
@@ -228,7 +237,7 @@ namespace EdgeFramework
                 }
 
             }
-            if (setSceneObj)
+            if (setSceneParent)
             {
                 resouceObj.cloneObj.transform.SetParent(sceneTrs, false);
             }
@@ -243,15 +252,15 @@ namespace EdgeFramework
         /// <summary>
         /// 异步加载
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="deaFinish"></param>
-        /// <param name="priority"></param>
-        /// <param name="SetSceneObject"></param>
+        /// <param name="path">路径</param>
+        /// <param name="deaFinish">资源加载完成回调</param>
+        /// <param name="priority">加载优先级</param>
+        /// <param name="setSceneParent">是否设置Parent为SceneTrs</param>
         /// <param name="param1"></param>
         /// <param name="param2"></param>
         /// <param name="param3"></param>
-        /// <param name="bClear"></param>
-        public long InstantiateObjectAsync(string path, OnAsyncObjFinish deaFinish, LoadResPriority priority, bool SetSceneObject = false,
+        /// <param name="bClear">跳场景是否清除</param>
+        public long InstantiateObjectAsync(string path, OnAsyncObjFinish deaFinish, LoadResPriority priority, bool setSceneParent = false,
             object param1 = null, object param2 = null, object param3 = null, bool bClear = true)
         {
             if (string.IsNullOrEmpty(path))
@@ -262,7 +271,7 @@ namespace EdgeFramework
             ResouceObj resObj = GetObjectFromPool(crc);
             if (resObj != null)
             {
-                if (SetSceneObject)
+                if (setSceneParent)
                 {
                     resObj.cloneObj.transform.SetParent(sceneTrs, false);
                 }
@@ -273,7 +282,7 @@ namespace EdgeFramework
 
             resObj = resouceObjPool.Allocate();
             resObj.crc = crc;
-            resObj.setSceneParent = SetSceneObject;
+            resObj.setSceneParent = setSceneParent;
             resObj.clear = bClear;
             resObj.dealFinish = deaFinish;
             resObj.param1 = param1;
@@ -333,9 +342,9 @@ namespace EdgeFramework
         /// 回收资源
         /// </summary>
         /// <param name="obj"></param>
-        /// <param name="maxCacheCount"></param>
-        /// <param name="destroyCache"></param>
-        /// <param name="recycleParent"></param>
+        /// <param name="maxCacheCount">最大的缓存数量，负数不限缓存数量，0代表不缓存</param>
+        /// <param name="destroyCache">是否将ResouceItem从缓存引用计数的资源列表中移除</param>
+        /// <param name="recycleParent">是否设置Parent为RecyclePoolTrs</param>
         public void ReleaseObject(GameObject obj, int maxCacheCount = -1, bool destroyCache = false, bool recycleParent = true)
         {
             if (obj == null)
@@ -391,7 +400,6 @@ namespace EdgeFramework
                     st.Add(resObj);
                     resObj.already = true;
                     ResourcesManager.Instance.DecreaseResouceRef(resObj);
-
                 }
                 else
                 {

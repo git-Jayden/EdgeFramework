@@ -1,11 +1,20 @@
-﻿using System.Collections.Generic;
+﻿/****************************************************
+	文件：BundleEditor.cs
+	Author：JaydenWood
+	E-Mail: w_style047@163.com
+	GitHub: https://github.com/git-Jayden/EdgeFramework.git
+	Blog: https://www.jianshu.com/u/9131c2f30f1b
+	Date：2021/01/11 17:02   	
+	Features：
+*****************************************************/
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
 using System.Xml.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using EdgeFramework;
-
+using EdgeFramework.Res;
 
 namespace EdgeFrameworkEditor
 {
@@ -31,7 +40,7 @@ namespace EdgeFrameworkEditor
         private static Dictionary<string, ABMD5Base> packedMd5 = new Dictionary<string, ABMD5Base>();
         public static void Build(bool hotfix = false, string abmd5Path = "", string hotCount = "1", string des = "")
         {
-            if (string.IsNullOrEmpty(Constants.ABBYTEPATH))
+            if (string.IsNullOrEmpty(ABAddress.ABBYTEPATH))
             {
                 Debug.LogError("RealFramConfig中未配置abBytePath路径！！！");
                 return;
@@ -41,7 +50,7 @@ namespace EdgeFrameworkEditor
             allFileDir.Clear();
             allPrefabDir.Clear();
             configFil.Clear();
-            ABConfig abConfig = AssetDatabase.LoadAssetAtPath<ABConfig>(Constants.AbConfigPath);
+            ABConfig abConfig = AssetDatabase.LoadAssetAtPath<ABConfig>(EdgeFrameworkConst.AbConfigPath);
             if (abConfig.allFileDirAb.Count <= 0 && abConfig.allPrefabPath.Count <= 0)
             {
                 Debug.LogError("请在菜单栏EdgeFramework->OpenTool->AbConfig中配置需要打包AssetBundle的文件");
@@ -357,22 +366,22 @@ namespace EdgeFrameworkEditor
             }
             //EdgeFramework.Utils.FileUtil
             string DirPath="";
-            if (Constants.ABBYTEPATH.Contains("."))
-                DirPath= Constants.ABBYTEPATH.Substring(0, Constants.ABBYTEPATH.LastIndexOf('.'));
+            if (ABAddress.ABBYTEPATH.Contains("."))
+                DirPath= ABAddress.ABBYTEPATH.Substring(0, ABAddress.ABBYTEPATH.LastIndexOf('.'));
             DirPath =  DirPath.Substring(0, DirPath.LastIndexOf('/'));
             if (!Directory.Exists(DirPath))
             {
                 Directory.CreateDirectory(DirPath);
             }
             //写二进制
-            FileStream fs = new FileStream(Constants.ABBYTEPATH, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite);
+            FileStream fs = new FileStream(ABAddress.ABBYTEPATH, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite);
             fs.Seek(0, SeekOrigin.Begin);
             fs.SetLength(0);
             BinaryFormatter bf = new BinaryFormatter();
             bf.Serialize(fs, config);
             fs.Close();
             AssetDatabase.Refresh();
-            SetABName("assetbundleconfig", Constants.ABBYTEPATH);
+            SetABName("assetbundleconfig", ABAddress.ABBYTEPATH);
 
         }
         static void DeleteMainfest()

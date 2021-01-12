@@ -1,11 +1,19 @@
-﻿using System.Collections;
+﻿/****************************************************
+	文件：AssetBundleManager.cs
+	Author：JaydenWood
+	E-Mail: w_style047@163.com
+	GitHub: https://github.com/git-Jayden/EdgeFramework.git
+	Blog: https://www.jianshu.com/u/9131c2f30f1b
+	Date：2021/01/11 16:59   	
+	Features：
+*****************************************************/
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 
-namespace EdgeFramework
+namespace EdgeFramework.Res
 {
     public class AssetBundleManager : Singleton<AssetBundleManager>
     {
@@ -45,7 +53,7 @@ namespace EdgeFramework
             string configPath = ABLoadPath + abConfigABName;
             string hotAbPath = HotPatchManager.Instance.ComputeABPath(abConfigABName);
             configPath = string.IsNullOrEmpty(hotAbPath) ? configPath : hotAbPath;
-            byte[] bytes = AES.AESFileByteDecrypt(configPath,Constants.AESKEY);
+            byte[] bytes = AES.AESFileByteDecrypt(configPath, EdgeFrameworkConst.AESKEY);
             AssetBundle configAB = AssetBundle.LoadFromMemory(bytes);
             TextAsset textAsset = configAB.LoadAsset<TextAsset>(abConfigABName);
             if (textAsset == null)
@@ -119,7 +127,7 @@ namespace EdgeFramework
 
                 string hotAbPath = HotPatchManager.Instance.ComputeABPath(name);
                 string fullpath = string.IsNullOrEmpty(hotAbPath) ? ABLoadPath + name : hotAbPath;
-                byte[] bytes = AES.AESFileByteDecrypt(fullpath, Constants.AESKEY);
+                byte[] bytes = AES.AESFileByteDecrypt(fullpath, EdgeFrameworkConst.AESKEY);
                 assetBundel = AssetBundle.LoadFromMemory(bytes);
 
                 if (assetBundel == null)

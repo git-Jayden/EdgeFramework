@@ -1,9 +1,17 @@
-﻿using System;
+﻿/****************************************************
+	文件：DownLoadAssetBundle.cs
+	Author：JaydenWood
+	E-Mail: w_style047@163.com
+	GitHub: https://github.com/git-Jayden/EdgeFramework.git
+	Blog: https://www.jianshu.com/u/9131c2f30f1b
+	Date：2021/01/11 16:56   	
+	Features：
+*****************************************************/
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-namespace EdgeFramework
+namespace EdgeFramework.Res
 {
     public class DownLoadAssetBundle : DownLoadItem
     {

@@ -1,5 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/****************************************************
+	文件：MenumanagerEditor.cs
+	Author：JaydenWood
+	E-Mail: w_style047@163.com
+	GitHub: https://github.com/git-Jayden/EdgeFramework.git
+	Blog: https://www.jianshu.com/u/9131c2f30f1b
+	Date：2021/01/12 10:42   	
+	Features：
+*****************************************************/
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -12,7 +19,7 @@ namespace EdgeFrameworkEditor
     class MenumanagerEditor
     {
         #region OpenTool
-        [MenuItem(Constants.ProductName + "/" + Constants.OpenTool + "/AbConfig _F1", false)]
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.OpenTool + "/AbConfig _F1", false)]
         public static void MenuOpenAbConfig()
         {
             ABConfig instance = ABConfig.LoadAbConfig();
@@ -20,18 +27,18 @@ namespace EdgeFrameworkEditor
             {
 
                 // Create Resources folder if it doesn't exist.
-                Constants.ResourcesFolder.CreateDirIfNotExists();
+                EdgeFrameworkConst.ResourcesFolder.CreateDirIfNotExists();
                 // Now create the asset inside the Resources folder.
                 instance = ABConfig.Instance; // this will create a new instance of the EMSettings scriptable.
-                AssetDatabase.CreateAsset(instance, Constants.AbConfigPath);
+                AssetDatabase.CreateAsset(instance, EdgeFrameworkConst.AbConfigPath);
                 AssetDatabase.SaveAssets();
                 AssetDatabase.Refresh();
-                Debug.Log("AbConfig.asset was created at " + Constants.AbConfigPath);
+                Debug.Log("AbConfig.asset was created at " + EdgeFrameworkConst.AbConfigPath);
             }
             Selection.activeObject = instance;
         }
 
-        [MenuItem(Constants.ProductName + "/" + Constants.OpenTool + "/OpenPanelExcel _F2", false)]
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.OpenTool + "/OpenPanelExcel _F2", false)]
         public static void MenuOpenPanelJson()
         {
 
@@ -46,23 +53,23 @@ namespace EdgeFrameworkEditor
         #endregion
 
         #region AssetBundle
-        [MenuItem(Constants.ProductName + "/" + Constants.AssetsBundle + "/BuildApp _F4")]
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.AssetsBundle + "/BuildApp _F4")]
         public static void Build()
         {
             BundleEditor.Build();
             BuildApp.Build();
         }
-        [MenuItem(Constants.ProductName + "/" + Constants.AssetsBundle + "/BuildBundle _F3")]
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.AssetsBundle + "/BuildBundle _F3")]
         public static void NormalBuild()
         {
             BundleEditor.Build();
         }
-        [MenuItem(Constants.ProductName + "/" + Constants.AssetsBundle + "/打包热更包")]
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.AssetsBundle + "/打包热更包")]
         public static void OpenHotfix()
         {
             BundleHotFix.Init();
         }
-        [MenuItem(Constants.ProductName + "/" + Constants.AssetsBundle + "/SaveVersion")]
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.AssetsBundle + "/SaveVersion")]
         public static void SaveVersion()
         {
             BuildApp.SaveVersion(PlayerSettings.bundleVersion, PlayerSettings.applicationIdentifier);
@@ -71,7 +78,7 @@ namespace EdgeFrameworkEditor
 
         #region Encryption
 
-        [MenuItem(Constants.ProductName + "/" + Constants.Encryption +"/ 加密AB包")]
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.Encryption +"/ 加密AB包")]
         public static void EncryptAB()
         {
             DirectoryInfo directory = new DirectoryInfo(BundleEditor.bundleTargetPath);
@@ -80,13 +87,13 @@ namespace EdgeFrameworkEditor
             {
                 if (!files[i].Name.EndsWith("meta") && !files[i].Name.EndsWith(".manifest"))
                 {
-                    AES.AESFileEncrypt(files[i].FullName,Constants.AESKEY);
+                    AES.AESFileEncrypt(files[i].FullName, EdgeFrameworkConst.AESKEY);
                 }
             }
             Debug.Log("加密完成！");
         }
 
-        [MenuItem(Constants.ProductName + "/" + Constants.Encryption + "/解密AB包")]
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.Encryption + "/解密AB包")]
         public static void DecrptyAB() 
         {
             DirectoryInfo directory = new DirectoryInfo(BundleEditor.bundleTargetPath);
@@ -103,12 +110,12 @@ namespace EdgeFrameworkEditor
         #endregion
 
         #region  Sheet
-        [MenuItem(Constants.ProductName + "/" + Constants.Sheet + "/ExportBytes")]
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.Sheet + "/ExportBytes")]
         private static void ExportBytes()
         {
             SheetEditor.ExportBytes();
         }
-        [MenuItem(Constants.ProductName + "/" + Constants.Sheet + "/ExportLua")]
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.Sheet + "/ExportLua")]
         private static void ExportLua()
         {
             SheetEditor.ExportLua();
@@ -119,7 +126,7 @@ namespace EdgeFrameworkEditor
         /// <summary>
         /// 游戏开始快捷键
         /// </summary>
-        [MenuItem(Constants.ProductName+ "/Play _F5")]
+        [MenuItem(EdgeFrameworkConst.ProductName+ "/Play _F5")]
         private static void Play()
         {
             if (EditorApplication.isPlaying)

@@ -1,9 +1,18 @@
-﻿using System.Collections;
+﻿/****************************************************
+	文件：ResourcesManager.cs
+	Author：JaydenWood
+	E-Mail: w_style047@163.com
+	GitHub: https://github.com/git-Jayden/EdgeFramework.git
+	Blog: https://www.jianshu.com/u/9131c2f30f1b
+	Date：2021/01/11 17:01   	
+	Features：
+*****************************************************/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace EdgeFramework
+namespace EdgeFramework.Res
 {
     public enum LoadResPriority
     {
@@ -382,7 +391,6 @@ namespace EdgeFramework
             if (item != null)
             {
                 return item.obj as T;
-               
             }
             T obj = null;
 #if UNITY_EDITOR
@@ -433,7 +441,7 @@ namespace EdgeFramework
         /// 根据ResouceObj卸载资源
         /// </summary>
         /// <param name="resObj"></param>
-        /// <param name="destroyObj"></param>
+        /// <param name="destroyObj">是否将ResouceItem从缓存引用计数的资源列表中移除</param>
         /// <returns></returns>
         public bool ReleaseResouce(ResouceObj resObj, bool destroyObj = false)
         {
@@ -442,7 +450,7 @@ namespace EdgeFramework
             ResouceItem item = null;
             if (!assetDic.TryGetValue(resObj.crc, out item) || item == null)
             {
-                Debug.LogError("AssetDic里不存在改资源:" + resObj.cloneObj.name + " 可能释放了多次");
+                Debug.LogError("AssetDic里不存在该资源:" + resObj.cloneObj.name + " 可能释放了多次");
             }
             GameObject.Destroy(resObj.cloneObj);
             item.RefCount--;

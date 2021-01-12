@@ -1,10 +1,21 @@
-﻿using System;
+﻿/****************************************************
+	文件：AudioManager.cs
+	Author：JaydenWood
+	E-Mail: w_style047@163.com
+	GitHub: https://github.com/git-Jayden/EdgeFramework.git
+	Blog: https://www.jianshu.com/u/9131c2f30f1b
+	Date：2021/01/11 16:54   	
+	Features：
+*****************************************************/
+using EdgeFramework.Res;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace EdgeFramework
+namespace EdgeFramework.Audio
 {
     #region External Structures
 
@@ -526,7 +537,7 @@ namespace EdgeFramework
 
                     // Destroy the host
                     Destroy(sfxPool[i].gameObject);
-
+                  //  ResourcesManager.Instance.ReleaseResouce(sfxPool[i].gameObject, false);
                     // Delete placeholder to host in the pool
                     sfxPool.RemoveAt(i);
                     break;
@@ -1048,11 +1059,11 @@ namespace EdgeFramework
         #region Public Sound Effect API 
 
         /// <summary>
-        /// Returns the index of a sound effect in pool if one exists.
+        /// 返回池中sound effect的索引（如果存在）。
         /// </summary>
-        /// <param name="name">The name of the sound effect.</param>
+        /// <param name="name">sound effect 名称.</param>
         /// <param name="singleton">Is the sound effect a singleton.</param>
-        /// <returns>Index of sound effect or -1 is none exists</returns>
+        /// <returns>返回-1表示不存在该sound effect</returns>
         public int IndexOfSoundFxPool(string name, bool singleton = false)
         {
             int index = 0;
@@ -1338,6 +1349,7 @@ namespace EdgeFramework
                 if (sfx.Source)
                 {
                     sfx.Source.Stop();
+                  //  ResourcesManager.Instance.ReleaseResouce(sfx.gameObject, true);
                     Destroy(sfx.gameObject);
                 }
             }
@@ -1359,7 +1371,8 @@ namespace EdgeFramework
         /// <returns>The Audioclip from the resource folder</returns>
         public AudioClip LoadClip(string path, bool add_to_playlist = false)
         {
-            AudioClip clip = Resources.Load(path) as AudioClip;
+            AudioClip clip = ResourcesManager.Instance.LoadResouce<AudioClip>(path);
+          //  AudioClip clip = Resources.Load(path) as AudioClip;
             if (clip == null)
             {
                 Debug.LogError(string.Format("AudioClip '{0}' not found at location {1}", path, System.IO.Path.Combine(Application.dataPath, "/Resources/" + path)));
@@ -1672,7 +1685,7 @@ namespace EdgeFramework
         }
 
         /// <summary>
-        /// Gets the AudioClip reference from the name supplied 
+        /// 从提供的名称获取AudioClip
         /// </summary>
         /// <param name="clip_name">The name of the clip in the asset list pool </param>
         /// <returns>The AudioClip from the pool or null if no matching name can be found</returns>
@@ -1700,16 +1713,31 @@ namespace EdgeFramework
         public void LoadPlaylist(string path, bool overwrite)
         {
             // Get all clips from resource path
-            AudioClip[] clips = Resources.LoadAll<AudioClip>(path);
+            //  AudioClip[] clips = Resources.LoadAll<AudioClip>(path);
+            List<AudioClip> clips = new List<AudioClip>();
+            if (Directory.Exists(path))
+            {
+                DirectoryInfo direction = new DirectoryInfo(path);
+                FileInfo[] files = direction.GetFiles("*", SearchOption.AllDirectories);
+                for (int i = 0; i < files.Length; i++)
+                {
+                    if (files[i].Name.EndsWith(".mp3"))
+                    {
+                        AudioClip clip =ResourcesManager.Instance.LoadResouce<AudioClip>(path +"/"+ files[i].FullName);
+                        clips.Add(clip);
+                    }
+                }
+            }
+
 
             // Overwrite the current pool with the new one
-            if (clips != null && clips.Length > 0 && overwrite)
+            if (clips != null && clips.Count > 0 && overwrite)
             {
                 _playlist.Clear();
             }
 
             // Add every loaded sound resource to the asset list pool
-            for (int i = 0; i < clips.Length; i++)
+            for (int i = 0; i < clips.Count; i++)
             {
                 _playlist.Add(clips[i]);
             }
