@@ -32,6 +32,7 @@ public class LoadingPanel : BaseUI
     {
         base.OnExit();
         UIObj.SetActive(false);
+        loading = null;
     }
     
     public override void PlayBtnSound()

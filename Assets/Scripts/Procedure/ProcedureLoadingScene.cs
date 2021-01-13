@@ -104,6 +104,7 @@ public class ProcedureLoadingScene : ProcedureBase
     private void LoadSceneOver()
     {
         GetFSM().ChangeState(NextProcedure);
+        UIManager.Instance.PopPanel();
     }
     private void ClearCache()
     {
