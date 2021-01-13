@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AssetBundleConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ABList Path="Assets/ABResources/Audio/Music/BG.mp3" Crc="213936224" ABName="audio" AssetName="BG.mp3" />
+  <ABList Path="Assets/ABResources/Audio/Music/GameMusic.ogg" Crc="2555296087" ABName="audio" AssetName="GameMusic.ogg" />
+  <ABList Path="Assets/ABResources/Audio/Music/menusound.mp3" Crc="2480530462" ABName="audio" AssetName="menusound.mp3" />
+  <ABList Path="Assets/ABResources/Audio/Music/senlin.mp3" Crc="123029974" ABName="audio" AssetName="senlin.mp3" />
+  <ABList Path="Assets/ABResources/Audio/Sound/click.mp3" Crc="2679547669" ABName="audio" AssetName="click.mp3" />
+  <ABList Path="Assets/ABResources/Audio/Sound/click2.mp3" Crc="630142224" ABName="audio" AssetName="click2.mp3" />
+  <ABList Path="Assets/ABResources/Data/Config/ABData/AssetbundleConfig.bytes" Crc="2384906506" ABName="data" AssetName="AssetbundleConfig.bytes" />
+  <ABList Path="Assets/ABResources/Data/Sheets/Example.bytes" Crc="2703155872" ABName="data" AssetName="Example.bytes" />
+  <ABList Path="Assets/ABResources/Data/Sheets/Music.bytes" Crc="340999135" ABName="data" AssetName="Music.bytes" />
+  <ABList Path="Assets/ABResources/Data/Sheets/Preload.bytes" Crc="2212837677" ABName="data" AssetName="Preload.bytes" />
+  <ABList Path="Assets/ABResources/Data/Sheets/Scene.bytes" Crc="2261956015" ABName="data" AssetName="Scene.bytes" />
+  <ABList Path="Assets/ABResources/Data/Sheets/Sound.bytes" Crc="4000349814" ABName="data" AssetName="Sound.bytes" />
+  <ABList Path="Assets/ABResources/Data/Sheets/UIPanel.bytes" Crc="2976100309" ABName="data" AssetName="UIPanel.bytes" />
+  <ABList Path="Assets/ABResources/Prefabs/UI/ItemMessagePanel.prefab" Crc="2616543493" ABName="itemmessagepanel" AssetName="ItemMessagePanel.prefab">
+    <ABDependce>texture</ABDependce>
+  </ABList>
+  <ABList Path="Assets/ABResources/Prefabs/UI/KnapsackPanel.prefab" Crc="830328512" ABName="knapsackpanel" AssetName="KnapsackPanel.prefab">
+    <ABDependce>texture</ABDependce>
+  </ABList>
+  <ABList Path="Assets/ABResources/Prefabs/UI/LodingPanel.prefab" Crc="3189190195" ABName="lodingpanel" AssetName="LodingPanel.prefab" />
+  <ABList Path="Assets/ABResources/Prefabs/UI/MainMenuPanel.prefab" Crc="2023550766" ABName="mainmenupanel" AssetName="MainMenuPanel.prefab">
+    <ABDependce>texture</ABDependce>
+  </ABList>
+  <ABList Path="Assets/ABResources/Prefabs/UI/ShopPanel.prefab" Crc="614856020" ABName="shoppanel" AssetName="ShopPanel.prefab">
+    <ABDependce>texture</ABDependce>
+  </ABList>
+  <ABList Path="Assets/ABResources/Prefabs/UI/SkillPanel.prefab" Crc="2267745953" ABName="skillpanel" AssetName="SkillPanel.prefab">
+    <ABDependce>texture</ABDependce>
+  </ABList>
+  <ABList Path="Assets/ABResources/Prefabs/UI/SystemPanel.prefab" Crc="1634376529" ABName="systempanel" AssetName="SystemPanel.prefab">
+    <ABDependce>texture</ABDependce>
+  </ABList>
+  <ABList Path="Assets/ABResources/Prefabs/UI/TaskPanel.prefab" Crc="377239057" ABName="taskpanel" AssetName="TaskPanel.prefab">
+    <ABDependce>texture</ABDependce>
+  </ABList>
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/bg_公告底.png" Crc="2132731401" ABName="texture" AssetName="bg_公告底.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/bg_注册.png" Crc="1094251319" ABName="texture" AssetName="bg_注册.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/bg_进入游戏底板.png" Crc="592886446" ABName="texture" AssetName="bg_进入游戏底板.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/bg_选服底.png" Crc="2357782808" ABName="texture" AssetName="bg_选服底.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_2返回1.png" Crc="1263413079" ABName="texture" AssetName="btn_2返回1.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_2返回2.png" Crc="3053487601" ABName="texture" AssetName="btn_2返回2.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_2返回3.png" Crc="949681780" ABName="texture" AssetName="btn_2返回3.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_2返回4.png" Crc="310081445" ABName="texture" AssetName="btn_2返回4.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_公共蓝1.png" Crc="3199444162" ABName="texture" AssetName="btn_公共蓝1.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_公共蓝2.png" Crc="1140655716" ABName="texture" AssetName="btn_公共蓝2.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_公共蓝3.png" Crc="3446111713" ABName="texture" AssetName="btn_公共蓝3.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_公共蓝4.png" Crc="3884381232" ABName="texture" AssetName="btn_公共蓝4.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_关闭1.png" Crc="682967868" ABName="texture" AssetName="btn_关闭1.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_关闭2.png" Crc="3590054298" ABName="texture" AssetName="btn_关闭2.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_关闭3.png" Crc="1533123103" ABName="texture" AssetName="btn_关闭3.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_关闭4.png" Crc="1904219086" ABName="texture" AssetName="btn_关闭4.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_流畅1.png" Crc="3092999930" ABName="texture" AssetName="btn_流畅1.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_流畅2.png" Crc="1159056476" ABName="texture" AssetName="btn_流畅2.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_流畅3.png" Crc="3415193561" ABName="texture" AssetName="btn_流畅3.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_流畅4.png" Crc="3782098440" ABName="texture" AssetName="btn_流畅4.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_深蓝1.png" Crc="335036814" ABName="texture" AssetName="btn_深蓝1.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_深蓝4.png" Crc="1254953340" ABName="texture" AssetName="btn_深蓝4.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_火爆1.png" Crc="478844739" ABName="texture" AssetName="btn_火爆1.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_火爆2.png" Crc="3787732453" ABName="texture" AssetName="btn_火爆2.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_火爆3.png" Crc="1868451424" ABName="texture" AssetName="btn_火爆3.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_火爆4.png" Crc="1170196401" ABName="texture" AssetName="btn_火爆4.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_红1.png" Crc="2840430398" ABName="texture" AssetName="btn_红1.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_红2.png" Crc="1409492376" ABName="texture" AssetName="btn_红2.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_红3.png" Crc="3667484189" ABName="texture" AssetName="btn_红3.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/btn_红4.png" Crc="4034451404" ABName="texture" AssetName="btn_红4.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/pic_云1.png" Crc="1617426" ABName="texture" AssetName="pic_云1.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/pic_云2.png" Crc="4250274996" ABName="texture" AssetName="pic_云2.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/pic_人物.png" Crc="1311288169" ABName="texture" AssetName="pic_人物.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/pic_信息底.png" Crc="2753677010" ABName="texture" AssetName="pic_信息底.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/pic_注册输入框.png" Crc="1869305152" ABName="texture" AssetName="pic_注册输入框.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/pic_深蓝.png" Crc="1006048348" ABName="texture" AssetName="pic_深蓝.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/pic_脚下云1.png" Crc="2220809145" ABName="texture" AssetName="pic_脚下云1.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/pic_脚下云2.png" Crc="2031122719" ABName="texture" AssetName="pic_脚下云2.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/pic_进度人物.png" Crc="414848436" ABName="texture" AssetName="pic_进度人物.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/pic_进度条.png" Crc="1737903642" ABName="texture" AssetName="pic_进度条.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/pic_进度条底.png" Crc="1180351300" ABName="texture" AssetName="pic_进度条底.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/pic_进度条特效.png" Crc="1783564132" ABName="texture" AssetName="pic_进度条特效.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/深蓝2.png" Crc="943885212" ABName="texture" AssetName="深蓝2.png" />
+  <ABList Path="Assets/ABResources/Texture/001-startmenu/深蓝3.png" Crc="3067670553" ABName="texture" AssetName="深蓝3.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/bg_个人信息--弹框.png" Crc="691043243" ABName="texture" AssetName="bg_个人信息--弹框.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/bg_售出价格.png" Crc="2664326250" ABName="texture" AssetName="bg_售出价格.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/bg_弹框.png" Crc="2023692576" ABName="texture" AssetName="bg_弹框.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/bg_经验条短.png" Crc="761754431" ABName="texture" AssetName="bg_经验条短.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/bg_经验条长.png" Crc="1646941378" ABName="texture" AssetName="bg_经验条长.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/bg_背包.png" Crc="1649223637" ABName="texture" AssetName="bg_背包.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/bg_装备详情.png" Crc="1549413982" ABName="texture" AssetName="bg_装备详情.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/bg_角色.png" Crc="294347636" ABName="texture" AssetName="bg_角色.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/bg_角色_生命.png" Crc="3034136292" ABName="texture" AssetName="bg_角色_生命.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/bg_角色_详细信息.png" Crc="1372665753" ABName="texture" AssetName="bg_角色_详细信息.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/bg_道具.png" Crc="3836870540" ABName="texture" AssetName="bg_道具.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/bg_金币.png" Crc="3879130507" ABName="texture" AssetName="bg_金币.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_出售1.png" Crc="3551169672" ABName="texture" AssetName="btn_出售1.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_出售2.png" Crc="786705966" ABName="texture" AssetName="btn_出售2.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_出售3.png" Crc="2692634027" ABName="texture" AssetName="btn_出售3.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_出售4.png" Crc="2325732474" ABName="texture" AssetName="btn_出售4.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_加号1-拷贝-2.png" Crc="990936083" ABName="texture" AssetName="btn_加号1-拷贝-2.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_加号1-拷贝-3.png" Crc="3045722006" ABName="texture" AssetName="btn_加号1-拷贝-3.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_加号1-拷贝.png" Crc="1502936856" ABName="texture" AssetName="btn_加号1-拷贝.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_加号1.png" Crc="2325898612" ABName="texture" AssetName="btn_加号1.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_加号2.png" Crc="2012006354" ABName="texture" AssetName="btn_加号2.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_加号3.png" Crc="4185308247" ABName="texture" AssetName="btn_加号3.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_加号4.png" Crc="3549902214" ABName="texture" AssetName="btn_加号4.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_弹框1.png" Crc="121516321" ABName="texture" AssetName="btn_弹框1.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_弹框2.png" Crc="4201681799" ABName="texture" AssetName="btn_弹框2.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_弹框3.png" Crc="1961551874" ABName="texture" AssetName="btn_弹框3.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_弹框4.png" Crc="1577804243" ABName="texture" AssetName="btn_弹框4.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_改名1.png" Crc="370486692" ABName="texture" AssetName="btn_改名1.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_改名2.png" Crc="3948646146" ABName="texture" AssetName="btn_改名2.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_改名3.png" Crc="1707209863" ABName="texture" AssetName="btn_改名3.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_改名4.png" Crc="1327529302" ABName="texture" AssetName="btn_改名4.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_整理1.png" Crc="2004178527" ABName="texture" AssetName="btn_整理1.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_整理2.png" Crc="2319185145" ABName="texture" AssetName="btn_整理2.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_整理3.png" Crc="77696892" ABName="texture" AssetName="btn_整理3.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_整理4.png" Crc="775947949" ABName="texture" AssetName="btn_整理4.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_装备1.png" Crc="2118160841" ABName="texture" AssetName="btn_装备1.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_装备2.png" Crc="2198745967" ABName="texture" AssetName="btn_装备2.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_装备3.png" Crc="227821802" ABName="texture" AssetName="btn_装备3.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_装备4.png" Crc="662028603" ABName="texture" AssetName="btn_装备4.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_详细信息1.png" Crc="92147502" ABName="texture" AssetName="btn_详细信息1.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_详细信息2.png" Crc="4163939720" ABName="texture" AssetName="btn_详细信息2.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_详细信息3.png" Crc="1990907405" ABName="texture" AssetName="btn_详细信息3.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/btn_详细信息4.png" Crc="1548443612" ABName="texture" AssetName="btn_详细信息4.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/pic_个人信息.png" Crc="3869532813" ABName="texture" AssetName="pic_个人信息.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/pic_传说.png" Crc="3113324408" ABName="texture" AssetName="pic_传说.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/pic_体力.png" Crc="819156694" ABName="texture" AssetName="pic_体力.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/pic_历练.png" Crc="540654417" ABName="texture" AssetName="pic_历练.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/pic_天使.png" Crc="3254594176" ABName="texture" AssetName="pic_天使.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/pic_已装备.png" Crc="1918437774" ABName="texture" AssetName="pic_已装备.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/pic_星星.png" Crc="1876747361" ABName="texture" AssetName="pic_星星.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/pic_线.png" Crc="2051955684" ABName="texture" AssetName="pic_线.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/pic_经验条短.png" Crc="3375085126" ABName="texture" AssetName="pic_经验条短.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/pic_经验条长.png" Crc="2254868923" ABName="texture" AssetName="pic_经验条长.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/任务.png" Crc="3831884852" ABName="texture" AssetName="任务.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/商城.png" Crc="200416877" ABName="texture" AssetName="商城.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/大体力丹.png" Crc="506633578" ABName="texture" AssetName="大体力丹.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/头像底板女性.png" Crc="2263045233" ABName="texture" AssetName="头像底板女性.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/头像底板男性.png" Crc="1286195481" ABName="texture" AssetName="头像底板男性.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/宝箱.png" Crc="3311875333" ABName="texture" AssetName="宝箱.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/小体力丹.png" Crc="1451487636" ABName="texture" AssetName="小体力丹.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/战斗.png" Crc="742409496" ABName="texture" AssetName="战斗.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/技能.png" Crc="194501974" ABName="texture" AssetName="技能.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/系统.png" Crc="3096562186" ABName="texture" AssetName="系统.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/背包.png" Crc="1016941029" ABName="texture" AssetName="背包.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/装备/女性 靴子 (2).png" Crc="544773649" ABName="texture" AssetName="女性 靴子 (2).png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/装备/女性帽子 (2).png" Crc="2299474525" ABName="texture" AssetName="女性帽子 (2).png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/装备/女性戒指 (1).png" Crc="904994245" ABName="texture" AssetName="女性戒指 (1).png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/装备/女性手镯 (2).png" Crc="2822683263" ABName="texture" AssetName="女性手镯 (2).png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/装备/女性武器 (2).png" Crc="2927059672" ABName="texture" AssetName="女性武器 (2).png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/装备/女性盔甲 (2).png" Crc="2059935842" ABName="texture" AssetName="女性盔甲 (2).png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/装备/女性翅膀 (2).png" Crc="3283607034" ABName="texture" AssetName="女性翅膀 (2).png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/装备/女性项链 (1).png" Crc="714262546" ABName="texture" AssetName="女性项链 (1).png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/装备/男性 手镯  (2).png" Crc="3778415923" ABName="texture" AssetName="男性 手镯  (2).png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/装备/男性头盔 (2).png" Crc="174682867" ABName="texture" AssetName="男性头盔 (2).png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/装备/男性戒指 (2).png" Crc="462148041" ABName="texture" AssetName="男性戒指 (2).png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/装备/男性武器 (2).png" Crc="1801059274" ABName="texture" AssetName="男性武器 (2).png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/装备/男性盔甲 (2).png" Crc="3219569008" ABName="texture" AssetName="男性盔甲 (2).png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/装备/男性翅膀 (1).png" Crc="3989639670" ABName="texture" AssetName="男性翅膀 (1).png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/装备/男性靴子 (2).png" Crc="2924270367" ABName="texture" AssetName="男性靴子 (2).png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/装备/男性项链 (2).png" Crc="82314270" ABName="texture" AssetName="男性项链 (2).png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/金币.png" Crc="3118906299" ABName="texture" AssetName="金币.png" />
+  <ABList Path="Assets/ABResources/Texture/002-mainmenu/钻石.png" Crc="2171944048" ABName="texture" AssetName="钻石.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/bg_任务.png" Crc="129180448" ABName="texture" AssetName="bg_任务.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/bg_任务条.png" Crc="2524969602" ABName="texture" AssetName="bg_任务条.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/bg_商店.png" Crc="2287116643" ABName="texture" AssetName="bg_商店.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/bg_商店条.png" Crc="1336125356" ABName="texture" AssetName="bg_商店条.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/bg_地图.png" Crc="3865185847" ABName="texture" AssetName="bg_地图.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/btn_充值1.png" Crc="594872827" ABName="texture" AssetName="btn_充值1.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/btn_充值2.png" Crc="3728452445" ABName="texture" AssetName="btn_充值2.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/btn_充值3.png" Crc="1352782040" ABName="texture" AssetName="btn_充值3.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/btn_充值4.png" Crc="2051037449" ABName="texture" AssetName="btn_充值4.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/btn_返回1.png" Crc="769349492" ABName="texture" AssetName="btn_返回1.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/btn_返回2.png" Crc="3499488722" ABName="texture" AssetName="btn_返回2.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/btn_领取奖励1.png" Crc="131235663" ABName="texture" AssetName="btn_领取奖励1.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/btn_领取奖励2.png" Crc="4204584425" ABName="texture" AssetName="btn_领取奖励2.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/btn_领取奖励3.png" Crc="1946592876" ABName="texture" AssetName="btn_领取奖励3.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/btn_领取奖励4.png" Crc="1592209341" ABName="texture" AssetName="btn_领取奖励4.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/NPC对话半身像288x347.png" Crc="1853015066" ABName="texture" AssetName="NPC对话半身像288x347.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/NPC对话底板1526x280.png" Crc="606986048" ABName="texture" AssetName="NPC对话底板1526x280.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/pic_主线.png" Crc="3013408509" ABName="texture" AssetName="pic_主线.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/pic_价格.png" Crc="484772467" ABName="texture" AssetName="pic_价格.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/pic_奖赏.png" Crc="416468849" ABName="texture" AssetName="pic_奖赏.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/pic_日常.png" Crc="146752262" ABName="texture" AssetName="pic_日常.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/pic_联系我们.png" Crc="3405283801" ABName="texture" AssetName="pic_联系我们.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/pic_送.png" Crc="1141090251" ABName="texture" AssetName="pic_送.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/pic_音效关闭.png" Crc="1644960445" ABName="texture" AssetName="pic_音效关闭.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/pic_音效开启.png" Crc="3156555021" ABName="texture" AssetName="pic_音效开启.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/公用四字按钮198x70_1.png" Crc="150495073" ABName="texture" AssetName="公用四字按钮198x70_1.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/公用四字按钮198x70_2.png" Crc="4122410439" ABName="texture" AssetName="公用四字按钮198x70_2.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/公用四字按钮198x70_3.png" Crc="2066515522" ABName="texture" AssetName="公用四字按钮198x70_3.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/公用四字按钮198x70_4.png" Crc="1372393363" ABName="texture" AssetName="公用四字按钮198x70_4.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/半透明背景.png" Crc="3232530074" ABName="texture" AssetName="半透明背景.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/技能2.png" Crc="2327391499" ABName="texture" AssetName="技能2.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/技能3.png" Crc="69424782" ABName="texture" AssetName="技能3.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/技能图标 1.png" Crc="1698829460" ABName="texture" AssetName="技能图标 1.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/技能系统背景.png" Crc="1301215482" ABName="texture" AssetName="技能系统背景.png" />
+  <ABList Path="Assets/ABResources/Texture/003-taskother/退出按钮.png" Crc="859914863" ABName="texture" AssetName="退出按钮.png" />
+  <ABList Path="Assets/ABResources/Texture/004-skill icon/icon_li.png" Crc="176662560" ABName="texture" AssetName="icon_li.png" />
+  <ABList Path="Assets/ABResources/Texture/004-skill icon/icon_up.png" Crc="3995115103" ABName="texture" AssetName="icon_up.png" />
+  <ABList Path="Assets/ABResources/Texture/004-skill icon/icon_zhu.png" Crc="2274099951" ABName="texture" AssetName="icon_zhu.png" />
+  <ABList Path="Assets/ABResources/Texture/004-skill icon/iocn_fo.png" Crc="3104311012" ABName="texture" AssetName="iocn_fo.png" />
+  <ABList Path="Assets/ABResources/Texture/004-skill icon/iocn_ho.png" Crc="359532098" ABName="texture" AssetName="iocn_ho.png" />
+  <ABList Path="Assets/ABResources/Texture/004-skill icon/iocn_yi.png" Crc="4263165274" ABName="texture" AssetName="iocn_yi.png" />
+  <ABList Path="Assets/ABResources/Texture/005-number combo/0.png" Crc="380122640" ABName="texture" AssetName="0.png" />
+  <ABList Path="Assets/ABResources/Texture/005-number combo/1.png" Crc="2553433493" ABName="texture" AssetName="1.png" />
+  <ABList Path="Assets/ABResources/Texture/005-number combo/2.png" Crc="1702686515" ABName="texture" AssetName="2.png" />
+  <ABList Path="Assets/ABResources/Texture/005-number combo/3.png" Crc="3957757110" ABName="texture" AssetName="3.png" />
+  <ABList Path="Assets/ABResources/Texture/005-number combo/4.png" Crc="3238468967" ABName="texture" AssetName="4.png" />
+  <ABList Path="Assets/ABResources/Texture/005-number combo/5.png" Crc="1335715554" ABName="texture" AssetName="5.png" />
+  <ABList Path="Assets/ABResources/Texture/005-number combo/6.png" Crc="3000222788" ABName="texture" AssetName="6.png" />
+  <ABList Path="Assets/ABResources/Texture/005-number combo/7.png" Crc="1011466177" ABName="texture" AssetName="7.png" />
+  <ABList Path="Assets/ABResources/Texture/005-number combo/8.png" Crc="1897264420" ABName="texture" AssetName="8.png" />
+  <ABList Path="Assets/ABResources/Texture/005-number combo/9.png" Crc="4287598241" ABName="texture" AssetName="9.png" />
+  <ABList Path="Assets/ABResources/Texture/005-number combo/combo.png" Crc="3127772693" ABName="texture" AssetName="combo.png" />
+  <ABList Path="Assets/ABResources/Texture/005-number combo/number_font.fnt" Crc="327532413" ABName="texture" AssetName="number_font.fnt" />
+  <ABList Path="Assets/ABResources/Texture/005-number combo/number_font_0.tga" Crc="665190577" ABName="texture" AssetName="number_font_0.tga" />
+  <ABList Path="Assets/ABResources/Texture/006-map/map_bg.png" Crc="2044541372" ABName="texture" AssetName="map_bg.png" />
+  <ABList Path="Assets/ABResources/Texture/006-map/star-灰色.png" Crc="867806390" ABName="texture" AssetName="star-灰色.png" />
+  <ABList Path="Assets/ABResources/Texture/006-map/star-黄色.png" Crc="1916248478" ABName="texture" AssetName="star-黄色.png" />
+  <ABList Path="Assets/ABResources/Texture/006-map/地图-普通.png" Crc="2600099821" ABName="texture" AssetName="地图-普通.png" />
+  <ABList Path="Assets/ABResources/Texture/006-map/地图-箱子.png" Crc="1010614680" ABName="texture" AssetName="地图-箱子.png" />
+  <ABList Path="Assets/ABResources/Texture/006-map/地图-精英.png" Crc="2231303388" ABName="texture" AssetName="地图-精英.png" />
+  <ABList Path="Assets/ABResources/Texture/arrow.png" Crc="2921600433" ABName="texture" AssetName="arrow.png" />
+  <ABList Path="Assets/ABResources/Texture/arrow1.png" Crc="3478865686" ABName="texture" AssetName="arrow1.png" />
+  <ABList Path="Assets/ABResources/Texture/arrow2.png" Crc="840295856" ABName="texture" AssetName="arrow2.png" />
+  <ABList Path="Assets/ABResources/Texture/Back button.png" Crc="2328818491" ABName="texture" AssetName="Back button.png" />
+  <ABList Path="Assets/ABResources/Texture/background.png" Crc="752881767" ABName="texture" AssetName="background.png" />
+  <ABList Path="Assets/ABResources/Texture/background1.png" Crc="3301213512" ABName="texture" AssetName="background1.png" />
+  <ABList Path="Assets/ABResources/Texture/Background_Name.png" Crc="638297933" ABName="texture" AssetName="Background_Name.png" />
+  <ABList Path="Assets/ABResources/Texture/BG.png" Crc="1179685586" ABName="texture" AssetName="BG.png" />
+  <ABList Path="Assets/ABResources/Texture/bj_1.png" Crc="4201643785" ABName="texture" AssetName="bj_1.png" />
+  <ABList Path="Assets/ABResources/Texture/btn.png" Crc="524030108" ABName="texture" AssetName="btn.png" />
+  <ABList Path="Assets/ABResources/Texture/btn1.png" Crc="1711566624" ABName="texture" AssetName="btn1.png" />
+  <ABList Path="Assets/ABResources/Texture/btn2.png" Crc="2605370758" ABName="texture" AssetName="btn2.png" />
+  <ABList Path="Assets/ABResources/Texture/btn3.png" Crc="365999619" ABName="texture" AssetName="btn3.png" />
+  <ABList Path="Assets/ABResources/Texture/btn_bg3.png" Crc="2472672831" ABName="texture" AssetName="btn_bg3.png" />
+  <ABList Path="Assets/ABResources/Texture/btn_NSSB_login.png" Crc="3696367670" ABName="texture" AssetName="btn_NSSB_login.png" />
+  <ABList Path="Assets/ABResources/Texture/btn_true.png" Crc="3321654494" ABName="texture" AssetName="btn_true.png" />
+  <ABList Path="Assets/ABResources/Texture/close2.png" Crc="888814163" ABName="texture" AssetName="close2.png" />
+  <ABList Path="Assets/ABResources/Texture/font_bg.png" Crc="2296632817" ABName="texture" AssetName="font_bg.png" />
+  <ABList Path="Assets/ABResources/Texture/font_bg3.png" Crc="2284792194" ABName="texture" AssetName="font_bg3.png" />
+  <ABList Path="Assets/ABResources/Texture/font_bg4.png" Crc="2731450451" ABName="texture" AssetName="font_bg4.png" />
+  <ABList Path="Assets/ABResources/Texture/frame.png" Crc="945450338" ABName="texture" AssetName="frame.png" />
+  <ABList Path="Assets/ABResources/Texture/fx.png" Crc="3813359071" ABName="texture" AssetName="fx.png" />
+  <ABList Path="Assets/ABResources/Texture/gk_bg.png" Crc="1023809201" ABName="texture" AssetName="gk_bg.png" />
+  <ABList Path="Assets/ABResources/Texture/gk_bg1.png" Crc="3486016789" ABName="texture" AssetName="gk_bg1.png" />
+  <ABList Path="Assets/ABResources/Texture/gk_bg2.png" Crc="847693747" ABName="texture" AssetName="gk_bg2.png" />
+  <ABList Path="Assets/ABResources/Texture/gk_bg3.png" Crc="3155999798" ABName="texture" AssetName="gk_bg3.png" />
+  <ABList Path="Assets/ABResources/Texture/guide_bg5.png" Crc="2306068282" ABName="texture" AssetName="guide_bg5.png" />
+  <ABList Path="Assets/ABResources/Texture/have in hand.png" Crc="1688963999" ABName="texture" AssetName="have in hand.png" />
+  <ABList Path="Assets/ABResources/Texture/HeadPortrait/pic2.png" Crc="513025514" ABName="texture" AssetName="pic2.png" />
+  <ABList Path="Assets/ABResources/Texture/HeadPortrait/pic3.png" Crc="2416860783" ABName="texture" AssetName="pic3.png" />
+  <ABList Path="Assets/ABResources/Texture/HeadPortrait/pic4.png" Crc="3136280510" ABName="texture" AssetName="pic4.png" />
+  <ABList Path="Assets/ABResources/Texture/HeadPortrait/pic5.png" Crc="880127035" ABName="texture" AssetName="pic5.png" />
+  <ABList Path="Assets/ABResources/Texture/HeadPortrait/pic6.png" Crc="3376090781" ABName="texture" AssetName="pic6.png" />
+  <ABList Path="Assets/ABResources/Texture/HeadPortrait/pic8.png" Crc="184369149" ABName="texture" AssetName="pic8.png" />
+  <ABList Path="Assets/ABResources/Texture/HeadPortrait/pic9.png" Crc="2221360248" ABName="texture" AssetName="pic9.png" />
+  <ABList Path="Assets/ABResources/Texture/Honor list.png" Crc="3973791926" ABName="texture" AssetName="Honor list.png" />
+  <ABList Path="Assets/ABResources/Texture/hylb.png" Crc="2779449861" ABName="texture" AssetName="hylb.png" />
+  <ABList Path="Assets/ABResources/Texture/ico7.png" Crc="961311877" ABName="texture" AssetName="ico7.png" />
+  <ABList Path="Assets/ABResources/Texture/ico8.png" Crc="1947221600" ABName="texture" AssetName="ico8.png" />
+  <ABList Path="Assets/ABResources/Texture/ico9.png" Crc="4203365861" ABName="texture" AssetName="ico9.png" />
+  <ABList Path="Assets/ABResources/Texture/ico11.png" Crc="1674416658" ABName="texture" AssetName="ico11.png" />
+  <ABList Path="Assets/ABResources/Texture/information.png" Crc="2917585869" ABName="texture" AssetName="information.png" />
+  <ABList Path="Assets/ABResources/Texture/Inquiry.png" Crc="2083284203" ABName="texture" AssetName="Inquiry.png" />
+  <ABList Path="Assets/ABResources/Texture/interaction.png" Crc="4280991254" ABName="texture" AssetName="interaction.png" />
+  <ABList Path="Assets/ABResources/Texture/internship.png" Crc="4008298688" ABName="texture" AssetName="internship.png" />
+  <ABList Path="Assets/ABResources/Texture/introduce.png" Crc="446834951" ABName="texture" AssetName="introduce.png" />
+  <ABList Path="Assets/ABResources/Texture/kf.png" Crc="3798022154" ABName="texture" AssetName="kf.png" />
+  <ABList Path="Assets/ABResources/Texture/login.png" Crc="3063006041" ABName="texture" AssetName="login.png" />
+  <ABList Path="Assets/ABResources/Texture/lower_return.png" Crc="3882397891" ABName="texture" AssetName="lower_return.png" />
+  <ABList Path="Assets/ABResources/Texture/lrb.png" Crc="790373194" ABName="texture" AssetName="lrb.png" />
+  <ABList Path="Assets/ABResources/Texture/master.png" Crc="3156349612" ABName="texture" AssetName="master.png" />
+  <ABList Path="Assets/ABResources/Texture/mima.png" Crc="616970606" ABName="texture" AssetName="mima.png" />
+  <ABList Path="Assets/ABResources/Texture/notice.png" Crc="632828047" ABName="texture" AssetName="notice.png" />
+  <ABList Path="Assets/ABResources/Texture/paihang1.png" Crc="3091449956" ABName="texture" AssetName="paihang1.png" />
+  <ABList Path="Assets/ABResources/Texture/paihang2.png" Crc="1158507202" ABName="texture" AssetName="paihang2.png" />
+  <ABList Path="Assets/ABResources/Texture/paihang3.png" Crc="3415675207" ABName="texture" AssetName="paihang3.png" />
+  <ABList Path="Assets/ABResources/Texture/Popup_cg.png" Crc="1138156702" ABName="texture" AssetName="Popup_cg.png" />
+  <ABList Path="Assets/ABResources/Texture/QQ图片20201231093329.png" Crc="3408421002" ABName="texture" AssetName="QQ图片20201231093329.png" />
+  <ABList Path="Assets/ABResources/Texture/Receive Icon.png" Crc="2276545788" ABName="texture" AssetName="Receive Icon.png" />
+  <ABList Path="Assets/ABResources/Texture/Rectangle 6@2x.png" Crc="1536220028" ABName="texture" AssetName="Rectangle 6@2x.png" />
+  <ABList Path="Assets/ABResources/Texture/Reset.png" Crc="1454365481" ABName="texture" AssetName="Reset.png" />
+  <ABList Path="Assets/ABResources/Texture/return_Icon.png" Crc="2957363013" ABName="texture" AssetName="return_Icon.png" />
+  <ABList Path="Assets/ABResources/Texture/sc.png" Crc="1296930501" ABName="texture" AssetName="sc.png" />
+  <ABList Path="Assets/ABResources/Texture/scrollbars-.png" Crc="2386539404" ABName="texture" AssetName="scrollbars-.png" />
+  <ABList Path="Assets/ABResources/Texture/search.png" Crc="1961975252" ABName="texture" AssetName="search.png" />
+  <ABList Path="Assets/ABResources/Texture/service.png" Crc="2598268122" ABName="texture" AssetName="service.png" />
+  <ABList Path="Assets/ABResources/Texture/shouh.png" Crc="1766514115" ABName="texture" AssetName="shouh.png" />
+  <ABList Path="Assets/ABResources/Texture/source.png" Crc="3253610577" ABName="texture" AssetName="source.png" />
+  <ABList Path="Assets/ABResources/Texture/StartVideo.png" Crc="1230133088" ABName="texture" AssetName="StartVideo.png" />
+  <ABList Path="Assets/ABResources/Texture/Top bar.png" Crc="2098451086" ABName="texture" AssetName="Top bar.png" />
+  <ABList Path="Assets/ABResources/Texture/Top_1.png" Crc="126546251" ABName="texture" AssetName="Top_1.png" />
+  <ABList Path="Assets/ABResources/Texture/Touch.png" Crc="3944498449" ABName="texture" AssetName="Touch.png" />
+  <ABList Path="Assets/ABResources/Texture/touxiang.png" Crc="3352945565" ABName="texture" AssetName="touxiang.png" />
+  <ABList Path="Assets/ABResources/Texture/tstc.png" Crc="910778965" ABName="texture" AssetName="tstc.png" />
+  <ABList Path="Assets/ABResources/Texture/Turn the page.png" Crc="3808026002" ABName="texture" AssetName="Turn the page.png" />
+  <ABList Path="Assets/ABResources/Texture/yt.png" Crc="2955975798" ABName="texture" AssetName="yt.png" />
+  <ABList Path="Assets/ABResources/Texture/效果图/1.1主界面.psd" Crc="2537797154" ABName="texture" AssetName="1.1主界面.psd" />
+  <ABList Path="Assets/ABResources/Texture/效果图/1.2商场+任务+技能+系统 .psd" Crc="1364915989" ABName="texture" AssetName="1.2商场+任务+技能+系统 .psd" />
+  <ABList Path="Assets/ABResources/Texture/效果图/1.3 地图 .psd" Crc="4232051870" ABName="texture" AssetName="1.3 地图 .psd" />
+  <ABList Path="Assets/ABResources/Texture/效果图/ICON.psd" Crc="1805888388" ABName="texture" AssetName="ICON.psd" />
+  <ABList Path="Assets/ABResources/Texture/效果图/qdp1.psd" Crc="1390875340" ABName="texture" AssetName="qdp1.psd" />
+  <ABList Path="Assets/ABResources/Texture/效果图/QQ图片20141222101541.jpg" Crc="3309491366" ABName="texture" AssetName="QQ图片20141222101541.jpg" />
+  <ABList Path="Assets/ABResources/Texture/效果图/QQ截图20141222153741.png" Crc="3881361358" ABName="texture" AssetName="QQ截图20141222153741.png" />
+  <ABList Path="Assets/ABResources/Texture/效果图/主界面效果图.png" Crc="4050617371" ABName="texture" AssetName="主界面效果图.png" />
+  <ABList Path="Assets/ABResources/Texture/效果图/任务系统.png" Crc="722794557" ABName="texture" AssetName="任务系统.png" />
+  <ABList Path="Assets/ABResources/Texture/效果图/背包系统1.png" Crc="3288773250" ABName="texture" AssetName="背包系统1.png" />
+  <ABList Path="Assets/ABResources/Texture/效果图/背包系统2.png" Crc="961024036" ABName="texture" AssetName="背包系统2.png" />
+</AssetBundleConfig>

@@ -18,43 +18,43 @@ namespace EdgeFrameworkEditor
 {
     public class BuildApp 
     {
-        private static string appName = PlayerSettings.productName;
-        public static string androidPath = Application.dataPath + "/../BuildTarget/Android/";
+        private static string sAppName = PlayerSettings.productName;
+        public static string AndroidPath = Application.dataPath + "/../BuildTarget/Android/";
         public static string iOSPath = Application.dataPath + "/../BuildTarget/IOS/";
-        public static string windowsPath = Application.dataPath + "/../BuildTarget/Windows/";
-        public static string streamingAssets = Application.streamingAssetsPath + "/AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString();
+        public static string WindowsPath = Application.dataPath + "/../BuildTarget/Windows/";
+        public static string StreamingAssets = Application.streamingAssetsPath + "/AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString();
         public static void Build()
         {
             SaveVersion(PlayerSettings.bundleVersion, PlayerSettings.applicationIdentifier);
             AppConfig.UseAssetBundle=true;
             //生成可执行程序
             string abPath = Application.dataPath + "/../AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString() + "/";
-            if(!Directory.Exists(streamingAssets))
-                Directory.CreateDirectory(streamingAssets);
-            Copy(abPath, streamingAssets);
+            if(!Directory.Exists(StreamingAssets))
+                Directory.CreateDirectory(StreamingAssets);
+            Copy(abPath, StreamingAssets);
             string savePath = "";
-            if (!Directory.Exists(androidPath))
-                Directory.CreateDirectory(androidPath);
+            if (!Directory.Exists(AndroidPath))
+                Directory.CreateDirectory(AndroidPath);
             if (!Directory.Exists(iOSPath))
                 Directory.CreateDirectory(iOSPath);
-            if (!Directory.Exists(windowsPath))
-                Directory.CreateDirectory(windowsPath);
+            if (!Directory.Exists(WindowsPath))
+                Directory.CreateDirectory(WindowsPath);
 
             if (EditorUserBuildSettings.activeBuildTarget == BuildTarget.Android)
             {
-                savePath = androidPath + appName + "_" + EditorUserBuildSettings.activeBuildTarget + string.Format("_{0:yyyy_MM_dd_HH_mm}", DateTime.Now) + ".apk";
+                savePath = AndroidPath + sAppName + "_" + EditorUserBuildSettings.activeBuildTarget + string.Format("_{0:yyyy_MM_dd_HH_mm}", DateTime.Now) + ".apk";
             }
             else if (EditorUserBuildSettings.activeBuildTarget == BuildTarget.iOS)
             {
-                savePath = iOSPath + appName + "_" + EditorUserBuildSettings.activeBuildTarget + string.Format("_{0:yyyy_MM_dd_HH_mm}", DateTime.Now);
+                savePath = iOSPath + sAppName + "_" + EditorUserBuildSettings.activeBuildTarget + string.Format("_{0:yyyy_MM_dd_HH_mm}", DateTime.Now);
             }
             else if (EditorUserBuildSettings.activeBuildTarget == BuildTarget.StandaloneWindows || EditorUserBuildSettings.activeBuildTarget == BuildTarget.StandaloneWindows64)
             {
-                savePath = windowsPath + appName + "_" + EditorUserBuildSettings.activeBuildTarget + string.Format("_{0:yyyy_MM_dd_HH_mm}/{1}.exe", DateTime.Now, appName);
+                savePath = WindowsPath + sAppName + "_" + EditorUserBuildSettings.activeBuildTarget + string.Format("_{0:yyyy_MM_dd_HH_mm}/{1}.exe", DateTime.Now, sAppName);
             }
 
             BuildPipeline.BuildPlayer(FindEnableEditorScenes(), savePath, EditorUserBuildSettings.activeBuildTarget, BuildOptions.None);
-            DeleteDir(streamingAssets);
+            DeleteDir(StreamingAssets);
         }
       public   static void SaveVersion(string version, string package)
         {
@@ -128,7 +128,7 @@ namespace EdgeFrameworkEditor
             }
             catch (Exception e)
             {
-                Debug.LogError("无法复制:" + scrPath + "  到" + targetPath+ "---"+e);
+                Debug.LogError("无法复制:" + scrPath + "  到" + targetPath+e);
             }
         }
         /// <summary>
@@ -172,13 +172,13 @@ namespace EdgeFrameworkEditor
             //生成可执行程序
             string abPath = Application.dataPath + "/../AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString() + "/";
             //清空生成的文件夹
-            DeleteDir(windowsPath);
+            DeleteDir(WindowsPath);
             Copy(abPath, Application.streamingAssetsPath);
-            if (!Directory.Exists(windowsPath))
-                Directory.CreateDirectory(windowsPath);
-            string dir = appName + "_PC" + suffix + string.Format("_{0:yyyy_MM_dd_HH_mm}", DateTime.Now);
-            string name = string.Format("/{0}.exe", appName);
-            string savePath = windowsPath + dir + name;
+            if (!Directory.Exists(WindowsPath))
+                Directory.CreateDirectory(WindowsPath);
+            string dir = sAppName + "_PC" + suffix + string.Format("_{0:yyyy_MM_dd_HH_mm}", DateTime.Now);
+            string name = string.Format("/{0}.exe", sAppName);
+            string savePath = WindowsPath + dir + name;
 
             BuildPipeline.BuildPlayer(FindEnableEditorScenes(), savePath, EditorUserBuildSettings.activeBuildTarget, BuildOptions.None);
             DeleteDir(Application.streamingAssetsPath);
@@ -280,9 +280,9 @@ namespace EdgeFrameworkEditor
             //生成可执行程序
             string abPath = Application.dataPath + "/../AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString() + "/";
             //清空生成的文件夹
-            DeleteDir(androidPath);
+            DeleteDir(AndroidPath);
             Copy(abPath, Application.streamingAssetsPath);
-            string savePath = androidPath + appName + "_Andorid" + suffix + string.Format("_{0:yyyy_MM_dd_HH_mm}.apk", DateTime.Now);
+            string savePath = AndroidPath + sAppName + "_Andorid" + suffix + string.Format("_{0:yyyy_MM_dd_HH_mm}.apk", DateTime.Now);
             BuildPipeline.BuildPlayer(FindEnableEditorScenes(), savePath, EditorUserBuildSettings.activeBuildTarget, BuildOptions.None);
             DeleteDir(Application.streamingAssetsPath);
 
@@ -426,7 +426,7 @@ namespace EdgeFrameworkEditor
             //清空生成的文件夹
             DeleteDir(iOSPath);
             Copy(abPath, Application.streamingAssetsPath);
-            string name = appName + "_IOS" + suffix + string.Format("_{0:yyyy_MM_dd_HH_mm}", DateTime.Now);
+            string name = sAppName + "_IOS" + suffix + string.Format("_{0:yyyy_MM_dd_HH_mm}", DateTime.Now);
             string savePath = iOSPath + name;
             BuildPipeline.BuildPlayer(FindEnableEditorScenes(), savePath, EditorUserBuildSettings.activeBuildTarget, BuildOptions.None);
             DeleteDir(Application.streamingAssetsPath);

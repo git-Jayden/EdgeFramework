@@ -22,22 +22,22 @@ namespace EdgeFrameworkEditor
     public class BundleEditor
     {
         //打包的AssetBundle路径
-        public static string bundleTargetPath = Application.dataPath + "/../AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString();//Application.streamingAssetsPath;                                                                                                                               //打包的AssetBundle版本路径
-        private static string versionMd5Path = Application.dataPath + "/../Version/" + EditorUserBuildSettings.activeBuildTarget.ToString();
-        private static string hotPath = Application.dataPath + "/../Hot/" + EditorUserBuildSettings.activeBuildTarget.ToString();
+        public static string BundleTargetPath = Application.dataPath + "/../AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString();//Application.streamingAssetsPath;                                                                                                                               //打包的AssetBundle版本路径
+        private static string mVersionMd5Path = Application.dataPath + "/../Version/" + EditorUserBuildSettings.activeBuildTarget.ToString();
+        private static string mHotPath = Application.dataPath + "/../Hot/" + EditorUserBuildSettings.activeBuildTarget.ToString();
  
 
 
         //key是ab包，value是路径,所有文件夹ab包的dic
-        static Dictionary<string, string> allFileDir = new Dictionary<string, string>();
+       private static Dictionary<string, string> mAllFileDir = new Dictionary<string, string>();
         //过滤List 
-        static List<string> allFileAB = new List<string>();
+        private static List<string> mAllFileAB = new List<string>();
         //单个prefab的ab包
-        static Dictionary<string, List<string>> allPrefabDir = new Dictionary<string, List<string>>();
+        private static Dictionary<string, List<string>> mAllPrefabDir = new Dictionary<string, List<string>>();
         //储存所有有效路径
-        static List<string> configFil = new List<string>();
+        private static List<string> mConfigFil = new List<string>();
         //储存读出来MD5信息
-        private static Dictionary<string, ABMD5Base> packedMd5 = new Dictionary<string, ABMD5Base>();
+        private static Dictionary<string, ABMD5Base> mpackedMd5 = new Dictionary<string, ABMD5Base>();
         public static void Build(bool hotfix = false, string abmd5Path = "", string hotCount = "1", string des = "")
         {
             if (string.IsNullOrEmpty(ABAddress.ABBYTEPATH))
@@ -46,10 +46,10 @@ namespace EdgeFrameworkEditor
                 return;
             }
             // DataEditor.AllXmlToBinary();
-            allFileAB.Clear();
-            allFileDir.Clear();
-            allPrefabDir.Clear();
-            configFil.Clear();
+            mAllFileAB.Clear();
+            mAllFileDir.Clear();
+            mAllPrefabDir.Clear();
+            mConfigFil.Clear();
             ABConfig abConfig = AssetDatabase.LoadAssetAtPath<ABConfig>(EdgeFrameworkConst.AbConfigPath);
             if (abConfig.allFileDirAb.Count <= 0 && abConfig.allPrefabPath.Count <= 0)
             {
@@ -61,7 +61,7 @@ namespace EdgeFrameworkEditor
                 foreach (ABConfig.FileDirABName fileDir in abConfig.allFileDirAb)
                 {
                     //Debug.Log(fileDir.Path);
-                    if (allFileDir.ContainsKey(fileDir.abName))
+                    if (mAllFileDir.ContainsKey(fileDir.abName))
                     {
                         Debug.LogError("Ab包配置名字重复,请检查!");
                     }
@@ -75,9 +75,9 @@ namespace EdgeFrameworkEditor
                         }
                         else
                         {
-                            allFileDir.Add(fileDir.abName, fileDir.path);
-                            allFileAB.Add(fileDir.path);
-                            configFil.Add(fileDir.path);
+                            mAllFileDir.Add(fileDir.abName, fileDir.path);
+                            mAllFileAB.Add(fileDir.path);
+                            mConfigFil.Add(fileDir.path);
                         }
                     }
                 }
@@ -89,7 +89,7 @@ namespace EdgeFrameworkEditor
                 {
                     string path = AssetDatabase.GUIDToAssetPath(allStr[i]);
                     EditorUtility.DisplayProgressBar("查找Prefab", "Prefab:" + path, i * 1.0f / allStr.Length);
-                    configFil.Add(path);
+                    mConfigFil.Add(path);
                     if (!ContainAllFileAB(path))
                     {
                         GameObject obj = AssetDatabase.LoadAssetAtPath<GameObject>(path);
@@ -100,24 +100,24 @@ namespace EdgeFrameworkEditor
                             // Debug.Log(allDepentd[j]);
                             if (!ContainAllFileAB(allDepentd[j]) && !allDepentd[j].EndsWith(".cs"))
                             {
-                                allFileAB.Add(allDepentd[j]);
+                                mAllFileAB.Add(allDepentd[j]);
                                 allDependPath.Add(allDepentd[j]);
                             }
                         }
-                        if (allPrefabDir.ContainsKey(obj.name))
+                        if (mAllPrefabDir.ContainsKey(obj.name))
                             Debug.LogError("存在相同名字的Prefab!Prefab:" + path);
                         else
-                            allPrefabDir.Add(obj.name, allDependPath);
+                            mAllPrefabDir.Add(obj.name, allDependPath);
                     }
                 }
             }
-            foreach (string name in allFileDir.Keys)
+            foreach (string name in mAllFileDir.Keys)
             {
-                SetABName(name, allFileDir[name]);
+                SetABName(name, mAllFileDir[name]);
             }
-            foreach (var name in allPrefabDir.Keys)
+            foreach (var name in mAllPrefabDir.Keys)
             {
-                SetABName(name, allPrefabDir[name]);
+                SetABName(name, mAllPrefabDir[name]);
             }
 
 
@@ -147,7 +147,7 @@ namespace EdgeFrameworkEditor
         }
         static void WriteABMD5()
         {
-            DirectoryInfo directoryInfo = new DirectoryInfo(bundleTargetPath);
+            DirectoryInfo directoryInfo = new DirectoryInfo(BundleTargetPath);
             FileInfo[] files = directoryInfo.GetFiles("*", SearchOption.AllDirectories);
             ABMD5 abmd5 = new ABMD5();
             abmd5.ABMD5List = new List<ABMD5Base>();
@@ -166,11 +166,11 @@ namespace EdgeFrameworkEditor
             Utility.SerializeHelper.SerializeBinary(ABMD5Path, abmd5);
     
             //将打版的版本拷贝到外部进行储存
-            if (!Directory.Exists(versionMd5Path))
+            if (!Directory.Exists(mVersionMd5Path))
             {
-                Directory.CreateDirectory(versionMd5Path);
+                Directory.CreateDirectory(mVersionMd5Path);
             }
-            string targetPath = versionMd5Path + "/ABMD5_" + PlayerSettings.bundleVersion + ".bytes";
+            string targetPath = mVersionMd5Path + "/ABMD5_" + PlayerSettings.bundleVersion + ".bytes";
             if (File.Exists(targetPath))
             {
                 File.Delete(targetPath);
@@ -179,7 +179,7 @@ namespace EdgeFrameworkEditor
         }
         static void ReadMd5Com(string abmd5Path, string hotCount,string des)
         {
-            packedMd5.Clear();
+            mpackedMd5.Clear();
             using (FileStream fileStream = new FileStream(abmd5Path, FileMode.Open, FileAccess.Read))
             {
                 BinaryFormatter bf = new BinaryFormatter();
@@ -190,12 +190,12 @@ namespace EdgeFrameworkEditor
                 foreach (ABMD5Base abmd5Base in abmd5.ABMD5List)
                 {
 
-                    packedMd5.Add(abmd5Base.Name, abmd5Base);
+                    mpackedMd5.Add(abmd5Base.Name, abmd5Base);
                 }
             }
 
             List<string> changeList = new List<string>();
-            DirectoryInfo directory = new DirectoryInfo(bundleTargetPath);
+            DirectoryInfo directory = new DirectoryInfo(BundleTargetPath);
             FileInfo[] files = directory.GetFiles("*", SearchOption.AllDirectories);
             for (int i = 0; i < files.Length; i++)
             {
@@ -204,13 +204,13 @@ namespace EdgeFrameworkEditor
                     string name = files[i].Name;
                     string md5 = MD5Manager.Instance.BuildFileMd5(files[i].FullName);
                     ABMD5Base abmd5Base = null;
-                    if (!packedMd5.ContainsKey(name))
+                    if (!mpackedMd5.ContainsKey(name))
                     {
                         changeList.Add(name);
                     }
                     else
                     {
-                        if (packedMd5.TryGetValue(name, out abmd5Base))
+                        if (mpackedMd5.TryGetValue(name, out abmd5Base))
                         {
                             if (md5 != abmd5Base.Md5)
                             {
@@ -230,21 +230,21 @@ namespace EdgeFrameworkEditor
         /// <param name="hotCount"></param>
         static void CopyABAndGeneratXml(List<string> changeList, string hotCount,string des)
         {
-            if (!Directory.Exists(hotPath))
+            if (!Directory.Exists(mHotPath))
             {
-                Directory.CreateDirectory(hotPath);
+                Directory.CreateDirectory(mHotPath);
             }
-            DeleteAllFile(hotPath);
+            DeleteAllFile(mHotPath);
             foreach (string str in changeList)
             {
                 if (!str.EndsWith(".manifest"))
                 {
-                    File.Copy(bundleTargetPath + "/" + str, hotPath + "/" + str);
+                    File.Copy(BundleTargetPath + "/" + str, mHotPath + "/" + str);
                 }
             }
 
             //生成服务器Patch
-            DirectoryInfo directory = new DirectoryInfo(hotPath);
+            DirectoryInfo directory = new DirectoryInfo(mHotPath);
             FileInfo[] files = directory.GetFiles("*", SearchOption.AllDirectories);
             Pathces pathces = new Pathces();
             pathces.Version = int.Parse(hotCount);
@@ -259,7 +259,7 @@ namespace EdgeFrameworkEditor
                 patch.Url = AppConfig.HTTPServerIP+"/AssetBundle/" + PlayerSettings.bundleVersion + "/" + hotCount + "/" + files[i].Name;
                 pathces.Files.Add(patch);
             }
-            Utility.SerializeHelper.SerializeXML(hotPath + "/Patch.xml", pathces);
+            Utility.SerializeHelper.SerializeXML(mHotPath + "/Patch.xml", pathces);
         }
 
         static void SetABName(string name, List<string> path)
@@ -294,15 +294,15 @@ namespace EdgeFrameworkEditor
                 }
             }
 
-            if (!Directory.Exists(bundleTargetPath))
+            if (!Directory.Exists(BundleTargetPath))
             {
-                Directory.CreateDirectory(bundleTargetPath);
+                Directory.CreateDirectory(BundleTargetPath);
             }
             DeleteAB();
             //生成自己的配置表
             WriteData(resPathDic);
 
-            AssetBundleManifest manifest = BuildPipeline.BuildAssetBundles(bundleTargetPath, BuildAssetBundleOptions.ChunkBasedCompression, EditorUserBuildSettings.activeBuildTarget);
+            AssetBundleManifest manifest = BuildPipeline.BuildAssetBundles(BundleTargetPath, BuildAssetBundleOptions.ChunkBasedCompression, EditorUserBuildSettings.activeBuildTarget);
             if (manifest == null)
             {
                 Debug.LogError("AssetBundle 打包失败！");
@@ -319,18 +319,18 @@ namespace EdgeFrameworkEditor
         static void WriteData(Dictionary<string, string> resPathDic)
         {
             AssetBundleConfig config = new AssetBundleConfig();
-            config.abList = new List<ABBase>();
+            config.AbList = new List<ABBase>();
             foreach (var path in resPathDic.Keys)
             {
                 if (!ValidPath(path))
                     continue;
 
                 ABBase abBase = new ABBase();
-                abBase.path = path;
-                abBase.crc = CRC32.GetCRC32(path);
-                abBase.abName = resPathDic[path];
-                abBase.assetName = path.Remove(0, path.LastIndexOf("/") + 1);
-                abBase.abDependce = new List<string>();
+                abBase.Path = path;
+                abBase.Crc = CRC32.GetCRC32(path);
+                abBase.AbName = resPathDic[path];
+                abBase.AssetName = path.Remove(0, path.LastIndexOf("/") + 1);
+                abBase.AbDependce = new List<string>();
                 string[] resDependce = AssetDatabase.GetDependencies(path);
                 for (int i = 0; i < resDependce.Length; i++)
                 {
@@ -342,13 +342,13 @@ namespace EdgeFrameworkEditor
                     {
                         if (abName == resPathDic[path])
                             continue;
-                        if (!abBase.abDependce.Contains(abName))
+                        if (!abBase.AbDependce.Contains(abName))
                         {
-                            abBase.abDependce.Add(abName);
+                            abBase.AbDependce.Add(abName);
                         }
                     }
                 }
-                config.abList.Add(abBase);
+                config.AbList.Add(abBase);
             }
             //写入xml
             string xmlPath = Application.dataPath + "/AssetbundleCofig.xml";
@@ -360,9 +360,9 @@ namespace EdgeFrameworkEditor
             xs.Serialize(sw, config);
             sw.Close();
             fileStream.Close();
-            foreach (ABBase ab in config.abList)
+            foreach (ABBase ab in config.AbList)
             {
-                ab.path = "";
+                ab.Path = "";
             }
             //EdgeFramework.Utils.FileUtil
             string DirPath="";
@@ -386,7 +386,7 @@ namespace EdgeFrameworkEditor
         }
         static void DeleteMainfest()
         {
-            DirectoryInfo directoryInfo = new DirectoryInfo(bundleTargetPath);
+            DirectoryInfo directoryInfo = new DirectoryInfo(BundleTargetPath);
             FileInfo[] files = directoryInfo.GetFiles("*", SearchOption.AllDirectories);
             for (int i = 0; i < files.Length; i++)
             {
@@ -402,7 +402,7 @@ namespace EdgeFrameworkEditor
         static void DeleteAB()
         {
             string[] allBundlesName = AssetDatabase.GetAllAssetBundleNames();
-            DirectoryInfo direction = new DirectoryInfo(bundleTargetPath);
+            DirectoryInfo direction = new DirectoryInfo(BundleTargetPath);
             FileInfo[] files = direction.GetFiles("*", SearchOption.AllDirectories);
             for (int i = 0; i < files.Length; i++)
             {
@@ -444,9 +444,9 @@ namespace EdgeFrameworkEditor
         /// <returns></returns>
         static bool ContainAllFileAB(string path)
         {
-            for (int i = 0; i < allFileAB.Count; i++)
+            for (int i = 0; i < mAllFileAB.Count; i++)
             {
-                if (path == allFileAB[i] || (path.Contains(allFileAB[i]) && (path.Replace(allFileAB[i], "")[0] == '/')))
+                if (path == mAllFileAB[i] || (path.Contains(mAllFileAB[i]) && (path.Replace(mAllFileAB[i], "")[0] == '/')))
                     return true;
             }
             return false;
@@ -457,9 +457,9 @@ namespace EdgeFrameworkEditor
         /// <returns></returns>
         static bool ValidPath(string path)
         {
-            for (int i = 0; i < configFil.Count; i++)
+            for (int i = 0; i < mConfigFil.Count; i++)
             {
-                if (path.Contains(configFil[i]))
+                if (path.Contains(mConfigFil[i]))
                     return true;
 
             }

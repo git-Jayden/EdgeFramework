@@ -74,7 +74,7 @@ public class FSM
         }
     }
     //移除所有状态
-    public void removeAllState()
+    public void RemoveAllState()
     {
         if (CurState != null)
         {

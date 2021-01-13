@@ -17,13 +17,13 @@ namespace EdgeFramework.Res
 {
     public class AssetBundleManager : Singleton<AssetBundleManager>
     {
-        protected string abConfigABName = "assetbundleconfig";
+        private string mAbConfigABName = "assetbundleconfig";
         //资源关系依赖配表，可以根据crc来找到对应资源块 key为路径的Crc
-        protected Dictionary<uint, ResouceItem> resouceItemDic = new Dictionary<uint, ResouceItem>();
+        private Dictionary<uint, TResouceItem> mResouceItemDic = new Dictionary<uint, TResouceItem>();
         //存储已经加载的Ab包,key为AB包名的Crc 
-        protected Dictionary<uint, AssetBundleItem> assetBundleItemDic = new Dictionary<uint, AssetBundleItem>();
+        private Dictionary<uint, TAssetBundleItem> mAssetBundleItemDic = new Dictionary<uint, TAssetBundleItem>();
         //AssetBundleItem类对象池
-        protected SimpleObjectPool<AssetBundleItem> assetBundleItemPool = new SimpleObjectPool<AssetBundleItem>(() => new AssetBundleItem(), initCount: 500);
+        private SimpleObjectPool<TAssetBundleItem> mAssetBundleItemPool = new SimpleObjectPool<TAssetBundleItem>(() => new TAssetBundleItem(), initCount: 500);
 
 
         AssetBundleManager() { }
@@ -49,13 +49,13 @@ namespace EdgeFramework.Res
             if (!AppConfig.UseAssetBundle)
                 return false;
 #endif
-            resouceItemDic.Clear();
-            string configPath = ABLoadPath + abConfigABName;
-            string hotAbPath = HotPatchManager.Instance.ComputeABPath(abConfigABName);
+            mResouceItemDic.Clear();
+            string configPath = ABLoadPath + mAbConfigABName;
+            string hotAbPath = HotPatchManager.Instance.ComputeABPath(mAbConfigABName);
             configPath = string.IsNullOrEmpty(hotAbPath) ? configPath : hotAbPath;
             byte[] bytes = AES.AESFileByteDecrypt(configPath, EdgeFrameworkConst.AESKEY);
             AssetBundle configAB = AssetBundle.LoadFromMemory(bytes);
-            TextAsset textAsset = configAB.LoadAsset<TextAsset>(abConfigABName);
+            TextAsset textAsset = configAB.LoadAsset<TextAsset>(mAbConfigABName);
             if (textAsset == null)
             {
                 Debug.LogError("AssetBundleConfig is no exist!");
@@ -65,21 +65,21 @@ namespace EdgeFramework.Res
             BinaryFormatter bf = new BinaryFormatter();
             AssetBundleConfig config = (AssetBundleConfig)bf.Deserialize(stream);
             stream.Close();
-            for (int i = 0; i < config.abList.Count; i++)
+            for (int i = 0; i < config.AbList.Count; i++)
             {
-                ABBase abBase = config.abList[i];
-                ResouceItem item = new ResouceItem();
-                item.crc = abBase.crc;
-                item.assetName = abBase.assetName;
-                item.abName = abBase.abName;
-                item.dependAssetBundle = abBase.abDependce;
-                if (resouceItemDic.ContainsKey(item.crc))
+                ABBase abBase = config.AbList[i];
+                TResouceItem item = new TResouceItem();
+                item.Crc = abBase.Crc;
+                item.AssetName = abBase.AssetName;
+                item.AbName = abBase.AbName;
+                item.DependAssetBundle = abBase.AbDependce;
+                if (mResouceItemDic.ContainsKey(item.Crc))
                 {
-                    Debug.LogError("重复的Crc:" + item.assetName + "ab包名:" + item.abName);
+                    Debug.LogError("重复的Crc:" + item.AssetName + "ab包名:" + item.AbName);
                 }
                 else
                 {
-                    resouceItemDic.Add(item.crc, item);
+                    mResouceItemDic.Add(item.Crc, item);
                 }
             }
             return true;
@@ -89,10 +89,10 @@ namespace EdgeFramework.Res
         /// </summary>
         /// <param name="crc"></param>
         /// <returns></returns>
-        public ResouceItem LoadResouceAssetBundle(uint crc)
+        public TResouceItem LoadResouceAssetBundle(uint crc)
         {
-            ResouceItem item = null;
-            if (!resouceItemDic.TryGetValue(crc, out item) || item == null)
+            TResouceItem item = null;
+            if (!mResouceItemDic.TryGetValue(crc, out item) || item == null)
             {
                 Debug.LogError(string.Format("LoadResourceAssetBundle Erro:can not find crc {0} in AssetBundleConfig", crc.ToString()));
                 return item;
@@ -102,12 +102,12 @@ namespace EdgeFramework.Res
             //    item.RefCount++;
             //    return item;
             //}
-            item.assetBundle = LoadAssetBundle(item.abName);
-            if (item.dependAssetBundle != null)
+            item.AssetBundle = LoadAssetBundle(item.AbName);
+            if (item.DependAssetBundle != null)
             {
-                for (int i = 0; i < item.dependAssetBundle.Count; i++)
+                for (int i = 0; i < item.DependAssetBundle.Count; i++)
                 {
-                    LoadAssetBundle(item.dependAssetBundle[i]);
+                    LoadAssetBundle(item.DependAssetBundle[i]);
                 }
             }
             return item;
@@ -119,9 +119,9 @@ namespace EdgeFramework.Res
         /// <returns></returns>
         AssetBundle LoadAssetBundle(string name)
         {
-            AssetBundleItem item = null;
+            TAssetBundleItem item = null;
             uint crc = CRC32.GetCRC32(name);
-            if (!assetBundleItemDic.TryGetValue(crc, out item))
+            if (!mAssetBundleItemDic.TryGetValue(crc, out item))
             {
                 AssetBundle assetBundel = null;
 
@@ -135,49 +135,49 @@ namespace EdgeFramework.Res
                     Debug.LogError("Load AssetBundle Error:" + fullpath);
                 }
 
-                item = assetBundleItemPool.Allocate();
-                item.assetBundle = assetBundel;
-                item.reCount++;
-                assetBundleItemDic.Add(crc, item);
+                item = mAssetBundleItemPool.Allocate();
+                item.AB = assetBundel;
+                item.ReCount++;
+                mAssetBundleItemDic.Add(crc, item);
             }
             else
             {
-                item.reCount++;
+                item.ReCount++;
 
             }
-            return item.assetBundle;
+            return item.AB;
 
         }
         /// <summary>
         /// 释放资源
         /// </summary>
         /// <param name="item"></param>
-        public void ReleaseAsset(ResouceItem item)
+        public void ReleaseAsset(TResouceItem item)
         {
             if (item == null)
                 return;
-            if (item.dependAssetBundle != null && item.dependAssetBundle.Count > 0)
+            if (item.DependAssetBundle != null && item.DependAssetBundle.Count > 0)
             {
-                for (int i = 0; i < item.dependAssetBundle.Count; i++)
+                for (int i = 0; i < item.DependAssetBundle.Count; i++)
                 {
-                    UnLoadAssetBundle(item.dependAssetBundle[i]);
+                    UnLoadAssetBundle(item.DependAssetBundle[i]);
                 }
             }
-            UnLoadAssetBundle(item.abName);
+            UnLoadAssetBundle(item.AbName);
         }
         void UnLoadAssetBundle(string name)
         {
-            AssetBundleItem item = null;
+            TAssetBundleItem item = null;
             uint crc = CRC32.GetCRC32(name);
-            if (assetBundleItemDic.TryGetValue(crc, out item) && item != null)
+            if (mAssetBundleItemDic.TryGetValue(crc, out item) && item != null)
             {
-                item.reCount--;
-                if (item.reCount <= 0 && item.assetBundle != null)
+                item.ReCount--;
+                if (item.ReCount <= 0 && item.AB != null)
                 {
-                    item.assetBundle.Unload(true);
+                    item.AB.Unload(true);
                     item.Reset();
-                    assetBundleItemPool.Recycle(item);
-                    assetBundleItemDic.Remove(crc);
+                    mAssetBundleItemPool.Recycle(item);
+                    mAssetBundleItemDic.Remove(crc);
                 }
             }
         }
@@ -186,55 +186,55 @@ namespace EdgeFramework.Res
         /// </summary>
         /// <param name="crc"></param>
         /// <returns></returns>
-        public ResouceItem FindResouceItem(uint crc)
+        public TResouceItem FindResouceItem(uint crc)
         {
-            ResouceItem item = null;
-            resouceItemDic.TryGetValue(crc, out item);
+            TResouceItem item = null;
+            mResouceItemDic.TryGetValue(crc, out item);
             return item;
         }
     }
-    public class AssetBundleItem
+    public class TAssetBundleItem
     {
-        public AssetBundle assetBundle = null;
-        public int reCount;
+        public AssetBundle AB = null;
+        public int ReCount;
         public void Reset()
         {
-            assetBundle = null;
-            reCount = 0;
+            AB = null;
+            ReCount = 0;
         }
     }
-    public class ResouceItem
+    public class TResouceItem
     {
         //资源路径的CRC
-        public uint crc = 0;
+        public uint Crc = 0;
         //资源的文件名
-        public string assetName = string.Empty;
+        public string AssetName = string.Empty;
         //该资源所在的AssetBundel名字
-        public string abName = string.Empty;
+        public string AbName = string.Empty;
         //该资源所依赖的AssetBundle
-        public List<string> dependAssetBundle = null;
+        public List<string> DependAssetBundle = null;
 
         //该资源加载完的AB包
-        public AssetBundle assetBundle = null;
+        public AssetBundle AssetBundle = null;
         //资源对象
-        public Object obj = null;
+        public Object Obj = null;
         //资源唯一标识
-        public int guid = 0;
+        public int Guid = 0;
         //资源最后所使用的时间
-        public float lastUserTime = 0.0f;
+        public float LastUserTime = 0.0f;
         //引用计数
-        protected int refCount = 0;
+        protected int mRefCount = 0;
         //是否跳场景清理
-        public bool clear = true;
+        public bool Clear = true;
         public int RefCount
         {
-            get { return refCount; }
+            get { return mRefCount; }
             set
             {
-                refCount = value;
-                if (refCount < 0)
+                mRefCount = value;
+                if (mRefCount < 0)
                 {
-                    Debug.LogError("refcount<0" + refCount + "," + (obj != null ? obj.name : "name is null"));
+                    Debug.LogError("refcount<0" + mRefCount + "," + (Obj != null ? Obj.name : "name is null"));
                 }
             }
         }

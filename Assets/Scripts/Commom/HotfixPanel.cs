@@ -44,41 +44,55 @@ public class HotfixPanel : MonoBehaviour
 #if UNITY_EDITOR
             CheckVersion();
 #else
-                if (Application.internetReachability == NetworkReachability.NotReachable)
-                {
-                    //提示网络错误,检测网络连接是否正常
-                    GameRoot.OpenCommonConfirm("网络连接失败", "网络连接失败，请检查网络连接是否正常?", () => { Application.Quit(); }, () => { Application.Quit(); });
-
-                }
-                else
-                {
-                    CheckVersion();
-                }
+            if (Application.internetReachability == NetworkReachability.NotReachable)
+            {
+                //提示网络错误,检测网络连接是否正常
+                // GameRoot.OpenCommonConfirm("网络连接失败", "网络连接失败，请检查网络连接是否正常?", () => { Application.Quit(); }, () => { Application.Quit(); });
+                LEventSystem.SendEvent(ShareEvent.OpenSelectMessageBox, "网络连接失败", "网络连接失败，请检查网络连接是否正常?",
+              new CallbackSelect(NetworkAnomaly));
+            }
+            else
+            {
+                CheckVersion();
+            }
 #endif
         }
         else
             StartOnFinish();
     }
-
+    private void NetworkAnomaly(SelectMessageBox box, bool b, object[] objs)
+    {
+        box.gameObject.SetActive(false);
+        if (b)
+        {
+            //点击开始下载
+            QuitApp();
+        }
+        else
+        {
+            //点击取消下载
+            QuitApp();
+        }
+    }
     void CheckVersion()
     {
         //检查该版本是否有热更
         HotPatchManager.Instance.CheckVersion((hot) =>
-        {
+    {
             //如果有热更
             if (hot)
-            {
+        {
                 //提示玩家是否确定热更下载
                 LEventSystem.SendEvent(ShareEvent.OpenSelectMessageBox, "热更确定", string.Format("当前版本为{0},有{1:F}M大小热更新,是否确定下载?",
-                    HotPatchManager.Instance.CurVersion, HotPatchManager.Instance.LoadSumSize / 1024.0f),
-                  new CallbackSelect(SelectHotfix));
-            }
-            else
-            {
+                HotPatchManager.Instance.CurVersion, HotPatchManager.Instance.LoadSumSize / 1024.0f),
+              new CallbackSelect(SelectHotfix));
+        }
+        else
+        {
                 //进入游戏
                 StartOnFinish();
-            }
-        });
+        }
+    });
     }
     private void SelectHotfix(SelectMessageBox box, bool b, object[] objs)
     {
@@ -211,7 +225,7 @@ public class HotfixPanel : MonoBehaviour
         box.gameObject.SetActive(false);
         if (b)
         {
-        
+
             AnewDownload();
         }
         else

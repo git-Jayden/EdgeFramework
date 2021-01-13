@@ -148,7 +148,7 @@ public class SheetEditor
         sheetManagerSB.Append(LineText("using EdgeFramework.Sheet;\nusing EdgeFramework;\nusing System.Collections.Generic;\n"));
         sheetManagerSB.Append(LineText("public partial class SheetManager : Singleton<SheetManager>"));
         sheetManagerSB.Append(LineText("{"));
-
+        sheetManagerSB.Append(LineText("SheetManager(){}", 1));
         var sheetCount = 0;
         foreach (var table in sheetDict)
         {

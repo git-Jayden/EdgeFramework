@@ -21,13 +21,13 @@ namespace EdgeFrameworkEditor
             BundleHotFix window = (BundleHotFix)GetWindow(typeof(BundleHotFix), false, "热更包界面", true);
             window.Show();
         }
-        string md5Path = "";
-        string hotCount = "1";
+        private string mMd5Path = "";
+        private string mHotCount = "1";
         OpenFileName openFileName = null;
         private void OnGUI()
         {
             GUILayout.BeginHorizontal();
-            md5Path = EditorGUILayout.TextField("ABMD5路径： ", md5Path, GUILayout.Width(350), GUILayout.Height(20));
+            mMd5Path = EditorGUILayout.TextField("ABMD5路径： ", mMd5Path, GUILayout.Width(350), GUILayout.Height(20));
             if (GUILayout.Button("选择版本ABMD5文件", GUILayout.Width(150), GUILayout.Height(30)))
             {
                 openFileName = new OpenFileName();
@@ -43,18 +43,18 @@ namespace EdgeFrameworkEditor
                 if (LocalDialog.GetSaveFileName(openFileName))
                 {
                     Debug.Log(openFileName.file);
-                    md5Path = openFileName.file;
+                    mMd5Path = openFileName.file;
                 }
             }
             GUILayout.EndHorizontal();
             GUILayout.BeginHorizontal();
-            hotCount = EditorGUILayout.TextField("热更补丁版本：", hotCount, GUILayout.Width(350), GUILayout.Height(20));
+            mHotCount = EditorGUILayout.TextField("热更补丁版本：", mHotCount, GUILayout.Width(350), GUILayout.Height(20));
             GUILayout.EndHorizontal();
             if (GUILayout.Button("开始打热更包", GUILayout.Width(100), GUILayout.Height(50)))
             {
-                if (!string.IsNullOrEmpty(md5Path) && md5Path.EndsWith(".bytes"))
+                if (!string.IsNullOrEmpty(mMd5Path) && mMd5Path.EndsWith(".bytes"))
                 {
-                    BundleEditor.Build(true, md5Path, hotCount);
+                    BundleEditor.Build(true, mMd5Path, mHotCount);
                 }
             }
         }

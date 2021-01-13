@@ -81,7 +81,7 @@ namespace EdgeFrameworkEditor
         [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.Encryption +"/ 加密AB包")]
         public static void EncryptAB()
         {
-            DirectoryInfo directory = new DirectoryInfo(BundleEditor.bundleTargetPath);
+            DirectoryInfo directory = new DirectoryInfo(BundleEditor.BundleTargetPath);
             FileInfo[] files = directory.GetFiles("*", SearchOption.AllDirectories);
             for (int i = 0; i < files.Length; i++)
             {
@@ -96,7 +96,7 @@ namespace EdgeFrameworkEditor
         [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.Encryption + "/解密AB包")]
         public static void DecrptyAB() 
         {
-            DirectoryInfo directory = new DirectoryInfo(BundleEditor.bundleTargetPath);
+            DirectoryInfo directory = new DirectoryInfo(BundleEditor.BundleTargetPath);
             FileInfo[] files = directory.GetFiles("*", SearchOption.AllDirectories);
             for (int i = 0; i < files.Length; i++)
             {

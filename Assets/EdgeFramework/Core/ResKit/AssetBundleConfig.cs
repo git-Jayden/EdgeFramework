@@ -17,21 +17,21 @@ namespace EdgeFramework.Res
     public class AssetBundleConfig
     {
         [XmlElement("ABList")]
-        public List<ABBase> abList { get; set; }
+        public List<ABBase> AbList { get; set; }
     }
 
     [System.Serializable]
     public class ABBase
     {
         [XmlAttribute("Path")]
-        public string path { get; set; }
+        public string Path { get; set; }
         [XmlAttribute("Crc")]
-        public uint crc { get; set; }
+        public uint Crc { get; set; }
         [XmlAttribute("ABName")]
-        public string abName { get; set; }
+        public string AbName { get; set; }
         [XmlAttribute("AssetName")]
-        public string assetName { get; set; }
+        public string AssetName { get; set; }
         [XmlElement("ABDependce")]
-        public List<string> abDependce { get; set; }
+        public List<string> AbDependce { get; set; }
     }
 }

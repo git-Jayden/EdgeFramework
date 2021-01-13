@@ -58,8 +58,12 @@ public class ProcedureCheckUpdate : ProcedureBase
     //加载配置表
     void LoadConfiger()
     {
+        //加载UI配置表
+        SheetManager.Instance.InitUIPanel();
         //加载音效配置表
-        AudioPlayer.Instance.ParseAudioConfig();
+        SheetManager.Instance.InitSound();
+        //加载背景音乐配置表
+        SheetManager.Instance.InitMusic();
     }
 
 }

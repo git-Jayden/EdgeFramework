@@ -21,115 +21,115 @@ namespace EdgeFramework.Res
         RES_SLOW,//低优先级
         RES_NUM,//优先级数量
     }
-    public class ResouceObj
+    public class TResouceObj
     {
         //路径对应Crc
-        public uint crc = 0;
+        public uint Crc = 0;
         //存ResourceItem
-        public ResouceItem resItem = null;
+        public TResouceItem ResItem = null;
         //实例化出来的GameObject
-        public GameObject cloneObj = null;
+        public GameObject CloneObj = null;
         //是否跳场景清除
-        public bool clear = true;
+        public bool Clear = true;
         //储存GUID
-        public long guid = 0;
+        public long Guid = 0;
         //是否已经放回对象池
-        public bool already = false;
+        public bool Already = false;
         //--------------------------------
 
         //是否放到场景节点下
-        public bool setSceneParent = false;
+        public bool SetSceneParent = false;
         //示例化资源加载完成回调
-        public OnAsyncObjFinish dealFinish = null;
+        public OnAsyncObjFinish DealFinish = null;
         //异步参数
-        public object param1, param2, param3 = null;
+        public object Param1, Param2, Param3 = null;
         //离线数据
-        public OfflineData offlineData = null;
+        public OfflineData OffData = null;
 
         public void Reset()
         {
-            crc = 0;
-            cloneObj = null;
-            clear = true;
-            guid = 0;
-            resItem = null;
-            already = false;
-            setSceneParent = false;
-            dealFinish = null;
-            param1 = null;
-            param2 = null;
-            param3 = null;
-            offlineData = null;
+            Crc = 0;
+            CloneObj = null;
+            Clear = true;
+            Guid = 0;
+            ResItem = null;
+            Already = false;
+            SetSceneParent = false;
+            DealFinish = null;
+            Param1 = null;
+            Param2 = null;
+            Param3 = null;
+            OffData = null;
 
         }
     }
-    public class AsyncLoadResParam
+    public class TAsyncLoadResParam
     {
-        public List<AsyncCallBack> callbackList = new List<AsyncCallBack>();
-        public uint crc;
-        public string path;
-        public bool sprite = false;
-        public LoadResPriority priority = LoadResPriority.RES_SLOW;
+        public List<TAsyncCallBack> CallbackList = new List<TAsyncCallBack>();
+        public uint Crc;
+        public string Path;
+        public bool IsSprite = false;
+        public LoadResPriority Priority = LoadResPriority.RES_SLOW;
 
         public void Reset()
         {
-            callbackList.Clear();
-            crc = 0;
-            path = "";
-            sprite = false;
-            priority = LoadResPriority.RES_SLOW;
+            CallbackList.Clear();
+            Crc = 0;
+            Path = "";
+            IsSprite = false;
+            Priority = LoadResPriority.RES_SLOW;
         }
     }
-    public class AsyncCallBack
+    public class TAsyncCallBack
     {
         //加载完成的回调（针对ObjectManager）
-        public OnAsyncFinish dealFinish = null;
+        public OnAsyncFinish DealFinish = null;
         //ObjectManagerd对用的中间
-        public ResouceObj resObj = null;
+        public TResouceObj ResObj = null;
 
         //-------------------------------------
         //加载完成的回调
-        public OnAsyncObjFinish dealObjFinish = null;
+        public OnAsyncObjFinish DealObjFinish = null;
         //回调参数
-        public object param1 = null, param2 = null, param3 = null;
+        public object Param1 = null, Param2 = null, Param3 = null;
 
         public void Reset()
         {
-            dealObjFinish = null;
-            dealFinish = null;
+            DealObjFinish = null;
+            DealFinish = null;
 
-            param1 = null;
-            param2 = null;
-            param3 = null;
+            Param1 = null;
+            Param2 = null;
+            Param3 = null;
         }
     }
     //资源加载完成回调
     public delegate void OnAsyncObjFinish(string path, Object obj, object parma1 = null, object param2 = null, object param3 = null);
 
     //实例化对象加载完成回调
-    public delegate void OnAsyncFinish(string path, ResouceObj obj, object parma1 = null, object param2 = null, object param3 = null);
+    public delegate void OnAsyncFinish(string path, TResouceObj obj, object parma1 = null, object param2 = null, object param3 = null);
 
     public class ResourcesManager : Singleton<ResourcesManager>
     {
-        protected long guid = 0;
+        private long mGuid = 0;
         //Mono脚本
-        protected MonoBehaviour startMono;
+        private MonoBehaviour mStartMono;
 
 
 
         //缓存使用的资源 
-        public Dictionary<uint, ResouceItem> assetDic { get; set; } = new Dictionary<uint, ResouceItem>();
+        private Dictionary<uint, TResouceItem> mAssetDic { get; set; } = new Dictionary<uint, TResouceItem>();
         //缓存引用计数为零的资源列表，达到缓存最大的时候释放这个列表最早没用的资源 
-        protected CMapList<ResouceItem> noRefrenceAssetMapList = new CMapList<ResouceItem>();
+        private CMapList<TResouceItem> mNoRefrenceAssetMapList = new CMapList<TResouceItem>();
 
         //中间类，回调类的类对象池
-        protected SimpleObjectPool<AsyncLoadResParam> asyncLoadResParamPool = new SimpleObjectPool<AsyncLoadResParam>(() => new AsyncLoadResParam(), initCount: 50);
-        protected SimpleObjectPool<AsyncCallBack> asyncCallBackPool = new SimpleObjectPool<AsyncCallBack>(() => new AsyncCallBack(), initCount: 50);
+        private SimpleObjectPool<TAsyncLoadResParam> mAsyncLoadResParamPool = new SimpleObjectPool<TAsyncLoadResParam>(() => new TAsyncLoadResParam(), initCount: 50);
+        private SimpleObjectPool<TAsyncCallBack> mAsyncCallBackPool = new SimpleObjectPool<TAsyncCallBack>(() => new TAsyncCallBack(), initCount: 50);
 
         //正在异步加载的资源列表
-        protected List<AsyncLoadResParam>[] loadingAssetList = new List<AsyncLoadResParam>[(int)LoadResPriority.RES_NUM];
+        private List<TAsyncLoadResParam>[] mLoadingAssetList = new List<TAsyncLoadResParam>[(int)LoadResPriority.RES_NUM];
         //正在异步加载的Dic 
-        protected Dictionary<uint, AsyncLoadResParam> loadingAssetDic = new Dictionary<uint, AsyncLoadResParam>();
+        private Dictionary<uint, TAsyncLoadResParam> mLoadingAssetDic = new Dictionary<uint, TAsyncLoadResParam>();
 
         //最长连续卡折加载资源的时间，单位微秒
         const long MAXLOADRESTIME = 200000;
@@ -142,10 +142,10 @@ namespace EdgeFramework.Res
         {
             for (int i = 0; i < (int)LoadResPriority.RES_NUM; i++)
             {
-                loadingAssetList[i] = new List<AsyncLoadResParam>();
+                mLoadingAssetList[i] = new List<TAsyncLoadResParam>();
             }
-            startMono = mono;
-            startMono.StartCoroutine(AsyncLoadCor());
+            mStartMono = mono;
+            mStartMono.StartCoroutine(AsyncLoadCor());
         }
 
         /// <summary>
@@ -154,22 +154,22 @@ namespace EdgeFramework.Res
         /// <returns></returns>
         public long CreatGuid()
         {
-            return guid++;
+            return mGuid++;
         }
         /// <summary>
         /// 清空缓存
         /// </summary>
         public void ClearCache()
         {
-            List<ResouceItem> tempList = new List<ResouceItem>();
-            foreach (ResouceItem item in assetDic.Values)
+            List<TResouceItem> tempList = new List<TResouceItem>();
+            foreach (TResouceItem item in mAssetDic.Values)
             {
-                if (item.clear)
+                if (item.Clear)
                 {
                     tempList.Add(item);
                 }
             }
-            foreach (ResouceItem item in tempList)
+            foreach (TResouceItem item in tempList)
             {
                 DestroyResouceItem(item, true);
             }
@@ -180,27 +180,27 @@ namespace EdgeFramework.Res
         /// 取消异步加载资源
         /// </summary>
         /// <returns></returns>
-        public bool CancleLoad(ResouceObj res)
+        public bool CancleLoad(TResouceObj res)
         {
-            AsyncLoadResParam para = null;
-            if (loadingAssetDic.TryGetValue(res.crc, out para) && loadingAssetList[(int)para.priority].Contains(para))
+            TAsyncLoadResParam para = null;
+            if (mLoadingAssetDic.TryGetValue(res.Crc, out para) && mLoadingAssetList[(int)para.Priority].Contains(para))
             {
-                for (int i = para.callbackList.Count; i > 0; i--)
+                for (int i = para.CallbackList.Count; i > 0; i--)
                 {
-                    AsyncCallBack tempCallBack = para.callbackList[i];
-                    if (tempCallBack != null && res == tempCallBack.resObj)
+                    TAsyncCallBack tempCallBack = para.CallbackList[i];
+                    if (tempCallBack != null && res == tempCallBack.ResObj)
                     {
                         tempCallBack.Reset();
-                        asyncCallBackPool.Recycle(tempCallBack);
-                        para.callbackList.Remove(tempCallBack);
+                        mAsyncCallBackPool.Recycle(tempCallBack);
+                        para.CallbackList.Remove(tempCallBack);
                     }
                 }
-                if (para.callbackList.Count <= 0)
+                if (para.CallbackList.Count <= 0)
                 {
                     para.Reset();
-                    loadingAssetList[(int)para.priority].Remove(para);
-                    asyncLoadResParamPool.Recycle(para);
-                    loadingAssetDic.Remove(res.crc);
+                    mLoadingAssetList[(int)para.Priority].Remove(para);
+                    mAsyncLoadResParamPool.Recycle(para);
+                    mLoadingAssetDic.Remove(res.Crc);
                     return true;
                 }
             }
@@ -213,9 +213,9 @@ namespace EdgeFramework.Res
         /// <param name="resObj"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public int IncreaseResouceRef(ResouceObj resObj, int count = 1)
+        public int IncreaseResouceRef(TResouceObj resObj, int count = 1)
         {
-            return resObj != null ? IncreaseResouceRef(resObj.crc, count) : 0;
+            return resObj != null ? IncreaseResouceRef(resObj.Crc, count) : 0;
         }
         /// <summary>
         /// 根据path增加引用计数
@@ -225,11 +225,11 @@ namespace EdgeFramework.Res
         /// <returns></returns>
         public int IncreaseResouceRef(uint crc = 0, int count = 1)
         {
-            ResouceItem item = null;
-            if (!assetDic.TryGetValue(crc, out item) || item == null)
+            TResouceItem item = null;
+            if (!mAssetDic.TryGetValue(crc, out item) || item == null)
                 return 0;
             item.RefCount += count;
-            item.lastUserTime = Time.realtimeSinceStartup;
+            item.LastUserTime = Time.realtimeSinceStartup;
             return item.RefCount;
         }
         /// <summary>
@@ -238,9 +238,9 @@ namespace EdgeFramework.Res
         /// <param name="resObj"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public int DecreaseResouceRef(ResouceObj resObj, int count = 0)
+        public int DecreaseResouceRef(TResouceObj resObj, int count = 0)
         {
-            return resObj != null ? DecreaseResouceRef(resObj.crc, count) : 0;
+            return resObj != null ? DecreaseResouceRef(resObj.Crc, count) : 0;
         }
         /// <summary>
         /// 根据路径减少引用计数
@@ -250,8 +250,8 @@ namespace EdgeFramework.Res
         /// <returns></returns>
         public int DecreaseResouceRef(uint crc = 0, int count = 1)
         {
-            ResouceItem item = null;
-            if (!assetDic.TryGetValue(crc, out item) || item == null)
+            TResouceItem item = null;
+            if (!mAssetDic.TryGetValue(crc, out item) || item == null)
                 return 0;
             item.RefCount -= count;
             return item.RefCount;
@@ -266,7 +266,7 @@ namespace EdgeFramework.Res
                 return;
 
             uint crc = CRC32.GetCRC32(path);
-            ResouceItem item = GetCacheResouceItem(crc, 0);
+            TResouceItem item = GetCacheResouceItem(crc, 0);
             if (item != null)
             {
                 return;
@@ -276,16 +276,16 @@ namespace EdgeFramework.Res
             if (!AppConfig.UseAssetBundle)
             {
                 item = AssetBundleManager.Instance.FindResouceItem(crc);
-                if (item != null && item.obj != null)
+                if (item != null && item.Obj != null)
                 {
-                    obj = item.obj as Object;
+                    obj = item.Obj as Object;
                 }
                 else
                 {
                     if (item == null)
                     {
-                        item = new ResouceItem();
-                        item.crc = crc;
+                        item = new TResouceItem();
+                        item.Crc = crc;
                     }
                     obj = LoadAssetByEditor<Object>(path);
                 }
@@ -294,21 +294,21 @@ namespace EdgeFramework.Res
             if (obj == null)
             {
                 item = AssetBundleManager.Instance.LoadResouceAssetBundle(crc);
-                if (item != null && item.assetBundle != null)
+                if (item != null && item.AssetBundle != null)
                 {
-                    if (item.obj != null)
+                    if (item.Obj != null)
                     {
-                        obj = item.obj;
+                        obj = item.Obj;
                     }
                     else
                     {
-                        obj = item.assetBundle.LoadAsset<Object>(item.assetName);
+                        obj = item.AssetBundle.LoadAsset<Object>(item.AssetName);
                     }
                 }
             }
             CacheResouce(path, ref item, crc, obj);
             //跳场景不清空缓存
-            item.clear = false;
+            item.Clear = false;
             ReleaseResouce(obj, false);
         }
 
@@ -318,17 +318,17 @@ namespace EdgeFramework.Res
         /// <param name="path"></param>
         /// <param name="resObj"></param>
         /// <returns></returns>
-        public ResouceObj LoadResouce(string path, ResouceObj resObj)
+        public TResouceObj LoadResouce(string path, TResouceObj resObj)
         {
             if (resObj == null)
             {
                 return null;
             }
-            uint crc = resObj.crc == 0 ? CRC32.GetCRC32(path) : resObj.crc;
-            ResouceItem item = GetCacheResouceItem(crc);
+            uint crc = resObj.Crc == 0 ? CRC32.GetCRC32(path) : resObj.Crc;
+            TResouceItem item = GetCacheResouceItem(crc);
             if (item != null)
             {
-                resObj.resItem = item;
+                resObj.ResItem = item;
                 return resObj;
             }
             Object obj = null;
@@ -336,16 +336,16 @@ namespace EdgeFramework.Res
             if (!AppConfig.UseAssetBundle)
             {
                 item = AssetBundleManager.Instance.FindResouceItem(crc);
-                if (item != null && item.obj != null)
+                if (item != null && item.Obj != null)
                 {
-                    obj = item.obj as Object;
+                    obj = item.Obj as Object;
                 }
                 else
                 {
                     if (item == null)
                     {
-                        item = new ResouceItem();
-                        item.crc = crc;
+                        item = new TResouceItem();
+                        item.Crc = crc;
                     }
                     obj = LoadAssetByEditor<Object>(path);
                 }
@@ -354,21 +354,21 @@ namespace EdgeFramework.Res
             if (obj == null)
             {
                 item = AssetBundleManager.Instance.LoadResouceAssetBundle(crc);
-                if (item != null && item.assetBundle != null)
+                if (item != null && item.AssetBundle != null)
                 {
-                    if (item.obj != null)
+                    if (item.Obj != null)
                     {
-                        obj = item.obj as Object;
+                        obj = item.Obj as Object;
                     }
                     else
                     {
-                        obj = item.assetBundle.LoadAsset<Object>(item.assetName);
+                        obj = item.AssetBundle.LoadAsset<Object>(item.AssetName);
                     }
                 }
             }
             CacheResouce(path, ref item, crc, obj);
-            resObj.resItem = item;
-            item.clear = resObj.clear;
+            resObj.ResItem = item;
+            item.Clear = resObj.Clear;
 
 
             return resObj;
@@ -387,33 +387,33 @@ namespace EdgeFramework.Res
                 return null;
             }
             uint crc = CRC32.GetCRC32(path);
-            ResouceItem item = GetCacheResouceItem(crc);
+            TResouceItem item = GetCacheResouceItem(crc);
             if (item != null)
             {
-                return item.obj as T;
+                return item.Obj as T;
             }
             T obj = null;
 #if UNITY_EDITOR
             if (!AppConfig.UseAssetBundle)
             {
                 item = AssetBundleManager.Instance.FindResouceItem(crc);
-                if (item != null && item.assetBundle != null)
+                if (item != null && item.AssetBundle != null)
                 {
-                    if (item.obj != null)
+                    if (item.Obj != null)
                     {
-                        obj = (T)item.obj;
+                        obj = (T)item.Obj;
                     }
                     else
                     {
-                        obj = item.assetBundle.LoadAsset<T>(item.assetName);
+                        obj = item.AssetBundle.LoadAsset<T>(item.AssetName);
                     }
                 }
                 else
                 {
                     if (item == null)
                     {
-                        item = new ResouceItem();
-                        item.crc = crc;
+                        item = new TResouceItem();
+                        item.Crc = crc;
                     }
                     obj = LoadAssetByEditor<T>(path);
                 }
@@ -422,15 +422,15 @@ namespace EdgeFramework.Res
             if (obj == null)
             {
                 item = AssetBundleManager.Instance.LoadResouceAssetBundle(crc);
-                if (item != null && item.assetBundle != null)
+                if (item != null && item.AssetBundle != null)
                 {
-                    if (item.obj != null)
+                    if (item.Obj != null)
                     {
-                        obj = item.obj as T;
+                        obj = item.Obj as T;
                     }
                     else
                     {
-                        obj = item.assetBundle.LoadAsset<T>(item.assetName);
+                        obj = item.AssetBundle.LoadAsset<T>(item.AssetName);
                     }
                 }
             }
@@ -443,16 +443,16 @@ namespace EdgeFramework.Res
         /// <param name="resObj"></param>
         /// <param name="destroyObj">是否将ResouceItem从缓存引用计数的资源列表中移除</param>
         /// <returns></returns>
-        public bool ReleaseResouce(ResouceObj resObj, bool destroyObj = false)
+        public bool ReleaseResouce(TResouceObj resObj, bool destroyObj = false)
         {
             if (resObj == null)
                 return false;
-            ResouceItem item = null;
-            if (!assetDic.TryGetValue(resObj.crc, out item) || item == null)
+            TResouceItem item = null;
+            if (!mAssetDic.TryGetValue(resObj.Crc, out item) || item == null)
             {
-                Debug.LogError("AssetDic里不存在该资源:" + resObj.cloneObj.name + " 可能释放了多次");
+                Debug.LogError("AssetDic里不存在该资源:" + resObj.CloneObj.name + " 可能释放了多次");
             }
-            GameObject.Destroy(resObj.cloneObj);
+            GameObject.Destroy(resObj.CloneObj);
             item.RefCount--;
             DestroyResouceItem(item, destroyObj);
             return true;
@@ -468,10 +468,10 @@ namespace EdgeFramework.Res
         {
             if (obj == null)
                 return false;
-            ResouceItem item = null;
-            foreach (ResouceItem res in assetDic.Values)
+            TResouceItem item = null;
+            foreach (TResouceItem res in mAssetDic.Values)
             {
-                if (res.guid == obj.GetInstanceID())
+                if (res.Guid == obj.GetInstanceID())
                     item = res;
             }
             if (item == null)
@@ -494,8 +494,8 @@ namespace EdgeFramework.Res
             if (string.IsNullOrEmpty(path))
                 return false;
             uint crc = CRC32.GetCRC32(path);
-            ResouceItem item = null;
-            if (!assetDic.TryGetValue(crc, out item) || null == item)
+            TResouceItem item = null;
+            if (!mAssetDic.TryGetValue(crc, out item) || null == item)
             {
                 Debug.LogError("AssetDic里不存在资源" + path + "可能释放了多次");
             }
@@ -512,7 +512,7 @@ namespace EdgeFramework.Res
         /// <param name="crc"></param>
         /// <param name="obj"></param>
         /// <param name="addrefcount"></param>
-        void CacheResouce(string path, ref ResouceItem item, uint crc, Object obj, int addrefcount = 1)
+        void CacheResouce(string path, ref TResouceItem item, uint crc, Object obj, int addrefcount = 1)
         {
             //缓存太多,清除最早没有使用的资源
             WashOut();
@@ -525,19 +525,19 @@ namespace EdgeFramework.Res
             {
                 Debug.LogError("Resource Fail:" + path);
             }
-            item.obj = obj;
-            item.guid = obj.GetInstanceID();
-            item.lastUserTime = Time.realtimeSinceStartup;
+            item.Obj = obj;
+            item.Guid = obj.GetInstanceID();
+            item.LastUserTime = Time.realtimeSinceStartup;
             item.RefCount += addrefcount;
-            ResouceItem oldItem = null;
+            TResouceItem oldItem = null;
 
-            if (assetDic.TryGetValue(item.crc, out oldItem))
+            if (mAssetDic.TryGetValue(item.Crc, out oldItem))
             {
-                assetDic[item.crc] = item;
+                mAssetDic[item.Crc] = item;
             }
             else
             {
-                assetDic.Add(item.crc, item);
+                mAssetDic.Add(item.Crc, item);
             }
         }
         /// <summary>
@@ -546,11 +546,11 @@ namespace EdgeFramework.Res
         protected void WashOut()
         {
             //当大于缓存个数时，进行一半释放
-            while (noRefrenceAssetMapList.Size() >= MAXCACHECOUNT)
+            while (mNoRefrenceAssetMapList.Size() >= MAXCACHECOUNT)
             {
                 for (int i = 0; i < MAXCACHECOUNT / 2; i++)
                 {
-                    ResouceItem item = noRefrenceAssetMapList.Back();
+                    TResouceItem item = mNoRefrenceAssetMapList.Back();
                     DestroyResouceItem(item, true);
                 }
             }
@@ -561,30 +561,30 @@ namespace EdgeFramework.Res
         /// </summary>
         /// <param name="item"></param>
         /// <param name="destroy"></param>
-        protected void DestroyResouceItem(ResouceItem item, bool destroyCache = false)
+        protected void DestroyResouceItem(TResouceItem item, bool destroyCache = false)
         {
             if (item == null || item.RefCount > 0)
                 return;
             if (!destroyCache)
             {
-                noRefrenceAssetMapList.InsertToHead(item);
+                mNoRefrenceAssetMapList.InsertToHead(item);
                 return;
             }
-            if (!assetDic.Remove(item.crc))
+            if (!mAssetDic.Remove(item.Crc))
             {
                 return;
             }
 
-            noRefrenceAssetMapList.Remove(item);
+            mNoRefrenceAssetMapList.Remove(item);
             // 释放assetbundle引用
             AssetBundleManager.Instance.ReleaseAsset(item);
 
             //清空资源对应的对象池
-            ObjectManager.Instance.ClearPoolObject(item.crc);
+            ObjectManager.Instance.ClearPoolObject(item.Crc);
 
-            if (item.obj != null)
+            if (item.Obj != null)
             {
-                item.obj = null;
+                item.Obj = null;
 #if UNITY_EDITOR
                 Resources.UnloadUnusedAssets();
 #endif
@@ -602,15 +602,15 @@ namespace EdgeFramework.Res
         /// <param name="crc"></param>
         /// <param name="addrefcount"></param>
         /// <returns></returns>
-        ResouceItem GetCacheResouceItem(uint crc, int addrefcount = 1)
+        TResouceItem GetCacheResouceItem(uint crc, int addrefcount = 1)
         {
-            ResouceItem item = null;
-            if (assetDic.TryGetValue(crc, out item))
+            TResouceItem item = null;
+            if (mAssetDic.TryGetValue(crc, out item))
             {
                 if (item != null)
                 {
                     item.RefCount += addrefcount;
-                    item.lastUserTime = Time.realtimeSinceStartup;
+                    item.LastUserTime = Time.realtimeSinceStartup;
                 }
             }
             return item;
@@ -631,35 +631,35 @@ namespace EdgeFramework.Res
             {
                 crc = CRC32.GetCRC32(path);
             }
-            ResouceItem item = GetCacheResouceItem(crc);
+            TResouceItem item = GetCacheResouceItem(crc);
             if (item != null)
             {
                 if (dealFinish != null)
                 {
-                    dealFinish(path, item.obj, param1, param2, param3);
+                    dealFinish(path, item.Obj, param1, param2, param3);
                 }
                 return;
             }
             //判断是否在加载中
-            AsyncLoadResParam para = null;
-            if (!loadingAssetDic.TryGetValue(crc, out para) || para == null)
+            TAsyncLoadResParam para = null;
+            if (!mLoadingAssetDic.TryGetValue(crc, out para) || para == null)
             {
-                para = asyncLoadResParamPool.Allocate();
-                para.crc = crc;
-                para.path = path;
-                para.sprite = isSprite;
-                para.priority = priority;
-                loadingAssetDic.Add(crc, para);
-                loadingAssetList[(int)priority].Add(para);
+                para = mAsyncLoadResParamPool.Allocate();
+                para.Crc = crc;
+                para.Path = path;
+                para.IsSprite = isSprite;
+                para.Priority = priority;
+                mLoadingAssetDic.Add(crc, para);
+                mLoadingAssetList[(int)priority].Add(para);
             }
             //往回调列表里面加回调
-            AsyncCallBack callBack = asyncCallBackPool.Allocate();
-            callBack.dealObjFinish = dealFinish;
+            TAsyncCallBack callBack = mAsyncCallBackPool.Allocate();
+            callBack.DealObjFinish = dealFinish;
 
-            callBack.param1 = param1;
-            callBack.param2 = param2;
-            callBack.param3 = param3;
-            para.callbackList.Add(callBack);
+            callBack.Param1 = param1;
+            callBack.Param2 = param2;
+            callBack.Param3 = param3;
+            para.CallbackList.Add(callBack);
         }
         /// <summary>
         /// 针对ObjectManager异步加载的接口
@@ -668,30 +668,30 @@ namespace EdgeFramework.Res
         /// <param name="resObj"></param>
         /// <param name="dealfinish"></param>
         /// <param name="priority"></param>
-        public void AsyncLoadResouce(string path, ResouceObj resObj, OnAsyncFinish dealfinish, LoadResPriority priority)
+        public void AsyncLoadResouce(string path, TResouceObj resObj, OnAsyncFinish dealfinish, LoadResPriority priority)
         {
-            ResouceItem item = GetCacheResouceItem(resObj.crc);
+            TResouceItem item = GetCacheResouceItem(resObj.Crc);
             if (item != null)
             {
-                resObj.resItem = item;
+                resObj.ResItem = item;
                 dealfinish?.Invoke(path, resObj);
             }
             //判断是否在加载中
-            AsyncLoadResParam para = null;
-            if (!loadingAssetDic.TryGetValue(resObj.crc, out para) || para == null)
+            TAsyncLoadResParam para = null;
+            if (!mLoadingAssetDic.TryGetValue(resObj.Crc, out para) || para == null)
             {
-                para = asyncLoadResParamPool.Allocate();
-                para.crc = resObj.crc;
-                para.path = path;
-                para.priority = priority;
-                loadingAssetDic.Add(resObj.crc, para);
-                loadingAssetList[(int)priority].Add(para);
+                para = mAsyncLoadResParamPool.Allocate();
+                para.Crc = resObj.Crc;
+                para.Path = path;
+                para.Priority = priority;
+                mLoadingAssetDic.Add(resObj.Crc, para);
+                mLoadingAssetList[(int)priority].Add(para);
             }
             //往回调列表里面加回调
-            AsyncCallBack callBack = asyncCallBackPool.Allocate();
-            callBack.dealFinish = dealfinish;
-            callBack.resObj = resObj;
-            para.callbackList.Add(callBack);
+            TAsyncCallBack callBack = mAsyncCallBackPool.Allocate();
+            callBack.DealFinish = dealfinish;
+            callBack.ResObj = resObj;
+            para.CallbackList.Add(callBack);
         }
 
         /// <summary>
@@ -700,7 +700,7 @@ namespace EdgeFramework.Res
         /// <returns></returns>
         IEnumerator AsyncLoadCor()
         {
-            List<AsyncCallBack> callBackList = null;
+            List<TAsyncCallBack> callBackList = null;
             //上一次yild的时间
             long lastYildTime = System.DateTime.Now.Ticks;
             while (true)
@@ -708,59 +708,59 @@ namespace EdgeFramework.Res
                 bool haveYield = false;
                 for (int i = 0; i < (int)LoadResPriority.RES_NUM; i++)
                 {
-                    if (loadingAssetList[(int)LoadResPriority.RES_HIGHT].Count > 0)
+                    if (mLoadingAssetList[(int)LoadResPriority.RES_HIGHT].Count > 0)
                     {
                         i = (int)LoadResPriority.RES_HIGHT;
                     }
-                    else if (loadingAssetList[(int)LoadResPriority.RES_MIDDLE].Count > 0)
+                    else if (mLoadingAssetList[(int)LoadResPriority.RES_MIDDLE].Count > 0)
                     {
                         i = (int)LoadResPriority.RES_MIDDLE;
                     }
 
-                    List<AsyncLoadResParam> loadingList = loadingAssetList[i];
+                    List<TAsyncLoadResParam> loadingList = mLoadingAssetList[i];
 
                     if (loadingList.Count <= 0)
                         continue;
-                    AsyncLoadResParam loadingItem = loadingList[0];
+                    TAsyncLoadResParam loadingItem = loadingList[0];
                     loadingList.RemoveAt(0);
-                    callBackList = loadingItem.callbackList;
+                    callBackList = loadingItem.CallbackList;
 
                     Object obj = null;
-                    ResouceItem item = null;
+                    TResouceItem item = null;
 #if UNITY_EDITOR
                     if (!AppConfig.UseAssetBundle)
                     {
-                        if (loadingItem.sprite)
+                        if (loadingItem.IsSprite)
                         {
-                            obj = LoadAssetByEditor<Sprite>(loadingItem.path);
+                            obj = LoadAssetByEditor<Sprite>(loadingItem.Path);
                         }
                         else
                         {
-                            obj = LoadAssetByEditor<Object>(loadingItem.path);
+                            obj = LoadAssetByEditor<Object>(loadingItem.Path);
                         }
 
                         //模拟异步加载
                         yield return new WaitForSeconds(0.5f);
-                        item = AssetBundleManager.Instance.FindResouceItem(loadingItem.crc);
+                        item = AssetBundleManager.Instance.FindResouceItem(loadingItem.Crc);
                         if (item == null)
                         {
-                            item = new ResouceItem();
-                            item.crc = loadingItem.crc;
+                            item = new TResouceItem();
+                            item.Crc = loadingItem.Crc;
                         }
                     }
 #endif
                     if (obj == null)
                     {
-                        item = AssetBundleManager.Instance.LoadResouceAssetBundle(loadingItem.crc);
-                        if (item != null && item.assetBundle != null)
+                        item = AssetBundleManager.Instance.LoadResouceAssetBundle(loadingItem.Crc);
+                        if (item != null && item.AssetBundle != null)
                         {
                             AssetBundleRequest abRequest = null;
-                            if (loadingItem.sprite)
+                            if (loadingItem.IsSprite)
                             {
-                                abRequest = item.assetBundle.LoadAssetAsync<Sprite>(item.assetName);
+                                abRequest = item.AssetBundle.LoadAssetAsync<Sprite>(item.AssetName);
                             }
                             else
-                                abRequest = item.assetBundle.LoadAssetAsync(item.assetName);
+                                abRequest = item.AssetBundle.LoadAssetAsync(item.AssetName);
                             yield return abRequest;
                             if (abRequest.isDone)
                             {
@@ -769,33 +769,33 @@ namespace EdgeFramework.Res
                             lastYildTime = System.DateTime.Now.Ticks;
                         }
                     }
-                    CacheResouce(loadingItem.path, ref item, loadingItem.crc, obj, callBackList.Count);
+                    CacheResouce(loadingItem.Path, ref item, loadingItem.Crc, obj, callBackList.Count);
                     for (int j = 0; j < callBackList.Count; j++)
                     {
-                        AsyncCallBack callBack = callBackList[j];
-                        if (callBack != null && callBack.dealFinish != null && callBack.resObj != null)
+                        TAsyncCallBack callBack = callBackList[j];
+                        if (callBack != null && callBack.DealFinish != null && callBack.ResObj != null)
                         {
-                            ResouceObj tempResObj = callBack.resObj;
-                            tempResObj.resItem = item;
-                            callBack.dealFinish(loadingItem.path, tempResObj, tempResObj.param1, tempResObj.param2, tempResObj.param3);
-                            callBack.dealFinish = null;
+                            TResouceObj tempResObj = callBack.ResObj;
+                            tempResObj.ResItem = item;
+                            callBack.DealFinish(loadingItem.Path, tempResObj, tempResObj.Param1, tempResObj.Param2, tempResObj.Param3);
+                            callBack.DealFinish = null;
                             tempResObj = null;
                         }
 
-                        if (callBack != null && callBack.dealObjFinish != null)
+                        if (callBack != null && callBack.DealObjFinish != null)
                         {
-                            callBack.dealObjFinish(loadingItem.path, obj, callBack.param1, callBack.param2, callBack.param3);
-                            callBack.dealObjFinish = null;
+                            callBack.DealObjFinish(loadingItem.Path, obj, callBack.Param1, callBack.Param2, callBack.Param3);
+                            callBack.DealObjFinish = null;
                         }
                         callBack.Reset();
-                        asyncCallBackPool.Recycle(callBack);
+                        mAsyncCallBackPool.Recycle(callBack);
                     }
                     obj = null;
                     callBackList.Clear();
-                    loadingAssetDic.Remove(loadingItem.crc);
+                    mLoadingAssetDic.Remove(loadingItem.Crc);
 
                     loadingItem.Reset();
-                    asyncLoadResParamPool.Recycle(loadingItem);
+                    mAsyncLoadResParamPool.Recycle(loadingItem);
 
                     if (System.DateTime.Now.Ticks - lastYildTime > MAXLOADRESTIME)
                     {

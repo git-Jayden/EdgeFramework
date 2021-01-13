@@ -14,18 +14,18 @@ namespace EdgeFramework.Res
     public class ObjectManager : Singleton<ObjectManager>
     {
 
-        public Transform recyclePoolTrs;
+        public Transform RecyclePoolTrs;
         //场景节点 
-        public Transform sceneTrs;
+        public Transform SceneTrs;
         //对象池 
-        protected Dictionary<uint, List<ResouceObj>> objectPoolDic = new Dictionary<uint, List<ResouceObj>>();
+        private Dictionary<uint, List<TResouceObj>> mObjectPoolDic = new Dictionary<uint, List<TResouceObj>>();
         //暂存ResObj的Dic
-        protected Dictionary<int, ResouceObj> resouceObjDic = new Dictionary<int, ResouceObj>();
+        private Dictionary<int, TResouceObj> mResouceObjDic = new Dictionary<int, TResouceObj>();
 
         //ResouceObj的类对象池  
-        protected SimpleObjectPool<ResouceObj> resouceObjPool = new SimpleObjectPool<ResouceObj>(() => new ResouceObj(), initCount: 1000);
+        private SimpleObjectPool<TResouceObj> mResouceObjPool = new SimpleObjectPool<TResouceObj>(() => new TResouceObj(), initCount: 1000);
         //根据异步的guid储存ResouceObj,来判断是否正在异步加载
-        protected Dictionary<long, ResouceObj> asyncResObjs = new Dictionary<long, ResouceObj>();
+        private Dictionary<long, TResouceObj> mAsyncResObjs = new Dictionary<long, TResouceObj>();
         ObjectManager() { }
 
 
@@ -36,8 +36,8 @@ namespace EdgeFramework.Res
         /// <param name="sceneTrs">场景默认节点</param>
         public void Init(Transform rectcleTrs, Transform sceneTrs)
         {
-            recyclePoolTrs = rectcleTrs;
-            this.sceneTrs = sceneTrs;
+            RecyclePoolTrs = rectcleTrs;
+            this.SceneTrs = sceneTrs;
         }
         /// <summary>
         /// 清空对象池
@@ -45,18 +45,18 @@ namespace EdgeFramework.Res
         public void ClearCache()
         {
             List<uint> tempList = new List<uint>();
-            foreach (uint key in objectPoolDic.Keys)
+            foreach (uint key in mObjectPoolDic.Keys)
             {
-                List<ResouceObj> st = objectPoolDic[key];
+                List<TResouceObj> st = mObjectPoolDic[key];
                 for (int i = st.Count - 1; i >= 0; i--)
                 {
-                    ResouceObj resObj = st[i];
-                    if (!System.Object.ReferenceEquals(resObj.cloneObj, null) && resObj.clear)
+                    TResouceObj resObj = st[i];
+                    if (!System.Object.ReferenceEquals(resObj.CloneObj, null) && resObj.Clear)
                     {
-                        GameObject.Destroy(resObj.cloneObj);
-                        resouceObjDic.Remove(resObj.cloneObj.GetInstanceID());
+                        GameObject.Destroy(resObj.CloneObj);
+                        mResouceObjDic.Remove(resObj.CloneObj.GetInstanceID());
                         resObj.Reset();
-                        resouceObjPool.Recycle(resObj);
+                        mResouceObjPool.Recycle(resObj);
                         st.Remove(resObj);
                     }
                 }
@@ -68,9 +68,9 @@ namespace EdgeFramework.Res
             for (int i = 0; i < tempList.Count; i++)
             {
                 uint temp = tempList[i];
-                if (objectPoolDic.ContainsKey(temp))
+                if (mObjectPoolDic.ContainsKey(temp))
                 {
-                    objectPoolDic.Remove(temp);
+                    mObjectPoolDic.Remove(temp);
                 }
             }
             tempList.Clear();
@@ -78,25 +78,25 @@ namespace EdgeFramework.Res
 
         public void ClearPoolObject(uint crc)
         {
-            List<ResouceObj> st = null;
-            if (!objectPoolDic.TryGetValue(crc, out st) || st == null)
+            List<TResouceObj> st = null;
+            if (!mObjectPoolDic.TryGetValue(crc, out st) || st == null)
                 return;
             for (int i = st.Count - 1; i >= 0; i--)
             {
-                ResouceObj resObj = st[i];
-                if (resObj.clear)
+                TResouceObj resObj = st[i];
+                if (resObj.Clear)
                 {
                     st.Remove(resObj);
-                    int tempID = resObj.cloneObj.GetInstanceID();
-                    GameObject.Destroy(resObj.cloneObj);
+                    int tempID = resObj.CloneObj.GetInstanceID();
+                    GameObject.Destroy(resObj.CloneObj);
                     resObj.Reset();
-                    resouceObjDic.Remove(tempID);
-                    resouceObjPool.Recycle(resObj);
+                    mResouceObjDic.Remove(tempID);
+                    mResouceObjPool.Recycle(resObj);
                 }
             }
             if (st.Count <= 0)
             {
-                objectPoolDic.Remove(crc);
+                mObjectPoolDic.Remove(crc);
             }
         }
 
@@ -108,11 +108,11 @@ namespace EdgeFramework.Res
         public OfflineData FindOfflineData(GameObject obj)
         {
             OfflineData data = null;
-            ResouceObj resObj = null;
-            resouceObjDic.TryGetValue(obj.GetInstanceID(), out resObj);
+            TResouceObj resObj = null;
+            mResouceObjDic.TryGetValue(obj.GetInstanceID(), out resObj);
             if (resObj != null)
             {
-                data = resObj.offlineData;
+                data = resObj.OffData;
             }
             return data;
         }
@@ -123,22 +123,22 @@ namespace EdgeFramework.Res
         /// </summary>
         /// <param name="crc"></param>
         /// <returns></returns>
-        protected ResouceObj GetObjectFromPool(uint crc)
+        protected TResouceObj GetObjectFromPool(uint crc)
         {
-            List<ResouceObj> st = null;
-            if (objectPoolDic.TryGetValue(crc, out st) && st != null && st.Count > 0)
+            List<TResouceObj> st = null;
+            if (mObjectPoolDic.TryGetValue(crc, out st) && st != null && st.Count > 0)
             {
                 ResourcesManager.Instance.IncreaseResouceRef(crc);
-                ResouceObj resObj = st[0];
+                TResouceObj resObj = st[0];
                 st.RemoveAt(0);
-                GameObject obj = resObj.cloneObj;
+                GameObject obj = resObj.CloneObj;
                 if (!ReferenceEquals(obj, null))
                 {
-                    if (!ReferenceEquals(resObj.offlineData, null))
+                    if (!ReferenceEquals(resObj.OffData, null))
                     {
-                        resObj.offlineData.ResetProp();
+                        resObj.OffData.ResetProp();
                     }
-                    resObj.already = false;
+                    resObj.Already = false;
 #if UNITY_EDITOR
                     if (obj.name.EndsWith("(Recycle)"))
                     {
@@ -157,12 +157,12 @@ namespace EdgeFramework.Res
         /// <param name="guid"></param>
         public void CancleLoad(long guid)
         {
-            ResouceObj resObj = null;
-            if (asyncResObjs.TryGetValue(guid, out resObj) && ResourcesManager.Instance.CancleLoad(resObj))
+            TResouceObj resObj = null;
+            if (mAsyncResObjs.TryGetValue(guid, out resObj) && ResourcesManager.Instance.CancleLoad(resObj))
             {
-                asyncResObjs.Remove(guid);
+                mAsyncResObjs.Remove(guid);
                 resObj.Reset();
-                resouceObjPool.Recycle(resObj);
+                mResouceObjPool.Recycle(resObj);
             }
         }
         /// <summary>
@@ -172,7 +172,7 @@ namespace EdgeFramework.Res
         /// <returns></returns>
         public bool IsingAsyncLoad(long guid)
         {
-            return asyncResObjs[guid] != null;
+            return mAsyncResObjs[guid] != null;
         }
         /// <summary>
         /// 该对象是否是对象池创建的
@@ -181,7 +181,7 @@ namespace EdgeFramework.Res
         /// <returns></returns>
         public bool IsObjectManagerCreat(GameObject obj)
         {
-            ResouceObj resObj = resouceObjDic[obj.GetInstanceID()];
+            TResouceObj resObj = mResouceObjDic[obj.GetInstanceID()];
             return resObj == null ? false : true;
         }
         /// <summary>
@@ -218,36 +218,36 @@ namespace EdgeFramework.Res
         public GameObject InstantiateObject(string path, bool setSceneParent = false, bool bClear = true)
         {
             uint crc = CRC32.GetCRC32(path);
-            ResouceObj resouceObj = GetObjectFromPool(crc);
+            TResouceObj resouceObj = GetObjectFromPool(crc);
             if (resouceObj == null)
             {
-                resouceObj = resouceObjPool.Allocate();
-                resouceObj.crc = crc;
-                resouceObj.clear = bClear;
+                resouceObj = mResouceObjPool.Allocate();
+                resouceObj.Crc = crc;
+                resouceObj.Clear = bClear;
               
                 //ResouceManager提供加载方法
                 resouceObj = ResourcesManager.Instance.LoadResouce(path, resouceObj);
 
 
-                if (resouceObj.resItem.obj != null)
+                if (resouceObj.ResItem.Obj != null)
                 {
-                    resouceObj.cloneObj = GameObject.Instantiate(resouceObj.resItem.obj) as GameObject;
-                    resouceObj.offlineData = resouceObj.cloneObj.GetComponent<OfflineData>();
-                    resouceObj.offlineData.ResetProp();
+                    resouceObj.CloneObj = GameObject.Instantiate(resouceObj.ResItem.Obj) as GameObject;
+                    resouceObj.OffData = resouceObj.CloneObj.GetComponent<OfflineData>();
+                    resouceObj.OffData.ResetProp();
                 }
 
             }
             if (setSceneParent)
             {
-                resouceObj.cloneObj.transform.SetParent(sceneTrs, false);
+                resouceObj.CloneObj.transform.SetParent(SceneTrs, false);
             }
-            int tempID = resouceObj.cloneObj.GetInstanceID();
-            if (!resouceObjDic.ContainsKey(tempID))
+            int tempID = resouceObj.CloneObj.GetInstanceID();
+            if (!mResouceObjDic.ContainsKey(tempID))
             {
-                resouceObjDic.Add(tempID, resouceObj);
+                mResouceObjDic.Add(tempID, resouceObj);
             }
 
-            return resouceObj.cloneObj;
+            return resouceObj.CloneObj;
         }
         /// <summary>
         /// 异步加载
@@ -268,26 +268,26 @@ namespace EdgeFramework.Res
                 return 0;
             }
             uint crc = CRC32.GetCRC32(path);
-            ResouceObj resObj = GetObjectFromPool(crc);
+            TResouceObj resObj = GetObjectFromPool(crc);
             if (resObj != null)
             {
                 if (setSceneParent)
                 {
-                    resObj.cloneObj.transform.SetParent(sceneTrs, false);
+                    resObj.CloneObj.transform.SetParent(SceneTrs, false);
                 }
-                deaFinish?.Invoke(path, resObj.cloneObj, param1, param2, param3);
-                return resObj.guid;
+                deaFinish?.Invoke(path, resObj.CloneObj, param1, param2, param3);
+                return resObj.Guid;
             }
             long guid = ResourcesManager.Instance.CreatGuid();
 
-            resObj = resouceObjPool.Allocate();
-            resObj.crc = crc;
-            resObj.setSceneParent = setSceneParent;
-            resObj.clear = bClear;
-            resObj.dealFinish = deaFinish;
-            resObj.param1 = param1;
-            resObj.param2 = param2;
-            resObj.param3 = param3;
+            resObj = mResouceObjPool.Allocate();
+            resObj.Crc = crc;
+            resObj.SetSceneParent = setSceneParent;
+            resObj.Clear = bClear;
+            resObj.DealFinish = deaFinish;
+            resObj.Param1 = param1;
+            resObj.Param2 = param2;
+            resObj.Param3 = param3;
             //调用ResouceManager的异步加载接口
             ResourcesManager.Instance.AsyncLoadResouce(path, resObj, OnLoadResouceObjFinish, priority);
             return guid;
@@ -300,11 +300,11 @@ namespace EdgeFramework.Res
         /// <param name="param1">参数1</param>
         /// <param name="param2">参数2</param>
         /// <param name="param3">参数3</param>
-        void OnLoadResouceObjFinish(string path, ResouceObj resObj, object param1 = null, object param2 = null, object param3 = null)
+        void OnLoadResouceObjFinish(string path, TResouceObj resObj, object param1 = null, object param2 = null, object param3 = null)
         {
             if (resObj == null)
                 return;
-            if (resObj.resItem.obj == null)
+            if (resObj.ResItem.Obj == null)
             {
 #if UNITY_EDITOR
                 Debug.LogError("异步资源加载的资源为空:" + path);
@@ -312,30 +312,30 @@ namespace EdgeFramework.Res
             }
             else
             {
-                resObj.cloneObj = GameObject.Instantiate(resObj.resItem.obj) as GameObject;
-                resObj.offlineData = resObj.cloneObj.GetComponent<OfflineData>();
+                resObj.CloneObj = GameObject.Instantiate(resObj.ResItem.Obj) as GameObject;
+                resObj.OffData = resObj.CloneObj.GetComponent<OfflineData>();
             }
             //加载完成就从正在加载的异步中移除
-            if (asyncResObjs.ContainsKey(resObj.guid))
+            if (mAsyncResObjs.ContainsKey(resObj.Guid))
             {
-                asyncResObjs.Remove(resObj.guid);
+                mAsyncResObjs.Remove(resObj.Guid);
             }
-            if (resObj.cloneObj != null && resObj.setSceneParent)
+            if (resObj.CloneObj != null && resObj.SetSceneParent)
             {
-                resObj.cloneObj.transform.SetParent(sceneTrs, false);
+                resObj.CloneObj.transform.SetParent(SceneTrs, false);
             }
-            if (resObj.dealFinish != null)
+            if (resObj.DealFinish != null)
             {
-                int tempID = resObj.cloneObj.GetInstanceID();
-                if (!resouceObjDic.ContainsKey(tempID))
+                int tempID = resObj.CloneObj.GetInstanceID();
+                if (!mResouceObjDic.ContainsKey(tempID))
                 {
-                    resouceObjDic.Add(tempID, resObj);
+                    mResouceObjDic.Add(tempID, resObj);
                 }
                 //else
                 //{
                 //    resouceObjDic[tempID] = resObj;
                 //}
-                resObj.dealFinish(path, resObj.cloneObj, resObj.param1, resObj.param2, resObj.param3);
+                resObj.DealFinish(path, resObj.CloneObj, resObj.Param1, resObj.Param2, resObj.Param3);
             }
         }
         /// <summary>
@@ -349,9 +349,9 @@ namespace EdgeFramework.Res
         {
             if (obj == null)
                 return;
-            ResouceObj resObj = null;
+            TResouceObj resObj = null;
             int tempID = obj.GetInstanceID();
-            if (!resouceObjDic.TryGetValue(tempID, out resObj))
+            if (!mResouceObjDic.TryGetValue(tempID, out resObj))
             {
                 Debug.LogError(obj.name + "对象不是ObjectManager创建的!");
                 return;
@@ -361,7 +361,7 @@ namespace EdgeFramework.Res
                 Debug.LogError("缓存的ResouceObj为空");
                 return;
             }
-            if (resObj.already)
+            if (resObj.Already)
             {
                 Debug.LogError("该对象已经放回对象池了,检测自己是否清空引用");
                 return;
@@ -369,44 +369,44 @@ namespace EdgeFramework.Res
 #if UNITY_EDITOR
             obj.name += "(Recycle)";
 #endif
-            List<ResouceObj> st = null;
+            List<TResouceObj> st = null;
             if (maxCacheCount == 0)
             {
-                resouceObjDic.Remove(tempID);
+                mResouceObjDic.Remove(tempID);
                 ResourcesManager.Instance.ReleaseResouce(resObj, destroyCache);
                 resObj.Reset();
-                resouceObjPool.Recycle(resObj);
+                mResouceObjPool.Recycle(resObj);
             }
             else //回收到对象池
             {
-                if (!objectPoolDic.TryGetValue(resObj.crc, out st) || st == null)
+                if (!mObjectPoolDic.TryGetValue(resObj.Crc, out st) || st == null)
                 {
-                    st = new List<ResouceObj>();
-                    objectPoolDic.Add(resObj.crc, st);
+                    st = new List<TResouceObj>();
+                    mObjectPoolDic.Add(resObj.Crc, st);
                 }
-                if (resObj.cloneObj)
+                if (resObj.CloneObj)
                 {
                     if (recycleParent)
                     {
-                        resObj.cloneObj.transform.SetParent(recyclePoolTrs);
+                        resObj.CloneObj.transform.SetParent(RecyclePoolTrs);
                     }
                     else
                     {
-                        resObj.cloneObj.SetActive(false);
+                        resObj.CloneObj.SetActive(false);
                     }
                 }
                 if (maxCacheCount < 0 || st.Count < maxCacheCount)
                 {
                     st.Add(resObj);
-                    resObj.already = true;
+                    resObj.Already = true;
                     ResourcesManager.Instance.DecreaseResouceRef(resObj);
                 }
                 else
                 {
-                    resouceObjDic.Remove(tempID);
+                    mResouceObjDic.Remove(tempID);
                     ResourcesManager.Instance.ReleaseResouce(resObj, destroyCache);
                     resObj.Reset();
-                    resouceObjPool.Recycle(resObj);
+                    mResouceObjPool.Recycle(resObj);
                 }
             }
         }

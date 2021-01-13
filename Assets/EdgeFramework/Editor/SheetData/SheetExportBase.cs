@@ -59,6 +59,7 @@ using System.Text;
         public string ExportScript()
         {
             var sb = new StringBuilder();
+      
             sb.Append(SheetEditor.LineText(string.Format("//{0}", mSheetName), 1));
             string initFuncName = Utility.TextHelp.Concat("Init", mSheetName);
             string ListParamName = Utility.TextHelp.Concat(mSheetName, "List");
@@ -95,7 +96,7 @@ using System.Text;
             }
 
             // 初始化方法
-            sb.Append(SheetEditor.LineText(string.Format("private void {0}()", initFuncName), 1));
+            sb.Append(SheetEditor.LineText(string.Format("public void {0}()", initFuncName), 1));
             sb.Append(SheetEditor.LineText("{", 1));
             if (exportList || exportDict)
             {

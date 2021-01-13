@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 public partial class SheetManager : Singleton<SheetManager>
 {
+	SheetManager(){}
 	//Example
 	private Dictionary<int,Example> mExampleDict;
 	public Example GetExample(int key)
@@ -18,7 +19,7 @@ public partial class SheetManager : Singleton<SheetManager>
 		}
 		return mExampleDict[key];
 	}
-	private void InitExample()
+	public void InitExample()
 	{
 		var items = GetSheetInfo<ExampleList>("Example").Items;
 		mExampleDict = new Dictionary<int, Example>();
@@ -35,7 +36,7 @@ public partial class SheetManager : Singleton<SheetManager>
 		}
 		return mMusicDict[key];
 	}
-	private void InitMusic()
+	public void InitMusic()
 	{
 		var items = GetSheetInfo<MusicList>("Music").Items;
 		mMusicDict = new Dictionary<MusicEnum, Music>();
@@ -52,7 +53,7 @@ public partial class SheetManager : Singleton<SheetManager>
 		}
 		return mPreloadList;
 	}
-	private void InitPreload()
+	public void InitPreload()
 	{
 		var items = GetSheetInfo<PreloadList>("Preload").Items;
 		mPreloadList = items;
@@ -68,7 +69,7 @@ public partial class SheetManager : Singleton<SheetManager>
 		}
 		return mSceneDict[key];
 	}
-	private void InitScene()
+	public void InitScene()
 	{
 		var items = GetSheetInfo<SceneList>("Scene").Items;
 		mSceneDict = new Dictionary<int, Scene>();
@@ -85,7 +86,7 @@ public partial class SheetManager : Singleton<SheetManager>
 		}
 		return mSoundDict[key];
 	}
-	private void InitSound()
+	public void InitSound()
 	{
 		var items = GetSheetInfo<SoundList>("Sound").Items;
 		mSoundDict = new Dictionary<SoundEnum, Sound>();
@@ -102,7 +103,7 @@ public partial class SheetManager : Singleton<SheetManager>
 		}
 		return mUIPanelDict[key];
 	}
-	private void InitUIPanel()
+	public void InitUIPanel()
 	{
 		var items = GetSheetInfo<UIPanelList>("UIPanel").Items;
 		mUIPanelDict = new Dictionary<UIPanelTypeEnum, UIPanel>();

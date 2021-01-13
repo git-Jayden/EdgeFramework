@@ -24,7 +24,7 @@ public partial class SheetManager : Singleton<SheetManager>
     /// </summary>
     private T GetSheetInfo<T>(string fileName)
     {
-        var text = ResourcesManager.Instance.LoadResouce<TextAsset>(Utility.TextHelp.Concat(PREFIX, fileName, POSTFIX));
+        var text = ResourcesManager.Instance.LoadResouce<TextAsset>("Assets/ABResources/Data/" + Utility.TextHelp.Concat(PREFIX, fileName, POSTFIX));
         return Utility.ProtobufHelp.NDeserialize<T>(text.bytes);
     }
 
