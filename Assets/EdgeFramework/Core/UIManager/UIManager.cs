@@ -171,13 +171,14 @@ namespace EdgeFramework.UI
             //关闭栈顶页面的显示
             BaseUI topPanel = mPanelStack.Pop();
             topPanel.OnExit();
-            topPanel.ClearPanelBtn();
+      
             if (mPanelDict.ContainsKey(topPanel.PanelType))
             {
                 mPanelDict.Remove(topPanel.PanelType);
             }
             if (destroy)
             {
+                topPanel.ClearPanelBtn();
                 ObjectManager.Instance.ReleaseObject(topPanel.UIObj, 0, true);
             }
             else

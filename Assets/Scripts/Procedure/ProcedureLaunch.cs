@@ -77,9 +77,9 @@ public class ProcedureLaunch : ProcedureBase
     }
     private void InitSoundSettings()
     {
-        AudioManager.Instance.IsMusicOn = false;
+        AudioManager.Instance.IsMusicOn = true;
         AudioManager.Instance.MusicVolume = 0.3f;
-        AudioManager.Instance.IsSoundOn = false;
+        AudioManager.Instance.IsSoundOn = true;
         AudioManager.Instance.SoundVolume = 1f;
         AudioManager.Instance.SaveAllPreferences();
         Debug.Log("Init sound settings complete.");

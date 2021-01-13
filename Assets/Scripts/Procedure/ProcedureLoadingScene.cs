@@ -36,21 +36,14 @@ public class ProcedureLoadingScene : ProcedureBase
 
     public override void OnExit()
     {
-
+        UIManager.Instance.PopPanel();
     }
 
     public override void OnUpdate(float step)
     {
 
     }
-    /// <summary>
-    /// 设置场景环境
-    /// </summary>
-    /// <param name="name">场景名</param>
-    void SetSceneSetting(string name)
-    {
-        //设置各种场景环境,可以根据配表来TODO
-    }
+
 
     IEnumerator LoadSceneAsync(string name)
     {
@@ -80,7 +73,6 @@ public class ProcedureLoadingScene : ProcedureBase
                 }
             }
             CurrentMapName = name;
-            SetSceneSetting(name);
             //自行加载剩余的10%
             targetProgress = 100;
             while (LoadingProgress < targetProgress - 2)
@@ -91,7 +83,7 @@ public class ProcedureLoadingScene : ProcedureBase
             LoadingProgress = 100;
             asyncScene.allowSceneActivation = true;
             AlreadyLoadScene = true;
-            LoadSceneOver();
+            LoadSceneOver(name);
         }
         yield return null;
     }
@@ -101,10 +93,10 @@ public class ProcedureLoadingScene : ProcedureBase
 
     }
     //加载场景完成
-    private void LoadSceneOver()
+    private void LoadSceneOver(string name)
     {
+        //设置各种场景环境,可以根据配表来TODO
         GetFSM().ChangeState(NextProcedure);
-        UIManager.Instance.PopPanel();
     }
     private void ClearCache()
     {

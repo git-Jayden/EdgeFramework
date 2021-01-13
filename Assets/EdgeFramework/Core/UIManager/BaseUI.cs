@@ -22,14 +22,21 @@ namespace EdgeFramework.UI
         public void Init(GameObject gameObject, UIPanelTypeEnum panelType)
         {
             UIObj = gameObject;
-            RectTrans = UIObj.GetComponent<RectTransform>();
             PanelType = panelType;
         }
-
+        public virtual void OnCreat() { }
         /// <summary>
         /// 界面被显示出来
         /// </summary>
-        public virtual void OnEnter(params object[] param) {  }
+        public virtual void OnEnter(params object[] param)
+        {
+            if (RectTrans == null)
+            {
+                RectTrans = UIObj.GetComponent<RectTransform>();
+                OnCreat();
+            }
+          
+        }
         public virtual void OnUpdate() { }
         /// <summary>
         /// 界面暂停
@@ -54,7 +61,7 @@ namespace EdgeFramework.UI
         /// <returns></returns>
         public virtual bool OnMessage(UIMsgID msgID, params object[] paralist) { return true; }
 
-
+         
         /// <summary>
         /// 移除该面板所有的button事件
         /// </summary>

@@ -1,18 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using EdgeFramework.UI;
+using EdgeFramework.Sheet;
+using EdgeFramework;
 
-public class ProcedureMenu : MonoBehaviour
+public class ProcedureMenu : ProcedureBase
 {
-    // Start is called before the first frame update
-    void Start()
+    public ProcedureMenu(FSM _fsm)
+: base(_fsm, StateDefine.PROCEDURE_MENU)
     {
-        
+
+    }
+    public override void OnEnter(object[] param)
+    {
+        UIManager.Instance.PushPanel<MenuPanel>(UIPanelTypeEnum.MainMenuPanel);
+        AudioPlayer.Instance.PlayBGM(MusicEnum.Lobby);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnExit()
     {
-        
+      
+    }
+
+    public override void OnUpdate(float step)
+    {
+       
     }
 }

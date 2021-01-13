@@ -14,6 +14,8 @@ public class ProcedureManager
         FsmCtrl.AddState(new ProcedureLaunch(FsmCtrl));
         FsmCtrl.AddState(new ProcedureCheckUpdate(FsmCtrl));
         FsmCtrl.AddState(new ProcedureLoadingScene(FsmCtrl));
+        FsmCtrl.AddState(new ProcedureMenu(FsmCtrl));
+        
 
         FsmCtrl.AddState(new StateChooseClass(FsmCtrl));
         FsmCtrl.AddState(new StateClassContent(FsmCtrl));
