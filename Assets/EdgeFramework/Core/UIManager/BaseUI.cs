@@ -9,7 +9,7 @@ namespace EdgeFramework.UI
     public abstract class BaseUI
     {
         [HideInInspector]
-        public GameObject Go { get;private set; }
+        public GameObject UIObj { get;private set; }
         [HideInInspector]
         public RectTransform RectTrans { get;private set; }
         [HideInInspector]
@@ -17,20 +17,20 @@ namespace EdgeFramework.UI
 
         private List<Button> mAllButton = new List<Button>();
         /// <summary>
-        /// 创建
+        /// 初始化
         /// </summary>
-        public void Create(GameObject gameObject, UIPanelTypeEnum panelType, params object[] data)
+        public void Init(GameObject gameObject, UIPanelTypeEnum panelType)
         {
-            Go = gameObject;
-            RectTrans = Go.GetComponent<RectTransform>();
+            UIObj = gameObject;
+            RectTrans = UIObj.GetComponent<RectTransform>();
             PanelType = panelType;
-  
         }
+
         /// <summary>
         /// 界面被显示出来
         /// </summary>
-        public virtual void OnEnter(){  }
-
+        public virtual void OnEnter(params object[] param) {  }
+        public virtual void OnUpdate() { }
         /// <summary>
         /// 界面暂停
         /// </summary>
@@ -178,9 +178,9 @@ namespace EdgeFramework.UI
         /// </summary>
         public virtual void SetSiblingIndex(int siblingIndex)
         {
-            if (Go != null)
+            if (UIObj != null)
             {
-                Go.transform.SetSiblingIndex(siblingIndex);
+                UIObj.transform.SetSiblingIndex(siblingIndex);
             }
         }
         /// <summary>

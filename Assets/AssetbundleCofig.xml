@@ -19,7 +19,7 @@
   <ABList Path="Assets/ABResources/Prefabs/UI/KnapsackPanel.prefab" Crc="830328512" ABName="knapsackpanel" AssetName="KnapsackPanel.prefab">
     <ABDependce>texture</ABDependce>
   </ABList>
-  <ABList Path="Assets/ABResources/Prefabs/UI/LodingPanel.prefab" Crc="3189190195" ABName="lodingpanel" AssetName="LodingPanel.prefab" />
+  <ABList Path="Assets/ABResources/Prefabs/UI/LoadingPanel.prefab" Crc="3407713081" ABName="loadingpanel" AssetName="LoadingPanel.prefab" />
   <ABList Path="Assets/ABResources/Prefabs/UI/MainMenuPanel.prefab" Crc="2023550766" ABName="mainmenupanel" AssetName="MainMenuPanel.prefab">
     <ABDependce>texture</ABDependce>
   </ABList>

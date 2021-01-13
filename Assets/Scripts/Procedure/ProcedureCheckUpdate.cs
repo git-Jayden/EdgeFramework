@@ -4,7 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// 检查更新
+/// </summary>
 public class ProcedureCheckUpdate : ProcedureBase
 {
     public ProcedureCheckUpdate(FSM _fsm)
@@ -12,7 +14,7 @@ public class ProcedureCheckUpdate : ProcedureBase
     {
 
     }
-    public override void OnEnter()
+    public override void OnEnter(object[] param)
     {
         //打开更新界面检查更新
         LEventSystem.Instance.Send(ShareEvent.OpenHotfixPanel);
@@ -29,7 +31,7 @@ public class ProcedureCheckUpdate : ProcedureBase
     }
     public void ChangeState()
     {
-        GetFSM().ChangeState(StateDefine.PROCEDURE_LOADING_SCENE);
+        GetFSM().ChangeState(StateDefine.PROCEDURE_LOADING_SCENE,SceneName.MENU_SCENE,StateDefine.PROCEDURE_MENU);
     }
     public IEnumerator StartGame(Image image, Text text)
     {
@@ -51,7 +53,7 @@ public class ProcedureCheckUpdate : ProcedureBase
         image.fillAmount = 0.9f;
         yield return null;
         text.text = "初始化地图... ...";
-
+        LoadMapScene();
         image.fillAmount = 1f;
         yield return null;
     }
@@ -64,6 +66,12 @@ public class ProcedureCheckUpdate : ProcedureBase
         SheetManager.Instance.InitSound();
         //加载背景音乐配置表
         SheetManager.Instance.InitMusic();
+        //加载场景配置表
+        SheetManager.Instance.InitScene();
     }
-
+    //初始化地图
+    void LoadMapScene()
+    {
+     
+    }
 }

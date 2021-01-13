@@ -14,13 +14,12 @@ public class ProcedureLaunch : ProcedureBase
     {
 
     }
-    public override void OnEnter()
+    public override void OnEnter(object[] param)
     {
         // 语言配置：设置当前使用的语言 初始化语言
         InitLanguageSettings();
         // 根据使用的语言，通知底层加载对应的资源
         InitCurrentVariant();
-
         // 声音配置：根据用户配置数据，设置即将使用的声音选项
         InitSoundSettings();
     }
@@ -32,8 +31,12 @@ public class ProcedureLaunch : ProcedureBase
 
     public override void OnUpdate(float step)
     {
-        // 运行一帧即切换到 Splash 展示流程
-        GetFSM().ChangeState(StateDefine.PROCEDURE_SPLASH);
+        // TODO: 这里可以播放一个 Splash 动画
+
+        //运行一帧即切换到 check update 流程
+        GetFSM().ChangeState(StateDefine.PROCEDURE_CHECK_UPDATE);
+
+
         
     }
     private void InitLanguageSettings()

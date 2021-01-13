@@ -12,7 +12,7 @@ public class StateClassContent : ProcedureBase
 
     }
 
-    public override void OnEnter()
+    public override void OnEnter(object[] param)
     {
       
     }

@@ -2,7 +2,7 @@
 
 public interface IState
 {
-    void OnEnter();
+    void OnEnter(object[] param);
     void OnUpdate(float step);
     void OnExit();
 

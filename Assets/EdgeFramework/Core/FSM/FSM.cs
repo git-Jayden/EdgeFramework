@@ -1,14 +1,17 @@
 ﻿
 using System.Collections.Generic;
+using UnityEngine;
 
 public class FSM
 {
     private List<IState> mList;
     public IState CurState { get; private set; }
-
-    public FSM()
+   public MonoBehaviour Mono { get; private set; }
+    public FSM(MonoBehaviour mono)
     {
         mList = new List<IState>();
+        Mono = mono;
+        
     }
     //添加状态
     public bool AddState(IState _state)
@@ -47,7 +50,7 @@ public class FSM
         return null;
     }
     //改变状态
-    public bool ChangeState(string _name)
+    public bool ChangeState(string _name, params object[]param)
     {
         //要改变的状态
         IState _tmpState = GetState(_name);
@@ -62,7 +65,7 @@ public class FSM
         }
         //把要改变的状态赋值给当前状态
         CurState = _tmpState;
-        CurState.OnEnter();//启动当前状态的OnEnter
+        CurState.OnEnter(param);//启动当前状态的OnEnter
         return true;
     }
     //更新

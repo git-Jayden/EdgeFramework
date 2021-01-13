@@ -8,14 +8,12 @@ public class ProcedureManager
     public FSM FsmCtrl { get; private set; }
 
 
-    public void OnInit()
+    public void OnInit(MonoBehaviour mono)
     {
-        FsmCtrl = new FSM();
+        FsmCtrl = new FSM(mono);
         FsmCtrl.AddState(new ProcedureLaunch(FsmCtrl));
-        FsmCtrl.AddState(new ProcedureSplash(FsmCtrl));
-        FsmCtrl.AddState(new ProcedureLoadingScene(FsmCtrl));
         FsmCtrl.AddState(new ProcedureCheckUpdate(FsmCtrl));
-        
+        FsmCtrl.AddState(new ProcedureLoadingScene(FsmCtrl));
 
         FsmCtrl.AddState(new StateChooseClass(FsmCtrl));
         FsmCtrl.AddState(new StateClassContent(FsmCtrl));

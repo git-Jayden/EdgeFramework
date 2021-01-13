@@ -6,6 +6,7 @@ public class StateDefine
     public const string PROCEDURE_SPLASH = "procedure_splash";//开机动画
     public const string PROCEDURE_CHECK_UPDATE = "procedure_check_update";//检查更新
     public const string PROCEDURE_LOADING_SCENE = "procedure_loading_scene";//加载场景
+    public const string PROCEDURE_MENU = "state_choose_actor";//主界面 菜单界面
 
     public const string STATE_CHOOSE_ACTOR = "state_choose_actor";//选择角色状态
     public const string STATE_CHOOSE_CLASS = "state_choose_class";//选择课程状态

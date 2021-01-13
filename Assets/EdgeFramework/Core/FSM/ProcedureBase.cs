@@ -15,7 +15,7 @@ public abstract class ProcedureBase : IState {
         return mStateName;
     } 
 
-    public abstract void OnEnter();
+    public abstract void OnEnter(object[] param);
     public abstract void OnUpdate(float step);
     public abstract void OnExit();
     //获取状态

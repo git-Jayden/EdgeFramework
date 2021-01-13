@@ -10,7 +10,7 @@ public class StateGamePlay : ProcedureBase
 	{
 	}
 
-	public override void OnEnter()
+	public override void OnEnter(object[] param)
 	{
 	
 	}

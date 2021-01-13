@@ -195,7 +195,7 @@ namespace EdgeFramework.Res
             List<GameObject> tempGameObjectList = new List<GameObject>();
             for (int i = 0; i < count; i++)
             {
-                GameObject obj = InstantiateObject(path, false,clear);
+                GameObject obj = InstantiateObject(path, false, clear);
                 tempGameObjectList.Add(obj);
             }
 
@@ -214,6 +214,7 @@ namespace EdgeFramework.Res
         /// <param name="path">路径</param>
         /// <param name="setSceneObj">是否设置Parent为SceneTrs</param>
         /// <param name="bClear">跳场景是否清除</param>
+        /// /// <param name="createCall">创建时回调函数</param>
         /// <returns></returns>
         public GameObject InstantiateObject(string path, bool setSceneParent = false, bool bClear = true)
         {
@@ -224,7 +225,7 @@ namespace EdgeFramework.Res
                 resouceObj = mResouceObjPool.Allocate();
                 resouceObj.Crc = crc;
                 resouceObj.Clear = bClear;
-              
+
                 //ResouceManager提供加载方法
                 resouceObj = ResourcesManager.Instance.LoadResouce(path, resouceObj);
 
@@ -234,6 +235,7 @@ namespace EdgeFramework.Res
                     resouceObj.CloneObj = GameObject.Instantiate(resouceObj.ResItem.Obj) as GameObject;
                     resouceObj.OffData = resouceObj.CloneObj.GetComponent<OfflineData>();
                     resouceObj.OffData.ResetProp();
+              
                 }
 
             }

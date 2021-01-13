@@ -17,6 +17,7 @@ public class CommomUIManager : MonoBehaviour
     void Awake()
     {
         LEventSystem.RegisterEvent(ShareEvent.OpenHotfixPanel, OpenHotfixPanel);
+
         LEventSystem.RegisterEvent(ShareEvent.OpenSelectMessageBox, OpenSelectMessageBox);
         LEventSystem.RegisterEvent(ShareEvent.ShowHint, ShowHint);
 
@@ -29,6 +30,7 @@ public class CommomUIManager : MonoBehaviour
         mHotfixPanel.gameObject.SetActive(true);
         mHotfixPanel.OnInit();
     }
+
     public void OpenSelectMessageBox(int key, params object[] param)
     {
         mSelectMessageBox.gameObject.SetActive(true);

@@ -1,5 +1,6 @@
 ﻿using EdgeFramework;
 using EdgeFramework.Res;
+using EdgeFramework.UI;
 using System.Collections;
 using UnityEngine;
 
@@ -16,18 +17,21 @@ public class GameRoot : MonoSingleton<GameRoot>
         ObjectManager.Instance.Init(GameRoot.Instance.transform.Find("RecyclePoolTrs"), GameRoot.Instance.transform.Find("SceneTrs"));
         HotPatchManager.Instance.Init(GameRoot.Instance);
         GameObject.DontDestroyOnLoad(gameObject);
+        //UIManager初始化
+        UIManager.Instance.OnInit(transform);
     }
     private void Start()
     {
         ProcedureMgr = new ProcedureManager();
-        ProcedureMgr.OnInit();
-        //TODO登录
+        ProcedureMgr.OnInit(this);
+
 
         onGameReset();
     }
     private void Update()
     {
         ProcedureMgr.OnUpdate(Time.deltaTime);
+        UIManager.Instance.OnUpdate();
     }
     
 

@@ -13,7 +13,7 @@ public class StateChooseClass : ProcedureBase
 
     }
 
-    public override void OnEnter()
+    public override void OnEnter(object[] param)
     {
 
         Debug.Log("进入流程");

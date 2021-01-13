@@ -163,17 +163,14 @@ public class HotfixPanel : MonoBehaviour
     }
     IEnumerator OnFinish()
     {
-        ProcedureCheckUpdate splash = GameRoot.Instance.ProcedureMgr.FsmCtrl.CurState as ProcedureCheckUpdate;
-        yield return splash.StartGame(image, sliderTopTex);
-        //TODO 关闭该页面
-        //Destroy(gameObject);
-        //UIManager.Instance.PopPanel();
-
+        ProcedureCheckUpdate checkUpadte = GameRoot.Instance.ProcedureMgr.FsmCtrl.CurState as ProcedureCheckUpdate;
+        yield return checkUpadte.StartGame(image, sliderTopTex);
+        // 关闭该页面
+        gameObject.SetActive(false);
         HotPatchManager.Instance.ServerInfoError -= ServerInfoError;
         HotPatchManager.Instance.ItemError -= ItemError;
         //加载场景
-        //ClearSceneData.LoadLevel(SceneConfig.Two_Login);
-        splash.ChangeState();
+        checkUpadte.ChangeState();
     }
 
     public void Update()

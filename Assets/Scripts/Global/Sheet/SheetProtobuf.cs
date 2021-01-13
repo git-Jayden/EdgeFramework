@@ -175,7 +175,7 @@ namespace EdgeFramework.Sheet
 	{
 		ItemMessagePanel,
 		KnapsackPanel,
-		LodingPanel,
+		LoadingPanel,
 		MainMenuPanel,
 		ShopPanel,
 		SkillPanel,
