@@ -1,4 +1,6 @@
 ﻿using EdgeFramework;
+using EdgeFramework.Res;
+using System.Collections;
 using UnityEngine;
 
 public class GameRoot : MonoSingleton<GameRoot>
@@ -7,12 +9,19 @@ public class GameRoot : MonoSingleton<GameRoot>
 
     public ProcedureManager ProcedureMgr { get; private set; }
 
+    private void Awake()
+    {
+        //资源加载初始化
+        ResourcesManager.Instance.Init(GameRoot.Instance);
+        ObjectManager.Instance.Init(GameRoot.Instance.transform.Find("RecyclePoolTrs"), GameRoot.Instance.transform.Find("SceneTrs"));
+        HotPatchManager.Instance.Init(GameRoot.Instance);
+        GameObject.DontDestroyOnLoad(gameObject);
+    }
     private void Start()
     {
         ProcedureMgr = new ProcedureManager();
         ProcedureMgr.OnInit();
         //TODO登录
-
 
         onGameReset();
     }
@@ -20,6 +29,8 @@ public class GameRoot : MonoSingleton<GameRoot>
     {
         ProcedureMgr.OnUpdate(Time.deltaTime);
     }
+    
+
     /// <summary>
     /// 游戏初始化重置
     /// </summary>
@@ -30,5 +41,11 @@ public class GameRoot : MonoSingleton<GameRoot>
         {
             ProcedureMgr.FsmCtrl.ChangeState(StateDefine.PROCEDURE_LAUNCH);
         }
+    }
+    protected void OnApplicationQuit()
+    {
+        ResourcesManager.Instance.ClearCache();
+        Resources.UnloadUnusedAssets();
+        Debug.Log("清空编辑器缓存");
     }
 }

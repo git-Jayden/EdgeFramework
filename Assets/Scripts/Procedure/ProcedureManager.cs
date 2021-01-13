@@ -13,6 +13,10 @@ public class ProcedureManager
         FsmCtrl = new FSM();
         FsmCtrl.AddState(new ProcedureLaunch(FsmCtrl));
         FsmCtrl.AddState(new ProcedureSplash(FsmCtrl));
+        FsmCtrl.AddState(new ProcedureLoadingScene(FsmCtrl));
+        FsmCtrl.AddState(new ProcedureCheckUpdate(FsmCtrl));
+        
+
         FsmCtrl.AddState(new StateChooseClass(FsmCtrl));
         FsmCtrl.AddState(new StateClassContent(FsmCtrl));
         FsmCtrl.AddState(new StateGamePlay(FsmCtrl));

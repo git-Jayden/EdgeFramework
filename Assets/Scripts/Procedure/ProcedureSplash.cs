@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿
 
 public class ProcedureSplash : ProcedureBase
 {
@@ -11,8 +9,8 @@ public class ProcedureSplash : ProcedureBase
     }
     public override void OnEnter()
     {
-        // TODO: 这里可以播放一个 Splash 动画
-        GameObject.FindObjectOfType<Canvas>().transform.Find("WindRoot/Image").GetComponent<CameraFadeInOut>().fadeIn();
+       
+     
     }
 
     public override void OnExit()
@@ -22,6 +20,9 @@ public class ProcedureSplash : ProcedureBase
 
     public override void OnUpdate(float step)
     {
-       
+        // TODO: 这里可以播放一个 Splash 动画
+        GetFSM().ChangeState(StateDefine.PROCEDURE_CHECK_UPDATE);
+ 
     }
+    
 }
