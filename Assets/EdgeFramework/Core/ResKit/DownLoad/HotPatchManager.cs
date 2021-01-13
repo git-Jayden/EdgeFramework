@@ -141,7 +141,7 @@ namespace EdgeFramework.Res
                 string filePath = unPackPath + "/" + fileName;
                 if (File.Exists(filePath))
                 {
-                    string md5 = MD5Manager.Instance.BuildFileMd5(filePath);
+                    string md5 =Utility.FileHelper.GetMD5HashFromFile(filePath);
                     if (packedMd5[fileName].Md5 != md5)
                     {
                         unPackedList.Add(fileName);
@@ -419,7 +419,7 @@ namespace EdgeFramework.Res
             //存在这个文件时进行对比看是否与服务器MD5码一致，不一致放到下载队列，如果不存在直接放入下载队列
             if (File.Exists(filePath))
             {
-                string md5 = MD5Manager.Instance.BuildFileMd5(filePath);
+                string md5 = Utility.FileHelper.GetMD5HashFromFile(filePath); 
                 if (patch.Md5 != md5)
                 {
                     downLoadList.Add(patch);
@@ -511,7 +511,7 @@ namespace EdgeFramework.Res
                 string md5 = "";
                 if (downLoadMD5Dic.TryGetValue(downLoad.FileName, out md5))
                 {
-                    if (MD5Manager.Instance.BuildFileMd5(downLoad.SaveFilePath) != md5)
+                    if (Utility.FileHelper.GetMD5HashFromFile(downLoad.SaveFilePath)!= md5)
                     {
                         Debug.Log(string.Format("此文件{0}MD5校验失败，即将重新下载", downLoad.FileName));
                         Patch patch = FindPatchByGamePath(downLoad.FileName);

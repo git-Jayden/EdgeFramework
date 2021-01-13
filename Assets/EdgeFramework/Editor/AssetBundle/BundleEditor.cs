@@ -157,7 +157,7 @@ namespace EdgeFrameworkEditor
                 {
                     ABMD5Base abmd5Base = new ABMD5Base();
                     abmd5Base.Name = files[i].Name;
-                    abmd5Base.Md5 = MD5Manager.Instance.BuildFileMd5(files[i].FullName);
+                    abmd5Base.Md5 =Utility.FileHelper.GetMD5HashFromFile(files[i].FullName);
                     abmd5Base.Size = files[i].Length / 1024.0f;
                     abmd5.ABMD5List.Add(abmd5Base);
                 }
@@ -202,7 +202,7 @@ namespace EdgeFrameworkEditor
                 if (!files[i].Name.EndsWith(".meta") && !files[i].Name.EndsWith(".manifest"))
                 {
                     string name = files[i].Name;
-                    string md5 = MD5Manager.Instance.BuildFileMd5(files[i].FullName);
+                    string md5 = Utility.FileHelper.GetMD5HashFromFile(files[i].FullName);
                     ABMD5Base abmd5Base = null;
                     if (!mpackedMd5.ContainsKey(name))
                     {
@@ -252,7 +252,7 @@ namespace EdgeFrameworkEditor
             for (int i = 0; i < files.Length; i++)
             {
                 Patch patch = new Patch();
-                patch.Md5 = MD5Manager.Instance.BuildFileMd5(files[i].FullName);
+                patch.Md5 = Utility.FileHelper.GetMD5HashFromFile(files[i].FullName);
                 patch.Name = files[i].Name;
                 patch.Size = files[i].Length / 1024.0f;
                 patch.Platform = EditorUserBuildSettings.activeBuildTarget.ToString();

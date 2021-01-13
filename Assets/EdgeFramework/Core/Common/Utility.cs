@@ -5,7 +5,7 @@ using System.IO;
 using System.Text;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
-
+using UnityEngine;
 
 namespace EdgeFramework
 {
@@ -15,16 +15,16 @@ namespace EdgeFramework
         /// <summary>
         /// 字符相关的实用函数。
         /// </summary>
-        public static class TextHelp
+        public class TextHelper
         {
             [ThreadStatic]
             private static StringBuilder s_CachedStringBuilder;
 
             private static void CheckCachedStringBuilder()
             {
-                if (Utility.TextHelp.s_CachedStringBuilder == null)
+                if (Utility.TextHelper.s_CachedStringBuilder == null)
                 {
-                    Utility.TextHelp.s_CachedStringBuilder = new StringBuilder(1024);
+                    Utility.TextHelper.s_CachedStringBuilder = new StringBuilder(1024);
                 }
             }
             /// <summary>
@@ -39,10 +39,10 @@ namespace EdgeFramework
                 {
                     throw new EdgeFrameworkException("Format is invalid.");
                 }
-                Utility.TextHelp.CheckCachedStringBuilder();
-                Utility.TextHelp.s_CachedStringBuilder.Length = 0;
-                Utility.TextHelp.s_CachedStringBuilder.AppendFormat(format, arg0);
-                return Utility.TextHelp.s_CachedStringBuilder.ToString();
+                Utility.TextHelper.CheckCachedStringBuilder();
+                Utility.TextHelper.s_CachedStringBuilder.Length = 0;
+                Utility.TextHelper.s_CachedStringBuilder.AppendFormat(format, arg0);
+                return Utility.TextHelper.s_CachedStringBuilder.ToString();
             }
             /// <summary>
             /// 获取格式化字符串。
@@ -57,10 +57,10 @@ namespace EdgeFramework
                 {
                     throw new EdgeFrameworkException("Format is invalid.");
                 }
-                Utility.TextHelp.CheckCachedStringBuilder();
-                Utility.TextHelp.s_CachedStringBuilder.Length = 0;
-                Utility.TextHelp.s_CachedStringBuilder.AppendFormat(format, arg0, arg1);
-                return Utility.TextHelp.s_CachedStringBuilder.ToString();
+                Utility.TextHelper.CheckCachedStringBuilder();
+                Utility.TextHelper.s_CachedStringBuilder.Length = 0;
+                Utility.TextHelper.s_CachedStringBuilder.AppendFormat(format, arg0, arg1);
+                return Utility.TextHelper.s_CachedStringBuilder.ToString();
             }
             /// <summary>
             /// 获取格式化字符串。
@@ -76,10 +76,10 @@ namespace EdgeFramework
                 {
                     throw new EdgeFrameworkException("Format is invalid.");
                 }
-                Utility.TextHelp.CheckCachedStringBuilder();
-                Utility.TextHelp.s_CachedStringBuilder.Length = 0;
-                Utility.TextHelp.s_CachedStringBuilder.AppendFormat(format, arg0, arg1, arg2);
-                return Utility.TextHelp.s_CachedStringBuilder.ToString();
+                Utility.TextHelper.CheckCachedStringBuilder();
+                Utility.TextHelper.s_CachedStringBuilder.Length = 0;
+                Utility.TextHelper.s_CachedStringBuilder.AppendFormat(format, arg0, arg1, arg2);
+                return Utility.TextHelper.s_CachedStringBuilder.ToString();
             }
             /// <summary>
             /// 获取格式化字符串。
@@ -97,10 +97,10 @@ namespace EdgeFramework
                 {
                     throw new EdgeFrameworkException("Args is invalid.");
                 }
-                Utility.TextHelp.CheckCachedStringBuilder();
-                Utility.TextHelp.s_CachedStringBuilder.Length = 0;
-                Utility.TextHelp.s_CachedStringBuilder.AppendFormat(format, args);
-                return Utility.TextHelp.s_CachedStringBuilder.ToString();
+                Utility.TextHelper.CheckCachedStringBuilder();
+                Utility.TextHelper.s_CachedStringBuilder.Length = 0;
+                Utility.TextHelper.s_CachedStringBuilder.AppendFormat(format, args);
+                return Utility.TextHelper.s_CachedStringBuilder.ToString();
             }
 
             public static string Concat(string param1, string param2)
@@ -113,11 +113,11 @@ namespace EdgeFramework
                 {
                     throw new EdgeFrameworkException("param2 is invalid.");
                 }
-                Utility.TextHelp.CheckCachedStringBuilder();
-                Utility.TextHelp.s_CachedStringBuilder.Length = 0;
-                Utility.TextHelp.s_CachedStringBuilder.Append(param1);
-                Utility.TextHelp.s_CachedStringBuilder.Append(param2);
-                return Utility.TextHelp.s_CachedStringBuilder.ToString();
+                Utility.TextHelper.CheckCachedStringBuilder();
+                Utility.TextHelper.s_CachedStringBuilder.Length = 0;
+                Utility.TextHelper.s_CachedStringBuilder.Append(param1);
+                Utility.TextHelper.s_CachedStringBuilder.Append(param2);
+                return Utility.TextHelper.s_CachedStringBuilder.ToString();
             }
             public static string Concat(string param1, string param2, string param3)
             {
@@ -133,12 +133,12 @@ namespace EdgeFramework
                 {
                     throw new EdgeFrameworkException("param3 is invalid.");
                 }
-                Utility.TextHelp.CheckCachedStringBuilder();
-                Utility.TextHelp.s_CachedStringBuilder.Length = 0;
-                Utility.TextHelp.s_CachedStringBuilder.Append(param1);
-                Utility.TextHelp.s_CachedStringBuilder.Append(param2);
-                Utility.TextHelp.s_CachedStringBuilder.Append(param3);
-                return Utility.TextHelp.s_CachedStringBuilder.ToString();
+                Utility.TextHelper.CheckCachedStringBuilder();
+                Utility.TextHelper.s_CachedStringBuilder.Length = 0;
+                Utility.TextHelper.s_CachedStringBuilder.Append(param1);
+                Utility.TextHelper.s_CachedStringBuilder.Append(param2);
+                Utility.TextHelper.s_CachedStringBuilder.Append(param3);
+                return Utility.TextHelper.s_CachedStringBuilder.ToString();
             }
 
             public static string PathConcat(string path1, string path2)
@@ -152,16 +152,16 @@ namespace EdgeFramework
                     throw new EdgeFrameworkException("path2 is invalid.");
                 }
 
-                Utility.TextHelp.CheckCachedStringBuilder();
-                Utility.TextHelp.s_CachedStringBuilder.Length = 0;
-                Utility.TextHelp.s_CachedStringBuilder.Append(path1);
-                Utility.TextHelp.s_CachedStringBuilder.Append("/");
-                Utility.TextHelp.s_CachedStringBuilder.Append(path2);
-                return Utility.TextHelp.s_CachedStringBuilder.ToString();
+                Utility.TextHelper.CheckCachedStringBuilder();
+                Utility.TextHelper.s_CachedStringBuilder.Length = 0;
+                Utility.TextHelper.s_CachedStringBuilder.Append(path1);
+                Utility.TextHelper.s_CachedStringBuilder.Append("/");
+                Utility.TextHelper.s_CachedStringBuilder.Append(path2);
+                return Utility.TextHelper.s_CachedStringBuilder.ToString();
             }
         }
 
-        public class ProtobufHelp
+        public class ProtobufHelper
         {
             /// <summary>
             /// 序列化pb数据
@@ -205,7 +205,7 @@ namespace EdgeFramework
             }
         }
 
-        public class FileHelp
+        public class FileHelper
         {
             /// <summary>
             /// 获取文件的MD5值
@@ -247,7 +247,7 @@ namespace EdgeFramework
             }
 
             /// <summary>
-            /// Writes all text.
+            /// 将字符串写入到路径下的文件中
             /// </summary>
             public static bool WriteAllText(string outFile, string outText)
             {
@@ -265,7 +265,7 @@ namespace EdgeFramework
             }
 
             /// <summary>
-            /// Writes all bytes.
+            /// 将bytes写入到路径下的文件中
             /// </summary>
             public static bool WriteAllBytes(string outFile, byte[] outBytes)
             {
@@ -283,7 +283,7 @@ namespace EdgeFramework
             }
 
             /// <summary>
-            /// Read Text
+            /// 读取文件中所有字符串
             /// </summary>
             public static string ReadAllText(string inFile)
             {
@@ -301,7 +301,7 @@ namespace EdgeFramework
             }
 
             /// <summary>
-            /// Read Bytes
+            /// 读取文件中所有bytes
             /// </summary>
             public static byte[] ReadAllBytes(string inFile)
             {
@@ -383,9 +383,36 @@ namespace EdgeFramework
                     GetFileInFolder(dinfo[i].FullName, fileName, outResult);
                 }
             }
+
+
         }
 
-        public static class SerializeHelper
+        public class PathHelper
+        {
+            /// <summary>
+            /// 根据路径获取文件名
+            /// </summary>
+            /// <param name="path"></param>
+            /// <returns></returns>
+            public static string GetFileName(string path)
+            {
+                string[] fs = path.Split('/');
+                string file = fs[fs.Length - 1];
+                string name = file.Split('.')[0];
+                return name;
+            }
+            /// <summary>
+            /// 根据路径获取后缀名
+            /// </summary>
+            /// <param name="path"></param>
+            /// <returns></returns>
+            public static string GetFileSuffix(string path)
+            {
+                return path.Split('.')[1];
+            }
+        }
+
+        public class SerializeHelper
         {
             /// <summary>
             /// 类转换成二进制
@@ -443,7 +470,7 @@ namespace EdgeFramework
                 if (string.IsNullOrEmpty(path))
                 {
 
-                   
+
                     throw new EdgeFrameworkException("DeserializeBinary Without Valid Path.");
                 }
 
@@ -451,7 +478,7 @@ namespace EdgeFramework
 
                 if (!fileInfo.Exists)
                 {
-                  
+
                     throw new EdgeFrameworkException("DeserializeBinary File Not Exit.");
                 }
 
@@ -480,13 +507,13 @@ namespace EdgeFramework
             {
                 if (string.IsNullOrEmpty(path))
                 {
-           
+
                     throw new EdgeFrameworkException("SerializeBinary Without Valid Path.");
                 }
 
                 if (obj == null)
                 {
-                   
+
                     throw new EdgeFrameworkException("SerializeBinary obj is Null.");
                 }
 
@@ -507,7 +534,7 @@ namespace EdgeFramework
             {
                 if (string.IsNullOrEmpty(path))
                 {
-          
+
                     throw new EdgeFrameworkException("DeserializeBinary Without Valid Path.");
                 }
 
@@ -524,8 +551,8 @@ namespace EdgeFramework
                     }
                 }
 
-              
-             
+
+
                 throw new EdgeFrameworkException("DeserializeBinary Failed:" + path);
             }
             /// <summary>
@@ -538,7 +565,7 @@ namespace EdgeFramework
             {
                 if (string.IsNullOrEmpty(path))
                 {
-                
+
                     throw new EdgeFrameworkException("DeserializeBinary Without Valid Path.");
                 }
 
@@ -555,7 +582,7 @@ namespace EdgeFramework
                     }
                 }
 
-             
+
                 throw new EdgeFrameworkException("DeserializeBinary Failed:" + path);
             }
 
@@ -569,7 +596,7 @@ namespace EdgeFramework
                 return JsonConvert.DeserializeObject<T>(json);
             }
 
-            public static string SaveJson<T>( T obj, string path) where T : class
+            public static string SaveJson<T>(T obj, string path) where T : class
             {
                 var jsonContent = ToJson(obj);
                 File.WriteAllText(path, jsonContent);
@@ -581,7 +608,7 @@ namespace EdgeFramework
                 return FromJson<T>(File.ReadAllText(path));
             }
 
-            public static byte[] ToProtoBuff<T>( T obj) where T : class
+            public static byte[] ToProtoBuff<T>(T obj) where T : class
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
@@ -589,7 +616,7 @@ namespace EdgeFramework
                     return ms.ToArray();
                 }
             }
-            public static T FromProtoBuff<T>( byte[] bytes) where T : class
+            public static T FromProtoBuff<T>(byte[] bytes) where T : class
             {
                 if (bytes == null || bytes.Length == 0)
                 {
@@ -599,7 +626,7 @@ namespace EdgeFramework
                 return t;
             }
 
-            public static void SaveProtoBuff<T>( T obj, string path) where T : class
+            public static void SaveProtoBuff<T>(T obj, string path) where T : class
             {
                 File.WriteAllBytes(path, ToProtoBuff<T>(obj));
             }
@@ -609,5 +636,70 @@ namespace EdgeFramework
                 return FromProtoBuff<T>(File.ReadAllBytes(path));
             }
         }
+
+        public class TransformHelper
+        {
+            /// <summary>
+            /// 查找父物体下所有子物体
+            /// </summary>
+            /// <param name="goParent"></param>
+            /// <param name="childName"></param>
+            /// <returns></returns>
+            public static Transform FindTheChild(GameObject goParent, string childName)
+            {
+                Transform searchTrans = goParent.transform.Find(childName);
+                if (searchTrans == null)
+                {
+                    foreach (Transform trans in goParent.transform)
+                    {
+                        searchTrans = FindTheChild(trans.gameObject, childName);
+                        if (searchTrans != null)
+                        {
+                            return searchTrans;
+                        }
+                    }
+                }
+                return searchTrans;
+            }
+            /// <summary>
+            /// 获取父物体下所有激活的子物体
+            /// </summary>
+            /// <param name="goParent"></param>
+            /// <returns></returns>
+            public static List<Transform> GetChildList(GameObject goParent)
+            {
+                List<Transform> trans = new List<Transform>();
+                foreach (Transform tran in goParent.transform)
+                {
+                    if (tran.gameObject.activeSelf)
+                    {
+                        if (tran.gameObject.name != goParent.name)
+                        {
+                            trans.Add(tran);
+                        }
+                    }
+                }
+                if (trans.Count == 0)
+                    return null;
+                return trans;
+            }
+        }
+
+        public class NumberHelper
+        {
+            //获取指定范围内随机数
+            public static int GetRandomInt(int num1, int num2)
+            {
+                if (num1 < num2)
+                {
+                    return UnityEngine.Random.Range(num1, num2);
+                }
+                else
+                {
+                    return UnityEngine.Random.Range(num2, num1);
+                }
+            }
+        }
+   
     }
 }

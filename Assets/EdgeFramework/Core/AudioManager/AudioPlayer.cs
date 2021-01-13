@@ -13,7 +13,7 @@ using UnityEngine;
 using EdgeFramework.Audio;
 using EdgeFramework.Sheet;
 
-namespace EdgeFramework
+namespace EdgeFramework.Audio
 {
     public class AudioPlayer :Singleton<AudioPlayer>
     {

@@ -61,9 +61,9 @@ using System.Text;
             var sb = new StringBuilder();
       
             sb.Append(SheetEditor.LineText(string.Format("//{0}", mSheetName), 1));
-            string initFuncName = Utility.TextHelp.Concat("Init", mSheetName);
-            string ListParamName = Utility.TextHelp.Concat(mSheetName, "List");
-            string dictParamName = Utility.TextHelp.Concat("m" + mSheetName, "Dict");
+            string initFuncName = Utility.TextHelper.Concat("Init", mSheetName);
+            string ListParamName = Utility.TextHelper.Concat(mSheetName, "List");
+            string dictParamName = Utility.TextHelper.Concat("m" + mSheetName, "Dict");
             bool exportList = (mExportDataType == EExportDataType.ONLY_ARRAY || mExportDataType == EExportDataType.BOTH);
             bool exportDict = (mExportDataType == EExportDataType.ONLY_DICT || mExportDataType == EExportDataType.BOTH);
 

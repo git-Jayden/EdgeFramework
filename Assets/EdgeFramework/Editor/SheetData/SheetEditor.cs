@@ -137,7 +137,7 @@ public class SheetEditor
         }
         sheetCSSB.Append(LineText("}"));
 
-        Utility.FileHelp.WriteAllText(OUTSHEETCSPATH, sheetCSSB.ToString());
+        Utility.FileHelper.WriteAllText(OUTSHEETCSPATH, sheetCSSB.ToString());
         Debug.Log("Generate Protobuf CS Done!");
 
         //------------------------------生成SheetManager------------------------------
@@ -167,7 +167,7 @@ public class SheetEditor
 
         sheetManagerSB.Append("}");
 
-        Utility.FileHelp.WriteAllText(OUTSHEETMANAGERPATH, sheetManagerSB.ToString());
+        Utility.FileHelper.WriteAllText(OUTSHEETMANAGERPATH, sheetManagerSB.ToString());
         Debug.Log("Generate SheetManager Done!");
 
         //------------------------------生成bytes-------------------------------------
@@ -251,7 +251,7 @@ public class SheetEditor
                 }
                 var exportMethod = listObj.GetType().GetMethod("Export");
                 var outFile = string.Format(OUTSHEETBYTES, name);
-                if (Utility.FileHelp.CheckFileAndCreateDirWhenNeeded(outFile))
+                if (Utility.FileHelper.CheckFileAndCreateDirWhenNeeded(outFile))
                 {
                     exportMethod.Invoke(listObj, new object[] { outFile });
                 }
@@ -324,10 +324,10 @@ public class SheetEditor
         string ret = "";
         for (int i = 1; i <= tabCount; i++)
         {
-            ret = Utility.TextHelp.Concat("\t", ret);
+            ret = Utility.TextHelper.Concat("\t", ret);
         }
-        ret = Utility.TextHelp.Concat(ret, text);
-        ret = Utility.TextHelp.Concat(ret, "\n");
+        ret = Utility.TextHelper.Concat(ret, text);
+        ret = Utility.TextHelper.Concat(ret, "\n");
         return ret;
     }
 
@@ -432,10 +432,10 @@ public class SheetEditor
             var tag = table.Rows[0][0].ToString();
             if (tag.Equals("client", StringComparison.OrdinalIgnoreCase)) continue;
             var luaSB = new StringBuilder();
-            luaSB.Append(LineText(Utility.TextHelp.Concat("local ", name, " = {")));
+            luaSB.Append(LineText(Utility.TextHelper.Concat("local ", name, " = {")));
             for (var j = 4; j < rows; j++)
             {
-                luaSB.Append(Utility.TextHelp.Concat("    [", table.Rows[j][0].ToString(), "]={"));
+                luaSB.Append(Utility.TextHelper.Concat("    [", table.Rows[j][0].ToString(), "]={"));
                 var rowStr = "";
                 for (var k = 0; k < cols; k++)
                 {
@@ -481,7 +481,7 @@ public class SheetEditor
             }
             luaSB.Append(LineText("}"));
             luaSB.Append(string.Format("return {0}", name));
-            Utility.FileHelp.WriteAllText(string.Format(OUTSHEETLUA, name), luaSB.ToString());
+            Utility.FileHelper.WriteAllText(string.Format(OUTSHEETLUA, name), luaSB.ToString());
         }
         Debug.Log("Generate Lua Done!");
         EditorUtility.ClearProgressBar();
