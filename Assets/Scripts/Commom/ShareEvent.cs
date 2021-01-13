@@ -2,5 +2,6 @@
 public enum ShareEvent
 {
     OpenHotfixPanel,
-    OpenSelectMessageBox
+    OpenSelectMessageBox,
+    ShowHint
 }
