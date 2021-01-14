@@ -16,7 +16,6 @@ namespace EdgeFramework
         kMin = 0,
         kMax = 1,
     }
-
     //优先队列&二叉堆
     public class BinaryHeap<T> where T : IBinaryHeapElement
     {
