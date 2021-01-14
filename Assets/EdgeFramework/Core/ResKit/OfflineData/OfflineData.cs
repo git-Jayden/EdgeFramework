@@ -8,9 +8,9 @@
 	Features：
 *****************************************************/
 
-using EdgeFramework.Res;
+
 using UnityEngine;
-namespace EdgeFramework
+namespace EdgeFramework.Res
 {
     public class OfflineData : MonoBehaviour
     {

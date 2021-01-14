@@ -20,7 +20,7 @@ namespace EdgeFramework
         public virtual void Finish()
         {
             Finished = true;
-            OnEndedCallback.InvokeGracefully();
+            OnEndedCallback?.Invoke();
             OnEnd();
         }
 
@@ -53,7 +53,7 @@ namespace EdgeFramework
             {
                 mOnBeginCalled = true;
                 OnBegin();
-                OnBeganCallback.InvokeGracefully();
+                OnBeganCallback?.Invoke();
             }
             if (!Finished)
             {
@@ -97,7 +97,7 @@ namespace EdgeFramework
 
             OnBeganCallback = null;
             OnEndedCallback = null;
-            OnDisposedCallback.InvokeGracefully();
+            OnDisposedCallback?.Invoke();
             OnDisposedCallback = null;
             OnDispose();
         }

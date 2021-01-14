@@ -18,7 +18,13 @@ namespace EdgeFramework
 
         protected override void OnExecute(float dt)
         {
-            Finished = mCondition.InvokeGracefully();
+            if (null != mCondition)
+            {
+                mCondition();
+                Finished= true;
+                
+            }else
+            Finished= false;
         }
 
         protected override void OnDispose()

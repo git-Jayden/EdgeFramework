@@ -12,7 +12,8 @@ namespace EdgeFramework
 
         protected override void OnExecute(float dt)
         {
-            if (mDisposeWhenCondition && mDisposeCondition.InvokeGracefully())
+
+            if (mDisposeWhenCondition && (bool)mDisposeCondition?.Invoke())
             {
                 Finish();
             }
@@ -33,7 +34,7 @@ namespace EdgeFramework
             Executer = null;
             mDisposeWhenCondition = false;
             mDisposeCondition = null;
-            mOnDisposedEvent.InvokeGracefully();
+            mOnDisposedEvent?.Invoke();
             mOnDisposedEvent = null;
         }
         /// <summary>

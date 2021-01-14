@@ -21,7 +21,7 @@ namespace EdgeFramework
 
         protected override void OnBegin()
         {
-            mBeginAction.InvokeGracefully(this);
+            mBeginAction?.Invoke(this);
         }
 
         public bool IsRecycled { get; set; }

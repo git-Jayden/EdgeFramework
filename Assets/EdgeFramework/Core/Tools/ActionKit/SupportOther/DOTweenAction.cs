@@ -17,7 +17,7 @@ namespace EdgeFramework
 
         protected override void OnBegin()
         {
-            var tween = mTweenFactory.InvokeGracefully();
+            var tween = mTweenFactory?.Invoke();
 
             tween.OnComplete(Finish);
         }

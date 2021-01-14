@@ -1,7 +1,6 @@
 ﻿
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+using EdgeFramework;
 
 //主界面 选择课程状态
 public class StateChooseClass : ProcedureBase

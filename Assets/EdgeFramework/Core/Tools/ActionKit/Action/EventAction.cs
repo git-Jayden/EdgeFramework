@@ -27,7 +27,7 @@ namespace EdgeFramework
         /// </summary>
         protected override void OnExecute(float dt)
         {
-            mOnExecuteEvent.InvokeGracefully();
+            mOnExecuteEvent?.Invoke();
             Finished = true;
         }
         protected override void OnDispose()

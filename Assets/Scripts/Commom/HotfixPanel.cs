@@ -48,7 +48,7 @@ public class HotfixPanel : MonoBehaviour
             {
                 //提示网络错误,检测网络连接是否正常
                 // GameRoot.OpenCommonConfirm("网络连接失败", "网络连接失败，请检查网络连接是否正常?", () => { Application.Quit(); }, () => { Application.Quit(); });
-                LEventSystem.SendEvent(ShareEvent.OpenSelectMessageBox, "网络连接失败", "网络连接失败，请检查网络连接是否正常?",
+                GameEventSystem.SendEvent(ShareEvent.OpenSelectMessageBox, "网络连接失败", "网络连接失败，请检查网络连接是否正常?",
               new CallbackSelect(NetworkAnomaly));
             }
             else
@@ -83,7 +83,7 @@ public class HotfixPanel : MonoBehaviour
             if (hot)
         {
                 //提示玩家是否确定热更下载
-                LEventSystem.SendEvent(ShareEvent.OpenSelectMessageBox, "热更确定", string.Format("当前版本为{0},有{1:F}M大小热更新,是否确定下载?",
+                GameEventSystem.SendEvent(ShareEvent.OpenSelectMessageBox, "热更确定", string.Format("当前版本为{0},有{1:F}M大小热更新,是否确定下载?",
                 HotPatchManager.Instance.CurVersion, HotPatchManager.Instance.LoadSumSize / 1024.0f),
               new CallbackSelect(SelectHotfix));
         }
@@ -116,7 +116,7 @@ public class HotfixPanel : MonoBehaviour
             if (Application.internetReachability == NetworkReachability.ReachableViaCarrierDataNetwork)
             {
                 //提示玩家是否确定热更下载
-                LEventSystem.SendEvent(ShareEvent.OpenSelectMessageBox, "下载确认", "当前使用的是手机流量，是否继续下载？",
+                GameEventSystem.SendEvent(ShareEvent.OpenSelectMessageBox, "下载确认", "当前使用的是手机流量，是否继续下载？",
                   new CallbackSelect(DownLoadConfirm));
             }
         }
@@ -194,7 +194,7 @@ public class HotfixPanel : MonoBehaviour
 
     void ServerInfoError()
     {
-        LEventSystem.SendEvent(ShareEvent.OpenSelectMessageBox, "服务器列表获取失败", "服务器列表获取失败，请检查网络链接是否正常？尝试重新下载！",
+        GameEventSystem.SendEvent(ShareEvent.OpenSelectMessageBox, "服务器列表获取失败", "服务器列表获取失败，请检查网络链接是否正常？尝试重新下载！",
                new CallbackSelect(GetServerListFailed));
     }
     private void GetServerListFailed(SelectMessageBox box, bool b, object[] objs)
@@ -213,7 +213,7 @@ public class HotfixPanel : MonoBehaviour
     }
     void ItemError(string all)
     {
-        LEventSystem.SendEvent(ShareEvent.OpenSelectMessageBox, "资源下载失败", string.Format("{0}等资源下载失败，请重新尝试下载！", all),
+        GameEventSystem.SendEvent(ShareEvent.OpenSelectMessageBox, "资源下载失败", string.Format("{0}等资源下载失败，请重新尝试下载！", all),
              new CallbackSelect(ResourceDownloadFailed));
         //GameRoot.OpenCommonConfirm("资源下载失败", string.Format("{0}等资源下载失败，请重新尝试下载！", all), AnewDownload, QuitApp);
     }

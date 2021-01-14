@@ -9,7 +9,7 @@
 *****************************************************/
 using UnityEngine;
 using UnityEditor;
-using EdgeFramework;
+using EdgeFramework.Res;
 namespace EdgeFrameworkEditor
 {
     public class OfflineDataEditor

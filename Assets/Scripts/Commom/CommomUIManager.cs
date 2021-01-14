@@ -16,10 +16,10 @@ public class CommomUIManager : MonoBehaviour
     private float clock;
     void Awake()
     {
-        LEventSystem.RegisterEvent(ShareEvent.OpenHotfixPanel, OpenHotfixPanel);
+        GameEventSystem.RegisterEvent(ShareEvent.OpenHotfixPanel, OpenHotfixPanel);
 
-        LEventSystem.RegisterEvent(ShareEvent.OpenSelectMessageBox, OpenSelectMessageBox);
-        LEventSystem.RegisterEvent(ShareEvent.ShowHint, ShowHint);
+        GameEventSystem.RegisterEvent(ShareEvent.OpenSelectMessageBox, OpenSelectMessageBox);
+        GameEventSystem.RegisterEvent(ShareEvent.ShowHint, ShowHint);
 
         HintLable.transform.parent.gameObject.SetActive(false);
         mHotfixPanel.gameObject.SetActive(false);

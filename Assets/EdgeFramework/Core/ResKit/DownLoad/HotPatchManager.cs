@@ -205,7 +205,8 @@ namespace EdgeFramework.Res
                 else
                 {
                     byte[] bytes = unityWebRequest.downloadHandler.data;
-                    IOExtension.CreateFile(unPackPath + "/" + fileName, bytes);
+                    EdgeFramework.Utility.FileHelper.WriteAllBytes(unPackPath + "/" + fileName, bytes);
+         
                 }
 
                 if (packedMd5.ContainsKey(fileName))
@@ -349,7 +350,8 @@ namespace EdgeFramework.Res
             }
             else
             {
-                IOExtension.CreateFile(serverXmlPath, webRequest.downloadHandler.data);
+                EdgeFramework.Utility.FileHelper.WriteAllBytes(serverXmlPath, webRequest.downloadHandler.data);
+
                 if (File.Exists(serverXmlPath))
                 {
 

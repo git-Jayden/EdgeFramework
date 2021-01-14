@@ -1,8 +1,8 @@
-﻿using EdgeFramework.Res;
+﻿using EdgeFramework;
+using EdgeFramework.Res;
 using EdgeFramework.Sheet;
 using EdgeFramework.UI;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 /// <summary>

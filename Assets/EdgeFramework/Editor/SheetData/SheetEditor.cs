@@ -251,7 +251,7 @@ public class SheetEditor
                 }
                 var exportMethod = listObj.GetType().GetMethod("Export");
                 var outFile = string.Format(OUTSHEETBYTES, name);
-                if (Utility.FileHelper.CheckFileAndCreateDirWhenNeeded(outFile))
+                if (outFile.CheckFileAndCreateDirWhenNeeded())
                 {
                     exportMethod.Invoke(listObj, new object[] { outFile });
                 }

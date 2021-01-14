@@ -1,9 +1,4 @@
-﻿using EdgeFramework.Res;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-/****************************************************
+﻿/****************************************************
 	文件：UIOfflineData.cs
 	Author：JaydenWood
 	E-Mail: w_style047@163.com
@@ -12,7 +7,8 @@ using UnityEngine;
 	Date：2021/01/11 16:58   	
 	Features：
 *****************************************************/
-namespace EdgeFramework
+using UnityEngine;
+namespace EdgeFramework.Res
 {
     public class UIOfflineData:OfflineData
     {

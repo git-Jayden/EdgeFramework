@@ -35,7 +35,9 @@ namespace EdgeFramework.Res
             else
             {
                 byte[] bytes = webRequest.downloadHandler.data;
-                IOExtension.CreateFile(saveFilePath, bytes);
+
+
+                Utility.FileHelper.WriteAllBytes(saveFilePath, bytes);
                 callback?.Invoke();
             }
         }

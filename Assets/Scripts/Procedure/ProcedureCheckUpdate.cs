@@ -17,7 +17,7 @@ public class ProcedureCheckUpdate : ProcedureBase
     public override void OnEnter(object[] param)
     {
         //打开更新界面检查更新
-        LEventSystem.Instance.Send(ShareEvent.OpenHotfixPanel);
+        GameEventSystem.Instance.Send(ShareEvent.OpenHotfixPanel);
     }
 
     public override void OnExit()

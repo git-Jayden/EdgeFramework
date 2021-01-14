@@ -28,7 +28,7 @@ namespace EdgeFramework
         /// <returns></returns>
         public override bool Recycle(T obj)
         {
-            mResetMethod.InvokeGracefully(obj);
+            mResetMethod?.Invoke(obj);
             mCacheStack.Push(obj);
             return true;
         }
