@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: skillicon
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 7be1e7efcc47f2644b907a475c70b8ba, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 029ab4b19632a6041a4a4cd9a0fd4794, type: 3}
+  - {fileID: 21300000, guid: cb22c79271a99484e9edd5f6066d163d, type: 3}
+  - {fileID: 21300000, guid: e93cd3e33d55dbd4999a86e5534a9cc2, type: 3}
+  - {fileID: 21300000, guid: eddb02e757935e04ab705a52d557dccf, type: 3}
+  - {fileID: 21300000, guid: 95f790ed54a98ca49bfdc0d8c1bdc204, type: 3}
+  - {fileID: 21300000, guid: e7f4093ecdcb2f14fafc758e6079e1b3, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - icon_up
+  - icon_zhu
+  - iocn_yi
+  - icon_li
+  - iocn_ho
+  - iocn_fo
+  m_Tag: skillicon
+  m_IsVariant: 0

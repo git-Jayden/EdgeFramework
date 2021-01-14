@@ -145,6 +145,11 @@ PrefabInstance:
       propertyPath: HintLable
       value: 
       objectReference: {fileID: 1121056414}
+    - target: {fileID: 1592782354013549521, guid: cdda2cc4a49a807418276f8a57dd223d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1881366936672399385, guid: cdda2cc4a49a807418276f8a57dd223d,
         type: 3}
       propertyPath: m_Pivot.x

@@ -17,7 +17,9 @@ MonoBehaviour:
   allFileDirAb:
   - abName: audio
     path: Assets/ABResources/Audio
-  - abName: texture
-    path: Assets/ABResources/Texture
+  - abName: atlas
+    path: Assets/ABResources/Texture/Atlas
   - abName: data
     path: Assets/ABResources/Data
+  - abName: alone
+    path: Assets/ABResources/Texture/Alone
