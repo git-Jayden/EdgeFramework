@@ -1,72 +1,71 @@
-using NUnit.Framework;
 using UnityEngine;
 using EdgeFramework;
 
-    public class SimpleObjectPoolTests
+
+public class SimpleObjectPoolTests
+{
+    public class Fish
     {
-        public class Fish
-        {
-        }
-
-        [Test]
-        public void SimpleObjectPool_Test()
-        {
-            var fishPool = new SimpleObjectPool<Fish>(() => new Fish(), null, 100);
-
-            Assert.AreEqual(fishPool.CurCount, 100);
-
-            var fishOne = fishPool.Allocate();
-
-            Assert.AreEqual(fishPool.CurCount, 99);
-
-            fishPool.Recycle(fishOne);
-
-            Assert.AreEqual(fishPool.CurCount, 100);
-
-            for (var i = 0; i < 10; i++)
-            {
-                fishPool.Allocate();
-            }
-
-            Assert.AreEqual(fishPool.CurCount, 90);
-        }
     }
-    
-    public class SafeObjectPoolTests
+
+
+    public void SimpleObjectPool_Test()
     {
-        class Msg : IPoolable
-        {
-            public void OnRecycled()
-            {
-                Debug.Log("OnRecycled");
-            }
+        var fishPool = new SimpleObjectPool<Fish>(() => new Fish(), null, 100);
 
-            public bool IsRecycled { get; set; }
+        Debug.Log(fishPool.CurCount);
+
+
+        var fishOne = fishPool.Allocate();
+
+        Debug.Log(fishPool.CurCount);
+
+        fishPool.Recycle(fishOne);
+
+        Debug.Log(fishPool.CurCount);
+
+        for (var i = 0; i < 10; i++)
+        {
+            fishPool.Allocate();
         }
 
-        [Test]
-        public void SafeObjectPool_Test()
-        {
-
-            var msgPool = SafeObjectPool<Msg>.Instance;
-
-            msgPool.Init(100, 50); // max count:100 init count: 50
-
-            Assert.AreEqual(msgPool.CurCount, 50);
-
-            var fishOne = msgPool.Allocate();
-
-            Assert.AreEqual(msgPool.CurCount, 49);
-
-            msgPool.Recycle(fishOne);
-
-            Assert.AreEqual(msgPool.CurCount, 50);
-
-            for (var i = 0; i < 10; i++)
-            {
-                msgPool.Allocate();
-            }
-
-            Assert.AreEqual(msgPool.CurCount, 40);
-        }
+        Debug.Log(fishPool.CurCount);
     }
+}
+
+public class SafeObjectPoolTests
+{
+    class Msg : IPoolable
+    {
+        public void OnRecycled()
+        {
+            Debug.Log("OnRecycled");
+        }
+
+        public bool IsRecycled { get; set; }
+    }
+
+
+    public void SafeObjectPool_Test()
+    {
+
+        var msgPool = SafeObjectPool<Msg>.Instance;
+
+        msgPool.Init(100, 50); // max count:100 init count: 50
+
+        Debug.Log(msgPool.CurCount);
+
+        var fishOne = msgPool.Allocate();
+
+        Debug.Log(msgPool.CurCount);
+
+        msgPool.Recycle(fishOne);
+        Debug.Log(msgPool.CurCount);
+
+        for (var i = 0; i < 10; i++)
+        {
+            msgPool.Allocate();
+        }
+        Debug.Log(msgPool.CurCount);
+    }
+}
