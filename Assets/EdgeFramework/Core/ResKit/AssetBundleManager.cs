@@ -35,7 +35,7 @@ namespace EdgeFramework.Res
 #if UNITY_ANDROID||UNITY_IPHONE
                 return Application.persistentDataPath + "/Origin/";
 #else
-            return    FilePath.StreamingAssetsPath;
+            return    Application.streamingAssetsPath;
 #endif
             }
         }
