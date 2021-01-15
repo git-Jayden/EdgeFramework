@@ -9,7 +9,7 @@ using UnityEngine.UI;
 /// </summary>
 public class ProcedureCheckUpdate : ProcedureBase
 {
-    public ProcedureCheckUpdate(FSM _fsm)
+    public ProcedureCheckUpdate(ProcedureFSM _fsm)
 : base(_fsm, StateDefine.PROCEDURE_CHECK_UPDATE)
     {
 

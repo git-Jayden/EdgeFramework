@@ -3,7 +3,7 @@ using EdgeFramework;
 
 public class StateEndGame : ProcedureBase
 {
-    public StateEndGame(FSM _fsm)
+    public StateEndGame(ProcedureFSM _fsm)
         : base(_fsm, StateDefine.STATE_END_GAME)
     {
 

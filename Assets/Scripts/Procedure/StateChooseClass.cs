@@ -6,7 +6,7 @@ using EdgeFramework;
 public class StateChooseClass : ProcedureBase
 {
   
-    public StateChooseClass(FSM _fsm)
+    public StateChooseClass(ProcedureFSM _fsm)
         : base(_fsm, StateDefine.STATE_CHOOSE_CLASS)
     {
 

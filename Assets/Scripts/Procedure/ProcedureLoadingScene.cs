@@ -18,7 +18,7 @@ public class ProcedureLoadingScene : ProcedureBase
     public bool AlreadyLoadScene { get; set; }
     private string NextProcedure;
 
-    public ProcedureLoadingScene(FSM _fsm)
+    public ProcedureLoadingScene(ProcedureFSM _fsm)
   : base(_fsm, StateDefine.PROCEDURE_LOADING_SCENE)
     {
 

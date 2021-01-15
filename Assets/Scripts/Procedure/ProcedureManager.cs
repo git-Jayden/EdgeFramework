@@ -5,12 +5,12 @@ using EdgeFramework;
 
 public class ProcedureManager 
 {
-    public FSM FsmCtrl { get; private set; }
+    public ProcedureFSM FsmCtrl { get; private set; }
 
 
     public void OnInit(MonoBehaviour mono)
     {
-        FsmCtrl = new FSM(mono);
+        FsmCtrl = new ProcedureFSM(mono);
         FsmCtrl.AddState(new ProcedureLaunch(FsmCtrl));
         FsmCtrl.AddState(new ProcedureCheckUpdate(FsmCtrl));
         FsmCtrl.AddState(new ProcedureLoadingScene(FsmCtrl));

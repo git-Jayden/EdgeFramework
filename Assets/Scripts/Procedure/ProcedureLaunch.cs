@@ -9,7 +9,7 @@ using UnityEngine;
 /// </summary>
 public class ProcedureLaunch : ProcedureBase
 {
-    public ProcedureLaunch(FSM _fsm)
+    public ProcedureLaunch(ProcedureFSM _fsm)
       : base(_fsm, StateDefine.PROCEDURE_LAUNCH)
     {
 

@@ -5,7 +5,7 @@ public class StateClassContent : ProcedureBase
 {
 
 
-    public StateClassContent(FSM _fsm)
+    public StateClassContent(ProcedureFSM _fsm)
         : base(_fsm, StateDefine.STATE_CLASS_CONTENT)
     {
 
