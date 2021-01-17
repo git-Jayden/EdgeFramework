@@ -1,10 +1,9 @@
 using EdgeFramework;
-using NUnit.Framework;
+using UnityEngine;
 
-
-    public class FSMTests
+public class FSMTests
     {
-        [Test]
+
         public void FSM_Test()
         {
             //        Idle,               闲置
@@ -44,24 +43,25 @@ using NUnit.Framework;
             // 初识状态是 runState
             fsm.Start(runState);
 
-            Assert.AreSame(fsm.State, runState);
+        
+            Debug.Log(fsm.State);
+        // 点击屏幕，进行跳跃
+        fsm.HandleEvent("touch_down");
+        Debug.Log(fsm.State);
+        Debug.Log(jumpCalled);
 
-            // 点击屏幕，进行跳跃
-            fsm.HandleEvent("touch_down");
-
-            Assert.IsTrue(jumpCalled);
-            Assert.AreSame(fsm.State, jumpState);
 
             // 点击屏幕，二段跳
             fsm.HandleEvent("touch_down");
+        Debug.Log(fsm.State);
+        Debug.Log(doubleJumpCalled);
 
-            Assert.IsTrue(doubleJumpCalled);
-            Assert.AreSame(fsm.State, doubleJumpState);
-
+    
             // 着陆
             fsm.HandleEvent("land");
+        Debug.Log(fsm.State);
+        Debug.Log(runCalledCount);
 
-            Assert.AreEqual(runCalledCount, 1);
-            Assert.AreSame(fsm.State, runState);
+
         }
     }

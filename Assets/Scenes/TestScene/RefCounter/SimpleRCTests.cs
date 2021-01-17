@@ -1,7 +1,8 @@
-﻿using NUnit.Framework;
+﻿
 using EdgeFramework;
+using UnityEngine;
 
-    public class SimpleRCTests
+public class SimpleRCTests
     {
         class Light
         {
@@ -44,33 +45,34 @@ using EdgeFramework;
             }
         }
 
-        [Test]
+
         public void SimpleRC_Test()
         {
             var room = new Room();
-
-            Assert.AreEqual(room.RefCount, 0);
-            Assert.IsFalse(room.Light.Opening);
-
-            room.EnterPeople();
-
-            Assert.AreEqual(room.RefCount, 1);
-            Assert.IsTrue(room.Light.Opening);
+        Debug.Log(room.RefCount);
+        Debug.Log(room.Light.Opening);
+   
 
             room.EnterPeople();
+
+        Debug.Log(room.RefCount);
+        Debug.Log(room.Light.Opening);
+
+        room.EnterPeople();
             room.EnterPeople();
 
-            Assert.AreEqual(room.RefCount, 3);
-
+          
+        Debug.Log(room.RefCount);
+   
+        room.LeavePeople();
             room.LeavePeople();
             room.LeavePeople();
-            room.LeavePeople();
 
-            Assert.IsFalse(room.Light.Opening);
-            Assert.AreEqual(room.RefCount, 0);
+        Debug.Log(room.RefCount);
+        Debug.Log(room.Light.Opening);
 
-            room.EnterPeople();
+        room.EnterPeople();
 
-            Assert.AreEqual(room.RefCount, 1);
-        }
+        Debug.Log(room.RefCount);
+    }
     }

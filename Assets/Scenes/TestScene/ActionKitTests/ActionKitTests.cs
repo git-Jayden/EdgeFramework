@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Diagnostics;
 using EdgeFramework;
-using NUnit.Framework;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
-    public class ActionKitTests
+public class ActionKitTests
     {
 
         //[UnityTest]
@@ -20,10 +20,9 @@ using UnityEngine;
             }
 
             watch.Stop();
+           Debug.Log(watch.ElapsedMilliseconds);
 
-            Assert.Greater(watch.ElapsedMilliseconds, 2000);
-            Assert.Less(watch.ElapsedMilliseconds, 3100);
-        }
+    }
 
         //[Test]
         public void OnlyBeginActionTest()
@@ -36,8 +35,8 @@ using UnityEngine;
             });
 
             onlyBeginAction.Execute(Time.deltaTime);
-            
-            Assert.IsTrue(called);
+        Debug.Log(called);
+
         }
 
         //[Test]
@@ -48,12 +47,12 @@ using UnityEngine;
             var eventAction = EventAction.Allocate(() => { called = true; });
             
             eventAction.Execute(Time.deltaTime);
+        Debug.Log(called);
 
-            Assert.IsTrue(called);
-        }
+    }
 
-        //[UnityTest]
-        public IEnumerator DelayActionTest()
+    //[UnityTest]
+    public IEnumerator DelayActionTest()
         {
             var watch = new Stopwatch();
             watch.Start();
@@ -66,9 +65,8 @@ using UnityEngine;
             {
                 yield return new WaitForEndOfFrame();
             }
-            
-            Assert.Greater(watch.ElapsedMilliseconds,900);
-            Assert.Less(watch.ElapsedMilliseconds,1100);
+        Debug.Log(watch.ElapsedMilliseconds);
+
         }
         
 
@@ -85,8 +83,8 @@ using UnityEngine;
             {
                 yield return null;
             }
+        Debug.Log(callCount);
 
-            Assert.AreEqual(2, callCount);
         }
 
 
@@ -107,8 +105,8 @@ using UnityEngine;
             {
                 yield return null;
             }
-
-            Assert.Greater(stopwatch.ElapsedMilliseconds, 900);
+        Debug.Log(stopwatch.ElapsedMilliseconds);
+   
         }
         
         //[UnityTest]
@@ -127,8 +125,8 @@ using UnityEngine;
             {
                 yield return null;
             }
+        Debug.Log(stopwatch.ElapsedMilliseconds);
 
-            Assert.Less(stopwatch.ElapsedMilliseconds, 1100);
         }
         
         //[UnityTest]
@@ -146,7 +144,7 @@ using UnityEngine;
             {
                 yield return null;
             }
-
-            Assert.Greater(stopwatch.ElapsedMilliseconds, 2900);
+        Debug.Log(stopwatch.ElapsedMilliseconds);
+    
         }
     }
