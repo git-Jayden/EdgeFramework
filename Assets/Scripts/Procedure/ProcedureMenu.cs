@@ -5,7 +5,7 @@ using EdgeFramework.Audio;
 
 public class ProcedureMenu : ProcedureBase
 {
-    public ProcedureMenu(FSM _fsm)
+    public ProcedureMenu(ProcedureFSM _fsm)
 : base(_fsm, StateDefine.PROCEDURE_MENU)
     {
 

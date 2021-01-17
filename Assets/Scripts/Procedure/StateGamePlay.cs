@@ -3,8 +3,8 @@
 
 public class StateGamePlay : ProcedureBase
 {
-	private FSM m_fsm;
-	public StateGamePlay(FSM _fsm)
+	private ProcedureFSM m_fsm;
+	public StateGamePlay(ProcedureFSM _fsm)
 		: base(_fsm,StateDefine.STATE_GAME_PLAY)
 	{
 	}

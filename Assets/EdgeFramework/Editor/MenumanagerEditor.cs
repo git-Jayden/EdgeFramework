@@ -19,7 +19,7 @@ namespace EdgeFrameworkEditor
     class MenumanagerEditor
     {
         #region OpenTool
-        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.OpenTool + "/AbConfig _F1", false)]
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.OpenTool + "/AbConfig _F6", false)]
         public static void MenuOpenAbConfig()
         {
             ABConfig instance = ABConfig.LoadAbConfig();
@@ -38,7 +38,7 @@ namespace EdgeFrameworkEditor
             Selection.activeObject = instance;
         }
 
-        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.OpenTool + "/OpenPanelExcel _F2", false)]
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.OpenTool + "/OpenPanelExcel _F7", false)]
         public static void MenuOpenPanelJson()
         {
 

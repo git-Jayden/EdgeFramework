@@ -121,18 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &1121056414 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1121056414, guid: cdda2cc4a49a807418276f8a57dd223d,
-    type: 3}
-  m_PrefabInstance: {fileID: 2438646344633428246}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2438646344633428246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -140,16 +128,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 400288083519939496, guid: cdda2cc4a49a807418276f8a57dd223d,
-        type: 3}
-      propertyPath: HintLable
-      value: 
-      objectReference: {fileID: 1121056414}
-    - target: {fileID: 1592782354013549521, guid: cdda2cc4a49a807418276f8a57dd223d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1881366936672399385, guid: cdda2cc4a49a807418276f8a57dd223d,
         type: 3}
       propertyPath: m_Pivot.x
