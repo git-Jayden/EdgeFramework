@@ -6,18 +6,15 @@ public class MenuPanel : BaseUI
     {
   
     }
-    public override void OnCreat()
-    {
-        base.OnCreat();
-    }
+
     public override void OnEnter(params object[] param)
     {
-        UIObj.SetActive(true);
+        gameObject.SetActive(true);
         base.OnEnter(param);
     }
     public override void OnExit()
     {
-        UIObj.SetActive(false);
+        gameObject.SetActive(false);
         base.OnExit();
     }
 }

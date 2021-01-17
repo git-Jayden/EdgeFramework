@@ -39,10 +39,12 @@ public class SheetEditor
     private static readonly Dictionary<string, SheetExportBase> mSheetExportConst = new Dictionary<string, SheetExportBase>
     {
         { "Example", new SheetExportBase("Example").SetKey("exampleInt") },
-        { "Preload", new SheetExportBase("Preload").SetExportDataType(EExportDataType.ONLY_ARRAY) },
-         { "UIPanel", new SheetExportBase("UIPanel").SetKeyType("UIPanelTypeEnum").SetKey("PanelType").SetExportDataType (EExportDataType.ONLY_DICT)},
-         { "Music", new SheetExportBase("Music").SetKeyType("MusicEnum").SetKey("MusicType").SetExportDataType (EExportDataType.ONLY_DICT)},
-        { "Sound", new SheetExportBase("Sound").SetKeyType("SoundEnum").SetKey("SoundType").SetExportDataType (EExportDataType.ONLY_DICT)}
+        { "PreloadSheet", new SheetExportBase("PreloadSheet").SetExportDataType(EExportDataType.ONLY_ARRAY) },
+         { "UIPanelSheet", new SheetExportBase("UIPanelSheet").SetKeyType("UIPanelTypeEnum").SetKey("PanelType").SetExportDataType (EExportDataType.ONLY_DICT)},
+           { "SceneSheet", new SheetExportBase("SceneSheet").SetKeyType("string").SetKey("Name").SetExportDataType (EExportDataType.ONLY_DICT)},
+         { "MusicSheet", new SheetExportBase("MusicSheet").SetKeyType("MusicEnum").SetKey("MusicType").SetExportDataType (EExportDataType.ONLY_DICT)},
+        { "SoundSheet", new SheetExportBase("SoundSheet").SetKeyType("SoundEnum").SetKey("SoundType").SetExportDataType (EExportDataType.ONLY_DICT)}
+
     };
 
     /// <summary>

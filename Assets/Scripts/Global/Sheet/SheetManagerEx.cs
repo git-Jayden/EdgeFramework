@@ -29,27 +29,27 @@ public partial class SheetManager : Singleton<SheetManager>
     }
 
     //================================================================================
-    private Dictionary<int, List<Preload>> mPreloadSheetDict;
+    private Dictionary<int, List<PreloadSheet>> mPreloadSheetsDict;
     /// <summary>
     /// 根据场景Id获得预加载内容
     /// </summary>
-    public List<Preload> GetPreloadSheet(int sceneId)
+    public List<PreloadSheet> GetPreloadSheets(int sceneId)
     {
-        if (mPreloadSheetDict == null)
+        if (mPreloadSheetsDict == null)
         {
-            mPreloadSheetDict = new Dictionary<int, List<Preload>>();
-            var preloadList = GetPreloadList();
+            mPreloadSheetsDict = new Dictionary<int, List<PreloadSheet>>();
+            var preloadList = GetPreloadSheetList();
             foreach (var item in preloadList)
             {
-                if (!mPreloadSheetDict.ContainsKey(item.SceneId))
+                if (!mPreloadSheetsDict.ContainsKey(item.SceneId))
                 {
-                    mPreloadSheetDict.Add(item.SceneId, new List<Preload>());
+                    mPreloadSheetsDict.Add(item.SceneId, new List<PreloadSheet>());
                 }
-                mPreloadSheetDict[item.SceneId].Add(item);
+                mPreloadSheetsDict[item.SceneId].Add(item);
             }
         }
-        List<Preload> list = null;
-        mPreloadSheetDict.TryGetValue(sceneId, out list);
+        List<PreloadSheet> list = null;
+        mPreloadSheetsDict.TryGetValue(sceneId, out list);
         return list;
     }
     //================================================================================

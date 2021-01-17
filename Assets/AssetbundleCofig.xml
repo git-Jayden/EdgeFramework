@@ -41,10 +41,15 @@
   <ABList Path="Assets/ABResources/Data/Config/ABData/AssetbundleConfig.bytes" Crc="2384906506" ABName="data" AssetName="AssetbundleConfig.bytes" />
   <ABList Path="Assets/ABResources/Data/Sheets/Example.bytes" Crc="2703155872" ABName="data" AssetName="Example.bytes" />
   <ABList Path="Assets/ABResources/Data/Sheets/Music.bytes" Crc="340999135" ABName="data" AssetName="Music.bytes" />
+  <ABList Path="Assets/ABResources/Data/Sheets/MusicSheet.bytes" Crc="3872055630" ABName="data" AssetName="MusicSheet.bytes" />
   <ABList Path="Assets/ABResources/Data/Sheets/Preload.bytes" Crc="2212837677" ABName="data" AssetName="Preload.bytes" />
+  <ABList Path="Assets/ABResources/Data/Sheets/PreloadSheet.bytes" Crc="450906900" ABName="data" AssetName="PreloadSheet.bytes" />
   <ABList Path="Assets/ABResources/Data/Sheets/Scene.bytes" Crc="2261956015" ABName="data" AssetName="Scene.bytes" />
+  <ABList Path="Assets/ABResources/Data/Sheets/SceneSheet.bytes" Crc="4175766730" ABName="data" AssetName="SceneSheet.bytes" />
   <ABList Path="Assets/ABResources/Data/Sheets/Sound.bytes" Crc="4000349814" ABName="data" AssetName="Sound.bytes" />
+  <ABList Path="Assets/ABResources/Data/Sheets/SoundSheet.bytes" Crc="3997904196" ABName="data" AssetName="SoundSheet.bytes" />
   <ABList Path="Assets/ABResources/Data/Sheets/UIPanel.bytes" Crc="2976100309" ABName="data" AssetName="UIPanel.bytes" />
+  <ABList Path="Assets/ABResources/Data/Sheets/UIPanelSheet.bytes" Crc="2253721679" ABName="data" AssetName="UIPanelSheet.bytes" />
   <ABList Path="Assets/ABResources/Prefabs/UI/ItemMessagePanel.prefab" Crc="2616543493" ABName="itemmessagepanel" AssetName="ItemMessagePanel.prefab">
     <ABDependce>alone</ABDependce>
   </ABList>

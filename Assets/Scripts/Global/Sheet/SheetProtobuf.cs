@@ -55,7 +55,7 @@ namespace EdgeFramework.Sheet
 	}
 
 	[ProtoContract]
-	public class Music
+	public class MusicSheet
 	{
 		[ProtoMember(1)]
 		public int Id;
@@ -72,14 +72,14 @@ namespace EdgeFramework.Sheet
 	}
 
 	[ProtoContract]
-	public class MusicList : BaseList
+	public class MusicSheetList : BaseList
 	{
 		[ProtoMember(1)]
-		public List<Music> Items = new List<Music>();
+		public List<MusicSheet> Items = new List<MusicSheet>();
 	}
 
 	[ProtoContract]
-	public class Preload
+	public class PreloadSheet
 	{
 		[ProtoMember(1)]
 		public int SceneId;
@@ -88,14 +88,14 @@ namespace EdgeFramework.Sheet
 	}
 
 	[ProtoContract]
-	public class PreloadList : BaseList
+	public class PreloadSheetList : BaseList
 	{
 		[ProtoMember(1)]
-		public List<Preload> Items = new List<Preload>();
+		public List<PreloadSheet> Items = new List<PreloadSheet>();
 	}
 
 	[ProtoContract]
-	public class Scene
+	public class SceneSheet
 	{
 		[ProtoMember(1)]
 		public int Id;
@@ -104,14 +104,14 @@ namespace EdgeFramework.Sheet
 	}
 
 	[ProtoContract]
-	public class SceneList : BaseList
+	public class SceneSheetList : BaseList
 	{
 		[ProtoMember(1)]
-		public List<Scene> Items = new List<Scene>();
+		public List<SceneSheet> Items = new List<SceneSheet>();
 	}
 
 	[ProtoContract]
-	public class Sound
+	public class SoundSheet
 	{
 		[ProtoMember(1)]
 		public int Id;
@@ -126,14 +126,14 @@ namespace EdgeFramework.Sheet
 	}
 
 	[ProtoContract]
-	public class SoundList : BaseList
+	public class SoundSheetList : BaseList
 	{
 		[ProtoMember(1)]
-		public List<Sound> Items = new List<Sound>();
+		public List<SoundSheet> Items = new List<SoundSheet>();
 	}
 
 	[ProtoContract]
-	public class UIPanel
+	public class UIPanelSheet
 	{
 		[ProtoMember(1)]
 		public int Id;
@@ -144,10 +144,10 @@ namespace EdgeFramework.Sheet
 	}
 
 	[ProtoContract]
-	public class UIPanelList : BaseList
+	public class UIPanelSheetList : BaseList
 	{
 		[ProtoMember(1)]
-		public List<UIPanel> Items = new List<UIPanel>();
+		public List<UIPanelSheet> Items = new List<UIPanelSheet>();
 	}
 
 	public enum ExampleEnum

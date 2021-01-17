@@ -61,13 +61,13 @@ public class ProcedureCheckUpdate : ProcedureBase
     void LoadConfiger()
     {
         //加载UI配置表
-        SheetManager.Instance.InitUIPanel();
+        SheetManager.Instance.InitUIPanelSheet();
         //加载音效配置表
-        SheetManager.Instance.InitSound();
+        SheetManager.Instance.InitSoundSheet();
         //加载背景音乐配置表
-        SheetManager.Instance.InitMusic();
+        SheetManager.Instance.InitMusicSheet();
         //加载场景配置表
-        SheetManager.Instance.InitScene();
+        SheetManager.Instance.InitSceneSheet();
     }
     //初始化地图
     void LoadMapScene()

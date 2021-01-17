@@ -6,12 +6,10 @@ using UnityEngine.UI;
 
 namespace EdgeFramework.UI
 {
-    public abstract class BaseUI
+    public abstract class BaseUI:MonoBehaviour
     {
-        [HideInInspector]
-        public GameObject UIObj { get;private set; }
-        [HideInInspector]
-        public RectTransform RectTrans { get;private set; }
+       
+       
         [HideInInspector]
         public UIPanelTypeEnum PanelType { get;private set; }
 
@@ -19,25 +17,21 @@ namespace EdgeFramework.UI
         /// <summary>
         /// 初始化
         /// </summary>
-        public void Init(GameObject gameObject, UIPanelTypeEnum panelType)
+        public void Init( UIPanelTypeEnum panelType)
         {
-            UIObj = gameObject;
+      
             PanelType = panelType;
         }
-        public virtual void OnCreat() { }
+
         /// <summary>
         /// 界面被显示出来
         /// </summary>
         public virtual void OnEnter(params object[] param)
         {
-            if (RectTrans == null)
-            {
-                RectTrans = UIObj.GetComponent<RectTransform>();
-                OnCreat();
-            }
+          
           
         }
-        public virtual void OnUpdate() { }
+
         /// <summary>
         /// 界面暂停
         /// </summary>
@@ -185,10 +179,9 @@ namespace EdgeFramework.UI
         /// </summary>
         public virtual void SetSiblingIndex(int siblingIndex)
         {
-            if (UIObj != null)
-            {
-                UIObj.transform.SetSiblingIndex(siblingIndex);
-            }
+        
+               gameObject .transform.SetSiblingIndex(siblingIndex);
+            
         }
         /// <summary>
         /// 播放button声音

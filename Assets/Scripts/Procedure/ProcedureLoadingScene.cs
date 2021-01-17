@@ -30,7 +30,7 @@ public class ProcedureLoadingScene : ProcedureBase
         //加载场景
         LoadingProgress = 0;
         GetFSM().Mono.StartCoroutine(LoadSceneAsync(sceneName));
-        UIManager.Instance.PushPanel<LoadingPanel>(UIPanelTypeEnum.LoadingPanel, this);
+        UIManager.Instance.PushPanel(UIPanelTypeEnum.LoadingPanel, this);
 
     }
 

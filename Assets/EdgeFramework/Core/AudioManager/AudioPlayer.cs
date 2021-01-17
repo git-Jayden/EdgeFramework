@@ -21,10 +21,10 @@ namespace EdgeFramework.Audio
 
         public void PlaySound(SoundEnum key)
         {
-            Sound sound = SheetManager.Instance.GetSound(key);
+            SoundSheet sound = SheetManager.Instance.GetSoundSheet(key);
             string audioPath = sound.Path;
             AudioClip clip = AudioManager.Instance.LoadClip(audioPath, true);
-            if(sound.Repeat==0)
+            if (sound.Repeat == 0)
                 AudioManager.Instance.PlayOneShot(clip);
             else
                 AudioManager.Instance.RepeatSFX(clip, sound.Repeat, sound.Single);
@@ -32,7 +32,7 @@ namespace EdgeFramework.Audio
 
         public void PlayBGM(MusicEnum key)
         {
-            Music sound = SheetManager.Instance.GetMusic(key);
+            MusicSheet sound = SheetManager.Instance.GetMusicSheet(key);
             AudioManager.Instance.PlayBGM(sound.Path, (MusicTransition)sound.MusTransition, sound.Duration, sound.Volume);
         }
         public void StopAllSFX()

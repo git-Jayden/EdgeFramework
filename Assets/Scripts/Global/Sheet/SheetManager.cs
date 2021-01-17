@@ -26,88 +26,88 @@ public partial class SheetManager : Singleton<SheetManager>
 		items.ForEach(item => mExampleDict[item.exampleInt] = item);
 	}
 	
-	//Music
-	private Dictionary<MusicEnum,Music> mMusicDict;
-	public Music GetMusic(MusicEnum key)
+	//MusicSheet
+	private Dictionary<MusicEnum,MusicSheet> mMusicSheetDict;
+	public MusicSheet GetMusicSheet(MusicEnum key)
 	{
-		if (mMusicDict == null)
+		if (mMusicSheetDict == null)
 		{
-			InitMusic();
+			InitMusicSheet();
 		}
-		return mMusicDict[key];
+		return mMusicSheetDict[key];
 	}
-	public void InitMusic()
+	public void InitMusicSheet()
 	{
-		var items = GetSheetInfo<MusicList>("Music").Items;
-		mMusicDict = new Dictionary<MusicEnum, Music>();
-		items.ForEach(item => mMusicDict[item.MusicType] = item);
+		var items = GetSheetInfo<MusicSheetList>("MusicSheet").Items;
+		mMusicSheetDict = new Dictionary<MusicEnum, MusicSheet>();
+		items.ForEach(item => mMusicSheetDict[item.MusicType] = item);
 	}
 	
-	//Preload
-	private List<Preload> mPreloadList;
-	public List<Preload> GetPreloadList()
+	//PreloadSheet
+	private List<PreloadSheet> mPreloadSheetList;
+	public List<PreloadSheet> GetPreloadSheetList()
 	{
-		if (mPreloadList == null)
+		if (mPreloadSheetList == null)
 		{
-			InitPreload();
+			InitPreloadSheet();
 		}
-		return mPreloadList;
+		return mPreloadSheetList;
 	}
-	public void InitPreload()
+	public void InitPreloadSheet()
 	{
-		var items = GetSheetInfo<PreloadList>("Preload").Items;
-		mPreloadList = items;
+		var items = GetSheetInfo<PreloadSheetList>("PreloadSheet").Items;
+		mPreloadSheetList = items;
 	}
 	
-	//Scene
-	private Dictionary<int,Scene> mSceneDict;
-	public Scene GetScene(int key)
+	//SceneSheet
+	private Dictionary<string,SceneSheet> mSceneSheetDict;
+	public SceneSheet GetSceneSheet(string key)
 	{
-		if (mSceneDict == null)
+		if (mSceneSheetDict == null)
 		{
-			InitScene();
+			InitSceneSheet();
 		}
-		return mSceneDict[key];
+		return mSceneSheetDict[key];
 	}
-	public void InitScene()
+	public void InitSceneSheet()
 	{
-		var items = GetSheetInfo<SceneList>("Scene").Items;
-		mSceneDict = new Dictionary<int, Scene>();
-		items.ForEach(item => mSceneDict[item.Id] = item);
+		var items = GetSheetInfo<SceneSheetList>("SceneSheet").Items;
+		mSceneSheetDict = new Dictionary<string, SceneSheet>();
+		items.ForEach(item => mSceneSheetDict[item.Name] = item);
 	}
 	
-	//Sound
-	private Dictionary<SoundEnum,Sound> mSoundDict;
-	public Sound GetSound(SoundEnum key)
+	//SoundSheet
+	private Dictionary<SoundEnum,SoundSheet> mSoundSheetDict;
+	public SoundSheet GetSoundSheet(SoundEnum key)
 	{
-		if (mSoundDict == null)
+		if (mSoundSheetDict == null)
 		{
-			InitSound();
+			InitSoundSheet();
 		}
-		return mSoundDict[key];
+		return mSoundSheetDict[key];
 	}
-	public void InitSound()
+	public void InitSoundSheet()
 	{
-		var items = GetSheetInfo<SoundList>("Sound").Items;
-		mSoundDict = new Dictionary<SoundEnum, Sound>();
-		items.ForEach(item => mSoundDict[item.SoundType] = item);
+		var items = GetSheetInfo<SoundSheetList>("SoundSheet").Items;
+		mSoundSheetDict = new Dictionary<SoundEnum, SoundSheet>();
+		items.ForEach(item => mSoundSheetDict[item.SoundType] = item);
 	}
 	
-	//UIPanel
-	private Dictionary<UIPanelTypeEnum,UIPanel> mUIPanelDict;
-	public UIPanel GetUIPanel(UIPanelTypeEnum key)
+	//UIPanelSheet
+	private Dictionary<UIPanelTypeEnum,UIPanelSheet> mUIPanelSheetDict;
+	public UIPanelSheet GetUIPanelSheet(UIPanelTypeEnum key)
 	{
-		if (mUIPanelDict == null)
+		if (mUIPanelSheetDict == null)
 		{
-			InitUIPanel();
+			InitUIPanelSheet();
 		}
-		return mUIPanelDict[key];
+		return mUIPanelSheetDict[key];
 	}
-	public void InitUIPanel()
+	public void InitUIPanelSheet()
 	{
-		var items = GetSheetInfo<UIPanelList>("UIPanel").Items;
-		mUIPanelDict = new Dictionary<UIPanelTypeEnum, UIPanel>();
-		items.ForEach(item => mUIPanelDict[item.PanelType] = item);
+		var items = GetSheetInfo<UIPanelSheetList>("UIPanelSheet").Items;
+		mUIPanelSheetDict = new Dictionary<UIPanelTypeEnum, UIPanelSheet>();
+		items.ForEach(item => mUIPanelSheetDict[item.PanelType] = item);
 	}
 	
 }
