@@ -119,6 +119,8 @@ public class HotfixPanel : MonoBehaviour
                 GameEventSystem.SendEvent(ShareEvent.OpenSelectMessageBox, "下载确认", "当前使用的是手机流量，是否继续下载？",
                   new CallbackSelect(DownLoadConfirm));
             }
+            else
+                CheckVersion();
         }
         else
         {
