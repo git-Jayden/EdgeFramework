@@ -22,16 +22,16 @@ namespace EdgeFrameworkEditor
         public static string AndroidPath = Application.dataPath + "/../BuildTarget/Android/";
         public static string iOSPath = Application.dataPath + "/../BuildTarget/IOS/";
         public static string WindowsPath = Application.dataPath + "/../BuildTarget/Windows/";
-        public static string StreamingAssets = Application.streamingAssetsPath + "/AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString();
+        public static string StreamingAssets = Application.streamingAssetsPath + "/AssetBundle/";
         public static void Build()
         {
             SaveVersion(PlayerSettings.bundleVersion, PlayerSettings.applicationIdentifier);
             AppConfig.UseAssetBundle=true;
             //生成可执行程序
-            string abPath = Application.dataPath + "/../AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString() + "/";
+            string abPath = Application.dataPath + "/../AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString();
             if(!Directory.Exists(StreamingAssets))
                 Directory.CreateDirectory(StreamingAssets);
-            Copy(abPath, StreamingAssets);
+            Utility.FileHelper.CopyFileTo(abPath, StreamingAssets);
             string savePath = "";
             if (!Directory.Exists(AndroidPath))
                 Directory.CreateDirectory(AndroidPath);
@@ -54,7 +54,7 @@ namespace EdgeFrameworkEditor
             }
 
             BuildPipeline.BuildPlayer(FindEnableEditorScenes(), savePath, EditorUserBuildSettings.activeBuildTarget, BuildOptions.None);
-            DeleteDir(StreamingAssets);
+            Utility.FileHelper.DeleteDir(StreamingAssets);
         }
       public   static void SaveVersion(string version, string package)
         {
@@ -97,69 +97,7 @@ namespace EdgeFrameworkEditor
             }
             return editorScenes.ToArray();
         }
-        /// <summary>
-        /// 将外层相应平台的的AssetBundle Copy到StreamAssets中
-        /// </summary>
-        /// <param name="scrPath"></param>
-        /// <param name="targetPath"></param>
-        private static void Copy(string scrPath, string targetPath)
-        {
-            try
-            {
-                if (!Directory.Exists(targetPath))
-                {
-                    Directory.CreateDirectory(targetPath);
-                }
-                string scrdir = Path.Combine(targetPath, Path.GetFileName(scrPath));
-                if (Directory.Exists(scrPath))
-                    scrdir += Path.DirectorySeparatorChar;
-                if (!Directory.Exists(scrdir))
-                    Directory.CreateDirectory(scrdir);
-                string[] files = Directory.GetFileSystemEntries(scrPath);
-                foreach (var file in files)
-                {
-                    if (Directory.Exists(file))
-                        Copy(file, scrdir);
-                    else
-                    {
-                        File.Copy(file, scrdir + Path.GetFileName(file), true);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.LogError("无法复制:" + scrPath + "  到" + targetPath+e);
-            }
-        }
-        /// <summary>
-        /// 移除StreamAssets中的AssetBundle文件
-        /// </summary>
-        /// <param name="scrPath"></param>
-        public static void DeleteDir(string scrPath)
-        {
-            try
-            {
-                DirectoryInfo dir = new DirectoryInfo(scrPath);
-                FileSystemInfo[] fileInfo = dir.GetFileSystemInfos();
-                foreach (FileSystemInfo info in fileInfo)
-                {
-                    if (info is DirectoryInfo)
-                    {
-                        DirectoryInfo subdir = new DirectoryInfo(info.FullName);
-                        subdir.Delete(true);
-                    }
-                    else
-                    {
-                        File.Delete(info.FullName);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
 
-                Debug.LogError(e);
-            }
-        }
 
         #region 打包机调用打包pc版本
         //[MenuItem("Ls_Mobile/Tool/BuildPC()")]
@@ -172,8 +110,8 @@ namespace EdgeFrameworkEditor
             //生成可执行程序
             string abPath = Application.dataPath + "/../AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString() + "/";
             //清空生成的文件夹
-            DeleteDir(WindowsPath);
-            Copy(abPath, Application.streamingAssetsPath);
+            Utility.FileHelper.DeleteDir(WindowsPath);
+            Utility.FileHelper.CopyFileTo(abPath, Application.streamingAssetsPath);
             if (!Directory.Exists(WindowsPath))
                 Directory.CreateDirectory(WindowsPath);
             string dir = sAppName + "_PC" + suffix + string.Format("_{0:yyyy_MM_dd_HH_mm}", DateTime.Now);
@@ -181,7 +119,7 @@ namespace EdgeFrameworkEditor
             string savePath = WindowsPath + dir + name;
 
             BuildPipeline.BuildPlayer(FindEnableEditorScenes(), savePath, EditorUserBuildSettings.activeBuildTarget, BuildOptions.None);
-            DeleteDir(Application.streamingAssetsPath);
+            Utility.FileHelper.DeleteDir(Application.streamingAssetsPath);
             WriteBuildName(dir);
         }
         /// <summary>
@@ -280,11 +218,13 @@ namespace EdgeFrameworkEditor
             //生成可执行程序
             string abPath = Application.dataPath + "/../AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString() + "/";
             //清空生成的文件夹
-            DeleteDir(AndroidPath);
-            Copy(abPath, Application.streamingAssetsPath);
+            Utility.FileHelper.DeleteDir(AndroidPath);
+            Utility.FileHelper.CopyFileTo(abPath, Application.streamingAssetsPath);
+
             string savePath = AndroidPath + sAppName + "_Andorid" + suffix + string.Format("_{0:yyyy_MM_dd_HH_mm}.apk", DateTime.Now);
             BuildPipeline.BuildPlayer(FindEnableEditorScenes(), savePath, EditorUserBuildSettings.activeBuildTarget, BuildOptions.None);
-            DeleteDir(Application.streamingAssetsPath);
+            Utility.FileHelper.DeleteDir(Application.streamingAssetsPath);
+
 
         }
         static BuildSetting GetAndoridBuildSetting()
@@ -424,12 +364,15 @@ namespace EdgeFrameworkEditor
             //生成可执行程序
             string abPath = Application.dataPath + "/../AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString() + "/";
             //清空生成的文件夹
-            DeleteDir(iOSPath);
-            Copy(abPath, Application.streamingAssetsPath);
+            Utility.FileHelper.DeleteDir(iOSPath);
+            Utility.FileHelper.CopyFileTo(abPath, Application.streamingAssetsPath);
+
+  
             string name = sAppName + "_IOS" + suffix + string.Format("_{0:yyyy_MM_dd_HH_mm}", DateTime.Now);
             string savePath = iOSPath + name;
             BuildPipeline.BuildPlayer(FindEnableEditorScenes(), savePath, EditorUserBuildSettings.activeBuildTarget, BuildOptions.None);
-            DeleteDir(Application.streamingAssetsPath);
+            Utility.FileHelper.DeleteDir(Application.streamingAssetsPath);
+
             WriteBuildName(name);
         }
 

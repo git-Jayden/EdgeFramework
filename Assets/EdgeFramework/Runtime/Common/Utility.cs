@@ -380,7 +380,69 @@ namespace EdgeFramework
                 }
             }
 
+            /// <summary>
+            /// 将scrPath文件夹下文件Copy到targetPath文件夹中去
+            /// </summary>
+            /// <param name="scrPath"></param>
+            /// <param name="targetPath"></param>
+            public  static void CopyFileTo(string scrPath, string targetPath)
+            {
+                try
+                {
+                    if (!Directory.Exists(targetPath))
+                    {
+                        Directory.CreateDirectory(targetPath);
+                    }
+                    string scrdir = Path.Combine(targetPath, Path.GetFileName(scrPath));
+                    if (Directory.Exists(scrPath))
+                        scrdir += Path.DirectorySeparatorChar;
+                    if (!Directory.Exists(scrdir))
+                        Directory.CreateDirectory(scrdir);
+                    string[] files = Directory.GetFileSystemEntries(scrPath);
+                    foreach (var file in files)
+                    {
+                        if (Directory.Exists(file))
+                            CopyFileTo(file, scrdir);
+                        else
+                        {
+                            File.Copy(file, scrdir + Path.GetFileName(file), true);
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError("无法复制:" + scrPath + "  到" + targetPath + e);
+                }
+            }
+            /// <summary>
+            /// 移除文件夹下所有文件
+            /// </summary>
+            /// <param name="scrPath"></param>
+            public  static void DeleteDir(string scrPath)
+            {
+                try
+                {
+                    DirectoryInfo dir = new DirectoryInfo(scrPath);
+                    FileSystemInfo[] fileInfo = dir.GetFileSystemInfos();
+                    foreach (FileSystemInfo info in fileInfo)
+                    {
+                        if (info is DirectoryInfo)
+                        {
+                            DirectoryInfo subdir = new DirectoryInfo(info.FullName);
+                            subdir.Delete(true);
+                        }
+                        else
+                        {
+                            File.Delete(info.FullName);
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
 
+                    Debug.LogError(e);
+                }
+            }
         }
 
         public class PathHelper

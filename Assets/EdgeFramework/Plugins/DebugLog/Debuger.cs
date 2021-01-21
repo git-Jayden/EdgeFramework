@@ -352,6 +352,7 @@ namespace Ls_Mobile
                     }
                     catch (Exception exception2)
                     {
+                        Debuger.Log(exception2.ToString());
                     }
                 }
             }
