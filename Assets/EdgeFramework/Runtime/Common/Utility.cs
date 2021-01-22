@@ -23,6 +23,54 @@ namespace EdgeFramework
     public static class Utility
     {
 
+        public class TimerHelper
+        {
+            /// <summary>
+            /// 将秒换算称 时分秒
+            /// </summary>
+            /// <param name="time"></param>
+            /// <returns></returns>
+            public static string MathfTime(float time)
+            {
+                string value = "";
+                TimeSpan ts = new TimeSpan(0, 0, Convert.ToInt32(time));
+                if (ts.Hours > 0)
+                {
+                    value = ts.Hours.ToString() + "小时" + ts.Minutes.ToString() + "分钟" + ts.Seconds + "秒";
+                }
+                if (ts.Hours == 0 && ts.Minutes > 0)
+                {
+                    value = ts.Minutes.ToString() + "分钟" + ts.Seconds + "秒";
+                }
+                if (ts.Hours == 0 && ts.Minutes == 0 && ts.Seconds > 0)
+                {
+                    value = ts.Seconds + "秒";
+                }
+                return value;
+            }
+            /// <summary>
+            /// 将秒换算称 00:00
+            /// </summary>
+            /// <param name="time"></param>
+            /// <returns></returns>
+            public static string TimeConvert(double time)
+            {
+                string value = "";
+                TimeSpan ts = new TimeSpan(0, 0, Convert.ToInt32(time));
+                string h = "";
+                if (ts.Hours.ToString().ToCharArray().Length <= 1)
+                    h += "0";
+                h += ts.Hours.ToString();
+                string m = "";
+                if (ts.Minutes.ToString().ToCharArray().Length <= 1)
+                    m += "0";
+                m += ts.Minutes.ToString();
+
+                value = h + ":" + m;
+                return value;
+            }
+        }
+
         /// <summary>
         /// 字符相关的实用函数。
         /// </summary>
@@ -170,6 +218,41 @@ namespace EdgeFramework
                 Utility.TextHelper.s_CachedStringBuilder.Append(path2);
                 return Utility.TextHelper.s_CachedStringBuilder.ToString();
             }
+            /// <summary>
+            /// 数字转大写
+            /// </summary>
+            /// <param name="Num">数字</param>
+            /// <returns></returns>
+            public static string NumtoChinese(decimal s)
+            {
+                s = Math.Round(s, 2);//四舍五入到两位小数，即分
+                string[] n = { "零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖" };
+                //数字转大写
+                string[] d = { "", "分", "角", "元", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿" };
+                //不同位置的数字要加单位
+                List<string> needReplace = new List<string> { "零拾", "零佰", "零仟", "零万", "零亿", "亿万", "零元", "零零", "零角", "零分" };
+                List<string> afterReplace = new List<string> { "零", "零", "零", "万", "亿", "亿", "元", "零", "", "" };//特殊情况用replace剔除
+                string e = s % 1 == 0 ? "整" : "";//金额是整数要加一个“整”结尾
+                string re = "";
+                Int64 a = (Int64)(s * 100);
+                int k = 1;
+                while (a != 0)
+                {//初步转换为大写+单位
+                    re = n[a % 10] + d[k] + re;
+                    a = a / 10;
+                    k = k < 11 ? k + 1 : 4;
+                }
+                string need = needReplace.Where(tb => re.Contains(tb)).FirstOrDefault<string>();
+                while (need != null)
+                {
+                    int i = needReplace.IndexOf(need);
+                    re = re.Replace(needReplace[i], afterReplace[i]);
+                    need = needReplace.Where(tb => re.Contains(tb)).FirstOrDefault<string>();
+                }//循环排除特殊情况
+                re = re == "" ? "" : re + e;
+                return re;
+            }
+
         }
 
         public class ProtobufHelper
