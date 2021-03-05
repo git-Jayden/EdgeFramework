@@ -22,7 +22,7 @@ namespace EdgeFramework
 {
     public static class Utility
     {
-
+       
         public class TimerHelper
         {
             /// <summary>

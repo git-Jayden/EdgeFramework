@@ -35,7 +35,7 @@ namespace EdgeFramework
                 {
                     if (!ifFire) return;
                     string clipname = v.animatorClipInfo.clip.name;
-                    Debug.Log(clipname);
+     
                    // 演示Base Layer的事件接受 ---因为AnimationClip在这个动画机中被多次复用，层别Layer信息是非常必要的（区别于上面的示例）
                     if (v.animatorStateInfo.IsName("Base Layer.Rotate"))
                     {

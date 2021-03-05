@@ -53,17 +53,35 @@ namespace EdgeFrameworkEditor
         #endregion
 
         #region AssetBundle
-        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.AssetsBundle + "/BuildApp _F4")]
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.AssetsBundle + "/BuildBundle _F8")]
+        public static void NormalBuild()
+        {
+            BundleEditor.Build();
+        }
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.AssetsBundle + "/CopyBundleToStreamAssets _F10")]
+        public static void CopyBundle()
+        {
+            string StreamingAssets = Application.streamingAssetsPath + "/AssetBundle/";
+            string abPath = Application.dataPath + "/../AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString() + "/";
+            if (Directory.Exists(StreamingAssets))
+                Utility.FileHelper.DeleteDir(StreamingAssets);
+            else
+                Directory.CreateDirectory(StreamingAssets);
+            Utility.FileHelper.CopyFileTo(abPath, StreamingAssets);
+        }
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.AssetsBundle + "/DeleteStreamAssets _F11")]
+        public static void DeleteBundle()
+        {
+            string StreamingAssets = Application.streamingAssetsPath + "/AssetBundle/";
+            Utility.FileHelper.DeleteDir(StreamingAssets);
+        }
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.AssetsBundle + "/BuildApp _F12")]
         public static void Build()
         {
             BundleEditor.Build();
             BuildApp.Build();
         }
-        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.AssetsBundle + "/BuildBundle _F3")]
-        public static void NormalBuild()
-        {
-            BundleEditor.Build();
-        }
+
         [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.AssetsBundle + "/打包热更包")]
         public static void OpenHotfix()
         {
@@ -78,7 +96,7 @@ namespace EdgeFrameworkEditor
 
         #region Encryption
 
-        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.Encryption +"/ 加密AB包")]
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.Encryption + "/ 加密AB包")]
         public static void EncryptAB()
         {
             DirectoryInfo directory = new DirectoryInfo(BundleEditor.BundleTargetPath);
@@ -94,7 +112,7 @@ namespace EdgeFrameworkEditor
         }
 
         [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.Encryption + "/解密AB包")]
-        public static void DecrptyAB() 
+        public static void DecrptyAB()
         {
             DirectoryInfo directory = new DirectoryInfo(BundleEditor.BundleTargetPath);
             FileInfo[] files = directory.GetFiles("*", SearchOption.AllDirectories);
@@ -126,7 +144,7 @@ namespace EdgeFrameworkEditor
         /// <summary>
         /// 游戏开始快捷键
         /// </summary>
-        [MenuItem(EdgeFrameworkConst.ProductName+ "/Play _F5")]
+        [MenuItem(EdgeFrameworkConst.ProductName + "/Play _F5")]
         private static void Play()
         {
             if (EditorApplication.isPlaying)
@@ -143,5 +161,5 @@ namespace EdgeFrameworkEditor
             }
         }
     }
-   
+
 }

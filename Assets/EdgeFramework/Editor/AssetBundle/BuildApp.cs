@@ -25,8 +25,9 @@ namespace EdgeFrameworkEditor
         public static string StreamingAssets = Application.streamingAssetsPath + "/AssetBundle/";
         public static void Build()
         {
+            PlayerSettings.bundleVersion = AppConfig.Version;
             SaveVersion(PlayerSettings.bundleVersion, PlayerSettings.applicationIdentifier);
-            AppConfig.UseAssetBundle=true;
+
             //生成可执行程序
             string abPath = Application.dataPath + "/../AssetBundle/" + EditorUserBuildSettings.activeBuildTarget.ToString();
             if(!Directory.Exists(StreamingAssets))
