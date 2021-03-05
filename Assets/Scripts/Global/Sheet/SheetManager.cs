@@ -55,9 +55,9 @@ public partial class SheetManager : Singleton<SheetManager>
 	}
 	public void InitPreloadSheet()
 	{
-        var items = GetSheetInfo<PreloadSheetList>("PreloadSheet").Items;
-        mPreloadSheetList = items;
-    }
+		var items = GetSheetInfo<PreloadSheetList>("PreloadSheet").Items;
+		mPreloadSheetList = items;
+	}
 	
 	//SceneSheet
 	private Dictionary<string,SceneSheet> mSceneSheetDict;
