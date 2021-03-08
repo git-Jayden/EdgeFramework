@@ -19,7 +19,7 @@ namespace EdgeFrameworkEditor
     class MenumanagerEditor
     {
         #region OpenTool
-        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.OpenTool + "/AbConfig _F6", false)]
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.Tools + "/AbConfig _F6", false)]
         public static void MenuOpenAbConfig()
         {
             ABConfig instance = ABConfig.LoadAbConfig();
@@ -38,7 +38,7 @@ namespace EdgeFrameworkEditor
             Selection.activeObject = instance;
         }
 
-        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.OpenTool + "/OpenPanelExcel _F7", false)]
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.Tools + "/OpenPanelExcel _F7", false)]
         public static void MenuOpenPanelJson()
         {
 
@@ -49,7 +49,31 @@ namespace EdgeFrameworkEditor
             p.Start();
             p.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
         }
-
+        private const string DLLPATH = "Assets/ABResources/Data/HotFix/Hotfix.dll";
+        private const string PDBPATH = "Assets/ABResources/Data/HotFix/Hotfix.pdb";
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.Tools + "/修改热更dll为bytes _F7", false)]
+        public static void ChangeDllName()
+        {
+            if (File.Exists(DLLPATH))
+            {
+                string targetPath = DLLPATH + ".bytes";
+                if (File.Exists(targetPath))
+                {
+                    File.Delete(targetPath);
+                }
+                File.Move(DLLPATH, targetPath);
+            }
+            if (File.Exists(PDBPATH))
+            {
+                string targetPath = PDBPATH + ".bytes";
+                if (File.Exists(targetPath))
+                {
+                    File.Delete(targetPath);
+                }
+                File.Move(PDBPATH, targetPath);
+            }
+            AssetDatabase.Refresh();
+        }
         #endregion
 
         #region AssetBundle

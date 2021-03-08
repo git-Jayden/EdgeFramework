@@ -43,7 +43,7 @@ public class ProcedureCheckUpdate : ProcedureBase
         yield return null;
         text.text = "加载dll... ...";
         //TODO代码热更
-
+        ILRuntimeManager.Instance.Init();
         text.text = "加载数据表... ...";
 
         image.fillAmount = 0.7f;

@@ -17,7 +17,7 @@ namespace EdgeFramework
         public const string ProductName = "EdgeFramework";
         // Editor Menum Name
         public const string Encryption = "Encryption";
-        public const string OpenTool = "OpenTool";
+        public const string Tools = "Tools";
         public const string AssetsBundle = "AssetsBundle";
         public const string Sheet = "Sheet";
         //Frame Folder
