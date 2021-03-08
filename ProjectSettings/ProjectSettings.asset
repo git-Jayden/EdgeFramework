@@ -39,7 +39,9 @@ PlayerSettings:
     y: 0
     width: 1
     height: 1
-  m_SplashScreenLogos: []
+  m_SplashScreenLogos:
+  - logo: {fileID: 21300000, guid: fe03627956e88254da836edf904a6203, type: 3}
+    duration: 2
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_ShowUnitySplashAds: 0
   m_AdsAndroidGameId: 
@@ -256,7 +258,7 @@ PlayerSettings:
   templateDefaultScene: Assets/Scenes/SampleScene.unity
   AndroidTargetArchitectures: 5
   AndroidSplashScreenScale: 0
-  androidSplashScreen: {fileID: 0}
+  androidSplashScreen: {fileID: 10307, guid: 0000000000000000f000000000000000, type: 0}
   AndroidKeystoreName: F:/FrameWork/Ls_Mobile/Ls_Mobile.keystore
   AndroidKeyaliasName: android.keystore
   AndroidBuildApkPerCpuArchitecture: 0
@@ -692,6 +694,7 @@ PlayerSettings:
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
   gcIncremental: 0
+  assemblyVersionValidation: 1
   gcWBarrierValidation: 0
   apiCompatibilityLevelPerPlatform:
     Android: 3
@@ -742,6 +745,7 @@ PlayerSettings:
   XboxOneCapability: []
   XboxOneGameRating: {}
   XboxOneIsContentPackage: 0
+  XboxOneEnhancedXboxCompatibilityMode: 0
   XboxOneEnableGPUVariability: 0
   XboxOneSockets: {}
   XboxOneSplashScreen: {fileID: 0}
