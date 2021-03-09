@@ -63,5 +63,26 @@
 
 ![image](https://user-images.githubusercontent.com/24520716/110448097-d7c39d80-80fb-11eb-9b3f-8999bfe64b16.png)
 
+3.配置Serverinfo.xml服务器配置文件
+
+将工程根节点下/Hot/平台/下的AB包拷贝，然后可在资源服务器下创建文件夹，文件夹路径为   资源服务器/AssetBundle/App版本号/热更版本号/  然后将之前所拷贝出来的热更ab包放入该目录下
+
+随后在资源服务器的根目录下创建Serverinfo.xml,文件内容如下
+
+![image](https://user-images.githubusercontent.com/24520716/110448348-15c0c180-80fc-11eb-81d2-427f08ec00de.png)
+
+GameVersion  Version=为app版本，下面Path为之前打热更包生成出来的Pathces，将拷贝过来，将xmlns移除，并可添加Des更新描述，如上图，下面可添加多个Pathces，但是APP只会对最后一个Pathces进行更新检查，只需要更改服务器端的Pathces即可进行版本的回退以及对版本的更新
+
+服务器路径节点为下图
+
+![image](https://user-images.githubusercontent.com/24520716/110448434-2b35eb80-80fc-11eb-98dc-67b05d3746e0.png)
+
+完成上方操作后运行服务器，并运行APP后可看到已可以更新资源
+
+![image](https://user-images.githubusercontent.com/24520716/110448533-3db02500-80fc-11eb-9f83-5779c3570e17.png)
+
+![image](https://user-images.githubusercontent.com/24520716/110448591-486aba00-80fc-11eb-86dd-696a373a7a21.png)
+
+
 
 
