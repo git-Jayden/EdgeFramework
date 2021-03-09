@@ -41,9 +41,9 @@
 
 2.AssetsBundle代码加载
 
-（2）资源同步加载ResourcesManager.LoadResouce(string path)，具体其他函数可自行查看ResourcesManager,包括预加载资源，异步加载资源，资源卸载，取消异步加载资源等
+（1）资源同步加载ResourcesManager.LoadResouce(string path)，具体其他函数可自行查看ResourcesManager,包括预加载资源，异步加载资源，资源卸载，取消异步加载资源等
 
-（3）Prefab同步加载ObjectManager.InstantiateObject(string path)，具体其他函数可自行查看ObjectManager,包括预加载Gamobject，异步加载，回收资源，取消异步加载资源等
+（2）Prefab同步加载ObjectManager.InstantiateObject(string path)，具体其他函数可自行查看ObjectManager,包括预加载Gamobject，异步加载，回收资源，取消异步加载资源等
 
 ### 三、打热更包以及热更配置文件的配置
 1.配置资源热更
@@ -56,5 +56,12 @@
 ![image](https://user-images.githubusercontent.com/24520716/110447136-e198d100-80fa-11eb-9e6c-95525f69b957.png)
 
 点击打热更包后，会生成差异的ab文件以及一份热更配置文件出来，目录在工程根节点下/Hot/平台/下，资源目录如下图
-        
+
+![image](https://user-images.githubusercontent.com/24520716/110447946-b2cf2a80-80fb-11eb-9ccd-8f01740ec9bd.png)
+
+其中有一份配置文件Patch.xml，可打开看到，Name代表要更新的Ab包的包名，url代表更新下载的url,后面是平台，md5和资源的大小
+
+![image](https://user-images.githubusercontent.com/24520716/110448097-d7c39d80-80fb-11eb-9b3f-8999bfe64b16.png)
+![image](https://user-images.githubusercontent.com/24520716/110447946-b2cf2a80-80fb-11eb-9ccd-8f01740ec9bd.png)
+
 
