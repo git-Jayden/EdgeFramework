@@ -57,11 +57,11 @@
 
 点击打热更包后，会生成差异的ab文件以及一份热更配置文件出来，目录在工程根节点下/Hot/平台/下，资源目录如下图
 
-![image](https://user-images.githubusercontent.com/24520716/110447946-b2cf2a80-80fb-11eb-9ccd-8f01740ec9bd.png)
+![image](https://user-images.githubusercontent.com/24520716/110448206-f033b800-80fb-11eb-9a26-d062b8610841.png)
 
 其中有一份配置文件Patch.xml，可打开看到，Name代表要更新的Ab包的包名，url代表更新下载的url,后面是平台，md5和资源的大小
 
 ![image](https://user-images.githubusercontent.com/24520716/110448097-d7c39d80-80fb-11eb-9b3f-8999bfe64b16.png)
-![image](https://user-images.githubusercontent.com/24520716/110447946-b2cf2a80-80fb-11eb-9ccd-8f01740ec9bd.png)
+
 
 
