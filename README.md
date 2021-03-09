@@ -19,4 +19,5 @@
 该文件在Assets根目录下，打开后如下图ABList代表打包的资源，Path代表该打包资源的原资源路径，Crc为该资源路径的唯一ID,ABName代表该资源打入了这个Ab的包名中,AssetName代表资源的名字
 
 另ABDependce代表依赖项，意思就是加载ABList中资源还依赖于该ABDependce Ab包中的资源
+![image](https://user-images.githubusercontent.com/24520716/110446267-f1fc7c00-80f9-11eb-9f0f-2d1299b4ba25.png)
 
