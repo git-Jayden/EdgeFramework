@@ -28,11 +28,33 @@
 （3）ABMD5.bytes本地md5校验文件，资源所在目录Assets\Resources下，该文件是用来校验本地本地资源的解压，在程序开始运行的时候会将StreamAssets下的AssetsBundle解压入Application.persistentDataPath持久化数据存储目录中，这时候就需要Md5值校验文件
 
 ![image](https://user-images.githubusercontent.com/24520716/110446473-2bcd8280-80fa-11eb-8de1-829561f19269.png)
+
 （4）AssetsBundle包 在工程根目录下AssetBundle\平台\
 
 （5）ABMD5.bytes服务器md5校验文件 在工程根目录下Version\平台\ABMD5_0.1.bytes   0.1为App的版本 打热更包的时候会选择app版本号中的md5做对比，会对比出与最初打包出来Ab包中的资源文件哪些文件做了更改
 
 
 ### 二、AssetsBundle资源加载
+1.AssetsBundle加载配置
 
+需要资源加载需将AppConfig.cs脚本中的UseAssetBundle设置为true,并将工程根目录下AssetBundle\平台\下的Ab包拷贝到StreamAssets\AssetBundle\目录下这时候可以使用EdgeFramework->AssetsBundle->CopyBundleToStreamAssets可直接将Ab包拷贝入Stream目录下，如需移除streamAssets下Ab包也可点击EdgeFramework->AssetsBundle->DeleteStreamAssets下自动移除Ab包，建议在Editor下使用编辑器加载。需打Apk的时候使用Ab加载
+
+2.AssetsBundle代码加载
+
+（2）资源同步加载ResourcesManager.LoadResouce(string path)，具体其他函数可自行查看ResourcesManager,包括预加载资源，异步加载资源，资源卸载，取消异步加载资源等
+
+（3）Prefab同步加载ObjectManager.InstantiateObject(string path)，具体其他函数可自行查看ObjectManager,包括预加载Gamobject，异步加载，回收资源，取消异步加载资源等
+
+### 三、打热更包以及热更配置文件的配置
+1.配置资源热更
+
+打开AppConfig.cs脚本，将CheckVersionUpdate检查更新设置为true,并且设置好ServerResourceURL资源的url路径
+
+2.打热更包
+
+（1）点击EdgeFramework->AssetsBundle->打热更包，如下图，选择当前app版本所打出来AssetsBundle包生成出来的ABMD5.bytes文件，下面热更补丁版本为热更的版本，代表第几次热更的版本，意思将当前的资源文件与最初的资源文件的md5做对比，如当前资源与之前的资源文件Md5不一致代表该资源需更新重新打一份ab包出来
+![image](https://user-images.githubusercontent.com/24520716/110447136-e198d100-80fa-11eb-9e6c-95525f69b957.png)
+
+点击打热更包后，会生成差异的ab文件以及一份热更配置文件出来，目录在工程根节点下/Hot/平台/下，资源目录如下图
+        
 
