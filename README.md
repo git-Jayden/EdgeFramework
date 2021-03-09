@@ -13,5 +13,8 @@
 点击EdgeFramework->AssetsBundle->BuildBundle或者快捷键F8即可启动打包
 打包所生成文件
 （1）AssetbundleCofig.xml文件 该xml只用来查看打包信息
+
 该文件在Assets根目录下，打开后如下图ABList代表打包的资源，Path代表该打包资源的原资源路径，Crc为该资源路径的唯一ID,ABName代表该资源打入了这个Ab的包名中,AssetName代表资源的名字
+
 另ABDependce代表依赖项，意思就是加载ABList中资源还依赖于该ABDependce Ab包中的资源
+
