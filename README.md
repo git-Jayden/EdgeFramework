@@ -94,4 +94,44 @@ GameVersion  Version=为app版本，下面Path为之前打热更包生成出来�
         None,
         ExampleOne
         }
+        
+(2)类名一般用大驼峰，即首字母大写,一般我会以对象名相同的名创建
+  
+(3)类名称尽量少用或不用缩写，若使用了缩写一定要在注释中详细注明类的用途
+   
+(4)类名要用名词。模板类开头用T。例如TSubject
+      
+(5)接口开头用I。接口名要用名词。
 
+(6)缩写
+        /**
+        * GameObject->Go
+        * Transform->Trans
+        * Position->Pos
+        * Button->Btn
+        * Dictionary->Dict
+        * Number->Num
+        * Current->Cur
+        * Controller->Ctrl
+        */
+        
+(7)
+        /// 私有最好也别省略private
+        /// 私有变量可以加前缀 m 表示私有成员 mExampleBtn
+        
+(8)
+        ///公有变量和公共属性使用首字母大写驼峰式类的,尽量用属性代替公有变量。
+        
+ (9)
+        ///常量所有单词大写，多个单词之间用下划线隔开
+        
+(10)
+        ///方法名一律使用首字母大写驼峰式
+        
+(11)
+        ///局部变量最好用var匿名声明 小写驼峰式
+        
+(12)
+        ///静态变量可以加前缀 s 表示静态 sExample
+              
+              
