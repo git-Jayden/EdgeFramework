@@ -81,7 +81,7 @@ GameVersion  Version=为app版本，下面Path为之前打热更包生成出来�
 
 ![image](https://user-images.githubusercontent.com/24520716/110559064-83153680-817e-11eb-81fb-88232b87820d.png)
 
-![image](https://user-images.githubusercontent.com/24520716/110448591-486aba00-80fc-11eb-86dd-696a373a7a21.png)
+![image](https://user-images.githubusercontent.com/24520716/110559894-fd928600-817f-11eb-9a46-0d32dc3bbc9d.png)
 
 ### 四、BuildAPP
 打包Apk的时候可直接点击EdgeFramework->AssetsBundle->BuildApp或者快捷键F12即可启动打包,可看到下图，打包App时会自动设置版本号，自动设置keystore，并重新打Ab包,拷贝入streamassets下。并打打包完毕后自动移除streamassets下的ab包避免git推送
