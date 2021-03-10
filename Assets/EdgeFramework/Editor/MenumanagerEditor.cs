@@ -92,12 +92,14 @@ namespace EdgeFrameworkEditor
             else
                 Directory.CreateDirectory(StreamingAssets);
             Utility.FileHelper.CopyFileTo(abPath, StreamingAssets);
+            AssetDatabase.Refresh();
         }
         [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.AssetsBundle + "/DeleteStreamAssets _F11")]
         public static void DeleteBundle()
         {
             string StreamingAssets = Application.streamingAssetsPath + "/AssetBundle/";
             Utility.FileHelper.DeleteDir(StreamingAssets);
+            AssetDatabase.Refresh();
         }
         [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.AssetsBundle + "/BuildApp _F12")]
         public static void Build()

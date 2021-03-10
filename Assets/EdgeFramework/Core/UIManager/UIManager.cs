@@ -82,6 +82,7 @@ namespace EdgeFramework.UI
         /// <param name="trans"></param>
         public void OnInit(Transform trans)
         {
+
             this.UIRoot = trans.Find("UIRoot") as RectTransform;
             this.WindRoot = trans.Find("UIRoot/WindRoot") as RectTransform;
             this.UICamera = trans.Find("UIRoot/UICamera").GetComponent<Camera>();

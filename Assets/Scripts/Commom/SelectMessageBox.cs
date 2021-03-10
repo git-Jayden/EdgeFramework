@@ -46,14 +46,14 @@ public class SelectMessageBox : MonoBehaviour
         {
             callback.Call(this, true);
             gameObject.SetActive(false);
-            AudioPlayer.Instance.PlaySound(SoundEnum.EnterClick);
+            //AudioPlayer.Instance.PlaySound(SoundEnum.EnterClick);
         });
         cancleBtn.onClick.AddListener(() =>
         {
 
             callback.Call(this, false);
             gameObject.SetActive(false);
-            AudioPlayer.Instance.PlaySound(SoundEnum.EnterClick);
+            //AudioPlayer.Instance.PlaySound(SoundEnum.EnterClick);
         });
 
     }

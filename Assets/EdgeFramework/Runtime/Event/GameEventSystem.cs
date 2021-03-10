@@ -123,7 +123,7 @@ namespace EdgeFramework
             ListenerWrap wrap;
             if (mAllListenerMap.TryGetValue(kv, out wrap))
             {
-                return wrap.Fire(kv,wrap);
+                return wrap.Fire(kv, para);
             }
             return false;
         }

@@ -410,7 +410,7 @@ public class ILRuntimeManager : Singleton<ILRuntimeManager>
     private const string DLLPATH = "Assets/ABResources/Data/HotFix/Hotfix.dll.bytes";
     private const string PDBPATH = "Assets/ABResources/Data/HotFix/Hotfix.pdb.bytes";
     AppDomain mAppDomain;
-
+    public AppDomain AppDomainCtrl { get { return mAppDomain; } }
     public void Init()
     {
         LoadHotFixAssembly();
@@ -681,8 +681,6 @@ public class ILRuntimeManager : Singleton<ILRuntimeManager>
 
         return __esp;
     }
-
-
 
 
 }
