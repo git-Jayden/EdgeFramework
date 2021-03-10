@@ -79,7 +79,7 @@ GameVersion  Version=为app版本，下面Path为之前打热更包生成出来�
 
 完成上方操作后运行服务器，并运行APP后可看到已可以更新资源
 
-![image](https://user-images.githubusercontent.com/24520716/110448533-3db02500-80fc-11eb-9f83-5779c3570e17.png)
+![image](https://user-images.githubusercontent.com/24520716/110559064-83153680-817e-11eb-81fb-88232b87820d.png)
 
 ![image](https://user-images.githubusercontent.com/24520716/110448591-486aba00-80fc-11eb-86dd-696a373a7a21.png)
 
