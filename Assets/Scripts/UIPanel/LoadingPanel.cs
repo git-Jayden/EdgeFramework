@@ -8,27 +8,39 @@ public class LoadingPanel : BaseUI
     private Text text;
     ProcedureLoadingScene loading;
 
-    private void Awake()
+    public override void OnCreat()
     {
-        slider = transform.Find("BG/Slider").GetComponent<Slider>();
-        text = transform.Find("BG/Text").GetComponent<Text>();
+        base.OnCreat();
+        slider = RectTrans.Find("BG/Slider").GetComponent<Slider>();
+        text = RectTrans.Find("BG/Text").GetComponent<Text>();
     }
-    private void Update()
+    //private void Awake()
+    //{
+    //    slider = transform.Find("BG/Slider").GetComponent<Slider>();
+    //    text = transform.Find("BG/Text").GetComponent<Text>();
+    //}
+    public override void OnUpdate()
     {
+        base.OnUpdate();
         slider.value = loading.LoadingProgress / 100.0f;
         text.text = string.Format("{0}%", loading.LoadingProgress);
     }
+    //private void Update()
+    //{
+    //    slider.value = loading.LoadingProgress / 100.0f;
+    //    text.text = string.Format("{0}%", loading.LoadingProgress);
+    //}
    
     public override void OnEnter(params object[] param)
     {
         base.OnEnter(param);
         loading = (ProcedureLoadingScene)param[0];
-        gameObject.SetActive(true);
+        UIObj.SetActive(true);
     }
     public override void OnExit()
     {
         base.OnExit();
-        gameObject.SetActive(false);
+        UIObj.SetActive(false);
         loading = null;
     }
     

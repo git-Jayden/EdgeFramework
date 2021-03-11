@@ -66,7 +66,7 @@ namespace EdgeFramework.UI
         /// </summary>
         private Dictionary<UIPanelTypeEnum, BaseUI> mPanelDict = new Dictionary<UIPanelTypeEnum, BaseUI>();
         /// <summary>
-        /// UI面板堆栈
+        /// UI面板堆栈  打开的窗口列表
         /// </summary>
         private Stack<BaseUI> mPanelStack = new Stack<BaseUI>();
         /// <summary>
@@ -89,7 +89,15 @@ namespace EdgeFramework.UI
             this.EventSys= trans.Find("UIRoot/EventSystem").GetComponent<EventSystem>();
             this.mCanvasRate = Screen.height / (UICamera.orthographicSize * 2);
         }
-      
+
+        public void OnUpdate()
+        {
+            if (mPanelStack == null || mPanelStack.Count <= 0) return;
+            foreach (var item in mPanelStack)
+            {
+                item.OnUpdate();
+            }
+        }
         /// <summary>
         /// 显示或者隐藏所有UI
         /// </summary>
@@ -134,7 +142,7 @@ namespace EdgeFramework.UI
         /// 把某个页面入栈，把某个页面显示在界面 上
         /// </summary>
         /// <param name="panelType"></param>
-        public BaseUI PushPanel(UIPanelTypeEnum panelType,params object[]param) 
+        public BaseUI PushPanel<T>(UIPanelTypeEnum panelType,params object[]param) where T:BaseUI,new()
         {
             //判断一下栈里面是否有页面
             if (mPanelStack.Count > 0)
@@ -143,7 +151,7 @@ namespace EdgeFramework.UI
                 curPanel.OnPause();
             }
             mCurSiblingIndex++;
-            BaseUI panel = GetPanel(panelType);
+            BaseUI panel = GetPanel<T>(panelType);
             panel.OnEnter(param);
             panel.SetSiblingIndex(ViewSiblingIndex.LOW + mCurSiblingIndex);
             mPanelStack.Push(panel);
@@ -170,11 +178,11 @@ namespace EdgeFramework.UI
             if (destroy)
             {
                 topPanel.ClearPanelBtn();
-                ObjectManager.Instance.ReleaseObject(topPanel.gameObject, 0, true);
+                ObjectManager.Instance.ReleaseObject(topPanel.UIObj, 0, true);
             }
             else
             {
-                ObjectManager.Instance.ReleaseObject(topPanel.gameObject, recycleParent: false);
+                ObjectManager.Instance.ReleaseObject(topPanel.UIObj, recycleParent: false);
             }
             topPanel = null;
             if (mPanelStack.Count <= 0) return;
@@ -185,13 +193,13 @@ namespace EdgeFramework.UI
         /// 根据面板类型 得到实例化的面板
         /// </summary>
         /// <returns></returns>
-        private BaseUI GetPanel(UIPanelTypeEnum panelType) 
+        private BaseUI GetPanel<T>(UIPanelTypeEnum panelType) where T:BaseUI,new ()
         {
             string path = SheetManager.Instance.GetUIPanelSheet(panelType).Path;
             GameObject go =ObjectManager.Instance.InstantiateObject(path);
             go.transform.SetParent(WindRoot, false);
-            BaseUI view = go.GetComponent<BaseUI>();
-            view.Init( panelType);
+            var view = new T();
+            view.Init( go,panelType);
             mPanelDict.Add(panelType, view);
             return view;
         }
@@ -206,7 +214,7 @@ namespace EdgeFramework.UI
             if (mPanelStack.Count <= 0) return;
             foreach (var key in mPanelDict.Keys)
             {
-                ObjectManager.Instance.ReleaseObject(mPanelDict[key].gameObject,0,true, false);
+                ObjectManager.Instance.ReleaseObject(mPanelDict[key].UIObj, 0,true, false);
                 mPanelDict[key].OnExit();
                 mPanelDict[key].ClearPanelBtn();
                 mPanelDict.Remove(key);
@@ -225,24 +233,24 @@ namespace EdgeFramework.UI
         public void SwitchStateByName<T>(UIPanelTypeEnum panelType) where T : BaseUI, new()
         {
             CloseAllPanel();
-            PushPanel(panelType);
+            PushPanel<T>(panelType);
         }
 
         /// <summary>
         /// 替换当前Panel
         /// </summary>
-        public void Replace(UIPanelTypeEnum panelType) 
+        public void Replace<T>(UIPanelTypeEnum panelType) where T:BaseUI,new ()
         {
             PopPanel(true);
-            PushPanel(panelType);
+            PushPanel<T>(panelType);
         }
         /// <summary>
         /// 按指定层级添加UI
         /// 直接添加的View不进入Stack管理
         /// </summary>
-        public void Add(UIPanelTypeEnum panelType, int siblingIndex)
+        public void Add<T>(UIPanelTypeEnum panelType, int siblingIndex) where T : BaseUI, new()
         {
-            var view = GetPanel(panelType);
+            var view = GetPanel<T>(panelType);
             view.SetSiblingIndex(siblingIndex);
         }
     }

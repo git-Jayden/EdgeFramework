@@ -9,12 +9,12 @@ public class MenuPanel : BaseUI
 
     public override void OnEnter(params object[] param)
     {
-        gameObject.SetActive(true);
+        UIObj.SetActive(true);
         base.OnEnter(param);
     }
     public override void OnExit()
     {
-        gameObject.SetActive(false);
+        UIObj.SetActive(false);
         base.OnExit();
     }
 }

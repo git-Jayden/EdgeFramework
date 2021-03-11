@@ -31,7 +31,7 @@ public class GameRoot : MonoSingleton<GameRoot>
     private void Update()
     {
         ProcedureMgr.OnUpdate(Time.deltaTime);
-     
+        UIManager.Instance.OnUpdate();
     }
     
 
