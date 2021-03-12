@@ -42,7 +42,7 @@ namespace EdgeFrameworkEditor
         public static void MenuOpenPanelJson()
         {
 
-            string panelpath = Application.dataPath + "/../Excels/xlsx/UIPanel.xlsx";
+            string panelpath = Application.dataPath + "/../Excels/xlsx/UIPanelSheet.xlsx";
 
             System.Diagnostics.Process p = new System.Diagnostics.Process();
             p.StartInfo.FileName = panelpath;
