@@ -19,6 +19,7 @@ public class GameRoot : MonoSingleton<GameRoot>
         GameObject.DontDestroyOnLoad(gameObject);
         //UIManager初始化
         UIManager.Instance.OnInit(transform);
+
     }
     private void Start()
     {

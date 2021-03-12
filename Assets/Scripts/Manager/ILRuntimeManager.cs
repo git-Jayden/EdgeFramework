@@ -452,6 +452,8 @@ public class ILRuntimeManager : Singleton<ILRuntimeManager>
         mAppDomain.LoadAssembly(fs, p, new ILRuntime.Mono.Cecil.Pdb.PdbReaderProvider());
         InitializeILRuntime();
         OnHotFixLoaded();
+        //启动热更断点调试服务器  
+        mAppDomain.DebugService.StartDebugService(56000);
     }
     public void CloseStream()
     {
@@ -470,6 +472,8 @@ public class ILRuntimeManager : Singleton<ILRuntimeManager>
         mAppDomain.DelegateManager.RegisterMethodDelegate<int>();
         mAppDomain.DelegateManager.RegisterFunctionDelegate<int, string>();
         mAppDomain.DelegateManager.RegisterMethodDelegate<string>();
+        //注册ResourcesManager中的委托适配器
+        mAppDomain.DelegateManager.RegisterMethodDelegate<System.String, UnityEngine.Object, System.Object, System.Object, System.Object>();
         //自定义委托或unity委托注册
         mAppDomain.DelegateManager.RegisterDelegateConvertor<TestDelegatMeth>((action =>
         {
@@ -493,6 +497,14 @@ public class ILRuntimeManager : Singleton<ILRuntimeManager>
             });
         }));
 
+        //自定义ResourcesManager中的委托适配器
+        mAppDomain.DelegateManager.RegisterDelegateConvertor<OnAsyncObjFinish>((action) =>
+        {
+            return new OnAsyncObjFinish((path, obj, param1, param2, param3) =>
+            {
+                ((System.Action<System.String, UnityEngine.Object, System.Object, System.Object, System.Object>)action)(path, obj, param1, param2, param3);
+            });
+        });
         //跨域继承的注册
         mAppDomain.RegisterCrossBindingAdaptor(new InheritanceAdapter());
 

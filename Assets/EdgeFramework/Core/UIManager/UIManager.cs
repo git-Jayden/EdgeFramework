@@ -93,9 +93,11 @@ namespace EdgeFramework.UI
         public void OnUpdate()
         {
             if (mPanelStack == null || mPanelStack.Count <= 0) return;
+     
             foreach (var item in mPanelStack)
             {
-                if(item.IsHotFix)
+           
+                if (item.IsHotFix)
                     ILRuntimeManager.Instance.AppDomainCtrl.Invoke(item.HotFixClassName, "OnUpdate", item);
                 else
                 item.OnUpdate();
@@ -252,7 +254,7 @@ namespace EdgeFramework.UI
             }
             else
             {
-                string typeName = System.Enum.GetName(typeof(UIPanelTypeEnum), UIPanelTypeEnum.LoadingPanel);
+                string typeName = System.Enum.GetName(typeof(UIPanelTypeEnum), panelType);
                 string hotName = "Hotfix." + typeName + "Logic";
                 baseUI = ILRuntimeManager.Instance.AppDomainCtrl.Instantiate<BaseUI>(hotName);
   
