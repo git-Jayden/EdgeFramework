@@ -411,6 +411,7 @@ public class MonoBehaviourAdapter : CrossBindingAdaptor
 
 public class ILRuntimeManager : Singleton<ILRuntimeManager>
 {
+    //测试委托跨域
     public TestDelegatMeth DelegateMethod;
     public TestDelegatFunction DelegateFunc;
     public System.Action<string> DelegateAction;
@@ -472,8 +473,12 @@ public class ILRuntimeManager : Singleton<ILRuntimeManager>
         mAppDomain.DelegateManager.RegisterMethodDelegate<int>();
         mAppDomain.DelegateManager.RegisterFunctionDelegate<int, string>();
         mAppDomain.DelegateManager.RegisterMethodDelegate<string>();
+
+
         //注册ResourcesManager中的委托适配器
         mAppDomain.DelegateManager.RegisterMethodDelegate<System.String, UnityEngine.Object, System.Object, System.Object, System.Object>();
+
+
         //自定义委托或unity委托注册
         mAppDomain.DelegateManager.RegisterDelegateConvertor<TestDelegatMeth>((action =>
         {
@@ -518,7 +523,8 @@ public class ILRuntimeManager : Singleton<ILRuntimeManager>
 
         SetupCLRRedirection();
         SetupCLRRedirection2();
-        //绑定注册(最后执行)
+
+        //绑定注册(最后执行) 需要先
         ILRuntime.Runtime.Generated.CLRBindings.Initialize(mAppDomain);
 
     }

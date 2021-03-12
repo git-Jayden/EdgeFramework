@@ -19,6 +19,7 @@ namespace EdgeFramework
         public const string Encryption = "Encryption";
         public const string Tools = "Tools";
         public const string AssetsBundle = "AssetsBundle";
+        public const string ILRuntime = "ILRuntime";
         public const string Sheet = "Sheet";
         //Frame Folder
         public const string FramePath = "Assets/EdgeFramework";

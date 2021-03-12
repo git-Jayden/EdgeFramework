@@ -8,9 +8,8 @@ using System.Collections.Generic;
 public class ILRuntimeCLRBinding
 {
     private const string DLLPATH = "Assets/ABResources/Data/HotFix/Hotfix.dll.bytes";
-    //根据热更dll使用的类型,自动进行全部绑定
-    [MenuItem("ILRuntime/通过自动分析热更DLL生成CLR绑定")]
-    static void GenerateCLRBindingByAnalysis()
+   
+   public  static void GenerateCLRBindingByAnalysis()
     {
         //用新的分析热更dll调用引用来生成绑定代码
         ILRuntime.Runtime.Enviorment.AppDomain domain = new ILRuntime.Runtime.Enviorment.AppDomain();

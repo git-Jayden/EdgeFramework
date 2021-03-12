@@ -18,7 +18,7 @@ namespace EdgeFrameworkEditor
 {
     class MenumanagerEditor
     {
-        #region OpenTool
+        #region Tools
         [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.Tools + "/AbConfig _F6", false)]
         public static void MenuOpenAbConfig()
         {
@@ -120,6 +120,20 @@ namespace EdgeFrameworkEditor
         }
         #endregion
 
+        #region ILRuntime
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.ILRuntime + "/生成跨域继承适配器")]
+        public static void GenerateCrossbindAdapter()
+        {
+            ILRuntimeCrossBinding.GenerateCrossbindAdapter();
+        }
+        // //根据热更dll使用的类型,自动进行全部绑定
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.ILRuntime + "/通过自动分析热更DLL生成CLR绑定")]
+        public static void GenerateCLRBindingByAnalysis()
+        {
+            ILRuntimeCLRBinding.GenerateCLRBindingByAnalysis();
+        }
+        #endregion
+
         #region Encryption
 
         [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.Encryption + "/ 加密AB包")]
@@ -159,11 +173,7 @@ namespace EdgeFrameworkEditor
         {
             SheetEditor.ExportBytes();
         }
-        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.Sheet + "/ExportLua")]
-        private static void ExportLua()
-        {
-            SheetEditor.ExportLua();
-        }
+
         #endregion
 
         private static string START_SCENE = "Assets/Scenes/StartScene.unity";
