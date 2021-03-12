@@ -1,4 +1,5 @@
 ﻿using EdgeFramework.UI;
+using UnityEngine;
 namespace Hotfix
 {
     public class MainMenuPanelLogic : BaseUI
@@ -10,7 +11,10 @@ namespace Hotfix
 
         }
 
-
+        public override void OnUpdate()
+        {
+     
+        }
         public override void OnEnter(object param1 = null, object param2 = null, object param3 = null)
         {
             UIObj.SetActive(true);
