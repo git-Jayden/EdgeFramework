@@ -1,4 +1,13 @@
-﻿using EdgeFramework.Res;
+﻿/****************************************************
+	文件：BaseUI.cs
+	Author：JaydenWood
+	E-Mail: w_style047@163.com
+	GitHub: https://github.com/git-Jayden/EdgeFramework.git
+	Blog: https://www.jianshu.com/u/9131c2f30f1b
+	Date：2021/03/11 11:20   	
+	Features：
+*****************************************************/
+using EdgeFramework.Res;
 using EdgeFramework.Sheet;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,37 +15,48 @@ using UnityEngine.UI;
 
 namespace EdgeFramework.UI
 {
-    public abstract class BaseUI
+    public  class BaseUI
     {
-        [HideInInspector]
+    
         public GameObject UIObj { get; private set; }
-        [HideInInspector]
+
         public RectTransform RectTrans { get; private set; }
 
-        [HideInInspector]
+        /// <summary>
+        /// 是否使用热更加载
+        /// </summary>
+        public bool IsHotFix { get; set; } = false;
+
+        public string HotFixClassName { get; set; }
+
         public UIPanelTypeEnum PanelType { get;private set; }
 
         private List<Button> mAllButton = new List<Button>();
+
         /// <summary>
         /// 初始化
         /// </summary>
         public void Init(GameObject gameobject ,UIPanelTypeEnum panelType)
         {
             UIObj = gameobject;
-
+            RectTrans = UIObj.GetComponent<RectTransform>();
             PanelType = panelType;
         }
-        public virtual void OnCreat() { }
+        public void ClearData()
+        {
+            UIObj = null;
+            RectTrans = null;
+  
+            IsHotFix = false;
+            HotFixClassName = null;
+            mAllButton.Clear();
+        }
         /// <summary>
         /// 界面被显示出来
         /// </summary>
-        public virtual void OnEnter(params object[] param)
+        public virtual void OnEnter(object param1 = null, object param2 = null, object param3 = null)
         {
-            if (RectTrans == null)
-            {
-                RectTrans = UIObj.GetComponent<RectTransform>();
-                OnCreat();
-            }
+           
 
         }
 
@@ -198,7 +218,7 @@ namespace EdgeFramework.UI
         /// <summary>
         /// 播放button声音
         /// </summary>
-        public abstract void PlayBtnSound();
+        public virtual void PlayBtnSound() { }
 
     }
 }

@@ -1,4 +1,13 @@
-﻿using System.Collections;
+﻿/****************************************************
+	文件：ILRuntimeManager.cs
+	Author：JaydenWood
+	E-Mail: w_style047@163.com
+	GitHub: https://github.com/git-Jayden/EdgeFramework.git
+	Blog: https://www.jianshu.com/u/9131c2f30f1b
+	Date：2021/03/11 11:30   	
+	Features：  ILRUNTIME测试使用
+*****************************************************/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using EdgeFramework;
@@ -415,6 +424,8 @@ public class ILRuntimeManager : Singleton<ILRuntimeManager>
     {
         LoadHotFixAssembly();
     }
+    MemoryStream fs;
+    MemoryStream p;
     private void LoadHotFixAssembly()
     {
         //整个工程只有一个ILRuntime的AppDomain
@@ -423,15 +434,29 @@ public class ILRuntimeManager : Singleton<ILRuntimeManager>
         TextAsset dllText = ResourcesManager.Instance.LoadResouce<TextAsset>(DLLPATH);
         //PBD文件,调试数据,日志报错
         TextAsset pdbText = ResourcesManager.Instance.LoadResouce<TextAsset>(PDBPATH);
-        using (MemoryStream fs = new MemoryStream(dllText.bytes))
-        {
-            using (MemoryStream p = new MemoryStream(pdbText.bytes))
-            {
-                mAppDomain.LoadAssembly(fs, p, new ILRuntime.Mono.Cecil.Pdb.PdbReaderProvider());
-                InitializeILRuntime();
-                OnHotFixLoaded();
-            }
-        }
+
+
+        //using (MemoryStream fs = new MemoryStream(dllText.bytes))
+        //{
+        //    using (MemoryStream p = new MemoryStream(pdbText.bytes))
+        //    {
+        //        mAppDomain.LoadAssembly(fs, p, new ILRuntime.Mono.Cecil.Pdb.PdbReaderProvider());
+        //        InitializeILRuntime();
+        //        OnHotFixLoaded();
+        //    }
+        //}
+         fs = new MemoryStream(dllText.bytes);
+
+         p = new MemoryStream(pdbText.bytes);
+
+        mAppDomain.LoadAssembly(fs, p, new ILRuntime.Mono.Cecil.Pdb.PdbReaderProvider());
+        InitializeILRuntime();
+        OnHotFixLoaded();
+    }
+    public void CloseStream()
+    {
+        fs.Close();
+        p.Close();
     }
     private void InitializeILRuntime()
     {
@@ -460,6 +485,14 @@ public class ILRuntimeManager : Singleton<ILRuntimeManager>
                 return ((System.Func<int, string>)func)(a);
             });
         }));
+        mAppDomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.Events.UnityAction>((action =>
+        {
+            return new UnityEngine.Events.UnityAction(() =>
+            {
+                ((System.Action)action)();
+            });
+        }));
+
         //跨域继承的注册
         mAppDomain.RegisterCrossBindingAdaptor(new InheritanceAdapter());
 
@@ -468,6 +501,9 @@ public class ILRuntimeManager : Singleton<ILRuntimeManager>
         mAppDomain.RegisterCrossBindingAdaptor(new CoroutineAdapter());
         //注册Mono适配器
         mAppDomain.RegisterCrossBindingAdaptor(new MonoBehaviourAdapter());
+        //注册BaseUI适配器
+        mAppDomain.RegisterCrossBindingAdaptor(new BaseUIAdapter());
+
         SetupCLRRedirection();
         SetupCLRRedirection2();
         //绑定注册(最后执行)
@@ -503,6 +539,7 @@ public class ILRuntimeManager : Singleton<ILRuntimeManager>
         //获取属性
         //int id = (int)mAppDomain.Invoke("Hotfix.TestClass", "get_ID", obj, null);//获取属性前面需要加get_
         //Debug.Log("ID" + id);
+        object obj1 = ILRuntimeManager.Instance.AppDomainCtrl.Instantiate("Hotfix.LoadingPanelLogic");
         //-----------------------------------------------------------------------------------------
         //第一种泛型方法调用
         IType stringType = mAppDomain.GetType(typeof(string));
@@ -558,7 +595,7 @@ public class ILRuntimeManager : Singleton<ILRuntimeManager>
         mAppDomain.Invoke("Hotfix.TestCortoutine", "RunTest", null, null);
         //----------------------------------------------------------------------------------------
         //Mono测试
-      //  mAppDomain.Invoke("Hotfix.TestMono", "RunTest", null, GameRoot.Instance.gameObject);
+        //  mAppDomain.Invoke("Hotfix.TestMono", "RunTest", null, GameRoot.Instance.gameObject);
         mAppDomain.Invoke("Hotfix.TestMono", "RunTest1", null, GameRoot.Instance.gameObject);
 
     }

@@ -12,7 +12,7 @@ public class ProcedureMenu : ProcedureBase
     }
     public override void OnEnter(object[] param)
     {
-        UIManager.Instance.PushPanel<MenuPanel>(UIPanelTypeEnum.MainMenuPanel);
+        UIManager.Instance.PushPanel<BaseUI>(UIPanelTypeEnum.MainMenuPanel,false);
         AudioPlayer.Instance.PlayBGM(MusicEnum.Lobby);
     }
 

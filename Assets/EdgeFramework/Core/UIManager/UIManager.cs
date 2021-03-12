@@ -95,6 +95,9 @@ namespace EdgeFramework.UI
             if (mPanelStack == null || mPanelStack.Count <= 0) return;
             foreach (var item in mPanelStack)
             {
+                if(item.IsHotFix)
+                    ILRuntimeManager.Instance.AppDomainCtrl.Invoke(item.HotFixClassName, "OnUpdate", item);
+                else
                 item.OnUpdate();
             }
         }
@@ -141,18 +144,38 @@ namespace EdgeFramework.UI
         /// <summary>
         /// 把某个页面入栈，把某个页面显示在界面 上
         /// </summary>
+        /// <typeparam name="T"></typeparam>
         /// <param name="panelType"></param>
-        public BaseUI PushPanel<T>(UIPanelTypeEnum panelType,params object[]param) where T:BaseUI,new()
+        /// <param name="resource">是否是热更加载 </param>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public BaseUI PushPanel<T>(UIPanelTypeEnum panelType,bool resource=false, object param1 = null, object param2 = null, object param3 = null) where T:BaseUI,new()
         {
             //判断一下栈里面是否有页面
             if (mPanelStack.Count > 0)
             {
                 BaseUI curPanel = mPanelStack.Peek();
-                curPanel.OnPause();
+                if (curPanel.IsHotFix)
+                {
+                    ILRuntimeManager.Instance.AppDomainCtrl.Invoke(curPanel.HotFixClassName, "OnPause", curPanel);
+                }
+                else
+                {
+                    curPanel.OnPause();
+                }
+          
             }
             mCurSiblingIndex++;
-            BaseUI panel = GetPanel<T>(panelType);
-            panel.OnEnter(param);
+            BaseUI panel = GetPanel<T>(panelType, resource);
+            if (panel.IsHotFix)
+            {
+                ILRuntimeManager.Instance.AppDomainCtrl.Invoke(panel.HotFixClassName, "OnEnter", panel, param1, param2, param3);
+            }
+            else
+            {
+                panel.OnEnter(param1, param2, param3);
+            }
+            panel.IsHotFix = !resource;
             panel.SetSiblingIndex(ViewSiblingIndex.LOW + mCurSiblingIndex);
             mPanelStack.Push(panel);
             return panel;
@@ -169,39 +192,92 @@ namespace EdgeFramework.UI
             mCurSiblingIndex--;
             //关闭栈顶页面的显示
             BaseUI topPanel = mPanelStack.Pop();
-            topPanel.OnExit();
+            if (topPanel.IsHotFix)
+            {
+                ILRuntimeManager.Instance.AppDomainCtrl.Invoke(topPanel.HotFixClassName, "OnExit", topPanel);
+            }
+            else
+            {
+                topPanel.OnExit();
+            }
+
       
             if (mPanelDict.ContainsKey(topPanel.PanelType))
             {
                 mPanelDict.Remove(topPanel.PanelType);
             }
-            if (destroy)
+            if (topPanel.IsHotFix)
             {
-                topPanel.ClearPanelBtn();
-                ObjectManager.Instance.ReleaseObject(topPanel.UIObj, 0, true);
+                if (destroy)
+                {
+                    topPanel.ClearPanelBtn();
+                    ObjectManager.Instance.ReleaseObject(topPanel.UIObj, 0, true);
+                }
+                else
+                {
+                    ObjectManager.Instance.ReleaseObject(topPanel.UIObj, recycleParent: false);
+                }
             }
             else
             {
-                ObjectManager.Instance.ReleaseObject(topPanel.UIObj, recycleParent: false);
+                GameObject.Destroy(topPanel.UIObj);
             }
+            topPanel.ClearData();
             topPanel = null;
             if (mPanelStack.Count <= 0) return;
             BaseUI topPanel2 = mPanelStack.Peek();
-            topPanel2.OnResume();
+
+            if (topPanel2.IsHotFix)
+            {
+                ILRuntimeManager.Instance.AppDomainCtrl.Invoke(topPanel2.HotFixClassName, "OnResume", topPanel2);
+            }
+            else
+            {
+                topPanel2.OnResume();
+            }
         }
         /// <summary>
         /// 根据面板类型 得到实例化的面板
         /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="panelType"></param>
+        /// <param name="resource">如果是资源本地加载  本地路径文件Resource/Prefab/UI/名字</param>
         /// <returns></returns>
-        private BaseUI GetPanel<T>(UIPanelTypeEnum panelType) where T:BaseUI,new ()
+        private BaseUI GetPanel<T>(UIPanelTypeEnum panelType,bool resource=false) where T:BaseUI,new ()
         {
+            BaseUI baseUI;
+            if (resource)
+            {
+                baseUI = System.Activator.CreateInstance(typeof(T)) as BaseUI;
+            }
+            else
+            {
+                string typeName = System.Enum.GetName(typeof(UIPanelTypeEnum), UIPanelTypeEnum.LoadingPanel);
+                string hotName = "Hotfix." + typeName + "Logic";
+                baseUI = ILRuntimeManager.Instance.AppDomainCtrl.Instantiate<BaseUI>(hotName);
+  
+                baseUI.HotFixClassName = hotName;
+            }
+
             string path = SheetManager.Instance.GetUIPanelSheet(panelType).Path;
-            GameObject go =ObjectManager.Instance.InstantiateObject(path);
+            GameObject go;
+            if (resource)
+            {
+                go = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/UI/"+ panelType.ToString())) as GameObject;
+            }
+            else
+            {
+                go = ObjectManager.Instance.InstantiateObject(path, false, false);
+            }
+            if (go == null)
+            {
+                Debug.Log("创建窗口Prefab失败：" + panelType.ToString());
+                return null;
+            }
             go.transform.SetParent(WindRoot, false);
-            var view = new T();
-            view.Init( go,panelType);
-            mPanelDict.Add(panelType, view);
-            return view;
+            baseUI.Init( go,panelType);
+            mPanelDict.Add(panelType, baseUI);
+            return baseUI;
         }
 
         /// <summary>
@@ -214,14 +290,38 @@ namespace EdgeFramework.UI
             if (mPanelStack.Count <= 0) return;
             foreach (var key in mPanelDict.Keys)
             {
-                ObjectManager.Instance.ReleaseObject(mPanelDict[key].UIObj, 0,true, false);
-                mPanelDict[key].OnExit();
+                if (mPanelDict[key].IsHotFix)
+                {
+                    mPanelDict[key].ClearPanelBtn();
+                    ObjectManager.Instance.ReleaseObject(mPanelDict[key].UIObj, 0, true, false);
+                }
+                else
+                {
+                    GameObject.Destroy(mPanelDict[key].UIObj);
+                }
+                if (mPanelDict[key].IsHotFix)
+                {
+                    ILRuntimeManager.Instance.AppDomainCtrl.Invoke(mPanelDict[key].HotFixClassName, "OnExit", mPanelDict[key]);
+                }
+                else
+                {
+                    mPanelDict[key].OnExit();
+                }
                 mPanelDict[key].ClearPanelBtn();
+
                 mPanelDict.Remove(key);
                 mPanelStack.Pop();
                 if (mPanelStack.Count <= 0) return;
                 BaseUI topPanel2 = mPanelStack.Peek();
-                topPanel2.OnResume();
+
+                if (topPanel2.IsHotFix)
+                {
+                    ILRuntimeManager.Instance.AppDomainCtrl.Invoke(topPanel2.HotFixClassName, "OnResume", topPanel2);
+                }
+                else
+                {
+                    topPanel2.OnResume();
+                }
             }
         }
         /// <summary>

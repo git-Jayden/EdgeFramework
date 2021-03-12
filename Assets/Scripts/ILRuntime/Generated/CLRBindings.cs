@@ -22,8 +22,14 @@ namespace ILRuntime.Runtime.Generated
         /// </summary>
         public static void Initialize(ILRuntime.Runtime.Enviorment.AppDomain app)
         {
-            UnityEngine_Debug_Binding.Register(app);
+            LoadingPanel_Binding.Register(app);
+            ProcedureLoadingScene_Binding.Register(app);
+            UnityEngine_UI_Slider_Binding.Register(app);
             System_String_Binding.Register(app);
+            UnityEngine_UI_Text_Binding.Register(app);
+            EdgeFramework_UI_BaseUI_Binding.Register(app);
+            UnityEngine_GameObject_Binding.Register(app);
+            UnityEngine_Debug_Binding.Register(app);
             CRLBindingTestClass_Binding.Register(app);
             EdgeFramework_MonoSingleton_1_GameRoot_Binding.Register(app);
             UnityEngine_MonoBehaviour_Binding.Register(app);
