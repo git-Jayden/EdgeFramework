@@ -1,4 +1,19 @@
 # EdgeFramework使用教程
+
+###一、表格数据
+Excels表格数据路径EdgeFramework\Excels\xlsx\，表格数据后缀必须是xlsx，excels表格数据的前四行用于结构定义, 其余为数据
+
+```
+第一行：'-' (需要序列化使用的数据)， 'ignore'(代表忽略该列)
+第二行：布尔(bool) 整型(int) 浮点数(float) 字符串(string) 数组(array<基本类型>) 枚举(xxxEnum, 自定义名字+Enum后缀)
+第三行：关键字(MoveSpeed, 首字母大写式驼峰命名规则)
+第四行：注释
+```
+
+
+![image.png](https://upload-images.jianshu.io/upload_images/3912830-8e5756ae716466dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+编辑完成表格后必须关闭表格才能转表
 ### 一、AssetsBundle打包
 ######  1.AppConfig配置
 点击EdgeFramework->Tools->AppConfig或者快捷键F6调出AssetBundle的配置文件
@@ -133,5 +148,3 @@ GameVersion  Version=为app版本，下面Path为之前打热更包生成出来�
         
 (12)
         ///静态变量可以加前缀 s 表示静态 sExample
-              
-              
