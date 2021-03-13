@@ -96,8 +96,11 @@ GameVersion  Version=为app版本，下面Path为之前打热更包生成出来�
 ILRuntime加载热更工程的dll代码在ILRuntimeManager.cs中
 ![image.png](https://upload-images.jianshu.io/upload_images/3912830-0b2168e33d6d9239.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ILRuntimeManager中还有ILRuntime使用测试的代码，包括简单方法调用带参与不带参的、实例化热更工程里的类带参与不带参的、泛型方法的调用、委托的调用、跨域委托调用、跨域委托调用、跨域继承、CLR绑定、热更工程使用协程、热更工程使用Monbehavior。
+
 其中只要跨域的都需要注册适配器
+
 跨域委托调用  尽量使用系统自带的Action以及Function ,使用系统自带的Action以及Function则只需要注册适配器，如果需要使用自定义的委托则还需要自定义委托的适配器，如下
+
 ***跨域委托***
 ```
 Unity工程
@@ -182,7 +185,9 @@ namespace Hotfix
 }
 }
 ```
-***跨域继承***需要写跨域适配器，然后注册
+***跨域继承***
+
+需要写跨域适配器，然后注册
 
 ```
 U3D工程
@@ -346,6 +351,7 @@ namespace Hotfix
 }
 ```
 ***CLR绑定***
+
 需要在GenerateCLRBindingByAnalysis.cs的函数InitILRuntime中注册所有热更DLL中用到的跨域继承Adapter，否则无法正确抓取引用，
 ![image.png](https://upload-images.jianshu.io/upload_images/3912830-52ef91bf1cad3e91.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 完成后点击EdgeFramework->ILRuntime->通过自动分析热更dll生成CLR绑定
