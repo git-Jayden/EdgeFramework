@@ -49,7 +49,7 @@ public class GameRoot : MonoSingleton<GameRoot>
     }
     protected void OnApplicationQuit()
     {
-        ILRuntimeManager.Instance.CloseStream();
+        ILRuntimeManager.Instance.OnDestroy();
         ResourcesManager.Instance.ClearCache();
         Resources.UnloadUnusedAssets();
         Debug.Log("清空编辑器缓存");

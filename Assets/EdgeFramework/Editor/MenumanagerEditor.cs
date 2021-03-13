@@ -18,8 +18,10 @@ namespace EdgeFrameworkEditor
 {
     class MenumanagerEditor
     {
-        #region Tools
-        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.Tools + "/AbConfig _F6", false)]
+
+
+        #region AssetBundle
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.AssetsBundle + "/AbConfig _F6", false)]
         public static void MenuOpenAbConfig()
         {
             ABConfig instance = ABConfig.LoadAbConfig();
@@ -37,46 +39,6 @@ namespace EdgeFrameworkEditor
             }
             Selection.activeObject = instance;
         }
-
-        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.Tools + "/OpenPanelExcel _F7", false)]
-        public static void MenuOpenPanelJson()
-        {
-
-            string panelpath = Application.dataPath + "/../Excels/xlsx/UIPanelSheet.xlsx";
-
-            System.Diagnostics.Process p = new System.Diagnostics.Process();
-            p.StartInfo.FileName = panelpath;
-            p.Start();
-            p.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
-        }
-        private const string DLLPATH = "Assets/ABResources/Data/HotFix/Hotfix.dll";
-        private const string PDBPATH = "Assets/ABResources/Data/HotFix/Hotfix.pdb";
-        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.Tools + "/修改热更dll为bytes _F7", false)]
-        public static void ChangeDllName()
-        {
-            if (File.Exists(DLLPATH))
-            {
-                string targetPath = DLLPATH + ".bytes";
-                if (File.Exists(targetPath))
-                {
-                    File.Delete(targetPath);
-                }
-                File.Move(DLLPATH, targetPath);
-            }
-            if (File.Exists(PDBPATH))
-            {
-                string targetPath = PDBPATH + ".bytes";
-                if (File.Exists(targetPath))
-                {
-                    File.Delete(targetPath);
-                }
-                File.Move(PDBPATH, targetPath);
-            }
-            AssetDatabase.Refresh();
-        }
-        #endregion
-
-        #region AssetBundle
         [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.AssetsBundle + "/BuildBundle _F8")]
         public static void NormalBuild()
         {
@@ -101,12 +63,7 @@ namespace EdgeFrameworkEditor
             Utility.FileHelper.DeleteDir(StreamingAssets);
             AssetDatabase.Refresh();
         }
-        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.AssetsBundle + "/BuildApp _F12")]
-        public static void Build()
-        {
-            BundleEditor.Build();
-            BuildApp.Build();
-        }
+
 
         [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.AssetsBundle + "/打包热更包")]
         public static void OpenHotfix()
@@ -131,6 +88,31 @@ namespace EdgeFrameworkEditor
         public static void GenerateCLRBindingByAnalysis()
         {
             ILRuntimeCLRBinding.GenerateCLRBindingByAnalysis();
+        }
+        private const string DLLPATH = "Assets/ABResources/Data/HotFix/Hotfix.dll";
+        private const string PDBPATH = "Assets/ABResources/Data/HotFix/Hotfix.pdb";
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.ILRuntime + "/修改热更dll为bytes _F7", false)]
+        public static void ChangeDllName()
+        {
+            if (File.Exists(DLLPATH))
+            {
+                string targetPath = DLLPATH + ".bytes";
+                if (File.Exists(targetPath))
+                {
+                    File.Delete(targetPath);
+                }
+                File.Move(DLLPATH, targetPath);
+            }
+            if (File.Exists(PDBPATH))
+            {
+                string targetPath = PDBPATH + ".bytes";
+                if (File.Exists(targetPath))
+                {
+                    File.Delete(targetPath);
+                }
+                File.Move(PDBPATH, targetPath);
+            }
+            AssetDatabase.Refresh();
         }
         #endregion
 
@@ -174,6 +156,17 @@ namespace EdgeFrameworkEditor
             SheetEditor.ExportBytes();
         }
 
+        [MenuItem(EdgeFrameworkConst.ProductName + "/" + EdgeFrameworkConst.Sheet + "/OpenPanelExcel _F7", false)]
+        public static void MenuOpenPanelJson()
+        {
+
+            string panelpath = Application.dataPath + "/../Excels/xlsx/UIPanelSheet.xlsx";
+
+            System.Diagnostics.Process p = new System.Diagnostics.Process();
+            p.StartInfo.FileName = panelpath;
+            p.Start();
+            p.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+        }
         #endregion
 
         private static string START_SCENE = "Assets/Scenes/StartScene.unity";
@@ -195,6 +188,13 @@ namespace EdgeFrameworkEditor
                 EditorSceneManager.OpenScene(START_SCENE);
                 EditorApplication.isPlaying = true;
             }
+        }
+
+        [MenuItem(EdgeFrameworkConst.ProductName+ "/BuildApp _F12")]
+        public static void Build()
+        {
+            BundleEditor.Build();
+            BuildApp.Build();
         }
     }
 

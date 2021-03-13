@@ -26,10 +26,10 @@ public class SheetEditor
 {
     private const string SHEETROOTPATH = "Excels/xlsx";
     private const string SHEETEXT = ".xlsx";
-    private static string OUTSHEETCSPATH = "Assets/Scripts/Global/Sheet/SheetProtobuf.cs";
-    private static string OUTSHEETMANAGERPATH = "Assets/Scripts/Global/Sheet/SheetManager.cs";
+    private static string OUTSHEETCSPATH = "Assets/Scripts/Sheet/SheetProtobuf.cs";
+    private static string OUTSHEETMANAGERPATH = "Assets/Scripts/Sheet/SheetManager.cs";
     private static string OUTSHEETBYTES = "Assets/ABResources/Data/Sheets/{0}.bytes";
-    private static string OUTSHEETLUA = "Excels/lua/{0}.lua";
+
 
 
 
@@ -86,7 +86,7 @@ public class SheetEditor
             for (var j = 0; j < cols; j++)
             {
                 var row0 = table.Rows[0][j].ToString();
-                if (FilterKey(row0, "client"))
+                if (FilterKey(row0))
                 {
                     count++;
                     var row1 = table.Rows[1][j].ToString();
@@ -206,7 +206,7 @@ public class SheetEditor
                     for (var j = 0; j < cols; j++)
                     {
                         var row0 = data.Rows[0][j].ToString();
-                        if (!FilterKey(row0, "client")) continue;
+                        if (!FilterKey(row0)) continue;
                         var row1 = data.Rows[1][j].ToString();
                         var row2 = data.Rows[2][j].ToString();
                         var value = data.Rows[i][j];
@@ -280,7 +280,15 @@ public class SheetEditor
     {
         return (!string.IsNullOrEmpty(key)) && (key.Equals("-") || key.Equals(target, StringComparison.OrdinalIgnoreCase));
     }
-
+    /// <summary>
+    /// 过滤列
+    /// </summary>
+    /// <param name="key">列标志</param>
+    /// <param name="target">导出目标</param>
+    private static bool FilterKey(string key)
+    {
+        return (!string.IsNullOrEmpty(key)) && (key.Equals("-"));
+    }
     /// <summary>
     /// Sets the value.
     /// </summary>

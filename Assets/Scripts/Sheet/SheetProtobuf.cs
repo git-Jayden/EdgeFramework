@@ -43,8 +43,6 @@ namespace EdgeFramework.Sheet
 		public List<string> exampleArray3 = new List<string>();
 		[ProtoMember(8)]
 		public ExampleEnum exampleEnum;
-		[ProtoMember(9)]
-		public string exampleClient;
 	}
 
 	[ProtoContract]

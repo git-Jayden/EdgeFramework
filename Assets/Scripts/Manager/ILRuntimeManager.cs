@@ -23,7 +23,7 @@ using ILRuntime.Runtime.Stack;
 
 
 #region 测试代码
-
+//父类
 public abstract class TestClassBase
 {
     public virtual int value
@@ -447,8 +447,8 @@ public class ILRuntimeManager : Singleton<ILRuntimeManager>
         //    }
         //}
          fs = new MemoryStream(dllText.bytes);
-
-         p = new MemoryStream(pdbText.bytes);
+        //PDB文件是调试数据库，如需要在日志中显示报错的行号，则必须提供PDB文件，不过由于会额外耗用内存，正式发布时请将PDB去掉，下面LoadAssembly的时候pdb传null即可
+        p = new MemoryStream(pdbText.bytes);
 
         mAppDomain.LoadAssembly(fs, p, new ILRuntime.Mono.Cecil.Pdb.PdbReaderProvider());
         InitializeILRuntime();
@@ -456,11 +456,7 @@ public class ILRuntimeManager : Singleton<ILRuntimeManager>
         //启动热更断点调试服务器  
         mAppDomain.DebugService.StartDebugService(56000);
     }
-    public void CloseStream()
-    {
-        fs.Close();
-        p.Close();
-    }
+
     private void InitializeILRuntime()
     {
 #if DEBUG && (UNITY_EDITOR || UNITY_ANDROID || UNITY_IPHONE)
@@ -472,6 +468,7 @@ public class ILRuntimeManager : Singleton<ILRuntimeManager>
         //默认委托注册仅仅支持系统自带的Action以及Function 
         mAppDomain.DelegateManager.RegisterMethodDelegate<int>();
         mAppDomain.DelegateManager.RegisterFunctionDelegate<int, string>();
+
         mAppDomain.DelegateManager.RegisterMethodDelegate<string>();
 
 
@@ -738,4 +735,13 @@ public class ILRuntimeManager : Singleton<ILRuntimeManager>
     }
 
 
+    public void OnDestroy()
+    {
+        if (fs != null)
+            fs.Close();
+        if (p != null)
+            p.Close();
+        fs = null;
+        p = null;
+    }
 }
