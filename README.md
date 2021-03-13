@@ -1,6 +1,6 @@
 # EdgeFramework使用教程
 
-###一、表格数据
+###  一、表格数据
 Excels表格数据路径EdgeFramework\Excels\xlsx\，表格数据后缀必须是xlsx，excels表格数据的前四行用于结构定义, 其余为数据
 
 ```
