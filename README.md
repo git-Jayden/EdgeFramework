@@ -88,9 +88,620 @@ GameVersion  Version=为app版本，下面Path为之前打热更包生成出来�
 
 ![image](https://user-images.githubusercontent.com/24520716/110559894-fd928600-817f-11eb-9a46-0d32dc3bbc9d.png)
 ###  四、ILRuntime代码热更
+热更工程路径在Frame\EdgeFramework\HotfixProject\Hotfix下，UI的逻辑层代码在热更工程的UIPanel文件夹下，Test文件夹下是热更的测试代码
+![image.png](https://upload-images.jianshu.io/upload_images/3912830-585b2ead2ce77a6d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+完成热更代码后点击生成会将dll以及pdb生成在unity工程路径下EdgeFramework\Assets\ABResources\Data\HotFix下，然后在unity中点击EdgeFramework->ILRuntime->修改热更dll为bytes会将刚刚生成的dll转化成bytes以便于ILRuntime加载dll。
+![image.png](https://upload-images.jianshu.io/upload_images/3912830-5686a0a25c3014b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+ILRuntime加载热更工程的dll代码在ILRuntimeManager.cs中
+![image.png](https://upload-images.jianshu.io/upload_images/3912830-0b2168e33d6d9239.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+ILRuntimeManager中还有ILRuntime使用测试的代码，包括简单方法调用带参与不带参的、实例化热更工程里的类带参与不带参的、泛型方法的调用、委托的调用、跨域委托调用、跨域委托调用、跨域继承、CLR绑定、热更工程使用协程、热更工程使用Monbehavior。
+其中只要跨域的都需要注册适配器
+跨域委托调用  尽量使用系统自带的Action以及Function ,使用系统自带的Action以及Function则只需要注册适配器，如果需要使用自定义的委托则还需要自定义委托的适配器，如下
+***跨域委托***
+```
+Unity工程
+public delegate void TestDelegatMeth(int a);
+public delegate string TestDelegatFunction(int a);
+public class ILRuntimeManager : Singleton<ILRuntimeManager>
+{
+    //测试委托跨域
+    public TestDelegatMeth DelegateMethod;
+    public TestDelegatFunction DelegateFunc;
+    public System.Action<string> DelegateAction;
+
+//系统自带的委托需要注册适配器，自定义的委托还需要自定义委托适配器
+private void InitializeILRuntime()
+{
+        //注册委托跨域的适配器
+        //默认委托注册仅仅支持系统自带的Action以及Function 
+        mAppDomain.DelegateManager.RegisterMethodDelegate<int>();
+        mAppDomain.DelegateManager.RegisterFunctionDelegate<int, string>();
+
+        mAppDomain.DelegateManager.RegisterMethodDelegate<string>();
+
+  //自定义委托或unity委托注册
+mAppDomain.DelegateManager.RegisterDelegateConvertor<TestDelegatMeth>((action =>
+        {
+            return new TestDelegatMeth((a) =>
+            {
+                ((System.Action<int>)action)(a);
+            });
+        }));
+        mAppDomain.DelegateManager.RegisterDelegateConvertor<TestDelegatFunction>((func =>
+        {
+            return new TestDelegatFunction((a) =>
+            {
+                return ((System.Func<int, string>)func)(a);
+            });
+        }));
+}
+//调用热更函数
+    private void OnHotFixLoaded()
+    {
+  //跨域委托调用  尽量使用系统自带的Action以及Function 
+        IMethod DelegateInit = delegateType.GetMethod("Initialize2", 0);
+        mAppDomain.Invoke(DelegateInit, null);
+
+        //IMethod DelegateRun = delegateType.GetMethod("RunTest2", 2);
+        //mAppDomain.Invoke(DelegateRun, null,10,"Jayden");
+}
+}
+热更工程
+namespace Hotfix
+{
+   public  class TestDelegate
+    {
+  static void Method(int a)
+        {
+            Debug.Log("TestDelegate Method a=" + a);
+        }
+        static string Function(int a)
+        {
+            Debug.Log("TestDelegat Function  a=" + a);
+            return a.ToString();
+        }
+        static void Action(string str)
+        {
+            Debug.Log("TestDelegate Action str=" + str);
+        }
+        //委托跨域
+        public static void Initialize2()
+        {
+           ILRuntimeManager.Instance.DelegateMethod = Method;
+            ILRuntimeManager.Instance.DelegateFunc = Function;
+            ILRuntimeManager.Instance.DelegateAction = Action;
+        }
+        public static void RunTest2(int a, string str)
+        {
+            ILRuntimeManager.Instance.DelegateMethod?.Invoke(a);
+            string returnFunction = ILRuntimeManager.Instance.DelegateFunc?.Invoke(a);
+            Debug.Log("ReturnA:" + returnFunction);
+            ILRuntimeManager.Instance.DelegateAction?.Invoke(str);
+        }
+}
+}
+```
+***跨域继承***需要写跨域适配器，然后注册
+
+```
+U3D工程
+//父类
+public abstract class TestClassBase
+{
+    public virtual int value
+    {
+        get { return 0; }
+    }
+    public virtual void TestVirtual(string str)
+    {
+        Debug.Log("TestClassBase TestVirtual str=" + str);
+    }
+    public abstract void TestAbstract(int a);
+}
+//跨域继承需要适配器的类
+public class InheritanceAdapter : CrossBindingAdaptor
+{
+    public override System.Type BaseCLRType
+    {
+        get
+        {
+            //想继承的类
+            return typeof(TestClassBase);
+        }
+    }
 
 
+    public override System.Type AdaptorType
+    {
+        get
+        {
+            //实际的适配器类
+            return typeof(Adapter);
+        }
+    }
 
+    public override object CreateCLRInstance(AppDomain appdomain, ILTypeInstance instance)
+    {
+        return new Adapter(appdomain, instance);
+    }
+    class Adapter : TestClassBase, CrossBindingAdaptorType
+    {
+        private AppDomain mAppDomain;
+        private ILTypeInstance mInstance;
+        private IMethod mTestAbstract;
+        private IMethod mTestVirtual;
+        private IMethod mGetValue;
+        private IMethod mTostring;
+        object[] mParam = new object[1];
+        private bool mTestVirtualInvoking = false;
+        private bool mGetValueInvoking = false;
+        public Adapter() { }
+        public Adapter(AppDomain appdomain, ILTypeInstance instance)
+        {
+            mAppDomain = appdomain;
+            mInstance = instance;
+        }
+
+        public ILTypeInstance ILInstance { get { return mInstance; } }
+
+        //下面将所有虚函数都重载一遍，并中转到热更内
+        //在适配器中重写所有需要在热更脚本重写的方法，并将控制权转移到脚本里去
+        public override int value
+        {
+            get
+            {
+                if (mGetValue == null)
+                    mGetValue = mInstance.Type.GetMethod("get_value", 1);
+                if (mGetValue != null && !mGetValueInvoking)
+                {
+                    mGetValueInvoking = true;
+                    int res = (int)mAppDomain.Invoke(mGetValue, mInstance, null);
+                    mGetValueInvoking = false;
+                    return res;
+                }
+                else
+                    return base.value;
+            }
+        }
+        public override void TestAbstract(int a)
+        {
+            if (mTestAbstract == null)
+                mTestAbstract = mInstance.Type.GetMethod("TestAbstract", 1);
+            if (mTestAbstract != null)
+            {
+                mParam[0] = a;
+                mAppDomain.Invoke(mTestAbstract, mInstance, mParam);
+            }
+        }
+        public override void TestVirtual(string str)
+        {
+            if (mTestVirtual == null)
+                mTestVirtual = mInstance.Type.GetMethod("TestVirtual", 1);
+            //必须设置一个标示位来表示当前是否在调用中,否则如果脚本类里调用了base.TestVirtual()就会造成无限循环
+            if (mTestVirtual != null && !mTestVirtualInvoking)
+            {
+                mTestVirtualInvoking = true;
+                mParam[0] = str;
+                mAppDomain.Invoke(mTestVirtual, mInstance, mParam);
+                mTestVirtualInvoking = false;
+            }
+            else
+            {
+                base.TestVirtual(str);
+            }
+        }
+        public override string ToString()
+        {
+            if (mTostring == null)
+                mTostring = mAppDomain.ObjectType.GetMethod("ToString", 0);
+
+            IMethod m = mInstance.Type.GetVirtualMethod(mTostring);
+            if (m == null || m is ILMethod)
+            {
+                return mInstance.ToString();
+            }
+            else
+                return mInstance.Type.FullName;
+        }
+    }
+}
+    private void InitializeILRuntime()
+    {
+        //跨域继承的注册
+        mAppDomain.RegisterCrossBindingAdaptor(new InheritanceAdapter());
+}
+    private void OnHotFixLoaded()
+    {
+        //跨域继承 第一种
+        //TestClassBase InheritanceObj = mAppDomain.Instantiate<TestClassBase>("Hotfix.TestInheritance");
+        //InheritanceObj.TestAbstract(556);
+        //InheritanceObj.TestVirtual("JadenVirtual");
+        //跨域继承 第二种
+
+        TestClassBase InheritanceObj = (TestClassBase)mAppDomain.Invoke("Hotfix.TestInheritance", "NewObject", null);
+        InheritanceObj.TestAbstract(100);
+        InheritanceObj.TestVirtual("JadenVirtual");
+}
+热更换工程
+namespace Hotfix
+{
+    public class TestInheritance : TestClassBase
+    {
+        public static TestInheritance NewObject()
+        {
+            return new TestInheritance();
+        }
+        public override void TestAbstract(int a)
+        {
+            Debug.Log("TestInheritance TestAbstract a="+a);
+        }
+        public override void TestVirtual(string str)
+        {
+            base.TestVirtual(str);
+            Debug.Log("TestInheritance TestVirtual str=" + str);
+        }
+     
+    }
+}
+```
+***CLR绑定***
+需要在GenerateCLRBindingByAnalysis.cs的函数InitILRuntime中注册所有热更DLL中用到的跨域继承Adapter，否则无法正确抓取引用，
+![image.png](https://upload-images.jianshu.io/upload_images/3912830-52ef91bf1cad3e91.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+完成后点击EdgeFramework->ILRuntime->通过自动分析热更dll生成CLR绑定
+![image.png](https://upload-images.jianshu.io/upload_images/3912830-98e1838a08a2d70e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+点击后会在Assets/Scripts/ILRuntime/Generated/文件夹中自动生成绑定的代码
+![image.png](https://upload-images.jianshu.io/upload_images/3912830-6c74f26801c6bba8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+这时候即可在ILRuntimeManager.cs中的InitializeILRuntime（）函数中注册绑定
+```
+  //绑定注册(最后执行) 需要先
+        ILRuntime.Runtime.Generated.CLRBindings.Initialize(mAppDomain);
+```
+最后测试可发现调用热更工程时间比不绑定快很多
+***热更工程使用协程***
+```
+U3D工程
+//协成适配器
+public class CoroutineAdapter : CrossBindingAdaptor
+{
+    public override System.Type BaseCLRType { get { return null; } }
+
+    public override System.Type[] BaseCLRTypes
+    {
+        get
+        {
+            //跨域继承只能有1个Adapter，因此应该尽量避免一个类同时实现多个外部接口，对于coroutine来说是IEnumerator<object>,IEnumerator和IDisposable，
+            //ILRuntime虽然支持，但是一定要小心这种用法，使用不当很容易造成不可预期的问题
+            //日常开发如果需要实现多个DLL外部接口，请在Unity这边先做一个基类实现那些个接口，然后继承那个基类
+            return new System.Type[] { typeof(IEnumerator<object>), typeof(IEnumerator), typeof(System.IDisposable) };
+        }
+    }
+    public override System.Type AdaptorType { get { return typeof(Adaptor); } }
+
+    public override object CreateCLRInstance(ILRuntime.Runtime.Enviorment.AppDomain appdomain, ILTypeInstance instance)
+    {
+        return new Adaptor(appdomain, instance);
+    }
+    class Adaptor : IEnumerator<System.Object>, IEnumerator, System.IDisposable, CrossBindingAdaptorType
+    {
+        private AppDomain mAppDomain;
+        private ILTypeInstance mInstance;
+
+        private IMethod mTostring;
+
+        public Adaptor() { }
+        public Adaptor(AppDomain appdomain, ILTypeInstance instance)
+        {
+            mAppDomain = appdomain;
+            mInstance = instance;
+        }
+
+        //下面将所有虚函数都重载一遍，并中转到热更内
+        //在适配器中重写所有需要在热更脚本重写的方法，并将控制权转移到脚本里去
+        public ILTypeInstance ILInstance { get { return mInstance; } }
+
+        IMethod mCurrentMethod;
+        bool mCurrentMethodGot;
+        public object Current
+        {
+            get
+            {
+                if (!mCurrentMethodGot)
+                {
+                    mCurrentMethod = mInstance.Type.GetMethod("get_Current", 0);
+                    if (mCurrentMethod == null)
+                    {
+                        //这里写System.Collections.IEnumerator.get_Current而不是直接get_Current是因为coroutine生成的类是显式实现这个接口的，通过Reflector等反编译软件可得知
+                        //为了兼容其他只实现了单一Current属性的，所以上面先直接取了get_Current
+                        mCurrentMethod = mInstance.Type.GetMethod("System.Collections.IEnumerator.get_Current", 0);
+                    }
+                    mCurrentMethodGot = true;
+                }
+                if (mCurrentMethod != null)
+                {
+                    var res = mAppDomain.Invoke(mCurrentMethod, mInstance, null);
+                    return res;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        IMethod mDisposeMethod;
+        bool mDisposeMethodGot;
+        public void Dispose()
+        {
+            if (!mDisposeMethodGot)
+            {
+                mDisposeMethod = mInstance.Type.GetMethod("Dispose", 0);
+                if (mDisposeMethod == null)
+                {
+                    mDisposeMethod = mInstance.Type.GetMethod("System.IDisposable.Dispose", 0);
+                }
+                mDisposeMethodGot = true;
+            }
+
+            if (mDisposeMethod != null)
+            {
+                mAppDomain.Invoke(mDisposeMethod, mInstance, null);
+            }
+        }
+
+
+        IMethod mMoveNextMethod;
+        bool mMoveNextMethodGot;
+        public bool MoveNext()
+        {
+            if (!mMoveNextMethodGot)
+            {
+                mMoveNextMethod = mInstance.Type.GetMethod("MoveNext", 0);
+                mMoveNextMethodGot = true;
+            }
+
+            if (mMoveNextMethod != null)
+            {
+                return (bool)mAppDomain.Invoke(mMoveNextMethod, mInstance, null);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        IMethod mResetMethod;
+        bool mResetMethodGot;
+        public void Reset()
+        {
+            if (!mResetMethodGot)
+            {
+                mResetMethod = mInstance.Type.GetMethod("Reset", 0);
+                mResetMethodGot = true;
+            }
+
+            if (mResetMethod != null)
+            {
+                mAppDomain.Invoke(mResetMethod, mInstance, null);
+            }
+        }
+
+        public override string ToString()
+        {
+            if (mTostring == null)
+                mTostring = mAppDomain.ObjectType.GetMethod("ToString", 0);
+
+            IMethod m = mInstance.Type.GetVirtualMethod(mTostring);
+            if (m == null || m is ILMethod)
+            {
+                return mInstance.ToString();
+            }
+            else
+                return mInstance.Type.FullName;
+        }
+    }
+
+}
+
+    private void InitializeILRuntime()
+    {
+
+        //注册协程适配器
+        //使用Couroutine时，C#编译器会自动生成一个实现了IEnumerator，IEnumerator<object>，IDisposable接口的类，因为这是跨域继承，所以需要写CrossBindAdapter，直接注册即可
+        mAppDomain.RegisterCrossBindingAdaptor(new CoroutineAdapter());
+}
+    private void OnHotFixLoaded()
+    {
+        //协成测试
+        mAppDomain.Invoke("Hotfix.TestCortoutine", "RunTest", null, null);
+}
+热更工程
+namespace Hotfix
+{
+   public  class TestCortoutine
+    {
+        public static void RunTest()
+        {
+            GameRoot.Instance.StartCoroutine(Coroutine());
+        }
+
+        static System.Collections.IEnumerator Coroutine()
+        {
+            Debug.Log("开始协成,t=" + Time.time);
+            yield return new WaitForSeconds(3);
+            Debug.Log("开始完成,t=" + Time.time);
+
+        }
+    }
+}
+```
+***热更工程使用MonoBehaviour***
+```
+U3D工程
+//MonoBehaviour适配器
+public class MonoBehaviourAdapter : CrossBindingAdaptor
+{
+    public override System.Type BaseCLRType
+    {
+        get
+        {
+            return typeof(MonoBehaviour);
+        }
+    }
+
+    public override System.Type AdaptorType
+    {
+        get
+        {
+            return typeof(Adaptor);
+        }
+    }
+
+    public override object CreateCLRInstance(ILRuntime.Runtime.Enviorment.AppDomain appdomain, ILTypeInstance instance)
+    {
+        return new Adaptor(appdomain, instance);
+    }
+    //为了完整实现MonoBehaviour的所有特性，这个Adapter还得扩展，这里只抛砖引玉，只实现了最常用的Awake, Start和Update
+    public class Adaptor : MonoBehaviour, CrossBindingAdaptorType
+    {
+        ILTypeInstance instance;
+        AppDomain appdomain;
+
+        public Adaptor()
+        {
+
+        }
+
+        public Adaptor(AppDomain appdomain, ILTypeInstance instance)
+        {
+            this.appdomain = appdomain;
+            this.instance = instance;
+        }
+
+        public ILTypeInstance ILInstance { get { return instance; } set { instance = value; } }
+
+        public AppDomain AppDomain { get { return appdomain; } set { appdomain = value; } }
+
+        IMethod mAwakeMethod;
+        bool mAwakeMethodGot;
+        public void Awake()
+        {
+            //Unity会在ILRuntime准备好这个实例前调用Awake，所以这里暂时先不掉用
+            if (instance != null)
+            {
+                if (!mAwakeMethodGot)
+                {
+                    mAwakeMethod = instance.Type.GetMethod("Awake", 0);
+                    mAwakeMethodGot = true;
+                }
+
+                if (mAwakeMethod != null)
+                {
+                    appdomain.Invoke(mAwakeMethod, instance, null);
+                }
+            }
+        }
+        IMethod mStartMethod;
+        bool mStartMethodGot;
+        void Start()
+        {
+            if (!mStartMethodGot)
+            {
+                mStartMethod = instance.Type.GetMethod("Start", 0);
+                mStartMethodGot = true;
+            }
+
+            if (mStartMethod != null)
+            {
+                appdomain.Invoke(mStartMethod, instance, null);
+            }
+        }
+
+        IMethod mUpdateMethod;
+        bool mUpdateMethodGot;
+        void Update()
+        {
+            if (!mUpdateMethodGot)
+            {
+                mUpdateMethod = instance.Type.GetMethod("Update", 0);
+                mUpdateMethodGot = true;
+            }
+
+            if (mUpdateMethod != null)
+            {
+                appdomain.Invoke(mUpdateMethod, instance, null);
+            }
+        }
+
+        public override string ToString()
+        {
+            IMethod m = appdomain.ObjectType.GetMethod("ToString", 0);
+            m = instance.Type.GetVirtualMethod(m);
+            if (m == null || m is ILMethod)
+            {
+                return instance.ToString();
+            }
+            else
+                return instance.Type.FullName;
+        }
+    }
+
+
+}
+    private void InitializeILRuntime()
+    {
+        //注册Mono适配器
+        mAppDomain.RegisterCrossBindingAdaptor(new MonoBehaviourAdapter());
+}
+    private void OnHotFixLoaded()
+    {
+        //Mono测试
+        //  mAppDomain.Invoke("Hotfix.TestMono", "RunTest", null, GameRoot.Instance.gameObject);
+        mAppDomain.Invoke("Hotfix.TestMono", "RunTest1", null, GameRoot.Instance.gameObject);
+}
+热更工程
+namespace Hotfix
+{
+   public class TestMono
+    {
+        public static void RunTest(GameObject go)
+        {
+            go.AddComponent<MonoTest>();
+        }
+        public static void RunTest1(GameObject go)
+        {
+            go.AddComponent<MonoTest>();
+            MonoTest mono = go.GetComponent<MonoTest>();
+            mono.Test();
+        }
+    }
+    public class MonoTest : MonoBehaviour
+    {
+        private float mCurTime = 0;
+        void Awake()
+        {
+            Debug.Log("MonoTest Awake");
+        }
+        void Start()
+        {
+            Debug.Log("MonoTest Start!");
+        }
+        void Update()
+        {
+            if (mCurTime < 0.2f)
+            {
+                mCurTime += Time.deltaTime;
+                Debug.Log("MonoTest Update!");
+            }
+        }
+        public  void Test()
+        {
+            Debug.Log("MonoTest");
+        }
+    }
+}
+
+```
 ###  五、表格数据
 Excels表格数据路径EdgeFramework\Excels\xlsx\，表格数据后缀必须是xlsx，excels表格数据的前四行用于结构定义, 其余为数据
 ```
