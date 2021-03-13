@@ -56,15 +56,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LoadingPanelLogic.cs" />
-    <Compile Include="MainMenuPanelLogic.cs" />
-    <Compile Include="TestClass.cs" />
+    <Compile Include="UIPanel\LoadingPanelLogic.cs" />
+    <Compile Include="UIPanel\MainMenuPanelLogic.cs" />
+    <Compile Include="Test\TestClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestCLRBinding.cs" />
-    <Compile Include="TestCortoutine.cs" />
-    <Compile Include="TestDelegate.cs" />
-    <Compile Include="TestInheritance.cs" />
-    <Compile Include="TestMono.cs" />
+    <Compile Include="Test\TestCLRBinding.cs" />
+    <Compile Include="Test\TestCortoutine.cs" />
+    <Compile Include="Test\TestDelegate.cs" />
+    <Compile Include="Test\TestInheritance.cs" />
+    <Compile Include="Test\TestMono.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
