@@ -181,7 +181,8 @@ namespace EdgeFramework.Res
         /// <returns></returns>
         public bool IsObjectManagerCreat(GameObject obj)
         {
-            TResouceObj resObj = mResouceObjDic[obj.GetInstanceID()];
+            TResouceObj resObj;
+            mResouceObjDic.TryGetValue(obj.GetInstanceID(), out resObj);
             return resObj == null ? false : true;
         }
         /// <summary>

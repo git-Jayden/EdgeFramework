@@ -51,7 +51,12 @@ namespace EdgeFramework.Res
                         tempTrs.gameObject.SetActive(false);
                     }
                 }
-                if (tempTrs.childCount > AllPointChildCount[i])
+                int count = tempTrs.childCount;
+                if (tempTrs.GetComponent<InputField>())
+                {
+                    count--;
+                }
+                if (count > AllPointChildCount[i])
                 {
                     int childCount = tempTrs.childCount;
                     for (int j = AllPointChildCount[i]; j < childCount; j++)

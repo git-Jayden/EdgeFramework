@@ -169,6 +169,10 @@ namespace EdgeFramework.UI
             }
             mCurSiblingIndex++;
             BaseUI panel = GetPanel<T>(panelType, resource);
+    
+            panel.IsHotFix = !resource;
+            panel.SetSiblingIndex(ViewSiblingIndex.LOW + mCurSiblingIndex);
+            mPanelStack.Push(panel);
             if (panel.IsHotFix)
             {
                 ILRuntimeManager.Instance.AppDomainCtrl.Invoke(panel.HotFixClassName, "OnEnter", panel, param1, param2, param3);
@@ -177,9 +181,6 @@ namespace EdgeFramework.UI
             {
                 panel.OnEnter(param1, param2, param3);
             }
-            panel.IsHotFix = !resource;
-            panel.SetSiblingIndex(ViewSiblingIndex.LOW + mCurSiblingIndex);
-            mPanelStack.Push(panel);
             return panel;
         }
 
